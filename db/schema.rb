@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_014936) do
+ActiveRecord::Schema.define(version: 2021_02_07_064229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "managers", force: :cascade do |t|
+    t.string "watiam", limit: 50, null: false
+    t.string "first_name", limit: 50, null: false
+    t.string "last_name", limit: 50, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["watiam"], name: "index_managers_on_watiam", unique: true
+  end
 
   create_table "responses", force: :cascade do |t|
     t.integer "survey_id", null: false
