@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     
   # GET /dashboard
   def dashboard
-    #To-do get users
+    #TODO: get current user from session
     #@user = 
     
   end
