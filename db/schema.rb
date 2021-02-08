@@ -31,5 +31,12 @@ ActiveRecord::Schema.define(version: 2021_02_07_064229) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+    
+  create_table "users", force: :cascade do |t|
+    t.integer "watiam", null: false
+    t.integer "user_id", null: false
+    t.string "first_name", limit: 50, null: false
+    t.string "last_name", limit: 50, null: false
+  end
 
 end
