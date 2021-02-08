@@ -12,19 +12,40 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    @new = true
     @team = Team.new
   end
-
-  # GET /teams/1/edit
+    
+   # GET /teams/1/edit
   def edit
+    @edit = true
+    #TODO: changes users to users on specified team
+    @users = User.all 
+  end 
+    
+  # GET /teams/1/members
+  def add_members_page
+    @all_users = true
+    @users = User.all
+    @team = Team.find(params[:id])
+  end
+    
+  # POST /teams/1/members/add
+  def add_member
+    #TODO: add logic to add member to team
+  end
+    
+  # POST /teams/1/members/delete
+  def remove_member
+    #TODO: add logic to remove member to team
   end
 
   # POST /teams
   def create
     @team = Team.new(team_params)
-
+      
     if @team.save
-      redirect_to @team, notice: 'Team was successfully created.'
+      redirect_to add_members_url(@team), notice: 'Team was successfully created.'
     else
       render :new
     end
