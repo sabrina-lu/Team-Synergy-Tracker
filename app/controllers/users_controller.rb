@@ -18,6 +18,13 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+    
+  # GET /dashboard
+  def dashboard
+    #TODO: get current user from session
+    #@user = 
+    
+  end
 
   # POST /users
   def create
