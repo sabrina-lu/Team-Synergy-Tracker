@@ -33,7 +33,15 @@ ActiveRecord::Schema.define(version: 2021_02_08_035853) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 50, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "watiam", limit: 50, null: false
+    t.string "first_name", limit: 50, null: false
+    t.string "last_name", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
