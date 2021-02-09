@@ -21,15 +21,10 @@
                 <td><%= form.submit "Remove User" %></td>
             <% end %>
             <% else %>
-            <%= form_with url: confirm_add_member_path do |form| %>
-                <%= form.hidden_field :user_id, :value => user.id %>
-                <td><%= form.submit "Add to Team" %></td>
-            <% end %>
-            <% end %>
-        <% elsif @edit %>
-            <%= form_with url: confirm_remove_member_path do |form| %>
-                <%= form.hidden_field :user_id, :value => user.id %>
-                <td><%= form.submit "Remove User" %></td>
+                <%= form_with url: confirm_add_member_path do |form| %>
+                    <%= form.hidden_field :user_id, :value => user.id %>
+                    <td><%= form.submit "Add User" %></td>
+                <% end %>
             <% end %>
         <% end %>
       </tr>

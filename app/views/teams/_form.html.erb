@@ -19,7 +19,7 @@
   <% if @edit %>
       <%= render template: 'teams/members' %>
 
-      <%= link_to "Add more members", add_members_path(@team) %>
+      <%= link_to "Add/Remove Members", edit_members_path(@team) %>
   <% end %>
 
   <br>

@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -25,7 +26,7 @@ class TeamsController < ApplicationController
   end 
     
   # GET /teams/1/members
-  def add_members_page
+  def edit_members
     @all_users = true
     @users = User.all
     @team = Team.find(params[:id])
@@ -35,25 +36,22 @@ class TeamsController < ApplicationController
   def add_member
     #TODO: add logic to add member to team
     @user = User.find(params[:user_id])
-      puts "#{@user.first_name} -----------------------------------------------------------------------------"
-    team = Team.find_by(:id => params[:id])   
-      puts "#{team.name} -----------------------------------------------------------------------------"
+    team = Team.find_by(:id => params[:id])
     team.users << @user
     if team.save
         flash[:notice] = "Successfully added #{@user.first_name} to #{team.name}" 
-        redirect_to add_members_url(team)
+        redirect_to edit_members_url(team)
     end
   end
     
   # POST /teams/1/members/delete
   def remove_member
-    #TODO: add logic to remove member to team
     @user = User.find(params[:user_id])
     team = Team.find_by(:id => params[:id])
     team.users.delete(@user)
     if team.save
         flash[:notice] = "Successfully removed #{@user.first_name} from #{team.name}" 
-        redirect_to add_members_url(team)
+        redirect_to edit_members_url(team)
     end
   end
 
@@ -62,7 +60,7 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
       
     if @team.save
-      redirect_to add_members_url(@team), notice: 'Team was successfully created.'
+      redirect_to edit_members_url(@team), notice: 'Team was successfully created.'
     else
       render :new
     end
