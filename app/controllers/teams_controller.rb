@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  # TODO: remove line 3 when sessions is implemented
   skip_before_action :verify_authenticity_token
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
@@ -21,7 +22,6 @@ class TeamsController < ApplicationController
    # GET /teams/1/edit
   def edit
     @edit = true
-    #TODO: changes users to users on specified team
     @users = Team.find(params[:id]).users
   end 
     
@@ -34,7 +34,6 @@ class TeamsController < ApplicationController
     
   # POST /teams/1/members/add
   def add_member
-    #TODO: add logic to add member to team
     @user = User.find(params[:user_id])
     team = Team.find_by(:id => params[:id])
     team.users << @user
@@ -57,8 +56,7 @@ class TeamsController < ApplicationController
 
   # POST /teams
   def create
-    @team = Team.new(team_params)
-      
+    @team = Team.new(team_params) 
     if @team.save
       redirect_to edit_members_url(@team), notice: 'Team was successfully created.'
     else
