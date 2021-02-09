@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_035853) do
+
+ActiveRecord::Schema.define(version: 2021_02_09_012930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +22,19 @@ ActiveRecord::Schema.define(version: 2021_02_08_035853) do
     t.string "last_name", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["watiam"], name: "index_managers_on_watiam", unique: true
+    t.integer "manager_id", null: false
+    t.string "password", null: false
+    t.index ["manager_id"], name: "index_managers_on_manager_id", unique: true
+  end
+
+  create_table "members", id: false, force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id", "user_id"], name: "index_members_on_team_id_and_user_id", unique: true
+    t.index ["team_id"], name: "index_members_on_team_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -30,6 +43,16 @@ ActiveRecord::Schema.define(version: 2021_02_08_035853) do
     t.integer "response", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.date "date"
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_surveys_on_team_id"
+    t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -48,4 +71,6 @@ ActiveRecord::Schema.define(version: 2021_02_08_035853) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "surveys", "teams"
+  add_foreign_key "surveys", "users"
 end
