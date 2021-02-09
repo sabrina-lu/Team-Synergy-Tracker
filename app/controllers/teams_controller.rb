@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
+    @users = Team.find(params[:id]).users
   end
 
   # GET /teams/new
@@ -20,7 +21,7 @@ class TeamsController < ApplicationController
   def edit
     @edit = true
     #TODO: changes users to users on specified team
-    @users = User.all 
+    @users = Team.find(params[:id]).users
   end 
     
   # GET /teams/1/members
@@ -33,11 +34,27 @@ class TeamsController < ApplicationController
   # POST /teams/1/members/add
   def add_member
     #TODO: add logic to add member to team
+    @user = User.find(params[:user_id])
+      puts "#{@user.first_name} -----------------------------------------------------------------------------"
+    team = Team.find_by(:id => params[:id])   
+      puts "#{team.name} -----------------------------------------------------------------------------"
+    team.users << @user
+    if team.save
+        flash[:notice] = "Successfully added #{@user.first_name} to #{team.name}" 
+        redirect_to add_members_url(team)
+    end
   end
     
   # POST /teams/1/members/delete
   def remove_member
     #TODO: add logic to remove member to team
+    @user = User.find(params[:user_id])
+    team = Team.find_by(:id => params[:id])
+    team.users.delete(@user)
+    if team.save
+        flash[:notice] = "Successfully removed #{@user.first_name} from #{team.name}" 
+        redirect_to add_members_url(team)
+    end
   end
 
   # POST /teams

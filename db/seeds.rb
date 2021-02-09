@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Insert INto users
+values (2, 'sue',124,'asdf','sue','last', '2021-02-09 02:02:30.560721', '2021-02-09 02:02:30.560721');

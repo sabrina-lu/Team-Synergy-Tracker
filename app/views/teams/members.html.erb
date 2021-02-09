@@ -15,7 +15,7 @@
         <td><%= user.first_name %> </td>
         <td><%= user.last_name%></td>
         <% if @all_users %>
-            <% if false #TODO: @team.users.include?user %>
+            <% if @team.users.include?user %>
                 <%= form_with url: confirm_remove_member_path do |form| %>
                 <%= form.hidden_field :user_id, :value => user.id %>
                 <td><%= form.submit "Remove User" %></td>
