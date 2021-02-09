@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
 
   # GET /users
   def index
@@ -31,7 +33,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      log_in @user    
+      redirect_to root_url, notice: 'Account created and logged in.'
     else
       render :new
     end
@@ -48,6 +51,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    if @user == current_user
+        log_out
+    end
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
@@ -60,6 +66,13 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:name, :watiam, :password, :first_name, :last_name,
+                                :password_confirmation)
     end
+    
+   def authorized_to_modify_and_destroy
+   if current_user != @user
+      redirect_to users_url, notice: "You can only edit or delete your own account."
+   end
+end
 end
