@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th>WatIAm</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th colspan="1"></th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.watiam%></td>
+        <td><%= user.first_name %> </td>
+        <td><%= user.last_name%></td>
+        <% if @all_users %>
+            <% if @team.users.include?user %>
+                <%= form_with url: confirm_remove_member_path do |form| %>
+                <%= form.hidden_field :user_id, :value => user.id %>
+                <td><%= form.submit "Remove User" %></td>
+            <% end %>
+            <% else %>
+                <%= form_with url: confirm_add_member_path do |form| %>
+                    <%= form.hidden_field :user_id, :value => user.id %>
+                    <td><%= form.submit "Add User" %></td>
+                <% end %>
+            <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

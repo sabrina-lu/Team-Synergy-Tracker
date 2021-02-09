@@ -12,11 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <b><%= form.label "Name: " %></b>
     <%= form.text_field :name %>
   </div>
 
+  <% if @edit %>
+      <%= render template: 'teams/members' %>
+
+      <%= link_to "Add/Remove Members", edit_members_path(@team) %>
+  <% end %>
+
+  <br>
+  <br>
+
   <div class="actions">
-    <%= form.submit %>
+    <% if @new %>
+        <%= form.submit("Continue to Adding Members")%>
+    <% else %>
+        <%= form.submit("Update Team")%>
+    <% end %>
   </div>
 <% end %>

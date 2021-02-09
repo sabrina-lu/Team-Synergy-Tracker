@@ -1,6 +1,4 @@
 class Team < ApplicationRecord
-     teams-and-managers
-
     belongs_to :manager
     has_and_belongs_to_many :users
 
