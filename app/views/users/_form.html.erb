@@ -11,6 +11,15 @@
     </div>
   <% end %>
 <div class="field">
+    <%= form.label :flag %>
+    <%= form.radio_button :flag, "User", %>
+    <%= form.radio_button :flag, "Manager" %>
+  </div>
+<div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+<div class="field">
     <%= form.label :watiam %>
     <%= form.text_field :watiam %>
   </div>
@@ -33,7 +42,13 @@
     <%= form.password_field :password_confirmation %>
   </div>
 
+<!--   <% if user.flag == "User" %> -->
   <div class="actions">
     <%= form.submit %>
   </div>
+<!--   <% else %> -->
+<!--     <div class="actions"> -->
+<!--       <%= form.submit %> -->
+<!--     </div> -->
+<!--   <% end %> -->
 <% end %>

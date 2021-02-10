@@ -50,10 +50,12 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
-    if @user.save
-      log_in @user    
+      
+    if @user.flag == "User"
+      log_in @user
       redirect_to root_url, notice: 'Account created and logged in.'
+    elsif @user.flag == "Manager"
+      print "Manager"
     else
       render :new
     end

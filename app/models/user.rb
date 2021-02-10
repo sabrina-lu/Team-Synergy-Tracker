@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    attr_accessor :flag
+    
     has_and_belongs_to_many :teams
     has_many :surveys
     has_secure_password
