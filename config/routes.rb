@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :users, except: [:new]  
     
   get '/signup', to: 'users#new'
-  get    '/login',  to: 'sessions#new'    
-  post   '/login',  to: 'sessions#create'    
-  get    '/logout', to: 'sessions#destroy' 
+  get '/login',  to: 'sessions#new'    
+  post '/login',  to: 'sessions#create'    
+  get '/logout', to: 'sessions#destroy' 
     
   get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'    
   get 'teams/:id/members', to: 'teams#edit_members', as: 'edit_members'
