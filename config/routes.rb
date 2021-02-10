@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   post '/login',  to: 'sessions#create'    
   get '/logout', to: 'sessions#destroy' 
     
-  get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'    
+  get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'
+  get 'manager_dashboard', to: 'managers#dashboard', as: 'manager_dashboard'
+  get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'  
+    
   get 'teams/:id/members', to: 'teams#edit_members', as: 'edit_members'
   post 'teams/:id/members/add', to: 'teams#add_member', as: 'confirm_add_member'
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
