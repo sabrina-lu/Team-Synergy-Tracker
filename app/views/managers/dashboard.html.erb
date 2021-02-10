@@ -1,0 +1,23 @@
+<h1>Welcome to your dashboard!</h1>
+
+<br>
+
+<h2>Teams</h2>
+<% @manager.teams.each do |team| %>
+    <div>
+     <%= link_to team.name, team_health_path(team) %>   
+    </div>
+<%end%>
+
+<br>
+
+<%= link_to 'New Team', new_team_path %>
+
+<br><br>
+
+<div>
+    <span>
+        <a href="">View All Tickets</a>
+        <a href="">Create A Ticket</a>
+    </span>
+</div>

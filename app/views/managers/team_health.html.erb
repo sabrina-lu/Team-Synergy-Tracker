@@ -1,0 +1,17 @@
+<h1>Team <%=@team.name%> Health Metrics</h1>
+
+<br>
+
+<h2> TODO: ADD TEAM HEALTH SCORE HERE </h3>
+
+<br>
+
+<h2>Members</h2>
+<%= render template: 'teams/members' %>
+<br>
+<%= link_to 'Edit Team', edit_team_path(@team) %>
+<br><br>
+<%= link_to 'Back', manager_dashboard_path %>
+
+
+
