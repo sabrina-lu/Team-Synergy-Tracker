@@ -10,11 +10,14 @@
       </ul>
     </div>
   <% end %>
-<div class="field">
-    <%= form.label :flag %>
-    <%= form.radio_button :flag, "User", %>
-    <%= form.radio_button :flag, "Manager" %>
-  </div>
+
+<%= form.label :flag do %>
+  <%= form.radio_button :flag, "User", {:checked=>true} %>
+  User
+  <%= form.radio_button :flag, "Manager" %>
+  Manager
+<% end %>
+
 <div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
