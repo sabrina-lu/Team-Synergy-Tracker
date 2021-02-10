@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    print user_params
     @user = User.new(user_params)
       
     if @user.flag == "User"
@@ -87,7 +88,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :watiam, :password, :first_name, :last_name,
+      params.require(:user).permit(:name, :user_id, :flag, :watiam, :password, :first_name, :last_name,
                                 :password_confirmation)
     end
     

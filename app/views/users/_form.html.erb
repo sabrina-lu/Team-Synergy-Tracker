@@ -25,7 +25,7 @@
 
 <div class="field">
     <%= form.label "User ID" %>
-    <%= form.text_field :user_id %>
+    <%= form.number_field :user_id %>
   </div>
 <div class="field">
     <%= form.label :watiam %>
@@ -50,6 +50,9 @@
     <%= form.password_field :password_confirmation %>
   </div>
 
+<div class="actions">
+    <%= form.submit %>
+  </div>
 <!--   <% if user.flag == "User" %> -->
   <div class="actions">
     <%= form.submit %>
