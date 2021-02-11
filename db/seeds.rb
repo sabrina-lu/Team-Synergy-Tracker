@@ -1,34 +1,34 @@
-Z = User.new(student_id: 20567890, watiam: a266gapha, first_name: "Loki", last_name: "Hulk", password: "Bard")
+Z = User.new(student_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
 Z.save
-A = User.new(student_id: 20777777, watiam: a266alpha, first_name: "Iron", last_name: "Man", password: "Joy")
+A = User.new(student_id: 20777777, watiam: "a266alpha", first_name: "Iron", last_name: "Man", password: "Joy")
 A.save
-B = User.new(student_id: 20766666, watiam: a2beta234, first_name: "Captain", last_name: "America", password: "Toy")
+B = User.new(student_id: 20766666, watiam: "a2beta234", first_name: "Captain", last_name: "America", password: "Toy")
 B.save
-C = User.new(student_id: 20755555, watiam: btyui1823, first_name: "Dr. Thor", last_name: "Ragnarok", password: "Juice")
+C = User.new(student_id: 20755555, watiam: "btyui1823", first_name: "Dr. Thor", last_name: "Ragnarok", password: "Juice")
 C.save
-D = User.new(student_id: 20744444, watiam: b1234h56j, first_name: "Loki", last_name: "Hawkeye", password: "Kleenex")
+D = User.new(student_id: 20744444, watiam: "b1234h56j", first_name: "Loki", last_name: "Hawkeye", password: "Kleenex")
 D.save
-E = User.new(student_id: 20733333, watiam: gema3hh3n, first_name: "Spider", last_name: "Boy", password: "Cup")
+E = User.new(student_id: 20733333, watiam: "gema3hh3n", first_name: "Spider", last_name: "Boy", password: "Cup")
 E.save
-F = User.new(student_id: 20722222, watiam: g67tGHEHA, first_name: "Nick", last_name: "Hulk", password: "Agenda")
+F = User.new(student_id: 20722222, watiam: "g67tGHEHA", first_name: "Nick", last_name: "Hulk", password: "Agenda")
 F.save
 
 
-# Z = User.new(student_id: 20567890, watiam: a266gapha, first_name: "Loki", last_name: "Hulk", password: "Bard")
+# Z = User.new(student_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
 # Z.save
-# A = User.new(student_id: 20777777, watiam: a266alpha, first_name: "I r o n", last_name: "M a n", password: "Bard")
+# A = User.new(student_id: 20777777, watiam: "a266alpha", first_name: "I r o n", last_name: "M a n", password: "Bard")
 # A.save
-# B = User.new(student_id: 20766666, watiam: a2beta234, first_name: "Capta1n", last_name: "Amer1ca", password: "T0oy")
+# B = User.new(student_id: 20766666, watiam: "a2beta234", first_name: "Capta1n", last_name: "Amer1ca", password: "T0oy")
 # B.save
-# C = User.new(student_id: 20755555, watiam: btyui1823, first_name: "Thor A.", last_name: "J. Ragnarok", password: "Juice")
+# C = User.new(student_id: 20755555, watiam: "btyui1823", first_name: "Thor A.", last_name: "J. Ragnarok", password: "Juice")
 # C.save
-# D = User.new(student_id: 20744444, watiam: b1234h56j, first_name: "Loki", last_name: "Haw.keye", password: "Kl33n3x")
+# D = User.new(student_id: 20744444, watiam: "b1234h56j", first_name: "Loki", last_name: "Haw.keye", password: "Kl33n3x")
 # D.save
-# E = User.new(student_id: 20733333, watiam: gema3hh3n, first_name: "Spi_der", last_name: "B_oy", password: "Cup")
+# E = User.new(student_id: 20733333, watiam: "gema3hh3n", first_name: "Spi_der", last_name: "B_oy", password: "Cup")
 # E.save
-# F = User.new(student_id: 20722222, watiam: g67tGHEHA, first_name: "Nic.k", last_name: "Hulk", password: "Agenda")
+# F = User.new(student_id: 20722222, watiam: "g67tGHEHA", first_name: "Nic.k", last_name: "Hulk", password: "Agenda")
 # F.save
-# Y = User.new(student_id: 20722222, watiam: g67tGHEHA, first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "Agenda")
+# Y = User.new(student_id: 20722222, watiam: "g67tGHEHA", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "Agenda")
 # Y.save
 
 t1 = Team.create(name: "Team 1")
@@ -61,40 +61,40 @@ t7.users << [A,C,D,E]
 # person Y's name is way too long
 
 
-G = Manager.new(watiam: h13ghj567, first_name: "Black", last_name: "Panther", password: "Pickle")
+G = Manager.new(watiam: "h13ghj567" first_name: "Black", last_name: "Panther", password: "Pickle")
 G.save
-H = Manager.new(watiam: h12er57yh, first_name: "Black", last_name: "Widow", password: "Smartie")
+H = Manager.new(watiam: "12er57yh" first_name: "Black", last_name: "Widow", password: "Smartie")
 H.save
-I = Manager.new(watiam: h8fgh5thy, first_name: "Bruce", last_name: "Banner", password: "Chicken")
+I = Manager.new(watiam: "h8fgh5thy", first_name: "Bruce", last_name: "Banner", password: "Chicken")
 I.save
-J = Manager.new(watiam: h82ghj6t5, first_name: "Dr. Strange", last_name: "AntMan", password: "Rooster")
+J = Manager.new(watiam: "h82ghj6t5", first_name: "Dr. Strange", last_name: "AntMan", password: "Rooster")
 J.save
-K = Manager.new(watiam: h8ub34rfj, first_name: "Nick", last_name: "Fury", password: "Jelly")
+K = Manager.new(watiam: "h8ub34rfj", first_name: "Nick", last_name: "Fury", password: "Jelly")
 K.save
-L = Manager.new(watiam: h098vhj4t, first_name: "Loki", last_name: "Fury", password: "Bean")
+L = Manager.new(watiam: "h098vhj4t", first_name: "Loki", last_name: "Fury", password: "Bean")
 L.save
-M = Manager.new(watiam: hoiugf865, first_name: "Loki", last_name: "Hulk", password: "Pizza")
+M = Manager.new(watiam: "hoiugf865", first_name: "Loki", last_name: "Hulk", password: "Pizza")
 M.save
-N = Manager.new(watiam: hRT456K7I, first_name: "Black", last_name: "Peggy", password: "diSCO")
+N = Manager.new(watiam: "hRT456K7I", first_name: "Black", last_name: "Peggy", password: "diSCO")
 N.save
 
-# G = Manager.new(watiam: h13ghj567, first_name: "Black", last_name: "Panther", password: "P1ckle")
+# G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password: "P1ckle")
 # G.save
-# H = Manager.new(watiam: h12er57yh, first_name: "Black", last_name: "Wi_dow", password: "Smartie")
+# H = Manager.new(watiam: "h12er57yh", first_name: "Black", last_name: "Wi_dow", password: "Smartie")
 # H.save
-# I = Manager.new(watiam: h8fgh5thy, first_name: "Bruc3", last_name: "Bann3r", password: "Chic34ken")
+# I = Manager.new(watiam: "h8fgh5thy", first_name: "Bruc3", last_name: "Bann3r", password: "Chic34ken")
 # I.save
-# J = Manager.new(watiam: h82ghj6t5, first_name: "Dr. Strange", last_name: "Ant. Man", password: "R00ster")
+# J = Manager.new(watiam: "h82ghj6t5", first_name: "Dr. Strange", last_name: "Ant. Man", password: "R00ster")
 # J.save
-# K = Manager.new(watiam: h8ub34rfj, first_name: "Ni_ck", last_name: "Fur_y", password: "345yh")
+# K = Manager.new(watiam: "h8ub34rfj", first_name: "Ni_ck", last_name: "Fur_y", password: "345yh")
 # K.save
-# L = Manager.new(watiam: h098vhj4t, first_name: "Lo.ki", last_name: "Fur_y", password: "Aba3")
+# L = Manager.new(watiam: "h098vhj4t", first_name: "Lo.ki", last_name: "Fur_y", password: "Aba3")
 # L.save
-# M = Manager.new(watiam: hoiugf865, first_name: "L o k i", last_name: "Hu.lk", password: "P1zza")
+# M = Manager.new(watiam: "hoiugf865", first_name: "L o k i", last_name: "Hu.lk", password: "P1zza")
 # M.save
-# N = Manager.new(watiam: hRT456K7I, first_name: "Black.", last_name: "P e g g y", password: "d1SCO")
+# N = Manager.new(watiam: "hRT456K7I", first_name: "Black.", last_name: "P e g g y", password: "d1SCO")
 # N.save
-# X = Manager.new(watiam: hRT456K7I, first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "diSCO")
+# X = Manager.new(watiam: "hRT456K7I", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "diSCO")
 # X.save
 
 #t1.manager << [G]
