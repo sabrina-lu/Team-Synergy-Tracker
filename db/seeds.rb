@@ -139,17 +139,22 @@ s3 = Survey.create(date: 1999-02-10)
 s4 = Survey.create(date: 2023-02-10)
 s5 = Survey.create(date: 2020-02-10)
 s6 = Survey.create(date: 1884-02-10)
+s7 = Survey.create(date: 2021-02-10)
 
-s1.response << [O,P,Q]
 
-s2.response << [P,R,S,T]
+s1.response << [O]
 
-s3.response << [P]
+s2.response << [P]
 
-s4.response << [O,P,Q,R,S,T]
+s3.response << [Q]
 
-s5.response << [P,S]
+s4.response << [R]
+
+s5.response << [S]
 
 s6.response << []
 
+# s7.response << [P]
+
 # survey 6 has no responses
+# survey 7 tests if a response can be in 2 different surveys
