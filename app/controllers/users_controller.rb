@@ -23,9 +23,8 @@ class UsersController < ApplicationController
     
   # GET /dashboard
   def dashboard
-    #TODO: get current user from session
-    #@user = 
-    
+     @user = current_user #get logged in user from session
+     @teams = @user.teams
   end
 
   # POST /users

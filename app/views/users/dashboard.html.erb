@@ -1,5 +1,24 @@
 <h1>Welcome to your team dashboard!</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>My Teams</th>
+      <th>Survey Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td>Placeholder</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    
 <div>
     <span>
         <a href="">View My Tickets</a>
