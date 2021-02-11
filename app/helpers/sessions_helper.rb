@@ -34,6 +34,20 @@ module SessionsHelper
      return @current_user 
   end
     
+  def current_user_is_manager
+    begin
+      Manager.find(:watiam => current_user.watiam)
+    rescue ActiveRecord::RecordNotFound
+      return false
+    end
+      return true
+  end
+    
+  def redirect_to_login
+      flash[:notice] = "Please login as a manager to view this site."
+      redirect_to login_path
+  end
+    
   def log_out
       session.delete(:user_id)
       @current_user = nil
