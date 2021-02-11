@@ -131,12 +131,12 @@ s5 = Survey.create(date: 2020-02-10)
 s6 = Survey.create(date: 1884-02-10)
 s7 = Survey.create(date: 2021-02-10)
 
-O = Response.new(survey_id: 0, question_number: 1, response: "No") #need foreign key that references survey_id
-P = Response.new(survey_id: 1, question_number: 2, response: "NO")
-Q = Response.new(survey_id: 2, question_number: 3, response: "1")
-R = Response.new(survey_id: 3, question_number: 4, response: "Yes")
-S = Response.new(survey_id: 4, question_number: 5, response: "YES")
-T = Response.new(survey_id: 5, question_number: 6, response: "2")
+O = Response.new(survey_id: 1, question_number: 1, response: "No") #need foreign key that references survey_id
+P = Response.new(survey_id: 2, question_number: 2, response: "NO")
+Q = Response.new(survey_id: 3, question_number: 3, response: "1")
+R = Response.new(survey_id: 4, question_number: 4, response: "Yes")
+S = Response.new(survey_id: 5, question_number: 5, response: "YES")
+T = Response.new(survey_id: 6, question_number: 6, response: "2")
 # U = Response.new(question_number: 7, response: "")
 # U.save
 
