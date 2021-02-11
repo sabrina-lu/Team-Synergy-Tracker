@@ -19,11 +19,9 @@ ActiveRecord::Schema.define(version: 2021_02_10_222251) do
     t.string "watiam", limit: 50, null: false
     t.string "first_name", limit: 50, null: false
     t.string "last_name", limit: 50, null: false
+    t.string "password_digest", limit: 100, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "manager_id", null: false
-    t.string "password", null: false
-    t.index ["manager_id"], name: "index_managers_on_manager_id", unique: true
   end
 
   create_table "managers_teams", id: false, force: :cascade do |t|
@@ -64,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_222251) do
 
   create_table "users", force: :cascade do |t|
     t.string "watiam", limit: 50, null: false
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "password_digest", limit: 100, null: false
     t.string "first_name", limit: 50, null: false
     t.string "last_name", limit: 50, null: false
