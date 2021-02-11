@@ -109,13 +109,13 @@ t5.manager << [J]
 
 t6.manager << [K]
 
-t7.manager << []
+t7.manager << [K]
 
 #t8.manager << [M]
 
 
 #Manager N not in charge of any team
-#Team 7 has no members
+#comment out team 7 for a team with no manager
 # Manager X's name is too long 
 
 O = Response.new(question_number: 1, response: "No")
