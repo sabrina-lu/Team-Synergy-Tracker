@@ -49,14 +49,24 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    print user_params
-    @user = User.new(user_params)
+    if user_params[:flag] == "User"
+      @user = User.new(user_params)
+    else
+      #manager_params = [:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation]
+      # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
+      redirect_to new_manager_url(:name => user_params[:name], 
+                                  :manager_id => user_params[:user_id],
+                                  :flag => user_params[:flag],
+                                  :watiam => user_params[:watiam],
+                                  :password => user_params[:password],
+                                  :first_name => user_params[:first_name],
+                                  :last_name => user_params[:last_name],
+                                  :password_confirmation => user_params[:password_confirmation]) and return
+    end
       
-    if @user.flag == "User"
+    if @user.save
       log_in @user
       redirect_to root_url, notice: 'Account created and logged in.'
-    elsif @user.flag == "Manager"
-      print "Manager"
     else
       render :new
     end

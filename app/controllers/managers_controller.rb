@@ -38,10 +38,24 @@ class ManagersController < ApplicationController
 
   # POST /managers
   def create
-    @manager = Manager.new(manager_params)
-
+    if manager_params[:flag] == "Manager"
+      @manager = Manager.new(manager_params)
+    else
+      #manager_params = [:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation]
+      # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
+      redirect_to new_user_url(:name => manager_params[:name], 
+                               :user_id => manager_params[:manager_id],
+                               :flag => manager_params[:flag],
+                               :watiam => manager_params[:watiam],
+                               :password => manager_params[:password],
+                               :first_name => manager_params[:first_name],
+                               :last_name => manager_params[:last_name],
+                               :password_confirmation => manager_params[:password_confirmation]) and return
+    end
+      
     if @manager.save
-      redirect_to @manager, notice: 'Manager was successfully created.'
+      log_in @manager
+      redirect_to root_url, notice: 'Account created and logged in.'
     else
       render :new
     end
@@ -70,6 +84,6 @@ class ManagersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def manager_params
-      params.require(:manager).permit(:watiam, :first_name, :last_name)
+      params.require(:manager).permit(:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
 end
