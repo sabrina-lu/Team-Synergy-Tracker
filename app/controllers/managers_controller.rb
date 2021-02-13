@@ -21,17 +21,16 @@ class ManagersController < ApplicationController
     
   # GET /manager_dashboard
   def dashboard
-    begin
-      @manager = Manager.find(:watiam => current_user.watiam)
-    rescue ActiveRecord::RecordNotFound
-      redirect_to_login
+    @manager = current_user_is_manager
+    if !@manager
+        redirect_to_manager_login
     end
   end
   
   # GET /team_health/1/metrics
   def team_health
     if !current_user_is_manager
-      redirect_to_login
+      redirect_to_manager_login
     end
     @team = Team.find(params[:id])
     @users = @team.users

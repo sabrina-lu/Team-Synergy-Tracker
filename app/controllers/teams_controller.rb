@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
   def new
     @new = true
     if !current_user_is_manager
-      redirect_to_login
+      redirect_to_manager_login
     end
     @team = Team.new
   end
@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
   def edit
     @edit = true
     if !current_user_is_manager
-      redirect_to_login
+      redirect_to_manager_login
     end
     @users = Team.find(params[:id]).users
   end 
@@ -33,7 +33,7 @@ class TeamsController < ApplicationController
   def edit_members
     @all_users = true
     if !current_user_is_manager
-      redirect_to_login
+      redirect_to_manager_login
     end
     @users = User.all
     @team = Team.find(params[:id])
@@ -75,7 +75,7 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      redirect_to team_health_path(@team), notice: 'Team was successfully updated.'
     else
       render :edit
     end
@@ -84,7 +84,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   def destroy
     @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+    redirect_to manager_dashboard_path, notice: 'Team was successfully destroyed.'
   end
 
   private
