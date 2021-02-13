@@ -33,6 +33,16 @@ module SessionsHelper
      end
      return @current_user 
   end
+  
+  # returns manager if current user is manager and nil otherwise
+  def current_user_is_manager
+    return Manager.find_by(:watiam => current_user.watiam)
+  end
+    
+  def redirect_to_manager_login
+      flash[:notice] = "Please login as a manager to view this site."
+      redirect_to login_path
+  end
     
   def log_out
       session.delete(:user_id)

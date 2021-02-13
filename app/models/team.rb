@@ -1,5 +1,5 @@
 class Team < ApplicationRecord
-    belongs_to :manager
+    has_and_belongs_to_many :managers
     has_and_belongs_to_many :users
 
     validates_presence_of :name

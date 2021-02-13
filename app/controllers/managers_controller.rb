@@ -21,16 +21,17 @@ class ManagersController < ApplicationController
     
   # GET /manager_dashboard
   def dashboard
-    begin
-      @manager = Manager.find(current_user.id)
-    rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Please login as a manager to view this site."
-      redirect_to login_path
+    @manager = current_user_is_manager
+    if !@manager
+        redirect_to_manager_login
     end
   end
   
-  # GET /team/1/team_health
+  # GET /team_health/1/metrics
   def team_health
+    if !current_user_is_manager
+      redirect_to_manager_login
+    end
     @team = Team.find(params[:id])
     @users = @team.users
   end

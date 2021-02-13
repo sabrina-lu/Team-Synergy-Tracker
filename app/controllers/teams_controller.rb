@@ -1,6 +1,4 @@
 class TeamsController < ApplicationController
-  # TODO: remove line 3 when sessions is implemented
-  skip_before_action :verify_authenticity_token
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -16,18 +14,27 @@ class TeamsController < ApplicationController
   # GET /teams/new
   def new
     @new = true
+    if !current_user_is_manager
+      redirect_to_manager_login
+    end
     @team = Team.new
   end
     
    # GET /teams/1/edit
   def edit
     @edit = true
+    if !current_user_is_manager
+      redirect_to_manager_login
+    end
     @users = Team.find(params[:id]).users
   end 
     
   # GET /teams/1/members
   def edit_members
     @all_users = true
+    if !current_user_is_manager
+      redirect_to_manager_login
+    end
     @users = User.all
     @team = Team.find(params[:id])
   end
@@ -58,6 +65,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params) 
     if @team.save
+      @team.managers << current_user
       redirect_to edit_members_url(@team), notice: 'Team was successfully created.'
     else
       render :new
@@ -67,7 +75,7 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      redirect_to team_health_path(@team), notice: 'Team was successfully updated.'
     else
       render :edit
     end
@@ -76,7 +84,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   def destroy
     @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+    redirect_to manager_dashboard_path, notice: 'Team was successfully destroyed.'
   end
 
   private
