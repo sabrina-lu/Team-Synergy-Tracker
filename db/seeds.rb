@@ -39,7 +39,7 @@ I = Manager.new(watiam: "h8fgh5thy", first_name: "Mi", last_name: "Banner", pass
 J = Manager.new(watiam: "h82ghj6t5", first_name: "Fa", last_name: "AntMan", password: "R00ster")
 K = Manager.new(watiam: "h8ub34rfj", first_name: "So", last_name: "Fury", password: "3456yh")
 L = Manager.new(watiam: "h098vhj4t", first_name: "La", last_name: "Fury", password: "B3333an")
-# M = Manager.new(watiam: "hoiugf865", first_name: "Do", last_name: "Hulk", password: "P1zzaHut")
+M = Manager.new(watiam: "hoiugf865", first_name: "Doe", last_name: "Hulk", password: "P1zzaHut")
 N = Manager.new(watiam: "hRT456K7I", first_name: "Ti", last_name: "Peggy", password: "diSCO0")
 
 # G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password: "P1ckle")
