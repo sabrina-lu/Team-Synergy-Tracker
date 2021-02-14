@@ -68,7 +68,9 @@ t6 = Team.new(name: "Team 6")
 t7 = Team.new(name: "Team 7")
 t8 = Team.new(name: "Team 8")
 
-t1.users << [A,D,C]
+
+#t1.users << [A,D,C]
+t1.users << [D]
 
 t2.users << [A,E]
 

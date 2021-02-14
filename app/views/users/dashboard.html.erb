@@ -12,7 +12,7 @@
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= team.name %></td>
+        <td><%= link_to team.name, user_team_list_path(id: team.id) %></td>
         <td>Placeholder</td>
       </tr>
     <% end %>
