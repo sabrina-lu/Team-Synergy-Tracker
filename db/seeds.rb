@@ -1,16 +1,16 @@
-Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
+Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Alpha", last_name: "Hulk", password: "bard333$")
 Z.save
-A = User.new(user_id: 20777777, watiam: "a266alpha", first_name: "Iron", last_name: "Man", password: "Joy")
+A = User.new(user_id: 20777777, watiam: "a266alpha", first_name: "Gamma", last_name: "Man", password: "Joy0#000")
 A.save
-B = User.new(user_id: 20766666, watiam: "a2beta234", first_name: "Captain", last_name: "America", password: "Toy")
+B = User.new(user_id: 20766666, watiam: "a2beta234", first_name: "Beta", last_name: "America", password: "Toy2111")
 B.save
-C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Dr. Thor", last_name: "Ragnarok", password: "Juice")
+C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Epsilon", last_name: "Ragnarok", password: "Toy2111")
 C.save
-D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Loki", last_name: "Hawkeye", password: "Kleenex")
-D.save
-E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Spider", last_name: "Boy", password: "Cup")
+# D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Gamma", last_name: "Hawkeye", password: "Kl33n3x")
+# D.save
+E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Lambda", last_name: "Boy", password: "Cushi$$on")
 E.save
-F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Nick", last_name: "Hulk", password: "Agenda")
+F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Equal", last_name: "Hulk", password: "Agenda")
 F.save
 
 
@@ -31,31 +31,25 @@ F.save
 # Y = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "Agenda")
 # Y.save
 
-G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password_digest: "Pickle")
-H = Manager.new(watiam: "12er57yh", first_name: "Black", last_name: "Widow", password_digest: "Smartie")
-I = Manager.new(watiam: "h8fgh5thy", first_name: "Bruce", last_name: "Banner", password_digest: "Chicken")
-J = Manager.new(watiam: "h82ghj6t5", first_name: "Dr. Strange", last_name: "AntMan", password_digest: "Rooster")
-K = Manager.new(watiam: "h8ub34rfj", first_name: "Nick", last_name: "Fury", password_digest: "Jelly")
-L = Manager.new(watiam: "h098vhj4t", first_name: "Loki", last_name: "Fury", password_digest: "Bean")
-M = Manager.new(watiam: "hoiugf865", first_name: "Loki", last_name: "Hulk", password_digest: "Pizza")
-N = Manager.new(watiam: "hRT456K7I", first_name: "Black", last_name: "Peggy", password_digest: "diSCO")
+
+
+G = Manager.new(watiam: "h13ghj567" first_name: "Do", last_name: "Panther", password: "P1ckle")
+H = Manager.new(watiam: "12er57yh" first_name: "Re", last_name: "Widow", password: "Smartie")
+I = Manager.new(watiam: "h8fgh5thy", first_name: "Mi", last_name: "Banner", password: "Chi34cken")
+J = Manager.new(watiam: "h82ghj6t5", first_name: "Fa", last_name: "AntMan", password: "R00ster")
+K = Manager.new(watiam: "h8ub34rfj", first_name: "So", last_name: "Fury", password: "3456yh")
+L = Manager.new(watiam: "h098vhj4t", first_name: "La", last_name: "Fury", password: "B3333an")
+M = Manager.new(watiam: "hoiugf865", first_name: "Doe", last_name: "Hulk", password: "P1zzaHut")
+N = Manager.new(watiam: "hRT456K7I", first_name: "Ti", last_name: "Peggy", password: "diSCO0")
 
 # G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password: "P1ckle")
-# G.save
 # H = Manager.new(watiam: "h12er57yh", first_name: "Black", last_name: "Wi_dow", password: "Smartie")
-# H.save
 # I = Manager.new(watiam: "h8fgh5thy", first_name: "Bruc3", last_name: "Bann3r", password: "Chic34ken")
-# I.save
 # J = Manager.new(watiam: "h82ghj6t5", first_name: "Dr. Strange", last_name: "Ant. Man", password: "R00ster")
-# J.save
-# K = Manager.new(watiam: "h8ub34rfj", first_name: "Ni_ck", last_name: "Fur_y", password: "345yh")
-# K.save
-# L = Manager.new(watiam: "h098vhj4t", first_name: "Lo.ki", last_name: "Fur_y", password: "Aba3")
-# L.save
-# M = Manager.new(watiam: "hoiugf865", first_name: "L o k i", last_name: "Hu.lk", password: "P1zza")
-# M.save
-# N = Manager.new(watiam: "hRT456K7I", first_name: "Black.", last_name: "P e g g y", password: "d1SCO")
-# N.save
+# K = Manager.new(watiam: "h8ub34rfj", first_name: "Ni_ck", last_name: "Fur_y", password: "345juhyh")
+# L = Manager.new(watiam: "h098vhj4t", first_name: "Lo.ki", last_name: "Fur_y", password: "Abajuh3")
+# M = Manager.new(watiam: "hoiugf865", first_name: "L o k i", last_name: "Hu.lk", password: "P1111zza")
+# N = Manager.new(watiam: "hRT456K7I", first_name: "Black.", last_name: "P e g g y", password: "d1SCO000")
 # X = Manager.new(watiam: "hRT456K7I", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "diSCO")
 # X.save
 
@@ -85,9 +79,10 @@ t7.users << [A,C,D,E]
 
 t8.users << [B]
 
-#team 2 has no members
+#comment out team 2 for no members
 #person Z is not a part of any team
 # person Y's name is way too long
+
 
 G.teams << [t1, t2]
 
@@ -100,7 +95,6 @@ J.teams << [t5]
 K.teams << [t6, t7]
 
 M.teams << [t8]
-
 
 t1.save
 t2.save
@@ -120,9 +114,6 @@ L.save
 M.save
 N.save
 
-#Manager N not in charge of any team
-#comment out team 7 for a team with no manager
-# Manager X's name is too long 
 
 s1 = Survey.create(date: 2021-02-10)
 s2 = Survey.create(date: 0001-02-10)
@@ -131,6 +122,7 @@ s4 = Survey.create(date: 2023-02-10)
 s5 = Survey.create(date: 2020-02-10)
 s6 = Survey.create(date: 1884-02-10)
 s7 = Survey.create(date: 2021-02-10)
+
 
 O = Response.new(survey_id: 1, question_number: 1, response: "No") #need foreign key that references survey_id
 P = Response.new(survey_id: 2, question_number: 2, response: "NO")
@@ -148,7 +140,19 @@ R.save
 S.save
 T.save
 
-# s7.response << [P]
+# For string responses:
+# O = Response.new(survey_id: 1, question_number: 1, response: "No")
+# O.save
+# P = Response.new(survey_id: 2, question_number: 2, response: "NO")
+# P.save
+# Q = Response.new(survey_id: 3, question_number: 3, response: "1")
+# Q.save
+# R = Response.new(survey_id: 4, question_number: 4, response: "Yes")
+# R.save
+# S = Response.new(survey_id: 5, question_number: 5, response: "YES")
+# S.save
+# T = Response.new(survey_id: 6, question_number: 6, response: "2")
+# T.save
+# U = Response.new(survey_id: 7, question_number: 7, response: "")
+# U.save
 
-# survey 6 has no responses
-# survey 7 tests if a response can be in 2 different surveys
