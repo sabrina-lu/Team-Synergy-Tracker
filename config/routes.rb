@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'
   get 'dashboard/teams/:id', to: 'users#team_list', as: 'user_team_list'
   get 'manager_dashboard', to: 'managers#dashboard', as: 'manager_dashboard'
-  get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'  
+  get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'
+    
+  get 'dashboard/teams/:id/weekly_surveys', to: 'users#weekly_surveys', as: 'weekly_surveys'
     
   get 'teams/:id/members', to: 'teams#edit_members', as: 'edit_members'
   post 'teams/:id/members/add', to: 'teams#add_member', as: 'confirm_add_member'
