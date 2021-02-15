@@ -44,6 +44,14 @@ module SessionsHelper
       redirect_to login_path
   end
     
+  def get_dashboard
+      if current_user_is_manager
+          redirect_to manager_dashboard_path
+      else
+          redirect_to user_dashboard_path
+      end
+  end
+    
   def log_out
       session.delete(:user_id)
       @current_user = nil
