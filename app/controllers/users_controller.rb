@@ -26,6 +26,12 @@ class UsersController < ApplicationController
      @user = current_user #get logged in user from session
      @teams = @user.teams
   end
+    
+  # GET /dashboard/teams/1 
+  def team_list
+      @team = Team.find(params[:id])
+      @users = @team.users
+  end
 
   # POST /users
   def create

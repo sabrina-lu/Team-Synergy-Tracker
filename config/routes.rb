@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy' 
     
   get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'
+  get 'dashboard/teams/:id', to: 'users#team_list', as: 'user_team_list'
   get 'manager_dashboard', to: 'managers#dashboard', as: 'manager_dashboard'
   get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'  
     
