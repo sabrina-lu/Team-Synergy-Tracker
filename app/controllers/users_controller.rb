@@ -32,6 +32,11 @@ class UsersController < ApplicationController
       @team = Team.find(params[:id])
       @users = @team.users
   end
+    
+  # Get /weekly_surveys/teams/1
+  def weekly_surveys
+    @team = Team.find(params[:id])
+  end
 
   # POST /users
   def create
