@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(watiam: params[:watiam].downcase)
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to root_url, notice: "Logged in."
+      get_dashboard
     else
       flash.now[:notice] = 'Cannot log you in. Invalid email or password.'
       render 'new'
