@@ -6,8 +6,8 @@ B = User.new(user_id: 20766666, watiam: "a2beta234", first_name: "Beta", last_na
 B.save
 C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Epsilon", last_name: "Ragnarok", password: "Toy2111")
 C.save
-# D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Gamma", last_name: "Hawkeye", password: "Kl33n3x")
-# D.save
+D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Gemma", last_name: "Hawkeye", password: "Kl33n3x")
+D.save
 E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Lambda", last_name: "Boy", password: "Cushi$$on")
 E.save
 F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Equal", last_name: "Hulk", password: "Agenda")
@@ -33,8 +33,8 @@ F.save
 
 
 
-G = Manager.new(watiam: "h13ghj567" first_name: "Do", last_name: "Panther", password: "P1ckle")
-H = Manager.new(watiam: "12er57yh" first_name: "Re", last_name: "Widow", password: "Smartie")
+G = Manager.new(watiam: "h13ghj567", first_name: "Do", last_name: "Panther", password: "P1ckle")
+H = Manager.new(watiam: "12er57yh", first_name: "Re", last_name: "Widow", password: "Smartie")
 I = Manager.new(watiam: "h8fgh5thy", first_name: "Mi", last_name: "Banner", password: "Chi34cken")
 J = Manager.new(watiam: "h82ghj6t5", first_name: "Fa", last_name: "AntMan", password: "R00ster")
 K = Manager.new(watiam: "h8ub34rfj", first_name: "So", last_name: "Fury", password: "3456yh")
