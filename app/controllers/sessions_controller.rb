@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(watiam: params[:watiam].downcase)
+    if !user
+        user = Manager.find_by(watiam: params[:watiam].downcase)
+    end
     if user && user.authenticate(params[:password])
       log_in user
       get_dashboard

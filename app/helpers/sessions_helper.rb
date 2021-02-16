@@ -1,7 +1,7 @@
 module SessionsHelper
     # code from multi-users lab for MSCI 342 by Mark Smucker #
   def log_in user
-    session[:user_id] = user.id
+    session[:watiam] = user.watiam
     @current_user = nil
   end
 
@@ -23,10 +23,13 @@ module SessionsHelper
   end
     
   def current_user
-     if !session[:user_id].nil?
+     if !session[:watiam].nil?
         if @current_user.nil?
             # if id not in DB, find_by returns nil
-            @current_user = User.find_by(id: session[:user_id])
+            @current_user = User.find_by(watiam: session[:watiam])
+            if !@current_user
+                @current_user = Manager.find_by(watiam: session[:watiam])
+            end
         end
      else
         @current_user = nil
