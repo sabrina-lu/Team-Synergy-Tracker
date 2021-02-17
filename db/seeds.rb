@@ -1,17 +1,10 @@
 Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Alpha", last_name: "Hulk", password: "bard333$")
-Z.save
 A = User.new(user_id: 20777777, watiam: "a266alpha", first_name: "Gamma", last_name: "Man", password: "Joy0#000")
-A.save
 B = User.new(user_id: 20766666, watiam: "a2beta234", first_name: "Beta", last_name: "America", password: "Toy2111")
-B.save
 C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Epsilon", last_name: "Ragnarok", password: "Toy2111")
-C.save
 D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Gemma", last_name: "Hawkeye", password: "Kl33n3x")
-D.save
 E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Lambda", last_name: "Boy", password: "Cushi$$on")
-E.save
 F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Equal", last_name: "Hulk", password: "Agenda")
-F.save
 
 
 # Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
@@ -96,15 +89,6 @@ K.teams << [t6, t7]
 
 M.teams << [t8]
 
-t1.save
-t2.save
-t3.save
-t4.save
-t5.save
-t6.save
-t7.save
-t8.save
-
 G.save
 H.save
 I.save
@@ -115,14 +99,35 @@ M.save
 N.save
 
 
-s1 = Survey.create(date: 2021-02-10)
-s2 = Survey.create(date: 0001-02-10)
-s3 = Survey.create(date: 1999-02-10)
-s4 = Survey.create(date: 2023-02-10)
-s5 = Survey.create(date: 2020-02-10)
-s6 = Survey.create(date: 1884-02-10)
-s7 = Survey.create(date: 2021-02-10)
+s1 = Survey.create(date: "10/02/2020")
+s2 = Survey.create(date: "09/04/2020")
+s3 = Survey.create(date: "08/02/2020")
+s4 = Survey.create(date: "07/02/2020")
+s5 = Survey.create(date: "07/03/2020")
+s6 = Survey.create(date: "06/12/2020")
+s7 = Survey.create(date: "05/21/2020")
 
+A.surveys << [s1]
+t1.surveys << [s1]
+
+s1.save
+
+A.save
+B.save
+C.save
+D.save
+E.save
+F.save
+Z.save
+
+t1.save
+t2.save
+t3.save
+t4.save
+t5.save
+t6.save
+t7.save
+t8.save
 
 O = Response.new(survey_id: 1, question_number: 1, response: "No") #need foreign key that references survey_id
 P = Response.new(survey_id: 2, question_number: 2, response: "NO")
