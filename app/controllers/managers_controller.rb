@@ -12,7 +12,11 @@ class ManagersController < ApplicationController
 
   # GET /managers/new
   def new
+    manager_params = params
     @manager = Manager.new
+#     if manager_params[:flag] == "Manager"
+#       render :create
+#     end
   end
 
   # GET /managers/1/edit
@@ -41,7 +45,6 @@ class ManagersController < ApplicationController
     if manager_params[:flag] == "Manager"
       @manager = Manager.new(manager_params)
     else
-      #manager_params = [:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation]
       # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
       redirect_to new_user_url(:name => manager_params[:name], 
                                :user_id => manager_params[:manager_id],

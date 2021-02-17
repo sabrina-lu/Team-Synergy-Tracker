@@ -9,7 +9,7 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> 
 
 <!-- 
   - Source (https://www.rubydoc.info/github/plataformatec/simple_form/SimpleForm/FormBuilder#collection_radio_buttons-instance_method) used for understanding the Options available
@@ -22,31 +22,35 @@
   Manager
 <% end %>
 
+<!-- 
+  - Source (https://stackoverflow.com/questions/50453091/override-a-default-value-in-a-rails-form) used for understanding how to set input values if default values not provided
+-->
+
 <div class="field">
     <%= form.label "User/Manager ID" %>
-    <%= form.number_field :user_id %>
+    <%= form.number_field :user_id, value: (form.object.user_id || params[:user_id]) %>
   </div>
 <div class="field">
     <%= form.label :watiam %>
-    <%= form.text_field :watiam %>
+    <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]) %>
   </div>
 <div class="field">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <%= form.text_field :first_name, value: (form.object.first_name || params[:first_name]) %>
   </div>
 <div class="field">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+    <%= form.text_field :last_name, value: (form.object.last_name || params[:last_name]) %>
   </div>
 
  <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, value: (form.object.password || params[:password]) %>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, value: (form.object.password_confirmation || params[:password_confirmation]) %>
   </div>
 
 <div class="actions">

@@ -52,7 +52,6 @@ class UsersController < ApplicationController
     if user_params[:flag] == "User"
       @user = User.new(user_params)
     else
-      #manager_params = [:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation]
       # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
       redirect_to new_manager_url(:name => user_params[:name], 
                                   :manager_id => user_params[:user_id],
@@ -98,13 +97,12 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :user_id, :flag, :watiam, :password, :first_name, :last_name,
-                                :password_confirmation)
+      params.require(:user).permit(:name, :user_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
     
    def authorized_to_modify_and_destroy
-   if current_user != @user
+     if current_user != @user
       redirect_to users_url, notice: "You can only edit or delete your own account."
    end
-end
+  end
 end
