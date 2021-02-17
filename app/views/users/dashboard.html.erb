@@ -13,7 +13,12 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, user_team_list_path(id: team.id) %></td>
-        <td>Placeholder</td>
+        <td><% if @completed[team] %>
+                 Yes
+            <% else %>
+                 No
+            <% end %>
+       </td>
       </tr>
     <% end %>
   </tbody>

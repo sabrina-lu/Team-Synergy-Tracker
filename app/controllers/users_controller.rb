@@ -25,6 +25,15 @@ class UsersController < ApplicationController
   def dashboard
      @user = current_user #get logged in user from session
      @teams = @user.teams
+     @surveys = @user.surveys
+     @completed = {}
+     @teams.each do |team| #for each team user is on, check if user completed the survey for that team
+         if @surveys.exists?(team_id: team.id)
+             @completed[team] = true
+         else 
+             @completed[team] = false
+         end
+     end
   end
     
   # GET /dashboard/teams/1 
