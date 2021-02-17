@@ -36,7 +36,10 @@ module SessionsHelper
   
   # returns manager if current user is manager and nil otherwise
   def current_user_is_manager
-    return Manager.find_by(:watiam => current_user.watiam)
+    if current_user
+      return Manager.find_by(:watiam => current_user.watiam)
+    end
+      return nil
   end
     
   def redirect_to_manager_login
