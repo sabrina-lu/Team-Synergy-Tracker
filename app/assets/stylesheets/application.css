@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+.logout_button {
+    float: right;
+    color: #2a3063;
+    background-color: #abaec7;
+}
