@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    user_params = params
     @user = User.new
+    if user_params[:flag] == "User"
+      @user = User.create
+    end
   end
 
   # GET /users/1/edit

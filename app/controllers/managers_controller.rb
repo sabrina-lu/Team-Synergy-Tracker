@@ -1,5 +1,7 @@
 class ManagersController < ApplicationController
-  before_action :set_manager, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:new, :create]
+  before_action :set_manager, only: [:show, :edit, :update, :destroy] # this was og the other two were randomly added to match user and havent been tested yet ¯\_(ツ)_/¯
+  before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
 
   # GET /managers
   def index
@@ -14,9 +16,9 @@ class ManagersController < ApplicationController
   def new
     manager_params = params
     @manager = Manager.new
-#     if manager_params[:flag] == "Manager"
-#       render :create
-#     end
+    if manager_params[:flag] == "Manager"
+      @manager = Manager.create
+    end
   end
 
   # GET /managers/1/edit
@@ -41,7 +43,7 @@ class ManagersController < ApplicationController
   end
 
   # POST /managers
-  def create
+  def create    
     if manager_params[:flag] == "Manager"
       @manager = Manager.new(manager_params)
     else

@@ -22,6 +22,10 @@
   Manager
 <% end %>
 
+<!-- 
+  - Source (https://stackoverflow.com/questions/50453091/override-a-default-value-in-a-rails-form) used for understanding how to set input values if default values not provided
+-->
+
 <div class="field">
     <%= form.label "User/Manager ID" %>
     <%= form.number_field :manager_id, value: (form.object.manager_id || params[:manager_id]) %>
@@ -50,6 +54,7 @@
   </div>
 
 <div class="actions">
+    
     <%= form.submit "Create Account" %>
   </div>
 <% end %>
