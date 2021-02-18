@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    user_params = params
     @user = User.new
+    if user_params[:flag] == "User"
+      @user = User.create
+    end
   end
 
   # GET /users/1/edit
@@ -49,10 +53,22 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
+    if user_params[:flag] == "User"
+      @user = User.new(user_params)
+    else
+      # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
+      redirect_to new_manager_url(:name => user_params[:name], 
+                                  :manager_id => user_params[:user_id],
+                                  :flag => user_params[:flag],
+                                  :watiam => user_params[:watiam],
+                                  :password => user_params[:password],
+                                  :first_name => user_params[:first_name],
+                                  :last_name => user_params[:last_name],
+                                  :password_confirmation => user_params[:password_confirmation]) and return
+    end
+      
     if @user.save
-      log_in @user    
+      log_in @user
       redirect_to root_url, notice: 'Account created and logged in.'
     else
       render :new
@@ -85,13 +101,12 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :watiam, :password, :first_name, :last_name,
-                                :password_confirmation)
+      params.require(:user).permit(:name, :user_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
     
    def authorized_to_modify_and_destroy
-   if current_user != @user
+     if current_user != @user
       redirect_to users_url, notice: "You can only edit or delete your own account."
    end
-end
+  end
 end
