@@ -9,6 +9,7 @@
   </head>
 
   <body>
+  <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %>
       
     <% flash.each do |key, value| %>
         <%= content_tag :div, value, id: "#{key}" %>
