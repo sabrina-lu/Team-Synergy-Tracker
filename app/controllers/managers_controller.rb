@@ -40,6 +40,7 @@ class ManagersController < ApplicationController
     end
     @team = Team.find(params[:id])
     @users = @team.users
+    @health_value = 75 #TODO: get the calculated health value for specific team
   end
 
   # POST /managers
