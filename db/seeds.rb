@@ -110,8 +110,6 @@ s7 = Survey.create(date: "05/21/2020")
 A.surveys << [s1]
 t1.surveys << [s1]
 
-s1.save
-
 A.save
 B.save
 C.save
@@ -129,14 +127,17 @@ t6.save
 t7.save
 t8.save
 
-O = Response.new(survey_id: 1, question_number: 1, response: "No") #need foreign key that references survey_id
-P = Response.new(survey_id: 2, question_number: 2, response: "NO")
-Q = Response.new(survey_id: 3, question_number: 3, response: "1")
-R = Response.new(survey_id: 4, question_number: 4, response: "Yes")
-S = Response.new(survey_id: 5, question_number: 5, response: "YES")
-T = Response.new(survey_id: 6, question_number: 6, response: "2")
+O = Response.new(question_number: 1, response: "No") #need foreign key that references survey_id
+P = Response.new(question_number: 2, response: "NO")
+Q = Response.new(question_number: 3, response: "1")
+R = Response.new(question_number: 4, response: "Yes")
+S = Response.new(question_number: 5, response: "YES")
+T = Response.new(question_number: 6, response: "2")
 # U = Response.new(question_number: 7, response: "")
 # U.save
+
+s1.responses << [O, P, Q, R, S, T] 
+s1.save
 
 O.save
 P.save
