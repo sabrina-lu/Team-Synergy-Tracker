@@ -1,3 +1,44 @@
 <h1>WEEKLY SURVEYS</h1>
 
-<p>TODO: ADD SURVEY FORM HERE</p>
+<! -- Using code from my (emma) spellmanager assignment -->
+
+<%= form_with(model: response, local: true) do |form| %>
+  <% if response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+        <% response.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<! -- Questions to ask: (1,2,3,4,5 scale) -> 5 is the best feeling, 1 is worst
+1. How do you feel about this week in comparison to last week?
+2. How did you feel about this week?
+3. How would you rate your communication with your team members this week 
+4. How do you feel about the workload you had this week? -->
+
+<table>
+    <tbody>
+<tr>
+<td>
+  <div class="field">
+    <%= form.label "How do you feel about this week in comparison to last week?" %>
+      </td>
+    <td>
+    <%= form.select :response, [1,2,3,4,5]%>
+  </div>
+</td>
+    </tr>
+
+</tbody>
+</table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

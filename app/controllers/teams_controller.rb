@@ -46,6 +46,8 @@ class TeamsController < ApplicationController
     team.users << @user
     if team.save
         flash[:notice] = "Successfully added #{@user.first_name} to #{team.name}" 
+        s = Survey.create(user: @user, team: team)# creating a new survey when a member is added to a team
+        s.save
         redirect_to edit_members_url(team)
     end
   end
@@ -57,6 +59,9 @@ class TeamsController < ApplicationController
     team.users.delete(@user)
     if team.save
         flash[:notice] = "Successfully removed #{@user.first_name} from #{team.name}" 
+        # https://stackoverflow.com/questions/11829850/find-by-multiple-conditions-in-rails
+        s = Survey.find_by(user: @user, team: team) # deleting a survey when a member is deleted from a team
+        s.destroy
         redirect_to edit_members_url(team)
     end
   end
