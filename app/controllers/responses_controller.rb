@@ -23,7 +23,6 @@ class ResponsesController < ApplicationController
   # POST /responses
   def create
      
-      puts "TEST___________________________________________"
     @response = Response.new(response_params)
 
     if @response.save

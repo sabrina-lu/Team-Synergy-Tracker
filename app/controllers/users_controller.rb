@@ -49,7 +49,8 @@ class UsersController < ApplicationController
   # Get /weekly_surveys/teams/1
   def weekly_surveys
     @team = Team.find(params[:id])
-      
+    redirect_to new_response_url and return
+    @response = Response.new
   end
 
   # POST /users
