@@ -5,21 +5,20 @@
 <%= form_with url: "/responses", method: :post do |form| %>
 
   <div class="field">
-    <%= form.label :answer %>
       <p>How do you feel about this week in comparison to last week?</p>
       <%= form.select :answer, [1,2,3,4,5]%>
 </div>
 
+
 <div class="field">
-    <% s = Survey.where(user: current_user, team: @team) %>
+    <% s = Survey.find_by(user: current_user.id, team: @team.id) %>
+    <%= s.id %>
     <%= form.hidden_field :survey_id, value: s.id %>
     </div>
 
 <div class="field">
     <%= form.hidden_field :question_number, value: 1 %>
     </div>
-
-
 
 
 
