@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   def team_list
       @team = Team.find(params[:id])
       @users = @team.users
+      @manager = @team.managers.first  #for now only one manager per team
   end
     
   # Get /weekly_surveys/teams/1

@@ -4,16 +4,26 @@
       <th>WatIAm</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th colspan="1"></th> 
+      <% if @all_users %>
+          <th colspan="1"></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
+    <% if @manager %>
+        <tr>
+            <td><b><%= @manager.watiam %></b></td>
+            <td><b><%= @manager.first_name %></b></td>
+            <td><b><%= @manager.last_name %></b></td>       
+      </tr>
+    <% end %>
+      
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.watiam%></td>
+        <td><%= user.watiam %></td>
         <td><%= user.first_name %> </td>
-        <td><%= user.last_name%></td>
+        <td><%= user.last_name %></td>
         <% if @all_users %>
             <% if @team.users.include?user %>
                 <%= form_with url: confirm_remove_member_path do |form| %>
