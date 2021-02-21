@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_222251) do
   create_table "responses", force: :cascade do |t|
     t.integer "survey_id", null: false
     t.integer "question_number", null: false
-    t.integer "response", null: false
+    t.integer "answer", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

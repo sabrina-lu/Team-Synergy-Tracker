@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   # Get /weekly_surveys/teams/1
   def weekly_surveys
     @team = Team.find(params[:id])
+      
   end
 
   # POST /users

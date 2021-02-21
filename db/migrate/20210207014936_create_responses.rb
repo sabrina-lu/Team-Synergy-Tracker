@@ -3,7 +3,7 @@ class CreateResponses < ActiveRecord::Migration[6.0]
     create_table :responses do |t|
       t.integer :survey_id, null:false
       t.integer :question_number, null:false
-      t.integer :response, null:false
+      t.integer :answer, null:false
 
       t.timestamps
     end
