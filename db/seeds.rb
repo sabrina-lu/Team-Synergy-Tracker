@@ -127,12 +127,13 @@ t6.save
 t7.save
 t8.save
 
-O = Response.new(question_number: 1, response: "No") #need foreign key that references survey_id
-P = Response.new(question_number: 2, response: "NO")
-Q = Response.new(question_number: 3, response: "1")
-R = Response.new(question_number: 4, response: "Yes")
-S = Response.new(question_number: 5, response: "YES")
-T = Response.new(question_number: 6, response: "2")
+O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
+P = Response.new(survey_id: 2, question_number: 2, answer: "4")
+Q = Response.new(survey_id: 3, question_number: 3, answer: "1")
+R = Response.new(survey_id: 4, question_number: 4, answer: "5")
+S = Response.new(survey_id: 5, question_number: 5, answer: "3")
+T = Response.new(survey_id: 6, question_number: 6, answer: "2")
+
 # U = Response.new(question_number: 7, response: "")
 # U.save
 

@@ -8,6 +8,7 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1
   def show
+      #@response = Response.new
   end
 
   # GET /responses/new
@@ -21,7 +22,8 @@ class ResponsesController < ApplicationController
 
   # POST /responses
   def create
-    @response = Response.new(response_params)
+     
+    @response = Response.new(survey_id: response_params[:survey_id], question_number: response_params[:question_number], answer: response_params[:answer])
 
     if @response.save
       redirect_to @response, notice: 'Response was successfully created.'
@@ -53,6 +55,6 @@ class ResponsesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def response_params
-      params.require(:response).permit(:survey_id, :question_number, :response)
+      params.permit(:survey_id, :question_number, :answer)
     end
 end

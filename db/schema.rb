@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_044356) do
   create_table "responses", force: :cascade do |t|
     t.bigint "survey_id", null: false
     t.integer "question_number", null: false
-    t.integer "response", null: false
+    t.integer "answer", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_id"], name: "index_responses_on_survey_id"
