@@ -44,7 +44,7 @@ class ManagersController < ApplicationController
     @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
     @health_value = 0
     @responseValues.each { |x|
-        @health_value = @health_value + x.response.to_f / 5
+        @health_value = @health_value + x.answer.to_f / 5
     }
     if @responseValues.size > 0
         @health_value = (@health_value * 100 /@responseValues.size).to_i; 
