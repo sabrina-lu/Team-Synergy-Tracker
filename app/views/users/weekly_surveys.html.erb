@@ -12,7 +12,6 @@
 
 <div class="field">
     <% s = Survey.find_by(user: current_user.id, team: @team.id) %>
-    <%= s.id %>
     <%= form.hidden_field :survey_id, value: s.id %>
     </div>
 
