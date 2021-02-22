@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ResponsesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @response = responses(:one)
+    @response = Response.new(question_number: 1, response: "No")
   end
 
   test "should get index" do
