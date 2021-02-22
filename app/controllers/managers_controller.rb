@@ -41,7 +41,7 @@ class ManagersController < ApplicationController
     @team = Team.find(params[:id])
     @users = @team.users
     @surveysToCalc = Survey.select("id").where(:user_id => @users.ids, :team_id => @team).to_a
-    @responseValues = Response.select("response").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
+    @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
     @health_value = 0
     @responseValues.each { |x|
         @health_value = @health_value + x.response.to_f / 5
