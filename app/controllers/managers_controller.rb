@@ -40,7 +40,15 @@ class ManagersController < ApplicationController
     end
     @team = Team.find(params[:id])
     @users = @team.users
-    @health_value = 75 #TODO: get the calculated health value for specific team
+    @surveysToCalc = Survey.select("id").where(:user_id => @users.ids, :team_id => @team).to_a
+    @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
+    @health_value = 0
+    @responseValues.each { |x|
+        @health_value = @health_value + x.answer.to_f / 5
+    }
+    if @responseValues.size > 0
+        @health_value = (@health_value * 100 /@responseValues.size).to_i; 
+    end
   end
 
   # POST /managers
