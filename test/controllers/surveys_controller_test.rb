@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SurveysControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @survey = surveys(:one)
+    @survey = Survey.create(date: "10/02/2020")
   end
 
   test "should get index" do
