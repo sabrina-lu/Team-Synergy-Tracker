@@ -67,12 +67,23 @@ class UsersController < ApplicationController
                                   :last_name => user_params[:last_name],
                                   :password_confirmation => user_params[:password_confirmation]) and return
     end
-      
-    if @user.save
-      log_in @user
-      redirect_to root_url, notice: 'Account created and logged in.'
+    @userCannotBeCreated = false
+    @watiamList = User.select("watiam") + Manager.select("watiam")
+    @watiamList.each do |x|
+        if @user.watiam == x.watiam
+            @userCannotBeCreated = true
+        end
+    end
+    if @userCannotBeCreated == false
+        if @user.save
+          log_in @user
+          redirect_to root_url, notice: 'Account created and logged in.'
+        else
+          render :new
+        end
     else
-      render :new
+        flash[:alert] = "That WATIAM has an account associated with it already"
+        render :new
     end
   end
 
