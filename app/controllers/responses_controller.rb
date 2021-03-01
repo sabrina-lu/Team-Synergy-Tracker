@@ -8,6 +8,11 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1
   def show
+      if current_user_is_manager
+          redirect_to manager_dashboard_path, notice: 'You can not view a student\'s response.'
+      elsif !Response.permission_to_response(params[:id], current_user)
+              redirect_to user_dashboard_path, notice: 'You do not have permission to view this reponse.'
+      end
       #@response = Response.new
   end
 
@@ -18,6 +23,11 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1/edit
   def edit
+      if current_user_is_manager
+          redirect_to manager_dashboard_path, notice: 'You can not edit a student\'s response.'
+      elsif !Response.permission_to_response(params[:id], current_user)
+          redirect_to user_dashboard_path, notice: 'You do not have permission to edit this reponse.'
+      end
   end
 
   # POST /responses

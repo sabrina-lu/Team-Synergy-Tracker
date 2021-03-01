@@ -39,6 +39,9 @@ class ManagersController < ApplicationController
       redirect_to_manager_login
     end
     @team = Team.find(params[:id])
+    if !current_user_is_on_team(@team)
+        redirect_to manager_dashboard_path, notice: 'You do not have permission to view this team.'
+    end
     @users = @team.users
     @surveysToCalc = Survey.select("id").where(:user_id => @users.ids, :team_id => @team).to_a
     @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team

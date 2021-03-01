@@ -50,6 +50,16 @@ module SessionsHelper
       redirect_to login_path
   end
     
+  def current_user_is_on_team(team)
+      if current_user
+          current_user.teams.each do |x|
+                puts x.name
+          end
+          return current_user.teams.include?(team)
+      end
+      return false
+  end  
+    
   def get_dashboard
       if current_user_is_manager
           redirect_to manager_dashboard_path
