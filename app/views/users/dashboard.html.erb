@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>My Teams</th>
-      <th>Survey Completed</th>
+      <th>Weekly Survey</th>
     </tr>
   </thead>
 
@@ -13,9 +13,9 @@
       <tr>
         <td><%= link_to team.name, user_team_list_path(id: team.id) %></td>
         <td><% if @completed[team] %>
-                 Yes
+                 Complete
             <% else %>
-                 No
+                 Incomplete
             <% end %>
        </td>
       </tr>
