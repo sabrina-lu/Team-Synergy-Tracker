@@ -27,14 +27,14 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   end
   
   #edit response tests
-  test "should redirect manager to manager dashboard when trying to edit a reponse" do
+  test "should redirect manager to manager dashboard when trying to edit a response" do
     login_as_manager
     get edit_response_url(Response.first)
     assert_redirected_to manager_dashboard_url
     assert_equal "You can not edit a student\'s response." , flash[:notice] 
   end
     
-  test "should redirect user to edit response if they created the reponse" do
+  test "should redirect user to edit response if they created the response" do
     login_as_user
     get edit_response_url(Response.first)
     assert_response :success
