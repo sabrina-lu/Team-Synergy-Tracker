@@ -11,7 +11,7 @@ class ResponsesController < ApplicationController
       if current_user_is_manager
           redirect_to manager_dashboard_path, notice: 'You can not view a student\'s response.'
       elsif !Response.permission_to_response(params[:id], current_user)
-              redirect_to user_dashboard_path, notice: 'You do not have permission to view this reponse.'
+              redirect_to user_dashboard_path, notice: 'You do not have permission to view this response.'
       end
       #@response = Response.new
   end
@@ -26,7 +26,7 @@ class ResponsesController < ApplicationController
       if current_user_is_manager
           redirect_to manager_dashboard_path, notice: 'You can not edit a student\'s response.'
       elsif !Response.permission_to_response(params[:id], current_user)
-          redirect_to user_dashboard_path, notice: 'You do not have permission to edit this reponse.'
+          redirect_to user_dashboard_path, notice: 'You do not have permission to edit this response.'
       end
   end
 

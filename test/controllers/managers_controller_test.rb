@@ -2,29 +2,17 @@ require 'test_helper'
 
 class ManagersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @manager = Manager.new(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.new(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
-    @manager.save
-    @user.save
-      
-    @team = Team.new(name: "Team 1")
-    @team.save
-      
-    @team_no_access = Team.new(name: "Team 5")
-    @team_no_access.save
-      
-    @team.users << @user
-    @team.managers << @manager
+    setup_users_manager_teams      
   end
 
   # manager_dashboard tests
-  test "should redirect to manager dashboard when user is a manager" do
+  test "should redirect manager to manager dashboard" do
     login_as_manager
     get manager_dashboard_url
     assert_response :success
   end
     
-  test "should redirect to login page when user is not a manager and trying to access the manager dashboard" do
+  test "should redirect user to login page when trying to access the manager dashboard" do
     login_as_user
     get manager_dashboard_url
     assert_redirected_to login_url
@@ -32,20 +20,20 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
   end
   
   # team_health tests
-  test "should redirect to login page when user is not a manager and trying to access team health" do
+  test "should redirect user to login page when trying to access team health" do
     login_as_user
     get team_health_url (@team)
     assert_redirected_to login_url
     assert_equal "Please login as a manager to view this site.", flash[:notice] 
   end
   
-  test "should redirect to team health page for a manager who is on the team" do
+  test "should redirect manager to team health page when they are on the team" do
     login_as_manager
     get team_health_url (@team)
     assert_response :success
   end
     
-  test "should redirect to manager dashboard for a manager who tries to access the team health page of a team they are not on" do
+  test "should redirect manager to manager dashboard when accessing team health page if they are not on that team" do
     login_as_manager
     get team_health_url (@team_no_access)
     assert_redirected_to manager_dashboard_url
@@ -92,13 +80,4 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to managers_url
   end
-    
-  def login_as_manager
-    post login_path, params: { watiam: @manager.watiam, password: @manager.password }
-  end
- 
-  def login_as_user
-    post login_path, params: { watiam: @user.watiam, password: @user.password }
-  end
- 
 end
