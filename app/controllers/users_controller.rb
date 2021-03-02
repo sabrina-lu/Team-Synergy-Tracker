@@ -27,28 +27,42 @@ class UsersController < ApplicationController
     
   # GET /dashboard
   def dashboard
-     @user = current_user #get logged in user from session
-     @teams = @user.teams
-     @completed = {}
-     @teams.each do |team| #for each team user is on, check if user completed the survey for that team
-         @survey = @user.surveys.where(team_id: team.id).last
-         if @survey and @survey.responses.exists?
-             @completed[team] = true
-         else 
-             @completed[team] = false
+     if current_user_is_manager
+         redirect_to manager_dashboard_path
+     else
+         @user = current_user #get logged in user from session
+         @teams = @user.teams
+         @surveys = @user.surveys
+         @completed = {}
+         @teams.each do |team| #for each team user is on, check if user completed the survey for that team
+             if @surveys.exists?(team_id: team.id)
+                 @completed[team] = true
+             else 
+                 @completed[team] = false
+             end
          end
      end
   end
     
   # GET /dashboard/teams/1 
   def team_list
-      @team = Team.find(params[:id])
-      @users = @team.users
-      @manager = @team.managers.first  #for now only one manager per team
+     @team = Team.find(params[:id])
+     if current_user_is_manager
+         redirect_to team_health_path(@team)
+     else
+          if !current_user_is_on_team(@team)
+              redirect_to user_dashboard_path, notice: 'You do not have permission to view this team.'
+          end
+          @users = @team.users
+          @manager = @team.managers.first  #for now only one manager per team
+      end
   end
     
   # Get /weekly_surveys/teams/1
   def weekly_surveys
+    if current_user_is_manager
+         redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'
+    end
     @team = Team.find(params[:id])
   end
 

@@ -2,9 +2,52 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    setup_users_manager_teams
   end
 
+  # dashboard tests
+  test "should redirect user to user dashboard" do
+    login_as_user
+    get user_dashboard_url
+    assert_response :success
+  end
+  
+  test "should redirect manager to manager dashboard when accessing user dashboard" do
+    login_as_manager
+    get user_dashboard_url
+    assert_redirected_to manager_dashboard_url
+  end
+    
+  # team_list tests
+  test "should redirect user to team list page if they are on the team" do
+    login_as_user
+    get user_team_list_url(@team)
+    assert_response :success
+  end
+  
+  test "should redirect user to user dashboard when accessing team list if they are not on the team" do
+    login_as_user
+    get user_team_list_url(@team_no_access)
+    assert_redirected_to user_dashboard_url
+    assert_equal "You do not have permission to view this team." , flash[:notice] 
+  end
+    
+  test "should redirect manager to manager team health page when accessing user team list page" do
+    login_as_manager
+    get user_team_list_url(@team)
+    assert_redirected_to team_health_url(@team)
+  end
+    
+  # weekly_surveys
+  test "should redirect manager to manager dashboard when accessing weekly surveys" do
+    login_as_manager
+    get weekly_surveys_url(@team)
+    assert_redirected_to manager_dashboard_url
+    assert_equal "You do not have permission to respond to surveys." , flash[:notice] 
+  end
+    
+  # TODO: add a test that checks to make sure that a user can not access weekly surveys for teams they are not on
+    
   test "should get index" do
     get users_url
     assert_response :success
