@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   get 'teams/:id/members', to: 'teams#edit_members', as: 'edit_members'
   post 'teams/:id/members/add', to: 'teams#add_member', as: 'confirm_add_member'
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
+  
+  get 'my_tickets', to: 'users#tickets', as: 'user_tickets'
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

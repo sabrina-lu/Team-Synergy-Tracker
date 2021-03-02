@@ -65,7 +65,16 @@ class UsersController < ApplicationController
     end
     @team = Team.find(params[:id])
   end
-
+    
+  # GET /my_tickets
+  def tickets
+    if !current_user_is_manager
+      @tickets = Ticket.find_by(user_id: current_user.id)
+    else
+      #TODO: redirect to manager ticket view
+    end
+  end
+  
   # POST /users
   def create
     if user_params[:flag] == "User"
