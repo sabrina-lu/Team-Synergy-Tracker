@@ -52,4 +52,5 @@ class ActiveSupport::TestCase
   def add_member_to_team_and_survey(team, user_id)
     post confirm_add_member_path(team), params: { user_id: user_id }
   end
+    
 end
