@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div>
+    Date:
+    <%= Time.now.strftime("%m/%d/%Y") %>
+  </div>
+
   <div class="field">
     <%= form.label :priority %>
     <%= form.number_field :priority %>
@@ -29,11 +34,6 @@
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
   </div>
 
   <div class="field">
