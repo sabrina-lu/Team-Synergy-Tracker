@@ -60,10 +60,12 @@ class UsersController < ApplicationController
     
   # Get /weekly_surveys/teams/1
   def weekly_surveys
+    @team = Team.find(params[:id])
     if current_user_is_manager
          redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'
+    elsif !current_user_is_on_team(@team)
+         redirect_to user_dashboard_path, notice: 'You do not have permission to respond to another team\'s survey.'
     end
-    @team = Team.find(params[:id])
   end
     
   # GET /my_tickets
