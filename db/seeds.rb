@@ -141,6 +141,31 @@ t6.surveys << [s6, s22, s17]
 t7.surveys << [s7, s13, s18, s23]
 t8.surveys << [s9]
 
+ticket1 = Ticket.new(priority: 1, type: "Conflict", category: "Personal", description: "Alpha is being disrespectful towards me ;(", date: "07/02/2020")
+ticket2 = Ticket.new(priority: 3, type: "Conflict", category: "Work", description: "I am sick and tired of people not finishing their work on time!!", date: "12/08/2020")
+ticket3 = Ticket.new(priority: 2, type: "Positive", category: "Personal", description: "Just wanted to let you know that you're doing a great job!", date: "25/09/2020")
+ticket4 = Ticket.new(priority: 1, type: "Positive", category: "Work", description: "I appreciate everyone on my team <3", date: "10/05/2020")
+ticket5 = Ticket.new(priority: 1, type: "Neutral", category: "Work", description: "I can help you on the task you are working on.", date: "13/11/2020")
+ticket6 = Ticket.new(priority: 2, type: "Conflict", category: "Work", description: "Hi Beta, I think you should be less dominating during discussions", date: "16/12/2020")
+ticket7 = Ticket.new(priority: 3, type: "Conflict", category: "Personal", description: "Please stop calling me dumb...I'm really hurt by it", date: "05/08/2020")
+
+#assign ticket to its creator
+ticket1.creator = B
+ticket2.creator = C
+ticket3.creator = D
+ticket4.creator = E
+ticket5.creator = F
+ticket6.creator = A
+ticket7.creator = A
+
+#assign tickets to associated user
+A.tickets << [ticket1, ticket5, ticket6, ticket7]
+B.tickets << [ticket1, ticket6]
+C.tickets << [ticket2, ticket4]
+D.tickets << [ticket2, ticket3]
+E.tickets << [ticket4, ticket7]
+F.tickets << [ticket3, ticket5]
+
 A.save
 B.save
 C.save
@@ -157,6 +182,14 @@ t5.save
 t6.save
 t7.save
 t8.save
+
+ticket1.save
+ticket2.save
+ticket3.save
+ticket4.save
+ticket5.save
+ticket6.save
+ticket7.save
 
 O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
 P = Response.new(survey_id: 2, question_number: 2, answer: "4")
@@ -193,4 +226,5 @@ T.save
 # T.save
 # U = Response.new(survey_id: 7, question_number: 7, response: "")
 # U.save
+
 

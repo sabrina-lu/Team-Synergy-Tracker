@@ -6,7 +6,7 @@ class CreateTickets < ActiveRecord::Migration[6.0]
       t.string :category, null: false
       t.string :description, limit: 500, null: false
       t.date :date, null: false
-      t.references :user, null: false, foreign_key: true
+      t.references :creator, index: true, foreign_key: { to_table: :users }
 
       t.timestamps
     end
