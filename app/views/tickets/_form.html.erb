@@ -59,8 +59,9 @@
     </div>
     
     <div class="field">
-      <% form.hidden_field :date, value: Time.now %>
-      <% form.hidden_field :user_id, value: current_user.id %>
+      <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
+      <%= form.hidden_field :date, value: Time.now %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
     
     <div class="submit-button">
