@@ -23,6 +23,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
     @ticket.date_field_name = Time.now
+    @ticket.user_id = current_user
 
     if @ticket.save
       redirect_to @ticket, notice: 'Ticket was successfully created.'
