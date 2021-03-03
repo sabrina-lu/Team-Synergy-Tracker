@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_204749) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "responses", "surveys"
+  add_foreign_key "responses", "surveys", on_delete: :cascade
   add_foreign_key "surveys", "teams"
   add_foreign_key "surveys", "users"
   add_foreign_key "teams_users", "teams"

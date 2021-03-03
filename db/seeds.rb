@@ -98,6 +98,7 @@ L.save
 M.save
 N.save
 
+# adding surveys to users and teams
 
 s1 = Survey.create(date: "10/02/2020")
 s2 = Survey.create(date: "09/04/2020")
@@ -106,9 +107,39 @@ s4 = Survey.create(date: "07/02/2020")
 s5 = Survey.create(date: "07/03/2020")
 s6 = Survey.create(date: "06/12/2020")
 s7 = Survey.create(date: "05/21/2020")
+s8 = Survey.create(date: "10/02/2020")
+s9 = Survey.create(date: "09/04/2020")
+s10 = Survey.create(date: "08/02/2020")
+s11 = Survey.create(date: "07/02/2020")
+s12 = Survey.create(date: "07/03/2020")
+s13 = Survey.create(date: "06/12/2020")
+s14 = Survey.create(date: "05/21/2020")
+s15 = Survey.create(date: "08/02/2020")
+s16 = Survey.create(date: "07/02/2020")
+s17 = Survey.create(date: "07/03/2020")
+s18 = Survey.create(date: "06/12/2020")
+s19 = Survey.create(date: "05/21/2020")
+s20 = Survey.create(date: "08/02/2020")
+s21 = Survey.create(date: "07/02/2020")
+s22 = Survey.create(date: "07/03/2020")
+s23 = Survey.create(date: "06/12/2020")
+s24 = Survey.create(date: "05/21/2020")
 
-A.surveys << [s1]
-t1.surveys << [s1]
+A.surveys << [s1,s2,s3,s4,s5,s6,s7]
+B.surveys << [s8, s9]
+C.surveys << [s10, s11, s12, s13]
+D.surveys << [s14, s15, s16, s17, s18]
+E.surveys << [s19, s20, s21, s22, s23]
+F.surveys << [s24]
+
+t1.surveys << [s1, s14, s10]
+t2.surveys << [s2, s19]
+t3.surveys << [s3, s8, s11, s15, s20, s24]
+t4.surveys << [s4]
+t5.surveys << [s5, s16, s21, s12]
+t6.surveys << [s6, s22, s17]
+t7.surveys << [s7, s13, s18, s23]
+t8.surveys << [s9]
 
 A.save
 B.save
