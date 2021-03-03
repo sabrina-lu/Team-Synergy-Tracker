@@ -25,6 +25,7 @@
       <p>
         <nobr>
           Priority:
+          <!-- Source (https://guides.rubyonrails.org/v2.3/form_helpers.html) used for learning how to make dropdowns with set values correlating to options -->
           <%= form.select(:priority, options_for_select([['Low', 3], ['Medium', 2], ['High', 1]])) %>
         </nobr>
       </p>
