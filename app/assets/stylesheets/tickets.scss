@@ -28,12 +28,32 @@
 
 .description-box {
   position: fixed;
-  left: 8;
+  left: 34px;
   top: 95px;
+  
+}
+
+.description-text-box{
+  text-align: left;
+  word-wrap: normal;
+  overflow: auto;
+  display: inline-block;
+  word-break: break-word;
+  margin: auto;
+  min-width: 375px;
+  min-height: 185px;
+  max-width: 375px;
+  max-height: 185px;
 }
 
 .submit-button {
   position: fixed;
-  left: 8;
-  top: 150px;
+  left: 34px;
+  top: 325px;
+}
+
+.back-link {
+  position: fixed;
+  left: 34px;
+  top: 350px;
 }

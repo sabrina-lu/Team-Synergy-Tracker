@@ -53,11 +53,16 @@
       <p>
         <nobr>
           Description: <br/>
-          <%= form.text_field :description %>
+          <%= form.text_area :description, :placeholder => "Enter description here..", :maxlength => 500, :class => "description-text-box" %>
         </nobr>
       </p>
     </div>
-
+    
+    <div class="field">
+      <% form.hidden_field :date, value: Time.now %>
+      <% form.hidden_field :user_id, value: current_user.id %>
+    </div>
+    
     <div class="submit-button">
       <%= form.submit %>
     </div>
