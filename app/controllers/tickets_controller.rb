@@ -22,6 +22,7 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.date_field_name = Time.now
 
     if @ticket.save
       redirect_to @ticket, notice: 'Ticket was successfully created.'
