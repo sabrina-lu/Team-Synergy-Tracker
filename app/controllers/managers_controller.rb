@@ -88,6 +88,18 @@ class ManagersController < ApplicationController
         render :new
     end
   end
+    
+  def tickets
+    if current_user_is_manager
+      @myTeams = Manager.joins(:teams).select("team_id").where(:id => current_user.id) # get teams associated with this manager
+      @myTeamMembers = Team.joins(:users).select("id").where(:id => @myTeams) # get users associated with this manager's teams
+      @myTeamMembers.each do |ticket|
+          @teamMemberIds = ticket.user_ids
+      end
+      @tickets = Ticket.where(:creator_id => @teamMemberIds)  #get tickets created by users associated with this manager's teams
+      #@tickets = @myTeamMembers
+    end
+  end
 
   # PATCH/PUT /managers/1
   def update

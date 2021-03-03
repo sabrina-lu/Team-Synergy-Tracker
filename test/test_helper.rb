@@ -38,6 +38,34 @@ class ActiveSupport::TestCase
     @t_3.users << [@user_3]    
   end
     
+  def setup_manager_tickets
+    @manager_1 = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+    @manager_2 = Manager.create(watiam: "gpaul", first_name: "George", last_name: "Paul", password: "Password")
+      
+    @team_1 = Team.create(name: "T1")
+    @team_2 = Team.create(name: "T2")
+      
+    @team_1.managers << @manager_1
+    @team_2.managers << @manager_2
+      
+    @user_1 = User.create(user_id: 20567890, watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
+    @user_2 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @user_3 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+   
+    add_member_to_team_and_survey(@team_1, @user_1.id)
+    add_member_to_team_and_survey(@team_1, @user_2.id)
+      
+    @t_1 = Ticket.create(creator_id: @user_1.id, priority: 1, type: "Conflict", category: "Work", date:"10/02/2020", description: "d")
+    @t_2 = Ticket.create(creator_id: @user_2.id, priority: 2, type: "Conflict", category: "Personal", date:"12/04/2020", description: "d")
+    @t_3 = Ticket.create(creator_id: @user_3.id, priority: 2, type: "Positive", category: "Personal", date:"12/04/2020", description: "d")
+      
+    @t_1.creator_id = @user_1.id
+    @t_2.creator_id = @user_2.id
+    
+    @t_1.users << [@user_1, @user_2]
+    @t_2.users << [@user_2]
+  end
+    
   def setup_surveys_responses
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
     @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
