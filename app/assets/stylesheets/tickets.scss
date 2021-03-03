@@ -1,3 +1,38 @@
 // Place all the styles related to the Tickets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.form-container {
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 40px 0px;
+}
+
+.priority-box {
+  position: fixed;
+  left: 450px;
+}
+
+.type-box {
+  position: fixed;
+  left: 450px;
+  top: 95px;
+}
+
+.category-box {
+  position: fixed;
+  left: 450px;
+  top: 120px;
+}
+
+.description-box {
+  position: fixed;
+  left: 8;
+  top: 95px;
+}
+
+.submit-button {
+  position: fixed;
+  left: 8;
+  top: 150px;
+}
