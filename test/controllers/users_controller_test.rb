@@ -47,7 +47,37 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
     
   # TODO: add a test that checks to make sure that a user can not access weekly surveys for teams they are not on
+  
+  # tickets tests
+  test "user tickets page should still be successful even if they have no tickets associated to them" do
+    login_as_user
+    get user_tickets_url
+    assert_response :success
+  end
+      
+  test "users should only see tickets they created or about themselves" do
+    setup_tickets
+    tickets = get_tickets_for_user(@user_2)
+    assert_equal 3, tickets.count
+    assert_equal true, tickets.include?(@t_1)
+    assert_equal true, tickets.include?(@t_2)
+    assert_equal true, tickets.include?(@t_3)  
+      
+    tickets = get_tickets_for_user(@user_1)
+    assert_equal 2, tickets.count
+    assert_equal true, tickets.include?(@t_1)
+    assert_equal true, tickets.include?(@t_2)
+    assert_equal false, tickets.include?(@t_3)    
+      
+    tickets = get_tickets_for_user(@user_3)
+    assert_equal 2, tickets.count
+    assert_equal true, tickets.include?(@t_1)
+    assert_equal false, tickets.include?(@t_2)
+    assert_equal true, tickets.include?(@t_3)    
+  end
     
+  # TODO: add a test - should redirect manager to manager tickets page when trying to access user tickets page
+  
   test "should get index" do
     get users_url
     assert_response :success
@@ -88,4 +118,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to users_url
   end
+    
+  def get_tickets_for_user(user)
+    tickets = Ticket.where(user_id: user.id)
+    tickets = tickets + User.find(user.id).tickets
+    return tickets
+  end
+  
 end
