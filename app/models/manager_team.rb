@@ -1,2 +1,0 @@
-class ManagerTeam < ApplicationRecord
-end
