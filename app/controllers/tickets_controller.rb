@@ -22,9 +22,9 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
-    # Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works
-    @ticket.date_field_name = Time.now
-    @ticket.user_id = current_user
+#     # Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works
+#     @ticket.date_field_name = Time.now
+#     @ticket.user_id = current_user
 
     if @ticket.save
       redirect_to @ticket, notice: 'Ticket was successfully created.'
