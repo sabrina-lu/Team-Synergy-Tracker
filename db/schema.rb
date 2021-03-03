@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_204749) do
+ActiveRecord::Schema.define(version: 2021_03_02_200616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 2021_03_01_204749) do
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
+  create_table "tickets_users", id: false, force: :cascade do |t|
+    t.bigint "ticket_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id", "ticket_id"], name: "index_tickets_users_on_user_id_and_ticket_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "watiam", limit: 50, null: false
     t.integer "user_id"
@@ -83,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_204749) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "responses", "surveys"
+  add_foreign_key "responses", "surveys", on_delete: :cascade
   add_foreign_key "surveys", "teams"
   add_foreign_key "surveys", "users"
   add_foreign_key "teams_users", "teams"

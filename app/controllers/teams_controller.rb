@@ -61,6 +61,7 @@ class TeamsController < ApplicationController
         flash[:notice] = "Successfully removed #{@user.first_name} from #{team.name}" 
         # https://stackoverflow.com/questions/11829850/find-by-multiple-conditions-in-rails
         s = Survey.find_by(user: @user, team: team) # deleting a survey when a member is deleted from a team
+        #s.responses.destroy
         s.destroy
         redirect_to edit_members_url(team)
     end
