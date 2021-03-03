@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 2021_03_02_200616) do
     t.string "category", null: false
     t.string "description", limit: 500, null: false
     t.date "date", null: false
-    t.bigint "user_id", null: false
+    t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_tickets_on_user_id"
+    t.index ["creator_id"], name: "index_tickets_on_creator_id"
   end
 
   create_table "tickets_users", id: false, force: :cascade do |t|
@@ -94,5 +94,5 @@ ActiveRecord::Schema.define(version: 2021_03_02_200616) do
   add_foreign_key "surveys", "users"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
-  add_foreign_key "tickets", "users"
+  add_foreign_key "tickets", "users", column: "creator_id"
 end
