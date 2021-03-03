@@ -158,13 +158,13 @@ ticket5.creator = F
 ticket6.creator = A
 ticket7.creator = A
 
-#assign tickets to associated user
-A.tickets << [ticket1, ticket5, ticket6, ticket7]
-B.tickets << [ticket1, ticket6]
-C.tickets << [ticket2, ticket4]
-D.tickets << [ticket2, ticket3]
-E.tickets << [ticket4, ticket7]
-F.tickets << [ticket3, ticket5]
+#assign tickets to receiving user
+A.tickets << [ticket1, ticket5]
+B.tickets << [ticket6]
+C.tickets << [ticket4]
+D.tickets << [ticket2]
+E.tickets << [ticket7]
+F.tickets << [ticket3]
 
 A.save
 B.save

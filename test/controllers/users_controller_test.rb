@@ -120,7 +120,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
     
   def get_tickets_for_user(user)
-    tickets = Ticket.where(user_id: user.id)
+    tickets = Ticket.where(creator_id: user.id)
     tickets = tickets + User.find(user.id).tickets
     return tickets
   end
