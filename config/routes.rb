@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
   
   get 'my_tickets', to: 'users#tickets', as: 'user_tickets'
+  get 'manager_tickets', to: 'managers#tickets', as: 'manager_tickets'
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
