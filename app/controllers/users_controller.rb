@@ -66,6 +66,12 @@ class UsersController < ApplicationController
     elsif !current_user_is_on_team(@team)
          redirect_to user_dashboard_path, notice: 'You do not have permission to respond to another team\'s survey.'
     end
+    @survey = Survey.find_by(user: current_user.id, team: @team.id)
+    q1 = "How do you feel about this week in comparison to last week?"
+    q2 = "How did you feel about this week?"
+    q3 = "How would you rate your communication with your team members this week?"
+    q4 = "How do you feel about the workload you had this week?"
+    @questions = [q1,q2,q3,q4]
   end
     
   # GET /my_tickets

@@ -32,14 +32,12 @@ class ResponsesController < ApplicationController
 
   # POST /responses
   def create
-     
-    @response = Response.new(survey_id: response_params[:survey_id], question_number: response_params[:question_number], answer: response_params[:answer])
-
-    if @response.save
-      redirect_to @response, notice: 'Response was successfully created.'
-    else
-      render :new
+    for i in 1..response_params[:num_of_questions].to_i
+        @response = Response.new(survey_id: response_params[:survey_id], question_number: i, answer: response_params[:"answer#{i}"])
+        @response.save
     end
+      
+    redirect_to user_dashboard_path, notice: 'Successfully submitted weekly survey.'  
   end
 
   # PATCH/PUT /responses/1
@@ -65,6 +63,6 @@ class ResponsesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def response_params
-      params.permit(:survey_id, :question_number, :answer)
+      params.permit(:survey_id, :num_of_questions, :answer1, :answer2, :answer3, :answer4)
     end
 end

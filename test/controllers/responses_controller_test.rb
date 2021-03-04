@@ -46,6 +46,17 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_dashboard_url
     assert_equal "You do not have permission to edit this response." , flash[:notice] 
   end
+    
+  #create response tests
+  test "should create four responses for each weekly survey" do
+    @survey = Survey.find_by(user: @user.id, team: @team.id)
+    assert_difference('Response.count', 4) do
+      post responses_url, params: { survey_id: @survey.id, num_of_questions: "4", answer1: "2", answer2: "4", answer3: "4", answer4: "5" }
+    end
+
+    assert_redirected_to user_dashboard_url
+    assert_equal "Successfully submitted weekly survey.", flash[:notice]
+  end
 
   test "should get index" do
     get responses_url
@@ -55,14 +66,6 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get new_response_url
     assert_response :success
-  end
-
-  test "should create response" do
-    assert_difference('Response.count') do
-      post responses_url, params: { response: { question_number: @response.question_number, answer: @response.answer, survey_id: @response.survey_id } }
-    end
-
-    assert_redirected_to response_url(Response.last)
   end
 
   test "should update response" do
