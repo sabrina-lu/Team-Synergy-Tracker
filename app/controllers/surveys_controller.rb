@@ -22,10 +22,11 @@ class SurveysController < ApplicationController
   # POST /surveys
   def create
     manager = Manager.find(params[:manager_id])
-    next_survey_due_date = Survey.get_next_survey_due_date(Date.today)
     manager.teams.each do |team|
-      team.users.each do |user|
-        Survey.create(user_id: user.id, team_id: team.id, date: next_survey_due_date)
+      if team.users.first and !team.users.first.surveys.find_by(team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
+        team.users.each do |user|        
+          Survey.create(user_id: user.id, team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
+        end
       end
     end
     redirect_to manager_dashboard_url, notice: 'Weekly Survey Has Been Updated.'

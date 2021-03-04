@@ -4,7 +4,9 @@ class Survey < ApplicationRecord
   has_many :responses
   
   # https://stackoverflow.com/questions/7621322/ruby-find-next-thursday-or-any-day-of-the-week
-  def self.get_current_survey_due_date(current_date)
+  # 1. used to get current week's survey due date (Saturday)
+  # 2. used to create the FIRST week's survey due date (Intialize a team)
+  def self.get_current_survey_due_date(current_date) 
     if current_date.saturday?
         return current_date + 7
     else
@@ -12,6 +14,8 @@ class Survey < ApplicationRecord
     end
   end
   
+  # 1. used to create next week's survey due date
+  # 2. used to check if next week's survey has already been created
   def self.get_next_survey_due_date(current_date)
     if current_date.saturday?
         return current_date + 7

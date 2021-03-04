@@ -36,7 +36,13 @@ class ManagersController < ApplicationController
     q3 = "How would you rate your communication with your team members this week?"
     q4 = "How do you feel about the workload you had this week?"
     @questions = [q1,q2,q3,q4]
-    @next_week_survey_generated = Survey.all.find_by(date: Survey.get_next_survey_due_date(Date.today))
+      
+    @next_week_survey_generated = true
+    @manager.teams.each do |team|
+      if team.users.first and !team.users.first.surveys.find_by(team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
+        @next_week_survey_generated = false
+      end      
+    end
   end
   
   # GET /team_health/1/metrics
