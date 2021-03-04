@@ -63,21 +63,24 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_manager_url(@manager)
-    assert_response :success
-  end
+    # don't need to test edit manager
+#  test "should get edit" do
+#    get edit_manager_url(@manager)
+#    assert_response :success
+#  end
 
-  test "should update manager" do
-    patch manager_url(@manager), params: { manager: { first_name: @manager.first_name, last_name: @manager.last_name, watiam: @manager.watiam } }
-    assert_redirected_to manager_url(@manager)
-  end
+    # don't need to test update manager
+#  test "should update manager" do
+#    patch manager_url(@manager), params: { manager: { first_name: @manager.first_name, last_name: @manager.last_name, watiam: @manager.watiam } }
+#    assert_redirected_to manager_url(@manager)
+#  end
 
-  test "should destroy manager" do
-    assert_difference('Manager.count', -1) do
-      delete manager_url(@manager)
-    end
+    # don't need to test destroying manager
+#  test "should destroy manager" do
+#    assert_difference('Manager.count', -1) do
+#      delete manager_url(@manager)
+#    end
 
-    assert_redirected_to managers_url
-  end
+#    assert_redirected_to managers_url
+#  end
 end
