@@ -15,7 +15,7 @@
         <td><% if @completed[team] %>
                  Complete
             <% else %>
-                 Incomplete
+                 <%= link_to "Incomplete", weekly_surveys_path(team) %>
             <% end %>
        </td>
       </tr>
