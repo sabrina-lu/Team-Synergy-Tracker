@@ -63,11 +63,6 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_manager_url(@manager)
-    assert_response :success
-  end
-    
   test "managers should only see tickets of members on their teams" do
     setup_manager_tickets
     tickets = get_tickets_for_manager(@manager_1)
@@ -83,19 +78,27 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, tickets.include?(@t_3)  
         
   end
+    
+    # don't need to test edit manager
+#  test "should get edit" do
+#    get edit_manager_url(@manager)
+#    assert_response :success
+#  end
 
-  test "should update manager" do
-    patch manager_url(@manager), params: { manager: { first_name: @manager.first_name, last_name: @manager.last_name, watiam: @manager.watiam } }
-    assert_redirected_to manager_url(@manager)
-  end
+    # don't need to test update manager
+#  test "should update manager" do
+#    patch manager_url(@manager), params: { manager: { first_name: @manager.first_name, last_name: @manager.last_name, watiam: @manager.watiam } }
+#    assert_redirected_to manager_url(@manager)
+#  end
 
-  test "should destroy manager" do
-    assert_difference('Manager.count', -1) do
-      delete manager_url(@manager)
-    end
+    # don't need to test destroying manager
+#  test "should destroy manager" do
+#    assert_difference('Manager.count', -1) do
+#      delete manager_url(@manager)
+#    end
 
-    assert_redirected_to managers_url
-  end
+#   assert_redirected_to managers_url
+#  end
     
   def get_tickets_for_manager(manager)
       myTeams = Manager.joins(:teams).select("team_id").where(:id => manager.id) # get teams associated with this manager
@@ -107,5 +110,4 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
       tickets = Ticket.where(:creator_id => teamMemberIds)  #get tickets created by users associated with this manager's teams
       return tickets
   end  
-    
 end
