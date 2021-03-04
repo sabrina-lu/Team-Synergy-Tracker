@@ -31,6 +31,12 @@ class ManagersController < ApplicationController
     if !@manager
         redirect_to_manager_login
     end
+    q1 = "How do you feel about this week in comparison to last week?"
+    q2 = "How did you feel about this week?"
+    q3 = "How would you rate your communication with your team members this week?"
+    q4 = "How do you feel about the workload you had this week?"
+    @questions = [q1,q2,q3,q4]
+    @next_week_survey_generated = Survey.all.find_by(date: Survey.get_next_survey_due_date(Date.today))
   end
   
   # GET /team_health/1/metrics

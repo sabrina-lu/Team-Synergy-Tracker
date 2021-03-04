@@ -46,7 +46,8 @@ class TeamsController < ApplicationController
     team.users << @user
     if team.save
         flash[:notice] = "Successfully added #{@user.first_name} to #{team.name}" 
-        s = Survey.create(user: @user, team: team)# creating a new survey when a member is added to a team
+        current_survey_due_date = Survey.get_current_survey_due_date(Date.today)
+        s = Survey.create(user: @user, team: team, date: current_survey_due_date)# creating a new survey when a member is added to a team
         s.save
         redirect_to edit_members_url(team)
     end

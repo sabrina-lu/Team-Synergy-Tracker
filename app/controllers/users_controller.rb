@@ -33,8 +33,8 @@ class UsersController < ApplicationController
          @user = current_user #get logged in user from session
          @teams = @user.teams
          @completed = {}
-         @teams.each do |team| #for each team user is on, check if user completed the survey for that team
-             @survey = @user.surveys.where(team_id: team.id).last
+         @teams.each do |team| #for each team user is on, check if user completed the survey for that team             
+             @survey = @user.surveys.where(team_id: team.id, date: Survey.get_current_survey_due_date(Date.today)).last
              if @survey and @survey.responses.exists?
                  @completed[team] = true
              else 
