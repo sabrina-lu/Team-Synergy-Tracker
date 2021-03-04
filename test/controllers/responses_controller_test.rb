@@ -68,16 +68,18 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update response" do
-    patch response_url(@response), params: { response: { question_number: @response.question_number, answer: @response.answer, survey_id: @response.survey_id } }
-    assert_redirected_to response_url(@response)
-  end
+    # don't need to test update response
+#  test "should update response" do
+#    patch response_url(@response), params: { response: { question_number: @response.question_number, answer: @response.answer, survey_id: @response.survey_id } }
+#    assert_redirected_to response_url(@response)
+#  end
 
-  test "should destroy response" do
-    assert_difference('Response.count', -1) do
-      delete response_url(@response)
-    end
+    # don't need to test destroying response
+#  test "should destroy response" do
+#    assert_difference('Response.count', -1) do
+#      delete response_url(@response)
+#    end
 
-    assert_redirected_to responses_url
-  end
+#    assert_redirected_to responses_url
+#  end
 end
