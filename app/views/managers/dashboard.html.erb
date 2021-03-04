@@ -35,7 +35,7 @@
   </tbody>
 </table>
 
-<h3>Weekly Survey Due Date: <%= Survey.get_current_survey_due_date(Date.current) %></h3>
+<h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 
 <% if @next_week_survey_generated %>
     <button type="button" disabled>Generate Next Week's Survey</button>

@@ -30,7 +30,6 @@ class SurveysController < ApplicationController
       end
     end
     redirect_to manager_dashboard_url, notice: 'Weekly Survey Has Been Updated.'
-
   end
 
   # PATCH/PUT /surveys/1

@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       end
   end
     
-  # Get /weekly_surveys/teams/1
+  # GET /weekly_surveys/teams/1
   def weekly_surveys
     @team = Team.find(params[:id])
     if current_user_is_manager
