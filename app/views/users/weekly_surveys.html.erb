@@ -5,26 +5,17 @@
 
 <%= form_with url: "/responses", method: :post do |form| %>
 
-  <div class="field">
-      <p>How do you feel about this week in comparison to last week?</p>
-      <%= form.select :answer, [1,2,3,4,5]%>
-</div>
+    <% for i in 0..@questions.length-1 %>
+        <div class="field">
+             <p><%= @questions[i] %></p>
+            <%= form.select :"answer#{i+1}", [1,2,3,4,5] %>
+        </div>    
+    <% end %>
 
-
-<div class="field">
-    <% s = Survey.find_by(user: current_user.id, team: @team.id) %>
-    <%= form.hidden_field :survey_id, value: s.id %>
-    </div>
-
-<div class="field">
-    <%= form.hidden_field :question_number, value: 1 %>
-    </div>
-
-
-
-<div class="actions">
-    <%= form.submit %>
-  </div>
+    <%= form.hidden_field :survey_id, value: @survey.id %>
+    <%= form.hidden_field :num_of_questions, value: @questions.count %>
+    
+    <h5><%= form.submit %></h5>
 <% end %>
 
 <%= link_to "Back to #{@team.name}", user_team_list_path(id: @team.id) %>

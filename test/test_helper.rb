@@ -68,7 +68,7 @@ class ActiveSupport::TestCase
     
   def setup_surveys_responses
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
+    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
     @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
       
     @team = Team.create(name: "Team 1")

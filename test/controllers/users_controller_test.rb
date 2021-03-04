@@ -45,9 +45,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to manager_dashboard_url
     assert_equal "You do not have permission to respond to surveys." , flash[:notice] 
   end
-    
-  # TODO: add a test that checks to make sure that a user can not access weekly surveys for teams they are not on
   
+  test "should redirect user to weekly survey page if they are on the team" do 
+    setup_surveys_responses
+    login_as_user(@user)
+    get weekly_surveys_url(@team)
+    assert_response :success
+  end
+    
+  test "should redirect user to user dashboard when accessing weekly survey if they are not on the team" do
+    setup_surveys_responses
+    login_as_user(@user)
+    get weekly_surveys_url(@team_no_access)
+    assert_redirected_to user_dashboard_url
+    assert_equal "You do not have permission to respond to another team\'s survey.", flash["notice"]
+  end 
+    
   # tickets tests
   test "user tickets page should still be successful even if they have no tickets associated to them" do
     login_as_user

@@ -32,10 +32,10 @@ class UsersController < ApplicationController
      else
          @user = current_user #get logged in user from session
          @teams = @user.teams
-         @surveys = @user.surveys
          @completed = {}
          @teams.each do |team| #for each team user is on, check if user completed the survey for that team
-             if @surveys.exists?(team_id: team.id)
+             @survey = @user.surveys.where(team_id: team.id).last
+             if @survey and @survey.responses.exists?
                  @completed[team] = true
              else 
                  @completed[team] = false
@@ -60,10 +60,18 @@ class UsersController < ApplicationController
     
   # Get /weekly_surveys/teams/1
   def weekly_surveys
+    @team = Team.find(params[:id])
     if current_user_is_manager
          redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'
+    elsif !current_user_is_on_team(@team)
+         redirect_to user_dashboard_path, notice: 'You do not have permission to respond to another team\'s survey.'
     end
-    @team = Team.find(params[:id])
+    @survey = Survey.find_by(user: current_user.id, team: @team.id)
+    q1 = "How do you feel about this week in comparison to last week?"
+    q2 = "How did you feel about this week?"
+    q3 = "How would you rate your communication with your team members this week?"
+    q4 = "How do you feel about the workload you had this week?"
+    @questions = [q1,q2,q3,q4]
   end
     
   # GET /my_tickets
