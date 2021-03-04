@@ -28,15 +28,25 @@ class ActiveSupport::TestCase
     @user_1 = User.create(user_id: 20567890, watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
     @user_2 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
     @user_3 = User.create(user_id: 20567890, watiam: "u3", first_name: "user3", last_name: "three", password: "Password")
+    @user_4 = User.create(user_id: 20557890, watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
    
     @t_1 = Ticket.create(creator_id: @user_1.id, priority: 1, type: "Conflict", category: "Work", date:"10/02/2020", description: "d")
     @t_2 = Ticket.create(creator_id: @user_1.id, priority: 2, type: "Conflict", category: "Personal", date:"12/04/2020", description: "d")
     @t_3 = Ticket.create(creator_id: @user_2.id, priority: 2, type: "Positive", category: "Personal", date:"12/04/2020", description: "d")
     
+    @t_4 = Ticket.create(user_id: @user_4.id, priority: 1, type: "Conflict", category: "Personal", date: "12/04/2020", description: "d")
+    @t_5 = Ticket.create(user_id: @user_4.id, priority: 2, type: "Positive", category: "Work", date: "12/04/2020", description: "d")
+    @t_6 = Ticket.create(user_id: @user_4.id, priority: 3, type: "Neutral", category: "Other", date: "12/04/2020", description: "d")
+    
     @t_1.users << [@user_2, @user_3]
     @t_2.users << [@user_2]
     @t_3.users << [@user_3]    
   end
+  
+  def setup_user_for_tickets_models
+    @user_4 = User.create(user_id: 20557890, watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
+  end
+
     
   def setup_manager_tickets
     @manager_1 = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")

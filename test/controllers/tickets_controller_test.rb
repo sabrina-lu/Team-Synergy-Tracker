@@ -6,12 +6,12 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "Should successfully create a ticket with each type of type, priority and category" do 
-    assert_difference('Ticket.count') do
-      post ticket_url, params: {ticket: {user_id: 12345678, priority: 1, type: "conflict", category: "Personal", date: "10/02/2020", description: "d"}}
+    assert_difference('Ticket.count', 3) do
+      post tickets_url, params: {ticket: {user_id: @user_4.id, priority: @t_4.priority, type: @t_4.type, category: @t_4.category, date: @t_4.date, description: @t_4.description}}
+      post tickets_url, params: {ticket: {user_id: @user_4.id, priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}
+      post tickets_url, params: {ticket: {user_id: @user_4.id, priority: @t_6.priority, type: @t_6.type, category: @t_6.category, date: @t_6.date, description: @t_6.description}}
     end
-    
-    assert_redirected_to ticket_url(Ticket.last)
-  end
+  end  
 
   test "should get index" do
     get tickets_url
@@ -31,26 +31,26 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
 #     assert_redirected_to ticket_url(Ticket.last)
 #   end
 
-#   test "should show ticket" do
-#     get ticket_url(@ticket)
-#     assert_response :success
-#   end
+  test "should show ticket" do
+    get ticket_url(@t_1)
+    assert_response :success
+  end
 
 #   test "should get edit" do
-#     get edit_ticket_url(@ticket)
+#     get edit_ticket_url(@t_1)
 #     assert_response :success
 #   end
 
-#   test "should update ticket" do
-#     patch ticket_url(@ticket), params: { ticket: { category: @ticket.category, date: @ticket.date, description: @ticket.description, priority: @ticket.priority, type: @ticket.type, user_id: @ticket.user_id } }
-#     assert_redirected_to ticket_url(@ticket)
-#   end
+  test "should update ticket" do
+    patch ticket_url(@t_1), params: { ticket: { category: @t_1.category, date: @t_1.date, description: @t_1.description, priority: @t_1.priority, type: @t_1.type, user_id: @t_1.user_id } }
+    assert_redirected_to ticket_url(@t_1)
+  end
 
-#   test "should destroy ticket" do
-#     assert_difference('Ticket.count', -1) do
-#       delete ticket_url(@ticket)
-#     end
+  test "should destroy ticket" do
+    assert_difference('Ticket.count', -1) do
+      delete ticket_url(@t_1)
+    end
 
-#     assert_redirected_to tickets_url
-#   end
+    assert_redirected_to tickets_url
+  end
 end
