@@ -55,6 +55,7 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to user_dashboard_url
+    assert_equal "Successfully submitted weekly survey.", flash[:notice]
   end
 
   test "should get index" do
