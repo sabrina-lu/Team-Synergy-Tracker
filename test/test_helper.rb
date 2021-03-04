@@ -34,9 +34,9 @@ class ActiveSupport::TestCase
     @t_2 = Ticket.create(creator_id: @user_1.id, priority: 2, type: "Conflict", category: "Personal", date:"12/04/2020", description: "d")
     @t_3 = Ticket.create(creator_id: @user_2.id, priority: 2, type: "Positive", category: "Personal", date:"12/04/2020", description: "d")
     
-    @t_4 = Ticket.create(user_id: @user_4.id, priority: 1, type: "Conflict", category: "Personal", date: "12/04/2020", description: "d")
-    @t_5 = Ticket.create(user_id: @user_4.id, priority: 2, type: "Positive", category: "Work", date: "12/04/2020", description: "d")
-    @t_6 = Ticket.create(user_id: @user_4.id, priority: 3, type: "Neutral", category: "Other", date: "12/04/2020", description: "d")
+    @t_4 = Ticket.create(creator_id: @user_4.id, priority: 1, type: "Conflict", category: "Personal", date: "12/04/2020", description: "d")
+    @t_5 = Ticket.create(creator_id: @user_4.id, priority: 2, type: "Positive", category: "Work", date: "12/04/2020", description: "d")
+    @t_6 = Ticket.create(creator_id: @user_4.id, priority: 3, type: "Neutral", category: "Other", date: "12/04/2020", description: "d")
     
     @t_1.users << [@user_2, @user_3]
     @t_2.users << [@user_2]
