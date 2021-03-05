@@ -48,7 +48,16 @@
         </nobr>
       </p>
     </div>
-
+      
+    <div class="user-box">
+      <p>
+        <nobr>
+          Users:
+          <%= form.select(:users, User.all.collect{ |user| "#{user.watiam}: #{user.first_name} #{user.last_name}"},{ :prompt => "Please Select All Members Involved:"}, { :multiple => true, :size => 5 }) %>
+        </nobr>
+      </p>
+    </div>
+      
     <div class="description-box">
       <p>
         <nobr>

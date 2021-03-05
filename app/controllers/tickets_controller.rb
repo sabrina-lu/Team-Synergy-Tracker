@@ -22,8 +22,11 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
-
+    users = params[:ticket][:users]
+    puts params[:users]
+# DONT FORGET TO DELETE THE PUT
     if @ticket.save
+      @ticket.users << users.drop(1).split(/: */).first
       redirect_to @ticket, notice: 'Ticket was successfully created.'
     else
       render :new
