@@ -11,6 +11,18 @@
   </thead>
 
   <tbody>
+    <% if @tickets %>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.id %></td> <!-- TODO: clickable link to view information about that ticket -->
+        <td><%= User.find(ticket.creator_id).first_name %> </td>
+        <td><%= ticket.priority %></td>
+        <td><%= ticket.type %></td>
+        <td><%= ticket.category %></td>
+        <td><%= ticket.date %></td>
+      </tr>
+    <% end %>
+    <% end %>
     <% if @sentTickets %>  
     <% @sentTickets.each do |ticket| %>
       <tr>
