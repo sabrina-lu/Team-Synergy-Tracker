@@ -21,13 +21,15 @@ class SurveysController < ApplicationController
 
   # POST /surveys
   def create
-    @survey = Survey.new(survey_params)
-
-    if @survey.save
-      redirect_to @survey, notice: 'Survey was successfully created.'
-    else
-      render :new
+    manager = Manager.find(params[:manager_id])
+    manager.teams.each do |team|
+      if team.users.first and !team.users.first.surveys.find_by(team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
+        team.users.each do |user|        
+          Survey.create(user_id: user.id, team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
+        end
+      end
     end
+    redirect_to manager_dashboard_url, notice: 'Weekly Survey Has Been Updated.'
   end
 
   # PATCH/PUT /surveys/1
