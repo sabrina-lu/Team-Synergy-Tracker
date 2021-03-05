@@ -1,0 +1,7 @@
+Test case descriptions
+
+Ex) Test case email address input should be all lower case
+
+Test 1 (creating a new user)
+1. From the homepage, click  "create new account"
+2. etc
