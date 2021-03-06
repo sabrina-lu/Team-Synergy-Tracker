@@ -51,15 +51,4 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit(:priority, :type, :category, :description, :date, :creator_id)
     end
-    
-#   # GET /tickets
-#   def index
-#     @tickets = Ticket.all
-#   end
-
-#   # DELETE /tickets/1
-#   def destroy
-#     @ticket.destroy
-#     redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
-#   end
 end

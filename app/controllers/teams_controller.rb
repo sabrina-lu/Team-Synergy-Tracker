@@ -87,20 +87,4 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:name)
     end
-
-#   # GET /teams
-#   def index
-#     @teams = Team.all
-#   end
-
-#   # GET /teams/1
-#   def show
-#     @users = Team.find(params[:id]).users
-#   end
-
-#   # DELETE /teams/1
-#   def destroy
-#     @team.destroy
-#     redirect_to manager_dashboard_path, notice: 'Team was successfully destroyed.'
-#   end
 end

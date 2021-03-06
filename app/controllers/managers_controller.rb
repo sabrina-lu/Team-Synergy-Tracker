@@ -114,32 +114,4 @@ class ManagersController < ApplicationController
     def manager_params
       params.require(:manager).permit(:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
-  
-#   # GET /managers
-#   def index
-#     @managers = Manager.all
-#   end
-
-#   # GET /managers/1
-#   def show
-#   end
-#   
-#   # PATCH/PUT /managers/1
-#   def update
-#     if @manager.update(manager_params)
-#       redirect_to @manager, notice: 'Manager was successfully updated.'
-#     else
-#       render :edit
-#     end
-#   end
-  
-#   # GET /managers/1/edit
-#   def edit
-#   end
-#   
-#   # DELETE /managers/1
-#   def destroy
-#     @manager.destroy
-#     redirect_to managers_url, notice: 'Manager was successfully destroyed.'
-#   end
 end

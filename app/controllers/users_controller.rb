@@ -121,36 +121,5 @@ class UsersController < ApplicationController
      if current_user != @user
       redirect_to users_url, notice: "You can only edit or delete your own account."
    end
-  end
-  
-#   # GET /users
-#   def index
-#     @users = User.all
-#   end
-
-#   # GET /users/1
-#   def show
-#   end
-
-#   # GET /users/1/edit
-#   def edit
-#   end
-
-#   # PATCH/PUT /users/1
-#   def update
-#     if @user.update(user_params)
-#       redirect_to @user, notice: 'User was successfully updated.'
-#     else
-#       render :edit
-#     end
-#   end
-
-#   # DELETE /users/1
-#   def destroy
-#     if @user == current_user
-#         log_out
-#     end
-#     @user.destroy
-#     redirect_to users_url, notice: 'User was successfully destroyed.'
-#   end    
+  end   
 end
