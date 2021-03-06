@@ -17,7 +17,8 @@
 
 <p>
   <strong>Users:</strong>
-  <%= @ticket.users.select {|users| users.watiam} %>
+  <% @ticket.users.each do |user| %>
+  <%= "#{user.watiam}: #{user.first_name} #{user.last_name}, " %><% end %>
 </p>
 
 <p>
