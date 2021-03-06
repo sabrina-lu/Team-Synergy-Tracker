@@ -22,25 +22,24 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
-    users = params[:ticket][:users]
-    puts users
-    users.drop(1).each do |temp_user| 
-    #         params[:ticket][:users])
-    #     users = params[:ticket][:users]
-    #     @users = params[:ticket][:users]
-    #     @ticket.users << @users.drop(1).split(";")
-        @users = User.find(temp_user.to_i)
-        puts @users
-        
+    
         if @ticket.save
-          @ticket.users << @users
-          puts @ticket.users
+          users = params[:ticket][:users]
+          users.drop(1).each do |temp_user| 
+            #         params[:ticket][:users])
+            #     users = params[:ticket][:users]
+            #     @users = params[:ticket][:users]
+            #     @ticket.users << @users.drop(1).split(";")
+              @users = User.find(temp_user.to_i)
+              @ticket.users << @users
+          
     #         .drop(1).split(/, */)
+          end 
           redirect_to @ticket, notice: 'Ticket was successfully created.'
         else
           render :new
         end 
-    end
+#     end
   end
 
   # PATCH/PUT /tickets/1
