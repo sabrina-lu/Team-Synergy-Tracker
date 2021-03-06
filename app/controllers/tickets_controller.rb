@@ -23,21 +23,23 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
     users = params[:ticket][:users]
+    puts users
     users.drop(1).each do |temp_user| 
-    
-    @users = User.find(temp_user.to_i)
-#         params[:ticket][:users])
-#     users = params[:ticket][:users]
-#     @users = params[:ticket][:users]
-#     @ticket.users << @users.drop(1).split(";")
-    if @ticket.save
-      @ticket.users << @users
-#         .drop(1).split(/, */)
-      redirect_to @ticket, notice: 'Ticket was successfully created.'
-    else
-      render :new
-    end
+    #         params[:ticket][:users])
+    #     users = params[:ticket][:users]
+    #     @users = params[:ticket][:users]
+    #     @ticket.users << @users.drop(1).split(";")
+        @users = User.find(temp_user.to_i)
+        puts @users
         
+        if @ticket.save
+          @ticket.users << @users
+          puts @ticket.users
+    #         .drop(1).split(/, */)
+          redirect_to @ticket, notice: 'Ticket was successfully created.'
+        else
+          render :new
+        end 
     end
   end
 
