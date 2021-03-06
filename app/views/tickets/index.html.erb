@@ -25,7 +25,9 @@
         <td><%= ticket.category %></td>
         <td><%= ticket.description %></td>
         <td><%= ticket.date %></td>
-        <td><%= ticket.users %></td>
+        <td><%  ticket.users.each do |user| %>
+            <%= "#{user.watiam}: #{user.first_name} #{user.last_name}, " %>
+            <% end %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>

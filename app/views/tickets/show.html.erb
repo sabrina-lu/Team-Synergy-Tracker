@@ -18,7 +18,8 @@
 <p>
   <strong>Users:</strong>
   <% @ticket.users.each do |user| %>
-  <%= "#{user.watiam}: #{user.first_name} #{user.last_name}, " %><% end %>
+  <%= "#{user.watiam}: #{user.first_name} #{user.last_name}, " %>
+  <% end %>
 </p>
 
 <p>
