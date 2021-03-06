@@ -17,7 +17,7 @@
 
 <p>
   <strong>Users:</strong>
-  <%= @ticket.users %>
+  <%= @ticket.users.select {|users| users.watiam} %>
 </p>
 
 <p>
