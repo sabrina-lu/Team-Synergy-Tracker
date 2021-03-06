@@ -1,0 +1,7 @@
+A user can see their teams
+
+Test 1 (seeing their team members that are also on the same team as them)
+* pre-requisite: a manager must have add this user to a team
+    1. login as a user
+    2. select a team 
+    3. should successfully see a list of fellow team members
