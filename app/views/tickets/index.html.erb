@@ -26,7 +26,9 @@
         <td><%= ticket.description %></td>
         <td><%= ticket.date %></td>
         <td><%  ticket.users.each do |user| %>
-            <%= "#{user.watiam}: #{user.first_name} #{user.last_name}, " %>
+            <ul>
+              <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
+            </ul>
             <% end %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
