@@ -39,12 +39,6 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to manager_dashboard_url
     assert_equal "You do not have permission to view this team." , flash[:notice] 
   end
-  
-  test "should get index" do
-    login_as_manager
-    get managers_url
-    assert_response :success
-  end
 
   test "should get new" do
     get new_manager_url
@@ -55,12 +49,6 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Manager.count') do
       post managers_url, params: { manager: { flag: "Manager", watiam: "bpark", password: "Password", first_name: "Bob", last_name: "Park"} }
     end
-  end
-
-  test "should show manager" do
-    login_as_manager
-    get manager_url(@manager)
-    assert_response :success
   end
 
   test "managers should only see tickets of members on their teams" do

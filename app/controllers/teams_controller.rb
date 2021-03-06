@@ -1,16 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
-  # GET /teams
-  def index
-    @teams = Team.all
-  end
-
-  # GET /teams/1
-  def show
-    @users = Team.find(params[:id]).users
-  end
-
   # GET /teams/new
   def new
     @new = true
@@ -87,12 +77,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  def destroy
-    @team.destroy
-    redirect_to manager_dashboard_path, notice: 'Team was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
@@ -103,4 +87,20 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:name)
     end
+
+#   # GET /teams
+#   def index
+#     @teams = Team.all
+#   end
+
+#   # GET /teams/1
+#   def show
+#     @users = Team.find(params[:id]).users
+#   end
+
+#   # DELETE /teams/1
+#   def destroy
+#     @team.destroy
+#     redirect_to manager_dashboard_path, notice: 'Team was successfully destroyed.'
+#   end
 end

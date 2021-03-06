@@ -13,44 +13,15 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     end
   end  
 
-  test "should get index" do
-    get tickets_url
-    assert_response :success
-  end
-
-#   test "should get new" do
-#     get new_ticket_url
-#     assert_response :success
-#   end
-
-#   test "should create ticket" do
-#     assert_difference('Ticket.count') do
-#       post tickets_url, params: { ticket: { category: @ticket.category, date: @ticket.date, description: @ticket.description, priority: @ticket.priority, type: @ticket.type, creator_id: @ticket.user_id } }
-#     end
-
-#     assert_redirected_to ticket_url(Ticket.last)
-#   end
-
   test "should show ticket" do
+    login_as_user(@user_1)
     get ticket_url(@t_1)
     assert_response :success
   end
-
-#   test "should get edit" do
-#     get edit_ticket_url(@t_1)
-#     assert_response :success
-#   end
 
   test "should update ticket" do
     patch ticket_url(@t_1), params: { ticket: { category: @t_1.category, date: @t_1.date, description: @t_1.description, priority: @t_1.priority, type: @t_1.type, creator_id: @t_1.creator_id } }
     assert_redirected_to ticket_url(@t_1)
   end
 
-  test "should destroy ticket" do
-    assert_difference('Ticket.count', -1) do
-      delete ticket_url(@t_1)
-    end
-
-    assert_redirected_to tickets_url
-  end
 end

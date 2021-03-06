@@ -3,15 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
 
-  # GET /users
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  def show
-  end
-
   # GET /users/new
   def new
     user_params = params
@@ -21,10 +12,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
-  def edit
-  end
-    
   # GET /dashboard
   def dashboard
      if current_user_is_manager
@@ -80,7 +67,7 @@ class UsersController < ApplicationController
       @sentTickets = Ticket.where(creator_id: current_user.id)  #get tickets user created
       @receivedTickets = User.find(current_user.id).tickets  #get tickets about user
     else
-      #TODO: redirect to manager ticket view
+      redirect_to manager_tickets_path
     end
   end
   
@@ -119,24 +106,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /users/1
-  def destroy
-    if @user == current_user
-        log_out
-    end
-    @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -153,4 +122,35 @@ class UsersController < ApplicationController
       redirect_to users_url, notice: "You can only edit or delete your own account."
    end
   end
+  
+#   # GET /users
+#   def index
+#     @users = User.all
+#   end
+
+#   # GET /users/1
+#   def show
+#   end
+
+#   # GET /users/1/edit
+#   def edit
+#   end
+
+#   # PATCH/PUT /users/1
+#   def update
+#     if @user.update(user_params)
+#       redirect_to @user, notice: 'User was successfully updated.'
+#     else
+#       render :edit
+#     end
+#   end
+
+#   # DELETE /users/1
+#   def destroy
+#     if @user == current_user
+#         log_out
+#     end
+#     @user.destroy
+#     redirect_to users_url, notice: 'User was successfully destroyed.'
+#   end    
 end

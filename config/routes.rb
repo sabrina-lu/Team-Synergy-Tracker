@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  resources :tickets
   get 'sessions/new'
   root 'static_pages#home'
-  resources :surveys
-  resources :users
-  resources :managers
-  resources :teams
-  resources :responses
-  resources :users, except: [:new]  
+  resources :surveys, except: [:index, :show, :edit, :new]
+  resources :managers, except: [:index, :show, :edit]
+  resources :teams, except: [:index, :show]
+  resources :responses, except: [:index, :show, :edit, :new]
+  resources :users, except: [:new, :index, :show, :edit]  
+  resources :tickets, except: [:index]
     
   get '/signup', to: 'users#new'
   get '/login',  to: 'sessions#new'    
