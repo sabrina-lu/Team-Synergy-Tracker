@@ -51,6 +51,19 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # tickets tests
+  test "manager tickets page should still be successful even if they have no tickets associated to them" do
+    login_as_manager
+    get manager_tickets_url
+    assert_response :success
+  end
+  
+  test "should redirect user to user ticket page when accessing manager ticket page" do
+    login_as_user
+    get manager_tickets_url
+    assert_redirected_to user_tickets_url
+  end
+    
   test "managers should only see tickets of members on their teams" do
     setup_manager_tickets
     tickets = get_tickets_for_manager(@manager_1)
