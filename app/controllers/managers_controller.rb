@@ -30,7 +30,7 @@ class ManagersController < ApplicationController
     @manager = current_user_is_manager
     if !@manager
         redirect_to_manager_login
-    elsif
+    else
       q1 = "How do you feel about this week in comparison to last week?"
       q2 = "How did you feel about this week?"
       q3 = "How would you rate your communication with your team members this week?"
