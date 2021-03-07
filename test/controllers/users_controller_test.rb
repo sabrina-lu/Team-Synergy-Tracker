@@ -164,6 +164,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end  
   end  
     
+  test "should log out user" do
+    login_as_user
+    get logout_url
+    get user_dashboard_url
+    assert_redirected_to login_url
+    assert_equal "Please log in.", flash["notice"]
+  end
+    
   def get_tickets_for_user(user)
     tickets = Ticket.where(creator_id: user.id)
     tickets = tickets + User.find(user.id).tickets
