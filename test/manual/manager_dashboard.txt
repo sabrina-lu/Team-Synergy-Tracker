@@ -1,0 +1,13 @@
+A manager can successfully remove a user
+
+Test 1 (removing a user with response history)
+    1. login as manager G (from seed)
+    2. remove user A (from seed)
+    3. should successfully remove user
+    
+Test 2 (removing a user without response history)
+    1. login as manager G (from seed)
+    2. remove user D (from seed)
+    3. should successfully remove user
+    
+ 

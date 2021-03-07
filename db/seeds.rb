@@ -5,6 +5,7 @@ C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Epsilon", last
 D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Gemma", last_name: "Hawkeye", password: "Kl33n3x")
 E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Lambda", last_name: "Boy", password: "Cushi$$on")
 F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Equal", last_name: "Hulk", password: "Agenda")
+generic_user = User.new(user_id: 20202020, watiam: "userwat123", first_name: "Awesome", last_name: "Student", password: "Password")
 
 
 # Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
@@ -34,6 +35,7 @@ K = Manager.new(watiam: "h8ub34rfj", first_name: "So", last_name: "Fury", passwo
 L = Manager.new(watiam: "h098vhj4t", first_name: "La", last_name: "Fury", password: "B3333an")
 M = Manager.new(watiam: "hoiugf865", first_name: "Doe", last_name: "Hulk", password: "P1zzaHut")
 N = Manager.new(watiam: "hRT456K7I", first_name: "Ti", last_name: "Peggy", password: "diSCO0")
+generic_manager = Manager.new(watiam: "managwat", first_name: "Awesome", last_name: "Manager", password: "Password")
 
 # G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password: "P1ckle")
 # H = Manager.new(watiam: "h12er57yh", first_name: "Black", last_name: "Wi_dow", password: "Smartie")
@@ -54,6 +56,11 @@ t5 = Team.new(name: "Team 5")
 t6 = Team.new(name: "Team 6")
 t7 = Team.new(name: "Team 7")
 t8 = Team.new(name: "Team 8")
+t9 = Team.new(name: "MSCI 311")
+t10 = Team.new(name: "MSCI 344")
+t11 = Team.new(name: "MSCI 342")
+t12 = Team.new(name: "MSCI 431")
+t13 = Team.new(name: "MSCI 446")
 
 
 t1.users << [A,D,C]
@@ -72,6 +79,16 @@ t7.users << [A,C,D,E]
 
 t8.users << [B]
 
+t9.users << [generic_user]
+
+t10.users << [generic_user]
+
+t11.users << [generic_user]
+
+t12.users << [generic_user]
+
+t13.users << [generic_user]
+
 #comment out team 2 for no members
 #person Z is not a part of any team
 # person Y's name is way too long
@@ -89,6 +106,8 @@ K.teams << [t6, t7]
 
 M.teams << [t8]
 
+generic_manager.teams << [t9, t10, t11, t12, t13]
+
 G.save
 H.save
 I.save
@@ -97,6 +116,7 @@ K.save
 L.save
 M.save
 N.save
+generic_manager.save
 
 # adding surveys to users and teams
 
@@ -126,6 +146,11 @@ s21 = Survey.create(date: survey_due_date)
 s22 = Survey.create(date: survey_due_date)
 s23 = Survey.create(date: survey_due_date)
 s24 = Survey.create(date: survey_due_date)
+s25 = Survey.create(date: survey_due_date)
+s26 = Survey.create(date: survey_due_date)
+s27 = Survey.create(date: survey_due_date)
+s28 = Survey.create(date: survey_due_date)
+s29 = Survey.create(date: survey_due_date)
 
 A.surveys << [s1,s2,s3,s4,s5,s6,s7]
 B.surveys << [s8, s9]
@@ -133,6 +158,7 @@ C.surveys << [s10, s11, s12, s13]
 D.surveys << [s14, s15, s16, s17, s18]
 E.surveys << [s19, s20, s21, s22, s23]
 F.surveys << [s24]
+generic_user.surveys << [s25, s26, s27, s29]
 
 t1.surveys << [s1, s14, s10]
 t2.surveys << [s2, s19]
@@ -142,6 +168,11 @@ t5.surveys << [s5, s16, s21, s12]
 t6.surveys << [s6, s22, s17]
 t7.surveys << [s7, s13, s18, s23]
 t8.surveys << [s9]
+t9.surveys << [s25]
+t10.surveys << [s26]
+t11.surveys << [s27]
+t12.surveys << [s28]
+t13.surveys << [s29]
 
 ticket1 = Ticket.new(priority: 1, type: "Conflict", category: "Personal", description: "Alpha is being disrespectful towards me ;(", date: "07/02/2020")
 ticket2 = Ticket.new(priority: 3, type: "Conflict", category: "Work", description: "I am sick and tired of people not finishing their work on time!!", date: "12/08/2020")
@@ -150,6 +181,9 @@ ticket4 = Ticket.new(priority: 1, type: "Positive", category: "Work", descriptio
 ticket5 = Ticket.new(priority: 1, type: "Neutral", category: "Work", description: "I can help you on the task you are working on.", date: "13/11/2020")
 ticket6 = Ticket.new(priority: 2, type: "Conflict", category: "Work", description: "Hi Beta, I think you should be less dominating during discussions", date: "16/12/2020")
 ticket7 = Ticket.new(priority: 3, type: "Conflict", category: "Personal", description: "Please stop calling me dumb...I'm really hurt by it", date: "05/08/2020")
+ticket8 = Ticket.new(priority: 2, type: "Conflict", category: "Work", description: "It is very difficult to effectively complete my work when you do not mute yourself on Zoom calls", date: "05/08/2020")
+ticket9 = Ticket.new(priority: 1, type: "Positive", category: "Personal", description: "I love your Excel spreadsheet template!", date: "06/06/2020")
+ticket10 = Ticket.new(priority: 3, type: "Neutral", category: "Work", description: "Reminder to please note deadlines", date: "07/08/2020")
 
 #assign ticket to its creator
 ticket1.creator = B
@@ -159,6 +193,9 @@ ticket4.creator = E
 ticket5.creator = F
 ticket6.creator = A
 ticket7.creator = A
+ticket8.creator = E
+ticket9.creator = D
+ticket10.creator = B
 
 #assign tickets to receiving user
 A.tickets << [ticket1, ticket5]
@@ -167,6 +204,7 @@ C.tickets << [ticket4]
 D.tickets << [ticket2]
 E.tickets << [ticket7]
 F.tickets << [ticket3]
+generic_user.tickets << [ticket8, ticket9, ticket10]
 
 A.save
 B.save
@@ -175,6 +213,7 @@ D.save
 E.save
 F.save
 Z.save
+generic_user.save
 
 t1.save
 t2.save
@@ -184,6 +223,11 @@ t5.save
 t6.save
 t7.save
 t8.save
+t9.save
+t10.save
+t11.save
+t12.save
+t13.save
 
 ticket1.save
 ticket2.save
@@ -192,6 +236,9 @@ ticket4.save
 ticket5.save
 ticket6.save
 ticket7.save
+ticket8.save
+ticket9.save
+ticket10.save
 
 O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
 P = Response.new(survey_id: 2, question_number: 2, answer: "4")
@@ -199,6 +246,11 @@ Q = Response.new(survey_id: 3, question_number: 3, answer: "1")
 R = Response.new(survey_id: 4, question_number: 4, answer: "5")
 S = Response.new(survey_id: 5, question_number: 5, answer: "3")
 T = Response.new(survey_id: 6, question_number: 6, answer: "2")
+U = Response.new(survey_id: 25, question_number: 1, answer: "2")
+V = Response.new(survey_id: 26, question_number: 2, answer: "5")
+W = Response.new(survey_id: 27, question_number: 3, answer: "3")
+#X = Response.new(survey_id: 28, question_number: 4, answer: "5")
+ZA = Response.new(survey_id: 25, question_number: 2, answer: "2")
 
 # U = Response.new(question_number: 7, response: "")
 # U.save
@@ -206,12 +258,22 @@ T = Response.new(survey_id: 6, question_number: 6, answer: "2")
 s1.responses << [O, P, Q, R, S, T] 
 s1.save
 
+s25.responses << [U, ZA]
+s26.responses << [V]
+s27.responses << [W]
+#s28.responses << [X]
+
 O.save
 P.save
 Q.save
 R.save
 S.save
 T.save
+U.save
+V.save
+W.save
+#X.save
+ZA.save
 
 # For string responses:
 # O = Response.new(survey_id: 1, question_number: 1, response: "No")
