@@ -80,6 +80,14 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
         
   end
     
+  test "should log out manager" do
+    login_as_manager
+    get logout_url
+    get manager_dashboard_url
+    assert_redirected_to login_url
+    assert_equal "Please log in.", flash["notice"]
+  end
+    
     # don't need to test edit manager
 #  test "should get edit" do
 #    get edit_manager_url(@manager)
