@@ -103,7 +103,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
-    
+
   def get_tickets_for_user(user)
     tickets = Ticket.where(creator_id: user.id)
     tickets = tickets + User.find(user.id).tickets
