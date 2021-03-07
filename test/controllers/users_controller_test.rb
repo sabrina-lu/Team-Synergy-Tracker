@@ -67,6 +67,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_tickets_url
     assert_response :success
   end
+  
+  test "should redirect manager to manager ticket page when accessing user ticket page" do
+    login_as_manager
+    get user_tickets_url
+    assert_redirected_to manager_tickets_url
+  end
       
   test "users should only see tickets they created or about themselves" do
     setup_tickets
@@ -88,19 +94,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, tickets.include?(@t_2)
     assert_equal true, tickets.include?(@t_3)    
   end
-    
-  # TODO: add a test - should redirect manager to manager tickets page when trying to access user tickets page
-  
-    # don't need to test get index
-#  test "should get index" do
-#    get users_url
-#    assert_response :success
-#  end
-
-  test "should get new" do
-    get new_user_url
-    assert_response :success
-  end
 
     # can successfully create user account
   test "should create user" do
@@ -111,6 +104,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
     
+
     # can successfully create manager account (expected results are wrong)
 #  test "should create manager" do
 #    assert_difference('Manager.count') do
@@ -146,6 +140,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 #    assert_redirected_to users_url
 #  end
     
+=======
+
   def get_tickets_for_user(user)
     tickets = Ticket.where(creator_id: user.id)
     tickets = tickets + User.find(user.id).tickets

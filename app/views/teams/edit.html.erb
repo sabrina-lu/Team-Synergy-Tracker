@@ -2,5 +2,5 @@
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'All Teams', manager_dashboard_path %> |
-<%= link_to 'Back', team_health_path(@team) %>
+<%= link_to 'Return To Dashboard', manager_dashboard_path %> |
+<%= link_to "Back to #{@team.name}", team_health_path(@team) %>
