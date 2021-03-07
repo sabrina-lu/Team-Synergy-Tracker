@@ -13,39 +13,17 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       post tickets_url, params: {ticket: {creator_id: @user_4.id, priority: @t_6.priority, type: @t_6.type, category: @t_6.category, date: @t_6.date, description: @t_6.description}}
     end
   end  
-# <<<<<<< HEAD
-    
+
   test "should add user to a ticket" do
       @user = User.create(watiam: "Disney", first_name: "Mickey", last_name: "Mouse", password: "Test") 
       post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user.id], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}
-      assert_equals(@t_4.users, [@user])
+      assert_equal(@t_4.users, [@user])
   end
   
 #   test "Should successfully remove user from ticket" do
      
 #   end
-    
-  test "should get index" do
-    get tickets_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_ticket_url
-    assert_response :success
-  end
-
-  test "should create ticket" do
-    assert_difference('Ticket.count') do
-      post tickets_url, params: { ticket: { category: @ticket.category, date: @ticket.date, description: @ticket.description, priority: @ticket.priority, type: @ticket.type, creator_id: @ticket.user_id } }
-    end
-
-    assert_redirected_to ticket_url(Ticket.last)
-  end
-
-  test "should show ticket" do
-# =======
-  
+   
   # show ticket tests  
   test "should redirect user to show ticket if they are involved in the ticket" do
     login_as_user(@user_1)
@@ -63,7 +41,6 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   test "should show manager any ticket they want to view" do
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
     login_as_manager
->>>>>>> 2cc65cfba4ccb5dfa9aab5eccd4e2d5b653b3455
     get ticket_url(@t_1)
     assert_response :success
     get ticket_url(@t_2)
@@ -72,16 +49,8 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-<<<<<<< HEAD
-  test "should get edit" do
-    get edit_ticket_url(@t_1)
-    assert_response :success
-  end
-
-=======
->>>>>>> 2cc65cfba4ccb5dfa9aab5eccd4e2d5b653b3455
   test "should update ticket" do
-    patch ticket_url(@t_1), params: { ticket: { category: @t_1.category, date: @t_1.date, description: @t_1.description, priority: @t_1.priority, type: @t_1.type, users: @t_1.users, creator_id: @t_1.creator_id } }
+    patch ticket_url(@t_1), params: { ticket: { category: @t_1.category, date: @t_1.date, description: @t_1.description, priority: @t_1.priority, type: @t_1.type, creator_id: @t_1.creator_id } }
     assert_redirected_to ticket_url(@t_1)
   end
 
