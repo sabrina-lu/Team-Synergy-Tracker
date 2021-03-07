@@ -5,6 +5,9 @@ class Manager < ApplicationRecord
     attr_accessor :user_id
 
     has_secure_password
-    validates_presence_of :password
-    validates_length_of :password, minimum: 6
+    validates :password, :first_name, :last_name, presence: true
+    validates :password, length: {in: 6..25}, on: :create
+    validates :password, format: {without: /\s/}
+    validates :watiam, format: {without: /\s/}, allow_blank: false
+    validates_length_of :password, minimum: 6, maximum: 25, allow_blank: false
 end
