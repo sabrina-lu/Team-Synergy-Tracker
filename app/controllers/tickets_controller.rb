@@ -45,7 +45,8 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   def update
     if @ticket.update(ticket_params || params[:ticket][:users])
-        if @ticket.update(params[:ticket][:users])
+#         if @ticket.update(params[:ticket][:users])
+        if @ticket.users != params[:ticket][:users]
             @ticket.users.clear()
             users = params[:ticket][:users]
               users.drop(1).each do |temp_user| 
