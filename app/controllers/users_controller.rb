@@ -76,15 +76,7 @@ class UsersController < ApplicationController
     if user_params[:flag] == "User"
       @user = User.new(user_params)
     else
-      # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
-      redirect_to new_manager_url(:name => user_params[:name], 
-                                  :manager_id => user_params[:user_id],
-                                  :flag => user_params[:flag],
-                                  :watiam => user_params[:watiam],
-                                  :password => user_params[:password],
-                                  :first_name => user_params[:first_name],
-                                  :last_name => user_params[:last_name],
-                                  :password_confirmation => user_params[:password_confirmation]) and return
+      @user = Manager.new(user_params)
     end
     @userCannotBeCreated = false
     @watiamList = User.select("watiam") + Manager.select("watiam")
