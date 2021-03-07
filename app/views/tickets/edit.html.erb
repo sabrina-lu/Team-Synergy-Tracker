@@ -2,5 +2,6 @@
 
 <%= render 'form', ticket: @ticket %>
 
-<%= link_to 'Show', @ticket %> |
-<%= link_to 'Back', tickets_path %>
+<div class="back-link">
+<%= link_to 'Go Back and Discard Changes', @ticket %>
+</div>
