@@ -103,42 +103,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
-    
-
-    # can successfully create manager account (expected results are wrong)
-#  test "should create manager" do
-#    assert_difference('Manager.count') do
-#      post users_url, params: { user: {user_id: 87654321, flag: "Manager", watiam: "emmalinmanager", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
-#    end
-#    assert_redirected_to root_url
-#  end
-    
-
-  test "should show user" do
-    login_as_user
-    assert(get user_url(@user))
-  end
-
-    # don't need to test edit user
-#  test "should get edit" do
-#    get edit_user_url(@user)
-#    assert_response :success
-#  end
-
-    # don't need to test update user
-#  test "should update user" do
-#    patch user_url(@user), params: { user: {  } }
-#    assert_redirected_to user_url(@user)
-#  end
-
-    # don't need to test destroy user
-#  test "should destroy user" do
-#    assert_difference('User.count', -1) do
-#      delete user_url(@user)
-#    end
-
-#    assert_redirected_to users_url
-#  end
 
   test "should create manager" do
     assert_difference('Manager.count') do
