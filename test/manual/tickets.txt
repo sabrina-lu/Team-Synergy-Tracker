@@ -1,0 +1,16 @@
+Editing a ticket
+
+Test 1 (A receiving user cannot edit the ticket)
+*pre-requisite: the receiving user must have a ticket sent to them
+    1. Login as a user
+    2. Navigate to View My Tickets
+    3. Select a ticket with "Created By" being Anonymous
+    4. There should not be an option to edit
+    
+Test 2 (A user sending a ticket should be able to edit the ticket)
+*pre-requisite: the user must have a ticket already created
+    1. Login as a user
+    2. Navigate to View My Tickets
+    3. Select a ticket with "Created By" being your first name
+    4. There should be an option to edit
+    
