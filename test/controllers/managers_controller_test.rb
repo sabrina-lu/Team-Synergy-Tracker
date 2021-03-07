@@ -39,12 +39,6 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to manager_dashboard_url
     assert_equal "You do not have permission to view this team." , flash[:notice] 
   end
-  
-  test "should get index" do
-    login_as_manager
-    get managers_url
-    assert_response :success
-  end
 
   test "should get new" do
     get new_manager_url
@@ -57,12 +51,19 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should show manager" do
+  # tickets tests
+  test "manager tickets page should still be successful even if they have no tickets associated to them" do
     login_as_manager
-    get manager_url(@manager)
+    get manager_tickets_url
     assert_response :success
   end
-
+  
+  test "should redirect user to user ticket page when accessing manager ticket page" do
+    login_as_user
+    get manager_tickets_url
+    assert_redirected_to user_tickets_url
+  end
+    
   test "managers should only see tickets of members on their teams" do
     setup_manager_tickets
     tickets = get_tickets_for_manager(@manager_1)
@@ -77,6 +78,14 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, tickets.include?(@t_2)
     assert_equal false, tickets.include?(@t_3)  
         
+  end
+    
+  test "should log out manager" do
+    login_as_manager
+    get logout_url
+    get manager_dashboard_url
+    assert_redirected_to login_url
+    assert_equal "Please log in.", flash["notice"]
   end
     
     # don't need to test edit manager

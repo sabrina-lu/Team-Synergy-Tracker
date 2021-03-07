@@ -26,7 +26,7 @@
         <nobr>
           Priority:
           <!-- Source (https://guides.rubyonrails.org/v2.3/form_helpers.html) used for learning how to make dropdowns with set values correlating to options -->
-          <%= form.select(:priority, options_for_select([['Low', 3], ['Medium', 2], ['High', 1]])) %>
+          <%= form.select(:priority, options_for_select([['Low', 3], ['Medium', 2], ['High', 1]], ticket.priority)) %>
         </nobr>
       </p>
     </div>
@@ -35,7 +35,7 @@
       <p>
         <nobr>
           Type:
-          <%= form.select(:type, options_for_select(['Conflict', 'Positive', 'Neutral'])) %>
+          <%= form.select(:type, options_for_select(['Conflict', 'Positive', 'Neutral'], ticket.type)) %>
         </nobr>
       </p>
     </div>
@@ -44,7 +44,7 @@
       <p>
         <nobr>
           Category:
-          <%= form.select(:category, options_for_select(['Personal', 'Work', 'Other'])) %>
+          <%= form.select(:category, options_for_select(['Personal', 'Work', 'Other'], ticket.category)) %>
         </nobr>
       </p>
     </div>

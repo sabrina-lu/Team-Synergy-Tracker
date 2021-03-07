@@ -88,7 +88,9 @@ class TicketTest < ActiveSupport::TestCase
   test "Should successfully create a ticket with valid users" do
     @user = User.create(watiam: "WaltDisn", first_name: "Mickey", last_name: "Mouse", password: "Testing") 
     @user_1 = User.create(watiam: "Disneypl", first_name: "Minnie", last_name: "Mouse", password: "Testing2") 
-    assert @ticket = Ticket.new(creator_id: @user.id, users: @user_1, priority: 2 , type: "Conflict", category: "Other", date: "12/02/2020", description: "C").valid?
+    @ticket = Ticket.create(creator_id: @user.id, priority: 2 , type: "Conflict", category: "Other", date: "12/02/2020", description: "C")
+    @ticket.users << [@user_1]
+    assert @ticket.users = @user_1
   end
     
   test "Should successfully create a ticket with no users" do
@@ -100,7 +102,7 @@ class TicketTest < ActiveSupport::TestCase
       @user = User.create(watiam: "WaltDisn", first_name: "Mickey", last_name: "Mouse", password: "Testing") 
       @user_1 = User.create(watiam: "Disneypl", first_name: "Minnie", last_name: "Mouse", password: "Testing2") 
       @user_2 = User.create(watiam: "DisneyCh", first_name: "Donald", last_name: "Duck", password: "Testing3") 
-      @ticket = Ticket.new(creator_id: @user.id, users: nil, priority: 2 , type: "Conflict", category: "Other", date: "12/02/2020", description: "C").valid?
+      @ticket = Ticket.create(creator_id: @user.id, priority: 2 , type: "Conflict", category: "Other", date: "12/02/2020", description: "C")
       assert @ticket.users << [@user_1, @user_2].valid?
   end
 end

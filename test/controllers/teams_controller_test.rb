@@ -52,11 +52,6 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_members_url(Team.last)
   end
 
-  test "should show team" do
-    get team_url(@team)
-    assert_response :success
-  end
-
   test "should get edit" do
     assert(get edit_team_url(@team))
   end
@@ -64,11 +59,4 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   test "should update team name" do
     assert(patch team_url(@team), params: { team: { name: @team.name } })
   end
-
-    # don't need to test destroying a team
-#  test "should destroy team" do
-#    assert_difference('Team.count', -1) do
-#      delete team_url(@team)
-#    end
-#  end
 end

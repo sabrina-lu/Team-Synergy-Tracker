@@ -67,6 +67,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_tickets_url
     assert_response :success
   end
+  
+  test "should redirect manager to manager ticket page when accessing user ticket page" do
+    login_as_manager
+    get user_tickets_url
+    assert_redirected_to manager_tickets_url
+  end
       
   test "users should only see tickets they created or about themselves" do
     setup_tickets
@@ -88,21 +94,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, tickets.include?(@t_2)
     assert_equal true, tickets.include?(@t_3)    
   end
-    
-  # TODO: add a test - should redirect manager to manager tickets page when trying to access user tickets page
-  
-    # don't need to test get index
-#  test "should get index" do
-#    get users_url
-#    assert_response :success
-#  end
 
-  test "should get new" do
-    get new_user_url
-    assert_response :success
-  end
-
-    # can successfully create user account
+  # can successfully create user account
   test "should create user" do
     assert_difference('User.count') do
       post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
@@ -110,42 +103,74 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
-    
-    # can successfully create manager account (expected results are wrong)
-#  test "should create manager" do
-#    assert_difference('Manager.count') do
-#      post users_url, params: { user: {user_id: 87654321, flag: "Manager", watiam: "emmalinmanager", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
-#    end
 
-#    assert_redirected_to root_url
-#  end
-    
+  test "should create manager" do
+    assert_difference('Manager.count') do
+      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+    end
 
-  test "should show user" do
-    login_as_user
-    assert(get user_url(@user))
+    assert_redirected_to root_url
   end
-
-    # don't need to test edit user
-#  test "should get edit" do
-#    get edit_user_url(@user)
-#    assert_response :success
-#  end
-
-    # don't need to test update user
-#  test "should update user" do
-#    patch user_url(@user), params: { user: {  } }
-#    assert_redirected_to user_url(@user)
-#  end
-
-    # don't need to test destroy user
-#  test "should destroy user" do
-#    assert_difference('User.count', -1) do
-#      delete user_url(@user)
-#    end
-
-#    assert_redirected_to users_url
-#  end
+    
+  test "should not create user if an existing manager has the same watiam" do
+    Manager.create(watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
+    assert_difference('User.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+    end
+    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+  end
+    
+  test "should not create manager if an existing user has the same watiam" do
+    User.create(watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
+    assert_difference('Manager.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+    end
+    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+  end
+    
+  test "should not create user if an existing user has the same watiam" do
+    User.create(watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
+    assert_difference('User.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+    end
+    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+  end
+    
+  test "should not create manager if an existing manager has the same watiam" do
+    Manager.create(watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
+    assert_difference('Manager.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+    end
+    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+  end 
+    
+  test "should not create user or manager if password is blank" do
+    assert_difference('User.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
+    end
+      
+    assert_difference('Manager.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
+    end
+  end
+    
+  test "should not create user or manager if password and password confirmation do not match" do
+    assert_difference('User.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
+    end
+      
+    assert_difference('Manager.count', 0) do
+      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
+    end  
+  end  
+    
+  test "should log out user" do
+    login_as_user
+    get logout_url
+    get user_dashboard_url
+    assert_redirected_to login_url
+    assert_equal "Please log in.", flash["notice"]
+  end
     
   def get_tickets_for_user(user)
     tickets = Ticket.where(creator_id: user.id)

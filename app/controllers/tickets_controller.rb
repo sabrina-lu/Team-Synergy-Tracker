@@ -1,13 +1,15 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
-  # GET /tickets
-  def index
-    @tickets = Ticket.all
-  end
-
   # GET /tickets/1
   def show
+    ticket = Ticket.find(params[:id])
+    if !current_user_is_manager
+      user_is_involved = ticket.users.include? current_user
+      if !(user_is_involved || ticket.creator_id == current_user.id)
+        redirect_to user_tickets_path, notice: "You do not have permission to view this ticket."
+      end
+    end
   end
 
   # GET /tickets/new
@@ -33,7 +35,7 @@ class TicketsController < ApplicationController
           render :new
         end 
   end
-
+    
   # PATCH/PUT /tickets/1
   def update
     if @ticket.update(ticket_params || params[:ticket][:users])
@@ -52,13 +54,7 @@ class TicketsController < ApplicationController
       render :edit
     end
   end
-
-  # DELETE /tickets/1
-  def destroy
-    @ticket.destroy
-    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
-  end
-
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket

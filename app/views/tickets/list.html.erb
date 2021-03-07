@@ -16,7 +16,7 @@
     <% if @tickets %>
     <% @tickets.each do |ticket| %>
       <tr>
-        <td><%= link_to ticket.id, ticket %></td> <!-- TODO: clickable link to view information about that ticket -->
+        <td><%= link_to ticket.id, ticket %></td> 
         <td><%= User.find(ticket.creator_id).first_name %> </td>
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
@@ -34,7 +34,7 @@
     <% if @sentTickets %>  
     <% @sentTickets.each do |ticket| %>
       <tr>
-        <td><%= link_to ticket.id, ticket %></td> <!-- TODO: clickable link to view information about that ticket -->
+        <td><%= link_to ticket.id, ticket %></td>
         <td><%= User.find(ticket.creator_id).first_name %> </td>
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
@@ -52,7 +52,7 @@
     <% if @receivedTickets %>  
     <% @receivedTickets.each do |ticket| %>
       <tr>
-        <td><%= link_to ticket.id, ticket %></td> <!-- TODO: clickable link to view information about that ticket -->
+        <td><%= ticket.id %></td> 
         <td>Anonymous</td>
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>

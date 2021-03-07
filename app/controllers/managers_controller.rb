@@ -3,15 +3,6 @@ class ManagersController < ApplicationController
   before_action :set_manager, only: [:show, :edit, :update, :destroy] # this was og the other two were randomly added to match user and havent been tested yet ¯\_(ツ)_/¯
   before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
 
-  # GET /managers
-  def index
-    @managers = Manager.all
-  end
-
-  # GET /managers/1
-  def show
-  end
-
   # GET /managers/new
   def new
     manager_params = params
@@ -20,17 +11,13 @@ class ManagersController < ApplicationController
       @manager = Manager.create
     end
   end
-
-  # GET /managers/1/edit
-  def edit
-  end
     
   # GET /manager_dashboard
   def dashboard
     @manager = current_user_is_manager
     if !@manager
         redirect_to_manager_login
-    elsif
+    else
       q1 = "How do you feel about this week in comparison to last week?"
       q2 = "How did you feel about this week?"
       q3 = "How would you rate your communication with your team members this week?"
@@ -73,15 +60,7 @@ class ManagersController < ApplicationController
     if manager_params[:flag] == "Manager"
       @manager = Manager.new(manager_params)
     else
-      # Source (https://stackoverflow.com/questions/9661611/rails-redirect-to-with-params) used for learning how to pass parameter values with a redirect
-      redirect_to new_user_url(:name => manager_params[:name], 
-                               :user_id => manager_params[:manager_id],
-                               :flag => manager_params[:flag],
-                               :watiam => manager_params[:watiam],
-                               :password => manager_params[:password],
-                               :first_name => manager_params[:first_name],
-                               :last_name => manager_params[:last_name],
-                               :password_confirmation => manager_params[:password_confirmation]) and return
+      @manager = User.new(manager_params) 
     end
     @userCannotBeCreated = false
     @watiamList = User.select("watiam") + Manager.select("watiam")
@@ -107,27 +86,14 @@ class ManagersController < ApplicationController
     if current_user_is_manager
       @myTeams = Manager.joins(:teams).select("team_id").where(:id => current_user.id) # get teams associated with this manager
       @myTeamMembers = Team.joins(:users).select("id").where(:id => @myTeams) # get users associated with this manager's teams
-      @myTeamMembers.each do |ticket|
+        @myTeamMembers.each do |ticket|
           @teamMemberIds = ticket.user_ids
-      end
+        end
       @tickets = Ticket.where(:creator_id => @teamMemberIds)  #get tickets created by users associated with this manager's teams
       #@tickets = @myTeamMembers
-    end
-  end
-
-  # PATCH/PUT /managers/1
-  def update
-    if @manager.update(manager_params)
-      redirect_to @manager, notice: 'Manager was successfully updated.'
     else
-      render :edit
+      redirect_to user_tickets_path 
     end
-  end
-
-  # DELETE /managers/1
-  def destroy
-    @manager.destroy
-    redirect_to managers_url, notice: 'Manager was successfully destroyed.'
   end
 
   private
