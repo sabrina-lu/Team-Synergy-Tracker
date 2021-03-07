@@ -93,8 +93,8 @@ class ActiveSupport::TestCase
     end
   end
     
-  def login_as_manager
-    post login_path, params: { watiam: @manager.watiam, password: @manager.password }
+  def login_as_manager(manager = @manager)
+    post login_path, params: { watiam: manager.watiam, password: manager.password }
   end
  
   def login_as_user(user = @user)

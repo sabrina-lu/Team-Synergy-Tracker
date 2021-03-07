@@ -3,15 +3,6 @@ class ManagersController < ApplicationController
   before_action :set_manager, only: [:show, :edit, :update, :destroy] # this was og the other two were randomly added to match user and havent been tested yet ¯\_(ツ)_/¯
   before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
 
-  # GET /managers
-  def index
-    @managers = Manager.all
-  end
-
-  # GET /managers/1
-  def show
-  end
-
   # GET /managers/new
   def new
     manager_params = params
@@ -19,10 +10,6 @@ class ManagersController < ApplicationController
     if manager_params[:flag] == "Manager"
       @manager = Manager.create
     end
-  end
-
-  # GET /managers/1/edit
-  def edit
   end
     
   # GET /manager_dashboard
@@ -107,27 +94,14 @@ class ManagersController < ApplicationController
     if current_user_is_manager
       @myTeams = Manager.joins(:teams).select("team_id").where(:id => current_user.id) # get teams associated with this manager
       @myTeamMembers = Team.joins(:users).select("id").where(:id => @myTeams) # get users associated with this manager's teams
-      @myTeamMembers.each do |ticket|
+        @myTeamMembers.each do |ticket|
           @teamMemberIds = ticket.user_ids
-      end
+        end
       @tickets = Ticket.where(:creator_id => @teamMemberIds)  #get tickets created by users associated with this manager's teams
       #@tickets = @myTeamMembers
-    end
-  end
-
-  # PATCH/PUT /managers/1
-  def update
-    if @manager.update(manager_params)
-      redirect_to @manager, notice: 'Manager was successfully updated.'
     else
-      render :edit
+      redirect_to user_tickets_path 
     end
-  end
-
-  # DELETE /managers/1
-  def destroy
-    @manager.destroy
-    redirect_to managers_url, notice: 'Manager was successfully destroyed.'
   end
 
   private
