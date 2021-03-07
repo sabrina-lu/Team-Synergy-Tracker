@@ -9,6 +9,10 @@ class TicketTest < ActiveSupport::TestCase
     assert_not @ticket = Ticket.new(creator_id: @user_4.id, priority: 1, type: "Conflict", category: "Other", date: "12/02/2020", description: nil).valid?
   end
   
+  test "Should fail to create a ticket with a blank description" do
+    assert_not @ticket = Ticket.new(creator_id: @user_4.id, priority: 1, type: "Conflict", category: "Other", date: "12/02/2020", description: "").valid?
+  end
+  
   test "Should fail to create a ticket with too long description 501 characters" do
     assert_not @ticket = Ticket.new(creator_id: @user_4.id, priority: 1, type: "Conflict", category: "Other", date: "12/02/2020", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus").valid?
   end

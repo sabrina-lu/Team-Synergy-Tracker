@@ -5,10 +5,10 @@ class User < ApplicationRecord
     has_many :surveys
     has_and_belongs_to_many :tickets
     has_secure_password
-    validates_presence_of :password, :first_name, :last_name, :watiam, :user_id
-    validates :password, length: {in: 6..25}, on: :create
-    validates :user_id, length: {is: 8}
-    validates :password, format: {without: /\s/}
-    validates :user_id, format: {without: /\s/}, allow_blank: false
-    validates :watiam, format: {without: /\s/}, allow_blank: false
+  
+    validates :first_name, presence: true, allow_blank: false
+    validates :last_name, presence: true, allow_blank: false
+    validates :watiam, format: {without: /\s/}, presence: true, allow_blank: false
+    validates :user_id, length: {is: 8}, format: {without: /\s/}, presence: true, allow_blank: false
+    validates :password, length: {in: 6..25}, on: :create, format: {without: /\s/}, allow_blank: false, presence: true
 end

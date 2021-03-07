@@ -92,6 +92,19 @@ class ActiveSupport::TestCase
         x.responses << Response.create(question_number: 1, answer: "1")
     end
   end
+  
+  def setup_baseline_for_survey_models
+    @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
+    @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
+      
+    @team = Team.create(name: "Team 1")
+    @team_no_access = Team.create(name: "Team 5")
+      
+    add_member_to_team_and_survey(@team, @user.id)
+    add_member_to_team_and_survey(@team_no_access, @user_2.id)
+    @team.managers << @manager
+  end
     
   def login_as_manager(manager = @manager)
     post login_path, params: { watiam: manager.watiam, password: manager.password }
