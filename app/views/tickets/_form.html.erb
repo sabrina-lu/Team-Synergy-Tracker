@@ -48,7 +48,16 @@
         </nobr>
       </p>
     </div>
-
+      
+    <div class="user-box">
+      <p>
+        <nobr>
+          Users:  <br/>
+          <%= form.collection_select(:users, User.where.not(id: current_user.id), :id, :full_name_with_watiam, {:prompt => "Please Select All Members Involved", :selected => ticket.users.ids}, {:multiple => true}) %>
+        </nobr>
+      </p>
+    </div>
+      
     <div class="description-box">
       <p>
         <nobr>
