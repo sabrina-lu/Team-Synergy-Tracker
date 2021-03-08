@@ -121,7 +121,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
     
   test "should not create manager if an existing user has the same watiam" do
-    User.create(watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
+    User.create(user_id: 12341234, watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
     assert_difference('Manager.count', 0) do
       post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
@@ -129,7 +129,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
     
   test "should not create user if an existing user has the same watiam" do
-    User.create(watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
+    User.create(user_id: 12341234, watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
     assert_difference('User.count', 0) do
       post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end

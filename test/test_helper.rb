@@ -15,7 +15,7 @@ class ActiveSupport::TestCase
  
   def setup_users_manager_teams
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
+    @user = User.create(user_id: 12341234, watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
@@ -78,8 +78,8 @@ class ActiveSupport::TestCase
     
   def setup_surveys_responses
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
-    @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
+    @user = User.create(user_id: 12341234, watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
+    @user_2 = User.create(user_id: 12341235, watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
@@ -95,8 +95,8 @@ class ActiveSupport::TestCase
   
   def setup_baseline_for_survey_models
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
-    @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
+    @user = User.create(user_id: 12341234, watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
+    @user_2 = User.create(user_id: 12341235, watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
