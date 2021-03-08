@@ -2,46 +2,69 @@ require "application_system_test_case"
 
 class SurveysTest < ApplicationSystemTestCase
   setup do
-    @survey = surveys(:one)
+    setup_users_manager_teams
+    @team_no_access.users << @user
+    @team_no_access.managers << @manager
+    Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
+    Survey.create(team_id: @team_no_access.id, user_id: @user.id, date: Date.new(2021,3,13))
   end
-
-  test "visiting the index" do
-    visit surveys_url
-    assert_selector "h1", text: "Surveys"
-  end
-
-  test "creating a Survey" do
-    visit surveys_url
-    click_on "New Survey"
-
-    fill_in "Date", with: @survey.date
-    fill_in "Team", with: @survey.team_id
-    fill_in "User", with: @survey.user_id
-    click_on "Create Survey"
-
-    assert_text "Survey was successfully created"
-    click_on "Back"
-  end
-
-  test "updating a Survey" do
-    visit surveys_url
-    click_on "Edit", match: :first
-
-    fill_in "Date", with: @survey.date
-    fill_in "Team", with: @survey.team_id
-    fill_in "User", with: @survey.user_id
-    click_on "Update Survey"
-
-    assert_text "Survey was successfully updated"
-    click_on "Back"
-  end
-
-  test "destroying a Survey" do
-    visit surveys_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
+  
+  test "visiting /surveys should fail" do
+    assert_raises(ActionController::RoutingError) do
+      visit surveys_url
     end
-
-    assert_text "Survey was successfully destroyed"
   end
+      
+  test "should be able to visit weekly survey page" do
+    login(@manager)
+    click_on "Generate Next Week's Surveys"   
+    visit logout_path
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys" 
+    assert_text "WEEKLY SURVEYS"
+  end
+    
+  test "should be able to submit a survey" do
+    login(@manager)
+    click_on "Generate Next Week's Surveys"   
+    visit logout_path
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    click_on "Save"   
+    assert_text "Successfully submitted weekly survey."
+  end
+    
+  test "should be redirect to user dashboard after submitting a survey" do
+    login(@manager)
+    click_on "Generate Next Week's Surveys"   
+    visit logout_path
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    click_on "Save"   
+    assert_text "Welcome #{@user.first_name}"
+  end
+  
+  test "should be able to generate next week's surveys as a manager" do
+    login(@manager)
+    click_on "Generate Next Week's Surveys"    
+    assert_text "Weekly Survey Has Been Updated."
+  end
+    
+  test "should redirect manager to manager dashboard when trying to visit weekly survey" do
+    login(@manager)
+    visit weekly_surveys_path(@team)
+    assert_text "Welcome #{@manager.first_name}"
+    assert_text "You do not have permission to respond to surveys."
+  end
+    
+  def login(user)
+    visit login_path
+    fill_in "watiam", with: user.watiam
+    fill_in "password", with: user.password
+    click_on "Login"  
+  end
+
 end
