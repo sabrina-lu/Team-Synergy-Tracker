@@ -5,39 +5,8 @@
 
 .form-container {
   display: flex;
-  align-items: center;
+  align-items: start;
   margin: 0px 0px 40px 0px;
-}
-
-.priority-box {
-  position: fixed;
-  left: 450px;
-  top: 68px;
-}
-
-.type-box {
-  position: fixed;
-  left: 450px;
-  top: 94px;
-}
-
-.category-box {
-  position: fixed;
-  left: 450px;
-  top: 120px;
-}
-
-.user-box {
-  position: fixed;
-  left: 450px;
-  top: 150px;
-}
-
-.description-box {
-  position: fixed;
-  left: 34px;
-  top: 95px;
-  
 }
 
 .description-text-box{
@@ -53,14 +22,7 @@
   max-height: 185px;
 }
 
-.submit-button {
-  position: fixed;
-  left: 34px;
-  top: 325px;
+.right-container {
+    margin: 0px 20px;
 }
 
-.back-link {
-  position: fixed;
-  left: 34px;
-  top: 350px;
-}

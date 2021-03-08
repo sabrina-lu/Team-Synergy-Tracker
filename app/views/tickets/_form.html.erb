@@ -19,9 +19,16 @@
           <%= Time.now.strftime("%m/%d/%Y") %>
         </nobr>
       </p>
+      <p>
+        <nobr>
+          Description: <br/>
+          <%= form.text_area :description, :placeholder => "Enter description here..", :maxlength => 500, :class => "description-text-box" %>
+        </nobr>
+      </p>
+        <%= form.submit %>
     </div>
 
-    <div class="priority-box">
+    <div class="right-container">
       <p>
         <nobr>
           Priority:
@@ -29,40 +36,25 @@
           <%= form.select(:priority, options_for_select([['Low', 3], ['Medium', 2], ['High', 1]], ticket.priority)) %>
         </nobr>
       </p>
-    </div>
-
-    <div class="type-box">
+      
       <p>
         <nobr>
           Type:
           <%= form.select(:type, options_for_select(['Conflict', 'Positive', 'Neutral'], ticket.type)) %>
         </nobr>
       </p>
-    </div>
-
-    <div class="category-box">
+        
       <p>
         <nobr>
           Category:
           <%= form.select(:category, options_for_select(['Personal', 'Work', 'Other'], ticket.category)) %>
         </nobr>
       </p>
-    </div>
-      
-    <div class="user-box">
+        
       <p>
         <nobr>
           Users:  <br/>
-          <%= form.collection_select(:users, User.where.not(id: current_user.id), :id, :full_name_with_watiam, {:prompt => "Please Select All Members Involved", :selected => ticket.users.ids}, {:multiple => true}) %>
-        </nobr>
-      </p>
-    </div>
-      
-    <div class="description-box">
-      <p>
-        <nobr>
-          Description: <br/>
-          <%= form.text_area :description, :placeholder => "Enter description here..", :maxlength => 500, :class => "description-text-box" %>
+          <%= form.collection_select(:users, User.where.not(id: current_user.id), :id, :full_name_with_watiam, {:prompt => "Please Select All Members Involved", :selected => ticket.users.ids}, {:multiple => true, :size => 7}) %>
         </nobr>
       </p>
     </div>
@@ -71,10 +63,6 @@
       <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
       <%= form.hidden_field :date, value: Time.now %>
       <%= form.hidden_field :creator_id, value: current_user.id %>
-    </div>
-    
-    <div class="submit-button">
-      <%= form.submit %>
     </div>
   </div>
 <% end %>
