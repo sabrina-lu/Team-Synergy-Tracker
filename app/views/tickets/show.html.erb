@@ -1,7 +1,7 @@
 <p>
   <strong>Creator:</strong>
-  <% if @ticket.creator_id == current_user.id%>
-    <%= @ticket.creator_id %>
+  <% if @ticket.creator_id == current_user.id || current_user_is_manager%>
+    <%= User.find(@ticket.creator_id).full_name_with_watiam %>
   <% else %>
        Anonymous
   <% end %>
@@ -24,7 +24,7 @@
 
 <p>
   <strong>Users:</strong>
-    <% if @ticket.creator_id == current_user.id%>
+    <% if @ticket.creator_id == current_user.id || current_user_is_manager%>
       <% @ticket.users.each do |user| %>
         <ul>
           <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
