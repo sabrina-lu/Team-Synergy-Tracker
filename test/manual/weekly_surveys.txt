@@ -1,0 +1,11 @@
+Test 1 (User can submit a response)
+    1. Sign in as a user
+    2. Select a team to submit a survey for
+    3. Select "Weekly Surveys"
+    4. Select any combination of answers
+    5. Submit - should successfully submit a response
+
+Test 2 (Manager can generate weekly surveys)
+    1. sign in as a manager
+    2. click on "generate next week's surveys" - should succesfully generate a survey for every one of manager's teams
+    3. "generate next week's surveys" should be disabled until next week

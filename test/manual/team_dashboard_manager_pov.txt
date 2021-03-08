@@ -1,0 +1,28 @@
+Test 1 (list of members on team)
+    1. login as a manager
+    2. click on a team name
+    3. should see list of team member's student id, watiam, first name, and last name
+
+Test 2 (edit team name)
+    1. login as a manager
+    2. click on a team name
+    3. click "edit team"
+    4. change the team name
+    5. click "update team"
+    6. should redirect to team dashboard and display "Team was successfully updated."
+    
+Test 3 (removing a user with response history)
+    1. login as a manager
+    2. click on a team name
+    3. click "edit team"
+    4. click on "add/remove members"
+    2. click on "remove user" to remove any user
+    3. should successfully remove user
+
+Test 4 (removing a user without response history)
+    1. login as a manager
+    2. click on a team name
+    3. click "edit team"
+    4. click on "add/remove members"
+    2. click on "remove user" to remove any user
+    3. should successfully remove user

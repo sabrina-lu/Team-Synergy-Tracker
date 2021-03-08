@@ -1,0 +1,17 @@
+Test 1 (user can successfully edit a ticket)
+    1. login as a user
+    2. click on "view my tickets"
+    3. click on ticket that user created
+    4. click on "edit"
+    5. change any of the fields
+    6. click "update ticket"
+    7. should redirect to ticket details and display "Ticket was successfully updated."
+
+Test 2 (description cannot be blank)
+    1. login as a user
+    2. click on "view my tickets"
+    3. click on ticket that user created
+    4. click on "edit"
+    5. leave description blank
+    6. click "update ticket"
+    7. should display error "Description can't be blank."

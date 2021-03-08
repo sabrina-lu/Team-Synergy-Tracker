@@ -1,0 +1,24 @@
+Test 1 (create user account successfully)
+    1. on create account page, select "user"
+    2. enter a valid userid, watiam, first name, last name, password, and password comfirmation
+    3. click "create account"
+    4. should redirect user to user dashboard and display message "Account created and logged in."
+    
+Test 2 (create duplicate user account)
+    1. on create account page, select "user"
+    2. enter watiam of an existing account
+    3. click "create account"
+    4. should display message "That WATIAM has an account associated with it already."
+    
+Test 3 (create manager account successfully)
+    1. on create account page, select "manager"
+    2. enter a valid watiam, first name, last name, password, and password comfirmation
+    3. click "create account"
+    4. should redirect user to manager dashboard and display message "Account created and logged in."
+
+Test 4 (create duplicate manager account)
+    1. on create account page, select "manager"
+    2. enter watiam of an existing account
+    3. click "create account"
+    4. should display message "That WATIAM has an account associated with it already."
+    
