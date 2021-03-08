@@ -2,46 +2,46 @@ require "application_system_test_case"
 
 class ResponsesTest < ApplicationSystemTestCase
   setup do
-    @response = responses(:one)
+    setup_users_manager_teams
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "Generate Next Week's Surveys"
+    visit logout_path
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    
   end
 
+  # Should not be accessable
+  # test modified from https://stackoverflow.com/a/4804354/12816127
   test "visiting the index" do
-    visit responses_url
-    assert_selector "h1", text: "Responses"
+    assert_raises(ActionController::RoutingError) do
+      visit responses_url
+    end
   end
 
   test "creating a Response" do
-    visit responses_url
-    click_on "New Response"
+    visit user_dashboard_url
+    click_on "Incomplete"
 
-    fill_in "Question number", with: @response.question_number
-    fill_in "Response", with: @response.response
-    fill_in "Survey", with: @response.survey_id
-    click_on "Create Response"
+    click_on "Save"
 
-    assert_text "Response was successfully created"
-    click_on "Back"
+    assert_text "Successfully submitted weekly survey."
   end
 
   test "updating a Response" do
-    visit responses_url
-    click_on "Edit", match: :first
-
-    fill_in "Question number", with: @response.question_number
-    fill_in "Response", with: @response.response
-    fill_in "Survey", with: @response.survey_id
-    click_on "Update Response"
-
-    assert_text "Response was successfully updated"
-    click_on "Back"
+    assert_raises(ActionController::RoutingError) do
+      visit responses_url
+    end
   end
 
   test "destroying a Response" do
-    visit responses_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
+    assert_raises(ActionController::RoutingError) do
+      visit responses_url
     end
-
-    assert_text "Response was successfully destroyed"
   end
 end
