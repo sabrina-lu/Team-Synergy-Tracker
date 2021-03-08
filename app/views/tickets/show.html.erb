@@ -1,4 +1,13 @@
 <p>
+  <strong>Creator:</strong>
+  <% if @ticket.creator_id == current_user.id%>
+    <%= @ticket.creator_id %>
+  <% else %>
+       Anonymous
+  <% end %>
+</p>
+
+<p>
   <strong>Priority:</strong>
   <%= @ticket.priority %>
 </p>
@@ -15,12 +24,15 @@
 
 <p>
   <strong>Users:</strong>
-  <% @ticket.users.each do |user| %>
-  
-    <ul>
-  <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
-    </ul>
-  <% end %>
+    <% if @ticket.creator_id == current_user.id%>
+      <% @ticket.users.each do |user| %>
+        <ul>
+          <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
+        </ul>
+      <% end %>
+    <% else %>
+       Anonymous
+    <% end %>
 </p>
 
 <p>
@@ -31,11 +43,6 @@
 <p>
   <strong>Date:</strong>
   <%= @ticket.date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @ticket.creator_id %>
 </p>
 
 <% if @ticket.creator_id == current_user.id%>

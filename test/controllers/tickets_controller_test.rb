@@ -34,7 +34,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       assert_equal(false, Ticket.all.last.users.where(id: @user.id).nil?)
   end
 
-  test "Should fail to create a ticket with invalid users" do
+  test "Should fail to create a ticket with invalid user" do
       assert_raise do
                 post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_blank.id], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}   
       end

@@ -6,9 +6,7 @@
       <th>Priority</th>
       <th>Type</th>
       <th>Category</th>
-      <th>Description</th>
       <th>Date</th>
-      <th>Users</th>
     </tr>
   </thead>
 
@@ -21,13 +19,7 @@
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
         <td><%= ticket.category %></td>
-        <td><%= ticket.description %></td>
         <td><%= ticket.date %></td>
-        <td><%  ticket.users.each do |user| %>
-            <ul>
-              <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
-            </ul>
-            <% end %></td>
       </tr>
     <% end %>
     <% end %>
@@ -39,13 +31,7 @@
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
         <td><%= ticket.category %></td>
-        <td><%= ticket.description %></td>
         <td><%= ticket.date %></td>
-        <td><%  ticket.users.each do |user| %>
-            <ul>
-              <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
-            </ul>
-            <% end %></td>
       </tr>
     <% end %>
     <% end %>
@@ -57,9 +43,7 @@
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
         <td><%= ticket.category %></td>
-        <td><%= ticket.description %></td>
         <td><%= ticket.date %></td>
-        <td> Anonymous</td>
       </tr>
     <% end %>
     <% end %>
