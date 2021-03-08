@@ -22,6 +22,7 @@ class ActiveSupport::TestCase
       
     @team.users << @user
     @team.managers << @manager
+    Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
   end
   
   def setup_tickets
