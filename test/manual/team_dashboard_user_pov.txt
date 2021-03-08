@@ -1,0 +1,18 @@
+Test 1 (list of members)
+    1. login as a user
+    2. from dashboard, click on a team
+    3. a list of members for the team should be displayed with student ID, watiam, first name, and last name
+    4. the manager's watiam, first name, and last name should be displayed on top in bold
+
+Test 2 (UI)
+    1. login as a user
+    2. from dashboard, click on a team
+    3. the top of page should display "[Team Name] Members"
+    
+Test 3 (general navigation)
+    1. login as a user
+    2. from dashboard, click on a team
+    3. clicking on "weekly surveys" should take user to the weekly survey for that team
+    4. clicking on "return to dashboard" should take user back to dashboard
+    5. clicking on "logout" should log user out
+    

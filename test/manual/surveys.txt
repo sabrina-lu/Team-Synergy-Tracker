@@ -1,9 +1,0 @@
-A user can successfully submit a response
-
-Test 1 (Can submit a response)
-    1. Sign in as a user
-    2. Select a team to submit a survey for
-    3. Select "Weekly Surveys"
-    4. Select any combination of answers
-    5. Submit - should successfully submit a response
-    

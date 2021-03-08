@@ -1,0 +1,24 @@
+Test 1 (correct watiam and password)
+    1. enter a existing user's watiam
+    2. enter the user's password
+    3. clicking "login" should log user into correct account
+
+Test 2 (correct watiam, wrong password)
+    1. enter a existing user's watiam
+    2. enter the wrong password
+    3. click "login"
+    4. should display "Cannot log you in. Invalid email or password.""
+
+Test 3 (nonexistent watiam)
+    1. enter a watiam not associated with existing account
+    2. enter a random password
+    3. click "login"
+    4. should display "Cannot log you in. Invalid email or password."
+
+Test 4 (blank inputs)
+    1. leave the watiam and password empty
+    2. click "login"
+    3. should display "Cannot log you in. Invalid email or password."
+
+Test 2 (redirect to create account)
+    1. clicking on "Create Account" should redirect user to the create account page

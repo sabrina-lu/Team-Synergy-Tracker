@@ -1,0 +1,17 @@
+Test 1 (correct calculation of team health)
+    1. Login as a manager
+    2. Create a new team and add users to that team
+    3. For every user 
+        a. login 
+        b. click on "incomplete" beside the team name
+        c. fill out the weekly survey
+        b. click "save"
+    4. Log back into manager account
+    5. From manager dashboard, click on the team name
+    6. Should see a percentage for team health calculated as the average of users' responses
+
+Test 2 (UI)
+    1. Login as a manager
+    2. From manager dashboard, click on an existing team's name
+    3. Should see a percentage bar going from a sad face to happy face
+    

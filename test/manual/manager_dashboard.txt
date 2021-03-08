@@ -1,13 +1,21 @@
-A manager can successfully remove a user
+Test 1 (List of teams manager created)
+    1. login as a manager
+    2. should see a list of teams that the manager created
+    3. team names should be clickable links that take user to team health page for that team
 
-Test 1 (removing a user with response history)
-    1. login as manager G (from seed)
-    2. remove user A (from seed)
-    3. should successfully remove user
+Test 2 (weekly survey)
+    1. login as a manager
+    2. should see a list of questions that is in the weekly survey
+    3. should see the weekly survey due date
+    4. click on "generate next week's survey"
+    5. should display "Weekly Survey Has Been Updated." at top of page
     
-Test 2 (removing a user without response history)
-    1. login as manager G (from seed)
-    2. remove user D (from seed)
-    3. should successfully remove user
-    
+Test 3 (general navigation)
+    1. login as a manager
+    2. clicking on "New Team" should take user to team creation page
+    3. clicking on "View All Tickets" should take user to a list of tickets for all the manager's teams
+    4. clicking on "Logout" should log the user out
  
+Test 5 (UI)
+    1. login as a manager
+    2. top of page should display "Welcome [user's first name]!"

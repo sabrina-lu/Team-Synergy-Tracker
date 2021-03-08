@@ -1,7 +1,22 @@
-A user can see their teams
-
-Test 1 (seeing their team members that are also on the same team as them)
+Test 1 (seeing list of teams)
 * pre-requisite: a manager must have add this user to a team
     1. login as a user
+    2. should see a list of team names that the user is on
     2. select a team 
-    3. should successfully see a list of fellow team members
+    3. should be redirected to a page that displays the members on that team
+
+Test 2 (seeing survey indicator)
+    1. login as a user
+    2. should see "complete" beside teams that user completed the weekly survey for
+    3. should see "incomplete" beside teams thta user did not complete the weekly survey for
+    4. "incomplete" should be a clickable link that directs user to weekly survey for that team
+
+Test 3 (general navigation)
+    1. login as a user
+    2. clicking on "view my tickets" should take user to list of tickets
+    3. clicking on "create a ticket" should take user to the ticket creation page
+    4. clicking on "logout" should log the user out
+
+Test 4 (UI)
+    1. login as a user
+    1. Top of dashboard should display "Welcome [user's name]!"
