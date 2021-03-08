@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hi! Welcome to our repo!
 
-Things you may want to cover:
+To use this repo please:
+1. clone to your workspace (git clone)
+2. run "bundle install"
+3. run "rails db:create"
+4. run "rails db:migrate"
+5. run "rails db:seed"
+6. login to heroku from the terminal using "heroku login -i"
+7. run "git push heroku master" to deploy to heroku
 
-* Ruby version
+To access our web app, please go to this link:
+https://msci342-w21-team-2.herokuapp.com/login
 
-* System dependencies
+Feel free to create an account as a user or a manager, or use our pre-made logins:
+As a user:
+Watiam - "userwat123"
+Password - "Password"
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+As a manager:
+Watiam - "managwat"
+Password - "Password"
