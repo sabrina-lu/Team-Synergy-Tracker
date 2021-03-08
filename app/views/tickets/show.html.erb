@@ -1,6 +1,12 @@
 <p>
   <strong>Priority:</strong>
-  <%= @ticket.priority %>
+  <% if @ticket.priority == 1 %>
+        High
+  <% elsif @ticket.priority == 2 %>
+        Medium
+  <% else %>
+        Low
+  <% end %>
 </p>
 
 <p>
