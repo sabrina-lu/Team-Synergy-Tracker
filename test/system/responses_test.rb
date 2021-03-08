@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class ResponsesTest < ApplicationSystemTestCase
   setup do
+    #setup_surveys_responses
     setup_users_manager_teams
     visit login_path
     fill_in "watiam", with: @manager.watiam
