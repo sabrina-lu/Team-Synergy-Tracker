@@ -38,7 +38,7 @@
     <% if @receivedTickets %>  
     <% @receivedTickets.each do |ticket| %>
       <tr>
-        <td><%= ticket.id %></td> 
+        <td><%= link_to ticket.id, ticket %></td> 
         <td>Anonymous</td>
         <td><%= ticket.priority %></td>
         <td><%= ticket.type %></td>
