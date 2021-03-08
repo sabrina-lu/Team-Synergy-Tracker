@@ -27,7 +27,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     
   # manager > team # > add/remove users > adding a user
   test "should add user to a team" do
-      @user = User.create(watiam: "emmalin", first_name: "Emma", last_name: "Lin", password: "Password") 
+      @user = User.create(user_id: 12341234, watiam: "emmalin", first_name: "Emma", last_name: "Lin", password: "Password") 
       post confirm_add_member_url (@team), params:{ user_id: @user.id, id: @team.id}
       assert_redirected_to edit_members_url(@team)
   end
