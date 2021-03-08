@@ -11,4 +11,8 @@ class User < ApplicationRecord
     validates :watiam, format: {without: /\s/}, presence: true, allow_blank: false
     validates :user_id, length: {is: 8}, format: {without: /\s/}, presence: true, allow_blank: false
     validates :password, length: {in: 6..25}, on: :create, format: {without: /\s/}, allow_blank: false, presence: true
+
+    def full_name_with_watiam
+        "#{watiam}: #{first_name} #{last_name}"
+    end
 end

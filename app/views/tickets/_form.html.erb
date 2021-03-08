@@ -53,7 +53,7 @@
       <p>
         <nobr>
           Users:  <br/>
-          <%= form.collection_select(:users, User.all, :id, :first_name, {:prompt => "Please Select All Members Involved"}, {:multiple => true}) %>
+          <%= form.collection_select(:users, User.all, :id, :full_name_with_watiam, {:prompt => "Please Select All Members Involved", :selected => @ticket.users}, {:multiple => true, :selected => @ticket.users}) %>
         </nobr>
       </p>
     </div>

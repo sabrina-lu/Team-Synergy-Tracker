@@ -26,9 +26,11 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
         if @ticket.save
           users = params[:ticket][:users]
-          users.drop(1).each do |temp_user| 
+            if users
+              users.drop(1).each do |temp_user| 
               @users = User.find(temp_user.to_i)
               @ticket.users << @users
+            end
           end 
           redirect_to @ticket, notice: 'Ticket was successfully created.'
         else
@@ -42,10 +44,12 @@ class TicketsController < ApplicationController
         if @ticket.users != params[:ticket][:users]
             @ticket.users.clear()
             users = params[:ticket][:users]
+            if users
               users.drop(1).each do |temp_user| 
-                  @users = User.find(temp_user.to_i)
-                  @ticket.users << @users
-              end
+              @users = User.find(temp_user.to_i)
+              @ticket.users << @users
+            end
+            end
             redirect_to @ticket, notice: 'Ticket was successfully updated.'
         else
             redirect_to @ticket, notice: 'Ticket was successfully updated.'
