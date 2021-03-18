@@ -33,6 +33,33 @@ class TeamsTest < ApplicationSystemTestCase
     visit team_health_path(@team)
     assert_text "Team 1 Health Metrics"
   end
+  
+  test "manager team list includes completed weekly survey indicator" do 
+    setup_tickets   
+    @m = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+    @team = Team.create(name: "Team 1") 
+    users = [@user_1, @user_2, @user_3, @user_4]
+    @team.users << [users] 
+    @team.managers << [@manager]
+    current_survey_due_date = Date.new(2021,3,20) 
+      
+    for i in 0..3 do 
+      Survey.create(user_id: users[i].id, team_id: @team.id, date: current_survey_due_date)
+    end
+    
+    survey = Survey.find_by(user_id: @user_3.id)
+    Response.create(survey_id: survey.id, question_number: 1, answer: 1) 
+      
+    visit login_path
+    fill_in "watiam", with: @m.watiam
+    fill_in "password", with: @m.password
+    click_on "Login"
+    visit team_health_path(@team)
+    assert_text "Completed Weekly Survey"
+    assert_text "No", count: 3
+    assert_text "Yes", count: 1
+    
+  end
 
   test "creating a team" do
     visit login_path

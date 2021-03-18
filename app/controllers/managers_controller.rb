@@ -36,8 +36,10 @@ class ManagersController < ApplicationController
     if !current_user_is_on_team(@team)
         redirect_to manager_dashboard_path, notice: 'You do not have permission to view this team.'
     end
-    @users = @team.users
-    @surveysToCalc = Survey.select("id").where(:user_id => @users.ids, :team_id => @team).to_a
+    @team_health = true
+    @team_users = @team.users
+    @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE)    
+    @surveysToCalc = Survey.select("id").where(:user_id => @team_users.ids, :team_id => @team).to_a
     @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
     @health_value = 0
     @responseValues.each { |x|

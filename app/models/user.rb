@@ -14,4 +14,17 @@ class User < ApplicationRecord
     def full_name_with_watiam
         "#{watiam}: #{first_name} #{last_name}"
     end
+    
+    def self.get_ordered_survey_indicator(team, current_weekly_survey_due_date)
+      ordered_users = []
+      team.users.each { |user|
+        survey = Survey.find_by(user_id: user.id, team_id: team.id, date: current_weekly_survey_due_date)
+        if survey && survey.responses.exists?
+          ordered_users << [user, "Yes"]
+        else
+          ordered_users.insert(0, [user, "No"]) 
+        end
+      }
+      return ordered_users
+    end
 end

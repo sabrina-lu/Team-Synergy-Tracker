@@ -5,7 +5,9 @@
       <th>First Name</th>
       <th>Last Name</th>
       <% if @all_users %>
-          <th colspan="1"></th>
+        <th colspan="1"></th>
+      <% elsif @team_health %>
+        <th>Completed Weekly Survey</th>
       <% end %>
     </tr>
   </thead>
@@ -21,9 +23,16 @@
       
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.watiam %></td>
-        <td><%= user.first_name %> </td>
-        <td><%= user.last_name %></td>
+        <% if @team_health %>
+            <td><%= user[0].watiam %></td>
+            <td><%= user[0].first_name %> </td>
+            <td><%= user[0].last_name %></td>
+            <td class="<%= user[1] == "Yes"? "green": "red"%>"><%= user[1] %></td>
+        <% else %>
+            <td><%= user.watiam %></td>
+            <td><%= user.first_name %> </td>
+            <td><%= user.last_name %></td>
+        <% end %>        
         <% if @all_users %>
             <% if @team.users.include?user %>
                 <%= form_with url: confirm_remove_member_path do |form| %>
