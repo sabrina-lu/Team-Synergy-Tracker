@@ -97,6 +97,6 @@ class ManagersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def manager_params
-      params.require(:manager).permit(:name, :manager_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
+      params.require(:manager).permit(:name, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
 end

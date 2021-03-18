@@ -1,7 +1,6 @@
 <table>
   <thead>
     <tr>
-      <th>Student ID</th>
       <th>WatIAm</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -14,7 +13,6 @@
   <tbody>
     <% if @manager %>
         <tr>
-            <td></td>
             <td><b><%= @manager.watiam %></b></td>
             <td><b><%= @manager.first_name %></b></td>
             <td><b><%= @manager.last_name %></b></td>       
@@ -23,7 +21,6 @@
       
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.user_id %></td>
         <td><%= user.watiam %></td>
         <td><%= user.first_name %> </td>
         <td><%= user.last_name %></td>

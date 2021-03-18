@@ -27,10 +27,6 @@
 -->
 
 <div class="field">
-    <%= form.label "User/Manager ID" %>
-    <%= form.number_field :user_id, value: (form.object.user_id || params[:user_id]) %>
-  </div>
-<div class="field">
     <%= form.label :watiam %>
     <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]) %>
   </div>
