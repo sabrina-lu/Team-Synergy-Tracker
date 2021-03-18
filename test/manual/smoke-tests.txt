@@ -1,0 +1,12 @@
+Test: Valid login credentials for user
+1. Launch web app
+2. Enter valid WATIAM and valid password ("a266alpha", pw: Joy0#000)
+3. click login 
+Expected Result: should login successfully and reach dashboard
+
+Test: Valid login credentials for manager
+1. Launch web app
+2. Enter valid WATIAM and valid password ("h13ghj567", pw: P1ckle)
+3. click login
+Expected Result: should login successfully and reach dashboard
+
