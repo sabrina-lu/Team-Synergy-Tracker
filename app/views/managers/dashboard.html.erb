@@ -37,15 +37,6 @@
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 
-<% if @next_week_survey_generated %>
-    <button type="button" disabled>Generate Next Week's Surveys</button>
-<% else %>
-    <%= form_with url: "/surveys", method: :post do |form| %>
-        <%= form.hidden_field :manager_id, value: current_user.id %>
-        <h5><%= form.submit "Generate Next Week's Surveys"%></h5>
-    <% end %>
-<% end %>
-
 <br><br>
 
 <div>

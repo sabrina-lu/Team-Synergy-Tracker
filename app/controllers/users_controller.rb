@@ -17,16 +17,23 @@ class UsersController < ApplicationController
      if current_user_is_manager
          redirect_to manager_dashboard_path
      else
+         @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
          @user = current_user #get logged in user from session
          @teams = @user.teams
          @completed = {}
-         @teams.each do |team| #for each team user is on, check if user completed the survey for that team             
-             @survey = @user.surveys.where(team_id: team.id, date: CURRENT_SURVEY_DUE_DATE).last
-             if @survey and @survey.responses.exists?
+         @teams.each do |team| #for each team user is on, check if user completed the survey for that team    
+             @survey = Survey.find_by(user_id: current_user.id, team_id: team.id, date: CURRENT_SURVEY_DUE_DATE)
+             if !@survey
+               @survey = Survey.create(user_id: current_user.id, team_id: team.id, date: CURRENT_SURVEY_DUE_DATE)
+               @completed[team] = false
+             else
+               if @survey and @survey.responses.exists?
                  @completed[team] = true
-             else 
+               else 
                  @completed[team] = false
+               end
              end
+             
          end
      end
   end
