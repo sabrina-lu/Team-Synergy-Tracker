@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_214448) do
+ActiveRecord::Schema.define(version: 2021_03_18_035933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 2021_03_03_214448) do
     t.index ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id", unique: true
   end
 
+  create_table "ticket_responses", force: :cascade do |t|
+    t.bigint "ticket_id", null: false
+    t.integer "question_number", null: false
+    t.integer "answer", null: false
+    t.index ["ticket_id"], name: "index_ticket_responses_on_ticket_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.date "date", null: false
     t.bigint "creator_id"
@@ -89,5 +96,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_214448) do
   add_foreign_key "surveys", "users"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
+  add_foreign_key "ticket_responses", "tickets"
   add_foreign_key "tickets", "users", column: "creator_id"
 end

@@ -5,12 +5,6 @@ class ResponsesTest < ApplicationSystemTestCase
     #setup_surveys_responses
     setup_users_manager_teams
     visit login_path
-    fill_in "watiam", with: @manager.watiam
-    fill_in "password", with: @manager.password
-    click_on "Login"
-    click_on "Generate Next Week's Surveys"
-    visit logout_path
-    visit login_path
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
     click_on "Login"
