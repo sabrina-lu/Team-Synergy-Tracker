@@ -112,7 +112,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # can successfully create user account
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "User", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
 
     assert_redirected_to root_url
@@ -120,7 +120,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create manager" do
     assert_difference('Manager.count') do
-      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "Manager", watiam: "emmalinuser", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
 
     assert_redirected_to root_url
@@ -129,23 +129,23 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not create user if an existing manager has the same watiam" do
     Manager.create(watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
     assert_difference('User.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
     assert_equal "That WATIAM has an account associated with it already", flash[:alert]
   end
     
   test "should not create manager if an existing user has the same watiam" do
-    User.create(user_id: 12341234, watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
+    User.create(watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
     assert_difference('Manager.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
     assert_equal "That WATIAM has an account associated with it already", flash[:alert]
   end
     
   test "should not create user if an existing user has the same watiam" do
-    User.create(user_id: 12341234, watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
+    User.create(watiam: "test", first_name: "test", last_name: "user", password: "Password", password_confirmation: "Password")
     assert_difference('User.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
     assert_equal "That WATIAM has an account associated with it already", flash[:alert]
   end
@@ -153,28 +153,28 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not create manager if an existing manager has the same watiam" do
     Manager.create(watiam: "test", first_name: "test", last_name: "manager", password: "Password", password_confirmation: "Password")
     assert_difference('Manager.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
+      post users_url, params: { user: {flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
     assert_equal "That WATIAM has an account associated with it already", flash[:alert]
   end 
     
   test "should not create user or manager if password is blank" do
     assert_difference('User.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
+      post users_url, params: { user: {flag: "User", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
     end
       
     assert_difference('Manager.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
+      post users_url, params: { user: {flag: "Manager", watiam: "test", password: "", first_name: "Emma", last_name: "Lin", password_confirmation: ""  } }
     end
   end
     
   test "should not create user or manager if password and password confirmation do not match" do
     assert_difference('User.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
+      post users_url, params: { user: {flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
     end
       
     assert_difference('Manager.count', 0) do
-      post users_url, params: { user: {user_id: 12345678, flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
+      post users_url, params: { user: {flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "password"  } }
     end  
   end  
     
