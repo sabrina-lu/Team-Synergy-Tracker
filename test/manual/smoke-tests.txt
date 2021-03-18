@@ -10,3 +10,33 @@ Test: Valid login credentials for manager
 3. click login
 Expected Result: should login successfully and reach dashboard
 
+Test: Manager create team functionality
+1. Launch web app
+2. Login with manager WATIAM and valid password ("h13ghj567", pw: P1ckle)
+3. Click "New Team"
+4. Enter a name for the team
+5. Click "Continue to adding members"
+6. Add users by clicking "Add User" beside their name
+7. Click "Back"
+8. Click "Update Team"
+Expected Result: Should successfully create team and display team dashboard.
+
+Test: Manager edit team name functionality
+1. Launch web app
+2. Login with manager WATIAM and valid password ("h13ghj567", pw: P1ckle)
+3. Click on a team name in the dashboard
+4. Click "Edit Team"
+5. Change the team name 
+6. Click "Update Team"
+Expected Result: Should successfully update team and return to team dashboard.
+
+Test: Manager edit team members functionality
+1. Launch web app
+2. Login with manager WATIAM and valid password ("h13ghj567", pw: P1ckle)
+3. Click on a team name in the dashboard
+4. Click "Edit Team"
+5. Click "Add/Remove Members"
+6. Add a user by clicking "Add User" and remove a user by clicking "Remove User"
+7. Click "Back"
+8. Click "Update Team"
+Expected Result: Should successfully update team and return to team dashboard.
