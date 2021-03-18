@@ -69,10 +69,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_035933) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "priority", null: false
-    t.string "type", null: false
-    t.string "category", null: false
-    t.string "description", limit: 500, null: false
     t.date "date", null: false
     t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false

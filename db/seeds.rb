@@ -174,16 +174,16 @@ t11.surveys << [s27]
 t12.surveys << [s28]
 t13.surveys << [s29]
 
-ticket1 = Ticket.new(priority: 1, type: "Conflict", category: "Personal", description: "Alpha is being disrespectful towards me ;(", date: "07/02/2020")
-ticket2 = Ticket.new(priority: 3, type: "Conflict", category: "Work", description: "I am sick and tired of people not finishing their work on time!!", date: "12/08/2020")
-ticket3 = Ticket.new(priority: 2, type: "Positive", category: "Personal", description: "Just wanted to let you know that you're doing a great job!", date: "25/09/2020")
-ticket4 = Ticket.new(priority: 1, type: "Positive", category: "Work", description: "I appreciate everyone on my team <3", date: "10/05/2020")
-ticket5 = Ticket.new(priority: 1, type: "Neutral", category: "Work", description: "I can help you on the task you are working on.", date: "13/11/2020")
-ticket6 = Ticket.new(priority: 2, type: "Conflict", category: "Work", description: "Hi Beta, I think you should be less dominating during discussions", date: "16/12/2020")
-ticket7 = Ticket.new(priority: 3, type: "Conflict", category: "Personal", description: "Please stop calling me dumb...I'm really hurt by it", date: "05/08/2020")
-ticket8 = Ticket.new(priority: 2, type: "Conflict", category: "Work", description: "It is very difficult to effectively complete my work when you do not mute yourself on Zoom calls", date: "05/08/2020")
-ticket9 = Ticket.new(priority: 1, type: "Positive", category: "Personal", description: "I love your Excel spreadsheet template!", date: "06/06/2020")
-ticket10 = Ticket.new(priority: 3, type: "Neutral", category: "Work", description: "Reminder to please note deadlines", date: "07/08/2020")
+ticket1 = Ticket.new(date: "07/02/2020")
+ticket2 = Ticket.new(date: "12/08/2020")
+ticket3 = Ticket.new(date: "25/09/2020")
+ticket4 = Ticket.new(date: "10/05/2020")
+ticket5 = Ticket.new(date: "13/11/2020")
+ticket6 = Ticket.new(date: "16/12/2020")
+ticket7 = Ticket.new(date: "05/08/2020")
+ticket8 = Ticket.new(date: "05/08/2020")
+ticket9 = Ticket.new(date: "06/06/2020")
+ticket10 = Ticket.new(date: "07/08/2020")
 
 #assign ticket to its creator
 ticket1.creator = B

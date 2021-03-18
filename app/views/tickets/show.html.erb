@@ -8,27 +8,6 @@
 </p>
 
 <p>
-  <strong>Priority:</strong>
-  <% if @ticket.priority == 1 %>
-        High
-  <% elsif @ticket.priority == 2 %>
-        Medium
-  <% else %>
-        Low
-  <% end %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @ticket.type %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @ticket.category %>
-</p>
-
-<p>
   <strong>Users:</strong>
     <% if @ticket.creator_id == current_user.id || current_user_is_manager%>
       <% @ticket.users.each do |user| %>
@@ -39,11 +18,6 @@
     <% else %>
        Anonymous
     <% end %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @ticket.description %>
 </p>
 
 <p>

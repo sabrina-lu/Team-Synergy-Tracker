@@ -8,35 +8,35 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
 #   create ticket tests  
   test "Should successfully create a ticket with each type of type, priority and category" do 
     assert_difference('Ticket.count', 3) do
-      post tickets_url, params: {ticket: {creator_id: @user_4.id, priority: @t_4.priority, type: @t_4.type, category: @t_4.category, date: @t_4.date, description: @t_4.description}}
-      post tickets_url, params: {ticket: {creator_id: @user_4.id, priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}
-      post tickets_url, params: {ticket: {creator_id: @user_4.id, priority: @t_6.priority, type: @t_6.type, category: @t_6.category, date: @t_6.date, description: @t_6.description}}
+      post tickets_url, params: {ticket: {creator_id: @user_4.id, date: @t_4.date}}
+      post tickets_url, params: {ticket: {creator_id: @user_4.id, date: @t_5.date}}
+      post tickets_url, params: {ticket: {creator_id: @user_4.id, date: @t_6.date}}
     end
   end  
 
   test "Should successfully create a ticket with no users" do
       assert_difference('Ticket.count',1) do
           @user_1 = User.create(watiam: "DisneyPL", first_name: "Mickey", last_name: "Mouse", password: "Test") 
-          post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}   
+          post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [], date: @t_5.date}}   
       end
   end
     
   test "Should successfully create a ticket with a user" do
       @user_1 = User.create(watiam: "DisneyPL", first_name: "Mickey", last_name: "Mouse", password: "Test") 
-      post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_1.id], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}   
+      post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_1.id], date: @t_5.date}}   
       assert_equal(false, Ticket.all.last.users.where(id: @user_1.id).nil?)
   end
     
   test "Should successfully create a ticket with multiple users" do
       @user = User.create(watiam: "Disney", first_name: "Mickey", last_name: "Mouse", password: "Test") 
       @user_1 = User.create(watiam: "DisneyPL", first_name: "Mickey", last_name: "Mouse", password: "Test") 
-      post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_1.id, @user.id], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}   
+      post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_1.id, @user.id], date: @t_5.date}}   
       assert_equal(false, Ticket.all.last.users.where(id: @user.id).nil?)
   end
 
   test "Should fail to create a ticket with invalid user" do
       assert_raise do
-                post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_blank.id], priority: @t_5.priority, type: @t_5.type, category: @t_5.category, date: @t_5.date, description: @t_5.description}}   
+                post tickets_url, params: {ticket: {creator_id: @user_4.id, users: [@user_blank.id], date: @t_5.date}}   
       end
   end
    
@@ -66,7 +66,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update ticket" do
-    patch ticket_url(@t_1), params: { ticket: { category: @t_1.category, date: @t_1.date, description: @t_1.description, priority: @t_1.priority, type: @t_1.type, creator_id: @t_1.creator_id } }
+    patch ticket_url(@t_1), params: { ticket: { date: @t_1.date, creator_id: @t_1.creator_id } }
     assert_redirected_to ticket_url(@t_1)
   end
 
