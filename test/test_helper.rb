@@ -31,13 +31,13 @@ class ActiveSupport::TestCase
     @user_3 = User.create(user_id: 20567890, watiam: "u3", first_name: "user3", last_name: "three", password: "Password")
     @user_4 = User.create(user_id: 20557890, watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
    
-    @t_1 = Ticket.create(creator_id: @user_1.id, priority: 1, type: "Conflict", category: "Work", date:"10/02/2020", description: "d")
-    @t_2 = Ticket.create(creator_id: @user_1.id, priority: 2, type: "Conflict", category: "Personal", date:"12/04/2020", description: "d")
-    @t_3 = Ticket.create(creator_id: @user_2.id, priority: 2, type: "Positive", category: "Personal", date:"12/04/2020", description: "d")
+    @t_1 = Ticket.create(creator_id: @user_1.id, date:"10/02/2020")
+    @t_2 = Ticket.create(creator_id: @user_1.id, date:"12/04/2020")
+    @t_3 = Ticket.create(creator_id: @user_2.id, date:"12/04/2020")
     
-    @t_4 = Ticket.create(creator_id: @user_4.id, priority: 1, type: "Conflict", category: "Personal", date: "12/04/2020", description: "d")
-    @t_5 = Ticket.create(creator_id: @user_4.id, priority: 2, type: "Positive", category: "Work", date: "12/04/2020", description: "d")
-    @t_6 = Ticket.create(creator_id: @user_4.id, priority: 3, type: "Neutral", category: "Other", date: "12/04/2020", description: "d")
+    @t_4 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
+    @t_5 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
+    @t_6 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
     
     @t_1.users << [@user_2, @user_3]
     @t_2.users << [@user_2]
@@ -66,9 +66,9 @@ class ActiveSupport::TestCase
     add_member_to_team_and_survey(@team_1, @user_1.id)
     add_member_to_team_and_survey(@team_1, @user_2.id)
       
-    @t_1 = Ticket.create(creator_id: @user_1.id, priority: 1, type: "Conflict", category: "Work", date:"10/02/2020", description: "d")
-    @t_2 = Ticket.create(creator_id: @user_2.id, priority: 2, type: "Conflict", category: "Personal", date:"12/04/2020", description: "d")
-    @t_3 = Ticket.create(creator_id: @user_3.id, priority: 2, type: "Positive", category: "Personal", date:"12/04/2020", description: "d")
+    @t_1 = Ticket.create(creator_id: @user_1.id, date:"10/02/2020")
+    @t_2 = Ticket.create(creator_id: @user_2.id, date:"12/04/2020")
+    @t_3 = Ticket.create(creator_id: @user_3.id, date:"12/04/2020")
       
     @t_1.creator_id = @user_1.id
     @t_2.creator_id = @user_2.id
