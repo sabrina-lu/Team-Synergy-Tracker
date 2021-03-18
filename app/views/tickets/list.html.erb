@@ -3,9 +3,6 @@
     <tr>
       <th>Ticket ID</th>
       <th>Created By</th>
-      <th>Priority</th>
-      <th>Type</th>
-      <th>Category</th>
       <th>Date</th>
     </tr>
   </thead>
@@ -16,9 +13,6 @@
       <tr>
         <td><%= link_to ticket.id, ticket %></td> 
         <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><%= ticket.priority %></td>
-        <td><%= ticket.type %></td>
-        <td><%= ticket.category %></td>
         <td><%= ticket.date %></td>
       </tr>
     <% end %>
@@ -28,9 +22,6 @@
       <tr>
         <td><%= link_to ticket.id, ticket %></td>
         <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><%= ticket.priority %></td>
-        <td><%= ticket.type %></td>
-        <td><%= ticket.category %></td>
         <td><%= ticket.date %></td>
       </tr>
     <% end %>
@@ -40,9 +31,6 @@
       <tr>
         <td><%= link_to ticket.id, ticket %></td> 
         <td>Anonymous</td>
-        <td><%= ticket.priority %></td>
-        <td><%= ticket.type %></td>
-        <td><%= ticket.category %></td>
         <td><%= ticket.date %></td>
       </tr>
     <% end %>
