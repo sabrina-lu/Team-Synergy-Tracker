@@ -113,7 +113,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :user_id, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
+      params.require(:user).permit(:name, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
     end
     
    def authorized_to_modify_and_destroy

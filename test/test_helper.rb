@@ -15,7 +15,7 @@ class ActiveSupport::TestCase
  
   def setup_users_manager_teams
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(user_id: 12341234, watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
+    @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
@@ -26,10 +26,10 @@ class ActiveSupport::TestCase
   end
   
   def setup_tickets
-    @user_1 = User.create(user_id: 20567890, watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
-    @user_2 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
-    @user_3 = User.create(user_id: 20567890, watiam: "u3", first_name: "user3", last_name: "three", password: "Password")
-    @user_4 = User.create(user_id: 20557890, watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
+    @user_1 = User.create(watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
+    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @user_3 = User.create(watiam: "u3", first_name: "user3", last_name: "three", password: "Password")
+    @user_4 = User.create(watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
    
     @t_1 = Ticket.create(creator_id: @user_1.id, date:"10/02/2020")
     @t_2 = Ticket.create(creator_id: @user_1.id, date:"12/04/2020")
@@ -45,7 +45,7 @@ class ActiveSupport::TestCase
   end
   
   def setup_user_for_tickets_models
-    @user_4 = User.create(user_id: 20557890, watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
+    @user_4 = User.create(watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
   end
 
     
@@ -59,9 +59,9 @@ class ActiveSupport::TestCase
     @team_1.managers << @manager_1
     @team_2.managers << @manager_2
       
-    @user_1 = User.create(user_id: 20567890, watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
-    @user_2 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
-    @user_3 = User.create(user_id: 20567890, watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @user_1 = User.create(watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
+    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @user_3 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
    
     add_member_to_team_and_survey(@team_1, @user_1.id)
     add_member_to_team_and_survey(@team_1, @user_2.id)
@@ -79,8 +79,8 @@ class ActiveSupport::TestCase
     
   def setup_surveys_responses
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(user_id: 12341234, watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
-    @user_2 = User.create(user_id: 12341235, watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
+    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
+    @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
@@ -96,8 +96,8 @@ class ActiveSupport::TestCase
   
   def setup_baseline_for_survey_models
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(user_id: 12341234, watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
-    @user_2 = User.create(user_id: 12341235, watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
+    @user = User.create(watiam: "jbob", first_name: "Joe", last_name: "Bob", password: "Password")     
+    @user_2 = User.create(watiam: "naccess", first_name: "no", last_name: "access", password: "Password")
       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")

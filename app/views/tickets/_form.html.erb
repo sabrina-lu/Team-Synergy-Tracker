@@ -13,44 +13,6 @@
 
   <div class="form-container">
     <div>
-      <p> 
-        <nobr>
-          Date Created:
-          <%= Time.now.strftime("%m/%d/%Y") %>
-        </nobr>
-      </p>
-      <p>
-        <nobr>
-          Description: <br/>
-          <%= form.text_area :description, :placeholder => "Enter description here..", :maxlength => 500, :class => "description-text-box" %>
-        </nobr>
-      </p>
-        <%= form.submit %>
-    </div>
-
-    <div class="right-container">
-      <p>
-        <nobr>
-          Priority:
-          <!-- Source (https://guides.rubyonrails.org/v2.3/form_helpers.html) used for learning how to make dropdowns with set values correlating to options -->
-          <%= form.select(:priority, options_for_select([['Low', 3], ['Medium', 2], ['High', 1]], ticket.priority)) %>
-        </nobr>
-      </p>
-      
-      <p>
-        <nobr>
-          Type:
-          <%= form.select(:type, options_for_select(['Conflict', 'Positive', 'Neutral'], ticket.type)) %>
-        </nobr>
-      </p>
-        
-      <p>
-        <nobr>
-          Category:
-          <%= form.select(:category, options_for_select(['Personal', 'Work', 'Other'], ticket.category)) %>
-        </nobr>
-      </p>
-        
       <p>
         <nobr>
           Users:  <br/>
