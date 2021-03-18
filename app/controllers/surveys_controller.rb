@@ -1,19 +1,6 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
 
-  # POST /surveys
-  def create
-    manager = Manager.find(params[:manager_id])
-    manager.teams.each do |team|
-      if team.users.first and !team.users.first.surveys.find_by(team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
-        team.users.each do |user|        
-          Survey.create(user_id: user.id, team_id: team.id, date: NEXT_SURVEY_DUE_DATE)
-        end
-      end
-    end
-    redirect_to manager_dashboard_url, notice: 'Weekly Survey Has Been Updated.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey

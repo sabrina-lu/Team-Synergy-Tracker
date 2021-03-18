@@ -61,6 +61,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "You do not have permission to respond to another team\'s survey.", flash["notice"]
   end 
     
+  test "should create a survey for this week automatically" do
+    @user_1 = User.create(user_id: 12345678, watiam: "user1", password: "Password", first_name: "user", last_name: "one")
+    @team_1 = Team.create(name: "Team 1")
+    @team_1.users << @user_1
+    @team_2 = Team.create(name: "Team 2")
+    @team_2.users << @user_1
+    Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: Date.new(2021,3,6))      
+    Survey.create(team_id: @team_2.id, user_id: @user_1.id, date: Date.new(2021,3,6))
+    login_as_user(@user_1)
+    assert_difference('Survey.count', 2) do     
+      get user_dashboard_url
+    end   
+  end
+    
   # tickets tests
   test "user tickets page should still be successful even if they have no tickets associated to them" do
     login_as_user
