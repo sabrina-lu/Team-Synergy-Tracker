@@ -10,3 +10,8 @@ Test: Valid login credentials for manager
 3. click login
 Expected Result: should login successfully and reach dashboard
 
+Test: Submitting a weekly survey as a user
+1. Click on "Incomplete" next to a team that you have not completed the survey for
+2. Fill out the survey accordingly
+3. Select Submit
+Expected Result: should submit successfully
