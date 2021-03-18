@@ -62,7 +62,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end 
     
   test "should create a survey for this week automatically" do
-    @user_1 = User.create(user_id: 12345678, watiam: "user1", password: "Password", first_name: "user", last_name: "one")
+    @user_1 = User.create(watiam: "user1", password: "Password", first_name: "user", last_name: "one")
     @team_1 = Team.create(name: "Team 1")
     @team_1.users << @user_1
     @team_2 = Team.create(name: "Team 2")
