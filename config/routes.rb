@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ticket_responses
   get 'sessions/new'
   root 'static_pages#home'
   resources :surveys, except: [:index, :show, :edit, :new]

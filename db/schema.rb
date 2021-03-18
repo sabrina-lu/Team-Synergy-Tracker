@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_035933) do
     t.bigint "ticket_id", null: false
     t.integer "question_number", null: false
     t.integer "answer", null: false
-    t.integer "rating", null: false
     t.index ["ticket_id"], name: "index_ticket_responses_on_ticket_id"
   end
 
