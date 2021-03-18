@@ -27,7 +27,7 @@
             <td><%= user[0].watiam %></td>
             <td><%= user[0].first_name %> </td>
             <td><%= user[0].last_name %></td>
-            <td><%= user[1] %></td>
+            <td class="<%= user[1] == "Yes"? "green": "red"%>"><%= user[1] %></td>
         <% else %>
             <td><%= user.watiam %></td>
             <td><%= user.first_name %> </td>
