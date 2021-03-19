@@ -3,7 +3,8 @@
     <tr>
       <th>Ticket ID</th>
       <th>Created By</th>
-      <th>Date</th>
+      <th>Member Involved</th>
+      <th>Rating</th>
     </tr>
   </thead>
 
@@ -13,7 +14,11 @@
       <tr>
         <td><%= link_to ticket.id, ticket %></td> 
         <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><%= ticket.date %></td>
+        <td><% ticket.users.each do |user| %>
+            <%= user.first_name  %>
+            <% end %></td>
+        <td><%= ticket.ticket_responses.fifth.answer %></td>
+
       </tr>
     <% end %>
     <% end %>

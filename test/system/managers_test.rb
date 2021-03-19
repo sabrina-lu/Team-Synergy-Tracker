@@ -63,6 +63,16 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "My Team's Tickets"
   end
     
+    # can successfully view ticket ratings
+  test "can view team's ticket ratings" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "View All Tickets"
+    assert_text "Rating"
+  end
+    
      # can successfully create a new team with no members
 #  test "can create a team with no name" do
 #    visit login_path
