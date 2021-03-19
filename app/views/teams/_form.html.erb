@@ -26,10 +26,10 @@
   <br>
 
   <div class="actions">
-    <% if @new %>
-        <%= form.submit("Continue to Adding Members")%>
-    <% else %>
+    <% if @edit %>
         <%= form.submit("Update Team")%>
+    <% else %>
+        <%= form.submit("Continue to Adding Members")%>
     <% end %>
   </div>
 <% end %>
