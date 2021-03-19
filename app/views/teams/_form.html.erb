@@ -9,6 +9,7 @@
         <% end %>
       </ul>
     </div>
+    <%= render :template => "teams/members", :locals => { :@users => team.users } %>
   <% end %>
 
   <div class="field">
