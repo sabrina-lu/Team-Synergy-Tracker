@@ -67,6 +67,9 @@ class UsersController < ApplicationController
          redirect_to user_dashboard_path, notice: 'You do not have permission to respond to another team\'s survey.'
     end
     @survey = Survey.find_by(user: current_user.id, team: @team.id, date: CURRENT_SURVEY_DUE_DATE)
+    if @survey && @survey.responses.exists?
+      redirect_to user_dashboard_path, notice: "You have already submitted this week's survey."
+    end
     q1 = "How do you feel about this week in comparison to last week?"
     q2 = "How did you feel about this week?"
     q3 = "How would you rate your communication with your team members this week?"

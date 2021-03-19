@@ -47,9 +47,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should redirect user to weekly survey page if they are on the team" do 
-    setup_surveys_responses
-    login_as_user(@user)
-    get weekly_surveys_url(@team)
+    @user_1 = User.create(watiam: "user1", password: "Password", first_name: "user", last_name: "one")
+    @team_1 = Team.create(name: "Team 1")
+    add_member_to_team_and_survey(@team_1, @user_1.id)
+    login_as_user(@user_1)
+    get weekly_surveys_url(@team_1)
     assert_response :success
   end
     
@@ -59,6 +61,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get weekly_surveys_url(@team_no_access)
     assert_redirected_to user_dashboard_url
     assert_equal "You do not have permission to respond to another team\'s survey.", flash["notice"]
+  end 
+    
+  test "should redirect user to user dashboard when accessing weekly survey that user has already completed" do
+    setup_surveys_responses
+    login_as_user(@user)
+    get weekly_surveys_url(@team)
+    assert_redirected_to user_dashboard_url
+    assert_equal "You have already submitted this week's survey.", flash["notice"]
   end 
     
   test "should create a survey for this week automatically" do
