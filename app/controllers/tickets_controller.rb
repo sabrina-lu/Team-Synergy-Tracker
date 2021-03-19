@@ -19,6 +19,9 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
+    if (!(current_user.id == @ticket.creator_id) || current_user_is_manager)
+      redirect_to @ticket, notice: "You do not have permission to edit this ticket."
+    end
   end
 
   # POST /tickets
