@@ -5,6 +5,7 @@
     <tr>
       <th>My Teams</th>
       <th>Weekly Survey</th>
+      <th>Current Weekly Health</th>
     </tr>
   </thead>
 
@@ -17,7 +18,8 @@
             <% else %>
                  <%= link_to "Incomplete", weekly_surveys_path(team) %>
             <% end %>
-       </td>
+        </td>
+        <td><%= @teamHealth[team] %>%</td>
       </tr>
     <% end %>
   </tbody>

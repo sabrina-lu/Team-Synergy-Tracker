@@ -35,6 +35,12 @@ class UsersController < ApplicationController
              end
              
          end
+         
+         @teamHealth = {}
+         @teams.each do |team|
+             @teamHealth[team] = 45  # TO-DO Add Team Health Calculation from Algorithm
+         end
+         
      end
   end
     
