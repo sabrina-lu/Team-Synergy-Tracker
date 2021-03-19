@@ -26,7 +26,7 @@ Test: Manager edit team name functionality
 2. Login with manager WATIAM and valid password ("h13ghj567", pw: P1ckle)
 3. Click on a team name in the dashboard
 4. Click "Edit Team"
-5. Change the team name 
+5. Change the team name (ensure valid input)
 6. Click "Update Team"
 Expected Result: Should successfully update team and return to team dashboard.
 
@@ -42,22 +42,30 @@ Test: Manager edit team members functionality
 Expected Result: Should successfully update team and return to team dashboard.
 
 Test: Submitting a weekly survey as a user
-1. Click on "Incomplete" next to a team that you have not completed the survey for
-2. Fill out the survey accordingly
-3. Select Submit
+1. Launch web app
+2. Login with user WATIAM and valid password("a266alpha", pw: Joy0#0)
+3. Click on "Incomplete" next to a team that you have not completed the survey for
+4. Fill out the survey accordingly
+5. Select Submit
 Expected Result: should submit successfully
 
 Test: Submitting a feedback ticket to another user
-1. Select Create Ticket next to a team on the dashbaord
-2. Use the dropdowns to fill in who the ticket is for and your experience with that team member
-3. Select Submit
-Expected Result: should submit successfully
+1. Launch web app
+2. Login with user WATIAM and valid password("a266alpha", pw: Joy0#0)
+3. Select Create Ticket next to a team on the dashbaord
+4. Use the dropdowns to fill in who the ticket is for and your experience with that team member
+5. Select Submit
+Expected Result: should submit successfully and Weekly Survey should be marked as "Completed" for respective team
 
 Test: Can view team health as a user
-1. Click on a team on the dashboard to view team
+1. Launch web app
+2. Login with user WATIAM and valid password("a266alpha", pw: Joy0#0)
+3. Click on a team on the dashboard to view team
 Expected Result: should be able to see the team health for the week
 
 Test: Can logout as a user
-1. After logging in, select Log out in the top right corner
+1. Launch web app
+2. Login with user WATIAM and valid password("a266alpha", pw: Joy0#0)
+3. After logging in, select Log out in the top right corner
 Expected Result: successfully logs out
 
