@@ -1,6 +1,6 @@
 
 
-  <%if @team.name.empty? %>
+  <%if @team.name.empty? || @team.name.length > 50 %>
       <% team_name = Team.find(@team.id).name%>
   <%else%>
       <% team_name = @team.name %>
