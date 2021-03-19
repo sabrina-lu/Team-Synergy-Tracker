@@ -63,38 +63,26 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "My Team's Tickets"
   end
     
-     # can successfully create a new team with no members
-#  test "can create a team with no name" do
-#    visit login_path
-#    fill_in "watiam", with: @manager.watiam
-#    fill_in "password", with: @manager.password
-#    click_on "Login"
-#    click_on "New Team"
-#    fill_in "name", with: "test team"
-#    click_on "Continue to Adding Members"
-#    click_on "Back"
-#    assert_text "Editing Team test team"
-#  end
-   
-#  test "updating a Manager" do
-#    visit managers_url
-#    click_on "Edit", match: :first
-
-#    fill_in "First name", with: @manager.first_name
-#    fill_in "Last name", with: @manager.last_name
-#    fill_in "Watiam", with: @manager.watiam
-#    click_on "Update Manager"
-
-#    assert_text "Manager was successfully updated"
-#    click_on "Back"
-#  end
-
-#  test "destroying a Manager" do
-#    visit managers_url
-#    page.accept_confirm do
-#      click_on "Destroy", match: :first
-#    end
-
-#    assert_text "Manager was successfully destroyed"
-#  end
+  test "manager dashboard can view weekly survey completion ratio" do 
+    setup_tickets   
+    @m = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+    @team = Team.create(name: "Team 1") 
+    users = [@user_1, @user_2, @user_3, @user_4]
+    @team.users << [users] 
+    @team.managers << [@manager]
+    current_survey_due_date = Date.new(2021,3,20) 
+      
+    for i in 0..3 do 
+      Survey.create(user_id: users[i].id, team_id: @team.id, date: current_survey_due_date)
+    end
+    
+    survey = Survey.find_by(user_id: @user_3.id)
+    Response.create(survey_id: survey.id, question_number: 1, answer: 1) 
+      
+    visit login_path
+    fill_in "watiam", with: @m.watiam
+    fill_in "password", with: @m.password
+    click_on "Login"
+    assert_text "1/4"
+  end
 end
