@@ -25,7 +25,7 @@
   <%= @ticket.date %>
 </p>
 
-<% if @ticket.creator_id == current_user.id%>
+<% if @ticket.creator_id == current_user.id && !current_user_is_manager %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <% end %>
 <%= link_to 'Back', user_tickets_path %>
