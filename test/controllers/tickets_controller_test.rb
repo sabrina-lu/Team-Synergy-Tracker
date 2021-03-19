@@ -69,5 +69,12 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     patch ticket_url(@t_1), params: { ticket: { date: @t_1.date, creator_id: @t_1.creator_id } }
     assert_redirected_to ticket_url(@t_1)
   end
-
+    
+  test "should redirect manager to show ticket when accessing edit ticket" do
+      @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+      login_as_manager
+      get edit_ticket_url(@t_1)
+      assert_redirected_to ticket_url(@t_1)
+      assert_equal "You do not have permission to edit this ticket.", flash[:notice]
+  end
 end
