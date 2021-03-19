@@ -198,13 +198,13 @@ ticket9.creator = D
 ticket10.creator = B
 
 #assign tickets to receiving user
-A.tickets << [ticket1]
+A.tickets << [ticket1, ticket5]
 B.tickets << [ticket6]
 C.tickets << [ticket4]
 D.tickets << [ticket2]
 E.tickets << [ticket7]
 F.tickets << [ticket3]
-generic_user.tickets << [ticket8]
+generic_user.tickets << [ticket8, ticket9, ticket10]
 
 A.save
 B.save
