@@ -17,10 +17,7 @@
   </div>
 
   <%= render :template => "teams/members", :locals => { :@users => team.users } %>
-
-  <% if @edit %>
-      <%= link_to "Add/Remove Members", edit_members_path(@team) %>
-  <% end %>
+  <%= link_to "Add/Remove Members", edit_members_path(@team) %>
 
   <br>
   <br>
