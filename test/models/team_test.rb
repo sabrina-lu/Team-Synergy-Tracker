@@ -137,6 +137,7 @@ class TeamTest < ActiveSupport::TestCase
       TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 4)
     end
     TicketResponse.create(ticket_id: @t_3.id, question_number: 5, answer: 7) 
+      
     #should get two weeks ago weekly feedack average  
     assert_equal '%.2f' % (60.00), @team_1.weekly_feedback_team_health(2, current_date)
   end
