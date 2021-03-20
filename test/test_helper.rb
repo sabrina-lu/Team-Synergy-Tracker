@@ -26,55 +26,37 @@ class ActiveSupport::TestCase
   end
   
   def setup_tickets
+    @manager_1 = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+    @manager_2 = Manager.create(watiam: "gpaul", first_name: "George", last_name: "Paul", password: "Password")
+      
     @user_1 = User.create(watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
     @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
     @user_3 = User.create(watiam: "u3", first_name: "user3", last_name: "three", password: "Password")
     @user_4 = User.create(watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
+    
+    @team_1 = Team.create(name: "one")
+    @team_2 = Team.create(name: "two")
+      
+    @team_1.users << [@user_1, @user_2, @user_3]
+    @team_2.users << [@user_2, @user_3, @user_4]
+    @team_1.managers << [@manager_1]
+    @team_2.managers << [@manager_2]
    
-    @t_1 = Ticket.create(creator_id: @user_1.id, date:"10/02/2020")
-    @t_2 = Ticket.create(creator_id: @user_1.id, date:"12/04/2020")
-    @t_3 = Ticket.create(creator_id: @user_2.id, date:"12/04/2020")
+    @t_1 = Ticket.create(creator_id: @user_1.id, date:"13/03/2021", team_id: @team_1.id)
+    @t_2 = Ticket.create(creator_id: @user_1.id, date:"14/03/2021", team_id: @team_1.id)
+    @t_3 = Ticket.create(creator_id: @user_2.id, date:"15/03/2021", team_id: @team_2.id)    
+    @t_4 = Ticket.create(creator_id: @user_4.id, date: "19/03/2021", team_id: @team_2.id)
+    @t_5 = Ticket.create(creator_id: @user_4.id, date: "20/03/2020", team_id: @team_2.id)
     
-    @t_4 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
-    @t_5 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
-    @t_6 = Ticket.create(creator_id: @user_4.id, date: "12/04/2020")
-    
-    @t_1.users << [@user_2, @user_3]
+    @t_1.users << [@user_3]
     @t_2.users << [@user_2]
-    @t_3.users << [@user_3]    
+    @t_3.users << [@user_3]   
+    @t_4.users << [@user_3]
+    @t_5.users << [@user_2] 
   end
   
   def setup_user_for_tickets_models
     @user_4 = User.create(watiam: "u4", first_name: "user4", last_name: "four", password: "Password")
-  end
-
-    
-  def setup_manager_tickets
-    @manager_1 = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @manager_2 = Manager.create(watiam: "gpaul", first_name: "George", last_name: "Paul", password: "Password")
-      
-    @team_1 = Team.create(name: "T1")
-    @team_2 = Team.create(name: "T2")
-      
-    @team_1.managers << @manager_1
-    @team_2.managers << @manager_2
-      
-    @user_1 = User.create(watiam: "u1", first_name: "user1", last_name: "one", password: "Password")
-    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
-    @user_3 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
-   
-    add_member_to_team_and_survey(@team_1, @user_1.id)
-    add_member_to_team_and_survey(@team_1, @user_2.id)
-      
-    @t_1 = Ticket.create(creator_id: @user_1.id, date:"10/02/2020")
-    @t_2 = Ticket.create(creator_id: @user_2.id, date:"12/04/2020")
-    @t_3 = Ticket.create(creator_id: @user_3.id, date:"12/04/2020")
-      
-    @t_1.creator_id = @user_1.id
-    @t_2.creator_id = @user_2.id
-    
-    @t_1.users << [@user_1, @user_2]
-    @t_2.users << [@user_2]
   end
     
   def setup_surveys_responses
@@ -105,6 +87,10 @@ class ActiveSupport::TestCase
     add_member_to_team_and_survey(@team, @user.id)
     add_member_to_team_and_survey(@team_no_access, @user_2.id)
     @team.managers << @manager
+  end
+    
+  def setup_algorithm
+    
   end
     
   def login_as_manager(manager = @manager)

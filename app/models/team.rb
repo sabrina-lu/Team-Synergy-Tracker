@@ -40,7 +40,7 @@ class Team < ApplicationRecord
         count_numerator = 0
         count_total = 0
         start_date = current_weekly_survey_due_date-week*7
-        tickets = Ticket.where(:date => start_date-6...start_date, :team => id)
+        tickets = Ticket.where(:date => start_date-7...start_date, :team => id)
         tickets.each do |ticket|
             count_numerator += ticket.ticket_responses.fifth.answer
             count_total += 1

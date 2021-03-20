@@ -70,15 +70,14 @@ class ManagersTest < ApplicationSystemTestCase
     users = [@user_1, @user_2, @user_3, @user_4]
     @team.users << [users] 
     @team.managers << [@manager]
-    current_survey_due_date = Date.new(2021,3,20) 
-      
-    for i in 0..3 do 
-      Survey.create(user_id: users[i].id, team_id: @team.id, date: current_survey_due_date)
-    end
-    
-    survey = Survey.find_by(user_id: @user_3.id)
-    Response.create(survey_id: survey.id, question_number: 1, answer: 1) 
-      
+    visit login_path
+    fill_in "watiam", with: @user_3.watiam
+    fill_in "password", with: @user_3.password
+    click_on "Login"
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    click_on "Save" 
+    visit logout_path
     visit login_path
     fill_in "watiam", with: @m.watiam
     fill_in "password", with: @m.password

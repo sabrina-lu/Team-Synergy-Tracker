@@ -70,14 +70,14 @@ class ManagersController < ApplicationController
   end
     
   def tickets
+    @tickets = []
     if current_user_is_manager
-      @myTeams = Manager.joins(:teams).select("team_id").where(:id => current_user.id) # get teams associated with this manager
-      @myTeamMembers = Team.joins(:users).select("id").where(:id => @myTeams) # get users associated with this manager's teams
-        @myTeamMembers.each do |ticket|
-          @teamMemberIds = ticket.user_ids
+      teams = current_user.teams
+      teams.each do |team|
+          team.tickets.each do |ticket|
+            @tickets << ticket
+          end
         end
-      @tickets = Ticket.where(:creator_id => @teamMemberIds)  #get tickets created by users associated with this manager's teams
-      #@tickets = @myTeamMembers
     else
       redirect_to user_tickets_path 
     end

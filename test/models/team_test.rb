@@ -52,4 +52,9 @@ class TeamTest < ActiveSupport::TestCase
     # user 2, user 3 and user 4 have responded to the survey     
     assert_equal "3/4", @team.get_survey_completion_ratio(current_survey_due_date) 
   end
+    
+  #weekly_survey_team_health
+  test "should return current week's team health" do
+    
+  end
 end

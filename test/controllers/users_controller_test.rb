@@ -97,27 +97,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_tickets_url
     assert_redirected_to manager_tickets_url
   end
-      
-  test "users should only see tickets they created or about themselves" do
-    setup_tickets
-    tickets = get_tickets_for_user(@user_2)
-    assert_equal 3, tickets.count
-    assert_equal true, tickets.include?(@t_1)
-    assert_equal true, tickets.include?(@t_2)
-    assert_equal true, tickets.include?(@t_3)  
-      
-    tickets = get_tickets_for_user(@user_1)
-    assert_equal 2, tickets.count
-    assert_equal true, tickets.include?(@t_1)
-    assert_equal true, tickets.include?(@t_2)
-    assert_equal false, tickets.include?(@t_3)    
-      
-    tickets = get_tickets_for_user(@user_3)
-    assert_equal 2, tickets.count
-    assert_equal true, tickets.include?(@t_1)
-    assert_equal false, tickets.include?(@t_2)
-    assert_equal true, tickets.include?(@t_3)    
-  end
 
   # can successfully create user account
   test "should create user" do
