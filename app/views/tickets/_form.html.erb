@@ -24,7 +24,7 @@
     <div class="field">
       <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
       <%= form.hidden_field :date, value: Time.now %>
-      <%= form.hidden_field :creator_id, value: current_user.id %>
+      <%= form.hidden_field :creator_id, value: current_user %>
     </div>
   </div>
 
