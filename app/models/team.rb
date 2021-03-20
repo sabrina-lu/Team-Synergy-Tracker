@@ -62,8 +62,7 @@ class Team < ApplicationRecord
         elsif (weekly_feedback_team_health == 0)
             return weekly_survey_team_health
         else 
-            return (0.8*(weekly_survey_team_health.to_f) 
-                + 0.2*(weekly_feedback_team_health.to_f))
+            return (0.8*(weekly_survey_team_health.to_f) + 0.2*(weekly_feedback_team_health.to_f))
         end
     end
 end
