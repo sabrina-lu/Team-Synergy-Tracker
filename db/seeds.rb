@@ -79,7 +79,7 @@ t7.users << [A,C,D,E]
 
 t8.users << [B]
 
-t9.users << [generic_user]
+t9.users << [generic_user, E, D, B]
 
 t10.users << [generic_user]
 
@@ -196,6 +196,17 @@ ticket7.creator = A
 ticket8.creator = E
 ticket9.creator = D
 ticket10.creator = B
+
+ticket1.team = t3
+ticket2.team = t1
+ticket3.team = t3
+ticket4.team = t5
+ticket5.team = t3
+ticket6.team = t3
+ticket7.team = t6
+ticket8.team = t9
+ticket9.team = t9
+ticket10.team = t9
 
 #assign tickets to receiving user
 A.tickets << [ticket1, ticket5]
