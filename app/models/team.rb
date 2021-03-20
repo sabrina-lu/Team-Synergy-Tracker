@@ -55,13 +55,15 @@ class Team < ApplicationRecord
     end
     
     def get_total_team_health(week, current_weekly_survey_due_date)
-        if (self.weekly_survey_team_health(week, current_weekly_survey_due_date) == 0) 
-            return self.weekly_feedback_team_health(week, current_weekly_survey_due_date)
-        elsif (self.weekly_feedback_team_health(week, current_weekly_survey_due_date) == 0)
-            return self.weekly_survey_team_health(week, current_weekly_survey_due_date)
+        weekly_survey_team_health = self.weekly_survey_team_health(week, current_weekly_survey_due_date)
+        weekly_feedback_team_health = self.weekly_feedback_team_health(week, current_weekly_survey_due_date)
+        if (weekly_survey_team_health == 0) 
+            return weekly_feedback_team_health
+        elsif (weekly_feedback_team_health == 0)
+            return weekly_survey_team_health
         else 
-            return (0.8*((self.weekly_survey_team_health(week, current_weekly_survey_due_date).to_f)) 
-                + 0.2*((self.weekly_feedback_team_health(week, current_weekly_survey_due_date).to_f)))
+            return (0.8*(weekly_survey_team_health.to_f) 
+                + 0.2*(weekly_feedback_team_health.to_f))
         end
     end
 end
