@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2021_03_18_035933) do
   create_table "tickets", force: :cascade do |t|
     t.date "date", null: false
     t.bigint "creator_id"
+    t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_tickets_on_creator_id"
+    t.index ["team_id"], name: "index_tickets_on_team_id"
   end
 
   create_table "tickets_users", id: false, force: :cascade do |t|
@@ -96,5 +98,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_035933) do
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
   add_foreign_key "ticket_responses", "tickets"
+  add_foreign_key "tickets", "teams"
   add_foreign_key "tickets", "users", column: "creator_id"
 end
