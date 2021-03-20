@@ -1,6 +1,16 @@
-<h1>Editing Team <%= @team.name %></h1>
+
+
+  <%if @team.name.empty? || @team.name.length > 50 %>
+      <% team_name = Team.find(@team.id).name%>
+  <%else%>
+      <% team_name = @team.name %>
+  <%end%>
+
+
+
+<h1>Editing Team <%= team_name %></h1>
 
 <%= render 'form', team: @team %>
 
 <%= link_to 'Return To Dashboard', manager_dashboard_path %> |
-<%= link_to "Back to #{@team.name}", team_health_path(@team) %>
+<%= link_to "Back to #{team_name}", team_health_path(@team) %>
