@@ -36,7 +36,7 @@ class ActiveSupport::TestCase
     
     @team_1 = Team.create(name: "one")
     @team_2 = Team.create(name: "two")
-      
+     
     @team_1.users << [@user_1, @user_2, @user_3]
     @team_2.users << [@user_2, @user_3, @user_4]
     @team_1.managers << [@manager_1]
@@ -46,7 +46,7 @@ class ActiveSupport::TestCase
     @t_2 = Ticket.create(creator_id: @user_1.id, date:"14/03/2021", team_id: @team_1.id)
     @t_3 = Ticket.create(creator_id: @user_2.id, date:"15/03/2021", team_id: @team_2.id)    
     @t_4 = Ticket.create(creator_id: @user_4.id, date: "19/03/2021", team_id: @team_2.id)
-    @t_5 = Ticket.create(creator_id: @user_4.id, date: "20/03/2020", team_id: @team_2.id)
+    @t_5 = Ticket.create(creator_id: @user_4.id, date: "20/03/2021", team_id: @team_2.id)
     
     @t_1.users << [@user_3]
     @t_2.users << [@user_2]

@@ -54,7 +54,90 @@ class TeamTest < ActiveSupport::TestCase
   end
     
   #weekly_survey_team_health
-  test "should return current week's team health" do
+  test "should return the correct survey team health for selected week" do
+    setup_tickets
+    current_date = Date.new(2021,3,20)
+      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: current_date)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 4)
+    end      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_2.id, date: current_date)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 3)
+    end     
+    s = Survey.create(team_id: @team_1.id, user_id: @user_3.id, date: current_date)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 5)
+    end
+      
+    #should get the current week's weekly survey average  
+    assert_equal '%.2f' % (80.00), @team_1.weekly_survey_team_health(0, current_date)
+
+    two_weeks_ago = Date.new(2021,3,6)
+    s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: two_weeks_ago)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 1)
+    end      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_2.id, date: two_weeks_ago)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 2)
+    end     
+    s = Survey.create(team_id: @team_1.id, user_id: @user_3.id, date: two_weeks_ago)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 5)
+    end
+      
+    #should get two weeks ago weekly survey average  
+    assert_equal '%.2f' % (53.33), @team_1.weekly_survey_team_health(2, current_date)
+
+  end
     
+  #weekly_feedback_team_health
+  test "should return the correct feedback team health for selected week" do
+    setup_tickets
+    current_date = Date.new(2021,3,20)
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 8)       
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 6)     
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_3.id, question_number: 5, answer: 7)  
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_4.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_4.id, question_number: 5, answer: 10)  
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_5.id, question_number: i, answer: 4)
+    end  
+    TicketResponse.create(ticket_id: @t_5.id, question_number: 5, answer: 9)       
+      
+    #should get the current week's weekly feedack average  
+    assert_equal '%.2f' % (70.00), @team_1.weekly_feedback_team_health(0, current_date)
+    assert_equal '%.2f' % (85.00), @team_2.weekly_feedback_team_health(0, current_date)
+      
+    @t_1 = Ticket.create(creator_id: @user_1.id, date:"4/03/2021", team_id: @team_1.id)
+    @t_2 = Ticket.create(creator_id: @user_1.id, date:"5/03/2021", team_id: @team_1.id)
+    @t_3 = Ticket.create(creator_id: @user_1.id, date:"6/03/2021", team_id: @team_1.id)
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 9)       
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 3)     
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_3.id, question_number: 5, answer: 7) 
+    #should get two weeks ago weekly feedack average  
+    assert_equal '%.2f' % (60.00), @team_1.weekly_feedback_team_health(2, current_date)
   end
 end
