@@ -40,7 +40,7 @@ class TicketsController < ApplicationController
                 TicketResponse.create(question_number: i, answer: params[:answer+i])
             end
             TicketResponse.create(other params)
-          redirect_to @ticket, notice: 'Ticket was successfully created.'
+          redirect_to user_dashboard, notice: 'Ticket was successfully created.'
         else
           render :new
         end 
