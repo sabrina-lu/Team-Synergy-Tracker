@@ -26,7 +26,9 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(date: params[:date], creator_id: params[:creator_id])
+    @ticket = Ticket.new(date: params[:date])
+    @ticket.creator = params[:creator_id]
+    @ticket.team = Teams.find(current_user.team) #fix this
         if @ticket.save
           users = params[:ticket][:users]
             if users
