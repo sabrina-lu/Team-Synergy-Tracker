@@ -36,11 +36,12 @@ class TicketsController < ApplicationController
             end
           end
             # add responses to the ticket
-            for i in 1..5 do
-                TicketResponse.create(question_number: i, answer: params[:answer+i])
-            end
-            TicketResponse.create(other params)
-          redirect_to user_dashboard, notice: 'Ticket was successfully created.'
+            TicketResponse.create(question_number: 1, answer: params[:answer1])
+            TicketResponse.create(question_number: 2, answer: params[:answer2])
+            TicketResponse.create(question_number: 3, answer: params[:answer3])
+            TicketResponse.create(question_number: 4, answer: params[:answer4])
+            TicketResponse.create(question_number: 5, answer: params[:answer5])
+            redirect_to user_dashboard, notice: 'Ticket was successfully created.'
         else
           render :new
         end 
