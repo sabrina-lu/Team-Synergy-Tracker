@@ -20,6 +20,23 @@
         </nobr>
       </p>
     </div>
+      
+      <!-- using https://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease -->
+      <div class="field">
+          <p>I've experienced <%= form.select :answer1, [["great", 1], ["poor", -1], ["typical", 0]] %> commmunication with this person</p>
+      </div>
+      <div class="field">
+          <p>I've experienced <%= form.select :answer2, [["great", 1], ["poor", -1], ["typical", 0]] %> behaviour with this person</p>
+      </div>
+      <div class="field">
+          <p>I've experienced <%= form.select :answer3, [["great", 1], ["poor", -1], ["typical", 0]] %> teamwork with this person</p>
+      </div>
+      <div class="field">
+          <p>I've experienced <%= form.select :answer4, [["good", 1], ["poor", -1], ["typical", 0]] %> availability with this person</p>
+      </div>
+      <div class="field">
+          <p>I would rate this team member a(n) <%= form.select :answer5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %> out of 10.</p>
+      </div>  
     
     <div class="field">
       <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
