@@ -3,5 +3,5 @@ class Ticket < ApplicationRecord
   has_and_belongs_to_many :users
   has_many :ticket_responses
   belongs_to :creator, class_name: "User"
-
+  belongs_to :team
 end
