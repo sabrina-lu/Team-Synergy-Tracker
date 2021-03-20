@@ -53,4 +53,15 @@ class Team < ApplicationRecord
           return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
         end
     end
+    
+    def get_total_team_health(week, current_weekly_survey_due_date)
+        if (self.weekly_survey_team_health(week, current_weekly_survey_due_date) == 0) 
+            return self.weekly_feedback_team_health(week, current_weekly_survey_due_date)
+        elsif (self.weekly_feedback_team_health(week, current_weekly_survey_due_date) == 0)
+            return self.weekly_survey_team_health(week, current_weekly_survey_due_date)
+        else 
+            return (0.8*((self.weekly_survey_team_health(week, current_weekly_survey_due_date).to_f)) 
+                + 0.2*((self.weekly_feedback_team_health(week, current_weekly_survey_due_date).to_f)))
+        end
+    end
 end

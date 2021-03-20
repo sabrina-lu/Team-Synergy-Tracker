@@ -39,7 +39,7 @@ class ManagersController < ApplicationController
     @team_health = true
     @team_users = @team.users
     @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE)    
-    @health_value = @team.weekly_survey_team_health(0, CURRENT_SURVEY_DUE_DATE)
+    @health_value = @team.get_total_team_health(0, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /managers
