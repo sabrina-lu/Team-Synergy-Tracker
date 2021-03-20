@@ -26,7 +26,7 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = Ticket.new(date: params[:date], creator_id: params[:creator_id])
         if @ticket.save
           users = params[:ticket][:users]
             if users
@@ -34,7 +34,12 @@ class TicketsController < ApplicationController
               @users = User.find(temp_user.to_i)
               @ticket.users << @users
             end
-          end 
+          end
+            # add responses to the ticket
+            for i in 1..5 do
+                TicketResponse.create(question_number: i, answer: params[:answer+i])
+            end
+            TicketResponse.create(other params)
           redirect_to @ticket, notice: 'Ticket was successfully created.'
         else
           render :new
@@ -70,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:date, :creator_id)
+      params.require(:ticket).permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
     end
 end
