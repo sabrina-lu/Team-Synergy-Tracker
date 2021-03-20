@@ -39,15 +39,7 @@ class ManagersController < ApplicationController
     @team_health = true
     @team_users = @team.users
     @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE)    
-    @surveysToCalc = Survey.select("id").where(:user_id => @team_users.ids, :team_id => @team).to_a
-    @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
-    @health_value = 0
-    @responseValues.each { |x|
-        @health_value = @health_value + x.answer.to_f / 5
-    }
-    if @responseValues.size > 0
-        @health_value = (@health_value * 100 /@responseValues.size).to_i; 
-    end
+    @health_value = Team.weekly_survey_team_health(@team, 0, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /managers

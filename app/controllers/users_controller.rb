@@ -38,7 +38,7 @@ class UsersController < ApplicationController
          
          @teamHealth = {}
          @teams.each do |team|
-             @teamHealth[team] = 45  # TO-DO Add Team Health Calculation from Algorithm
+             @teamHealth[team] = Team.weekly_survey_team_health(team, 1, CURRENT_SURVEY_DUE_DATE)
          end
          
      end

@@ -15,4 +15,23 @@ class Team < ApplicationRecord
        end
        return "#{completed_surveys}/#{users.count}"
     end
+    
+    def self.weekly_survey_team_health(team, week, current_weekly_survey_due_date)
+      count_numerator = 0
+      count_total = 0
+      surveysToCalc = Survey.where(:team_id => team.id, :date => current_weekly_survey_due_date-week*7)
+      surveysToCalc.each do |survey|
+          survey.responses.each do |response|
+            count_numerator += response.answer
+            count_total += 1 
+          end
+      end
+     
+      if count_total == 0
+        return 0
+      else
+        count_denominator = count_total*5
+        return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
+      end
+    end
 end
