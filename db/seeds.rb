@@ -174,16 +174,16 @@ t11.surveys << [s27]
 t12.surveys << [s28]
 t13.surveys << [s29]
 
-ticket1 = Ticket.new(date: "07/02/2020")
-ticket2 = Ticket.new(date: "12/08/2020")
-ticket3 = Ticket.new(date: "25/09/2020")
-ticket4 = Ticket.new(date: "10/05/2020")
-ticket5 = Ticket.new(date: "13/11/2020")
-ticket6 = Ticket.new(date: "16/12/2020")
-ticket7 = Ticket.new(date: "05/08/2020")
-ticket8 = Ticket.new(date: "05/08/2020")
-ticket9 = Ticket.new(date: "06/06/2020")
-ticket10 = Ticket.new(date: "07/08/2020")
+ticket1 = Ticket.new(date: "19/03/2021")
+ticket2 = Ticket.new(date: "19/03/2021")
+ticket3 = Ticket.new(date: "19/03/2021")
+ticket4 = Ticket.new(date: "19/03/2021")
+ticket5 = Ticket.new(date: "18/03/2021")
+ticket6 = Ticket.new(date: "17/03/2021")
+ticket7 = Ticket.new(date: "16/03/2021")
+ticket8 = Ticket.new(date: "15/03/2021")
+ticket9 = Ticket.new(date: "15/03/2021")
+ticket10 = Ticket.new(date: "15/03/2021")
 
 #assign ticket to its creator
 ticket1.creator = B

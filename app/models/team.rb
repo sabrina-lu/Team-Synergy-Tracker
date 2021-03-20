@@ -34,4 +34,24 @@ class Team < ApplicationRecord
         return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
       end
     end
+    
+    def self.weekly_feedback_team_health(team, week, current_weekly_survey_due_date)
+        count_numerator = 0
+        count_total = 0
+        start_date = current_weekly_survey_due_date-week*7
+        team.users.each do |user| 
+            tickets = Ticket.where(:creator_id => user.id, :date => start_date-6...start_date)
+            tickets.each do |ticket|
+                count_numerator += ticket.ticket_responses.fifth.answer
+                count_total += 1
+            end
+        end
+        
+        if count_total == 0
+          return 0
+        else
+          count_denominator = count_total*10
+          return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
+        end
+    end
 end
