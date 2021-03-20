@@ -89,10 +89,6 @@ class ActiveSupport::TestCase
     @team.managers << @manager
   end
     
-  def setup_algorithm
-    
-  end
-    
   def login_as_manager(manager = @manager)
     post login_path, params: { watiam: manager.watiam, password: manager.password }
   end
