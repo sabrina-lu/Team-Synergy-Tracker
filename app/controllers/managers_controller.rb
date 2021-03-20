@@ -39,15 +39,7 @@ class ManagersController < ApplicationController
     @team_health = true
     @team_users = @team.users
     @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE)    
-    @surveysToCalc = Survey.select("id").where(:user_id => @team_users.ids, :team_id => @team).to_a
-    @responseValues = Response.select("answer").where(:survey_id => @surveysToCalc).to_a;    #calculate health for the team
-    @health_value = 0
-    @responseValues.each { |x|
-        @health_value = @health_value + x.answer.to_f / 5
-    }
-    if @responseValues.size > 0
-        @health_value = (@health_value * 100 /@responseValues.size).to_i; 
-    end
+    @health_value = @team.get_total_team_health(0, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /managers
@@ -78,14 +70,14 @@ class ManagersController < ApplicationController
   end
     
   def tickets
+    @tickets = []
     if current_user_is_manager
-      @myTeams = Manager.joins(:teams).select("team_id").where(:id => current_user.id) # get teams associated with this manager
-      @myTeamMembers = Team.joins(:users).select("id").where(:id => @myTeams) # get users associated with this manager's teams
-        @myTeamMembers.each do |ticket|
-          @teamMemberIds = ticket.user_ids
+      teams = current_user.teams
+      teams.each do |team|
+          team.tickets.each do |ticket|
+            @tickets << ticket
+          end
         end
-      @tickets = Ticket.where(:creator_id => @teamMemberIds)  #get tickets created by users associated with this manager's teams
-      #@tickets = @myTeamMembers
     else
       redirect_to user_tickets_path 
     end
