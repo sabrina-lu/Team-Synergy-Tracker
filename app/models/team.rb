@@ -17,10 +17,10 @@ class Team < ApplicationRecord
        return "#{completed_surveys}/#{users.count}"
     end
     
-    def self.weekly_survey_team_health(team, week, current_weekly_survey_due_date)
+    def weekly_survey_team_health(week, current_weekly_survey_due_date)
       count_numerator = 0
       count_total = 0
-      surveysToCalc = Survey.where(:team_id => team.id, :date => current_weekly_survey_due_date-week*7)
+      surveysToCalc = Survey.where(:team_id => id, :date => current_weekly_survey_due_date-week*7)
       surveysToCalc.each do |survey|
           survey.responses.each do |response|
             count_numerator += response.answer
@@ -36,11 +36,11 @@ class Team < ApplicationRecord
       end
     end
     
-    def self.weekly_feedback_team_health(team, week, current_weekly_survey_due_date)
+    def weekly_feedback_team_health(week, current_weekly_survey_due_date)
         count_numerator = 0
         count_total = 0
         start_date = current_weekly_survey_due_date-week*7
-        tickets = Ticket.where(:date => start_date-6...start_date, :team => team.id)
+        tickets = Ticket.where(:date => start_date-6...start_date, :team => id)
         tickets.each do |ticket|
             count_numerator += ticket.ticket_responses.fifth.answer
             count_total += 1
