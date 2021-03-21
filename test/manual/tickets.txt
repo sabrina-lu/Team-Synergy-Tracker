@@ -1,16 +1,19 @@
-Editing a ticket
+Creating a Ticket
 
-Test 1 (A receiving user cannot edit the ticket)
-*pre-requisite: the receiving user must have a ticket sent to them
+Test 1 (A user can create a ticket within team view)
     1. Login as a user
-    2. Navigate to View My Tickets
-    3. Select a ticket with "Created By" being Anonymous
-    4. There should not be an option to edit
+    2. Click on a team 
+    3. Click on Create A Ticket
+    4. Select a user and fill in drop downs accordingly
+    5. Click on Create Ticket
+    Result: Ticket should be created successfully and user should be redirect to dashboard
     
-Test 2 (A user sending a ticket should be able to edit the ticket)
-*pre-requisite: the user must have a ticket already created
+Test 2 (A user can discard changes and go back to dashboard)
     1. Login as a user
-    2. Navigate to View My Tickets
-    3. Select a ticket with "Created By" being your first name
-    4. There should be an option to edit
+    2. Click on a team 
+    3. Click on Create A Ticket
+    4. Click on Discard Changes and Go Back
+    Result: Ticket should be discarded and user should be redirected to dashboard
+    
+-- Add tests about sending only to one user a week after implemented --
     
