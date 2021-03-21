@@ -55,6 +55,7 @@ class UsersController < ApplicationController
           end
           @users = @team.users
           @manager = @team.managers.first  #for now only one manager per team
+          @health_value  = @team.get_total_team_health(0,CURRENT_SURVEY_DUE_DATE)
       end
   end
     

@@ -12,7 +12,17 @@ class TeamsTest < ApplicationSystemTestCase
     fill_in "password", with: @user.password
     click_on "Login"
     visit user_team_list_path(@team)
-    assert_text "Team 1 Members"
+    assert_text "Team 1 Details"
+    assert_text "Members"
+  end
+    
+  test "should see team health when visiting user team list" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit user_team_list_path(@team)
+    assert_text "Current Week's Team Health"
   end
   
   test "return to dashboard from team list" do
