@@ -42,8 +42,10 @@ class Team < ApplicationRecord
         start_date = current_weekly_survey_due_date-week*7
         tickets = Ticket.where(:date => start_date-7...start_date, :team => id)
         tickets.each do |ticket|
-            count_numerator += ticket.ticket_responses.fifth.answer
-            count_total += 1
+            if ticket.ticket_responses.exists?
+              count_numerator += ticket.ticket_responses.fifth.answer
+              count_total += 1
+            end
         end
         
         if count_total == 0
@@ -64,5 +66,14 @@ class Team < ApplicationRecord
         else 
             return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(weekly_feedback_team_health.to_f))
         end
+    end
+    
+    def get_health_history(current_weekly_survey_due_date)
+      total_weeks = Survey.where(team_id: id).select('distinct(date)').count
+      @team_health_history = []
+      for i in 0..total_weeks - 1 do 
+        @team_health_history << [total_weeks-i, self.get_total_team_health(i, current_weekly_survey_due_date)]
+      end  
+      return @team_health_history
     end
 end
