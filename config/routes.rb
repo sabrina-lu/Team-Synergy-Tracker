@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   get 'manager_tickets', to: 'managers#tickets', as: 'manager_tickets'
     
     # route to get the team associated with the ticket
-  get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_ticket'
-  post 'teams/:id/tickets', to: 'tickets#create', as: 'create_ticket'
+  get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'
+  post 'teams/:id/tickets', to: 'tickets#create', as: 'create_team_ticket'
     
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -2,7 +2,7 @@
 <%= render template: 'teams/members' %>
 
 <span>
-    <%= link_to 'Create A Ticket', new_ticket_path %>
+    <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %>
 </span>
 <br><br>
 <%= link_to 'Weekly Surveys', weekly_surveys_path %>
