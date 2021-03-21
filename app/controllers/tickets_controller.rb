@@ -15,6 +15,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @team = Team.find(params[:id])
   end
 
   # GET /tickets/1/edit
@@ -26,16 +27,25 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = Ticket.new(date: params[:date])
+    @ticket.creator = User.find(params[:creator_id])
+    @ticket.team = Team.find_by(:id => params[:id]) #fix this
         if @ticket.save
-          users = params[:ticket][:users]
+          users = params[:users]
             if users
               users.drop(1).each do |temp_user| 
               @users = User.find(temp_user.to_i)
               @ticket.users << @users
             end
-          end 
-          redirect_to @ticket, notice: 'Ticket was successfully created.'
+          end
+            # add responses to the ticket
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 3, answer: params[:answer3])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 4, answer: params[:answer4])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 5, answer: params[:answer5])
+            
+            redirect_to user_dashboard_url, notice: 'Ticket was successfully created.'
         else
           render :new
         end 
@@ -70,6 +80,6 @@ class TicketsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:priority, :type, :category, :description, :date, :creator_id)
+      params.require(:ticket).permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
     end
 end

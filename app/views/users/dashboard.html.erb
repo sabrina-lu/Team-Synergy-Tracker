@@ -1,3 +1,4 @@
+
 <h1>Welcome <%= @user.first_name.capitalize %>!</h1>
 
 <table>
@@ -27,8 +28,3 @@
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %> 12:00AM EST</h3>
 
-<div>
-    <span>
-        <%= link_to 'Create A Ticket', new_ticket_path %>
-    </span>
-</div>
