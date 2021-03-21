@@ -15,6 +15,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @team = Team.find(params[:id])
   end
 
   # GET /tickets/1/edit
@@ -27,10 +28,10 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(date: params[:date])
-    @ticket.creator = params[:creator_id]
+    @ticket.creator = User.find(params[:creator_id])
     @ticket.team = Team.find_by(:id => params[:id]) #fix this
         if @ticket.save
-          users = params[:ticket][:users]
+          users = params[:users]
             if users
               users.drop(1).each do |temp_user| 
               @users = User.find(temp_user.to_i)
@@ -38,12 +39,13 @@ class TicketsController < ApplicationController
             end
           end
             # add responses to the ticket
-            TicketResponse.create(question_number: 1, answer: params[:answer1])
-            TicketResponse.create(question_number: 2, answer: params[:answer2])
-            TicketResponse.create(question_number: 3, answer: params[:answer3])
-            TicketResponse.create(question_number: 4, answer: params[:answer4])
-            TicketResponse.create(question_number: 5, answer: params[:answer5])
-            redirect_to user_dashboard, notice: 'Ticket was successfully created.'
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 3, answer: params[:answer3])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 4, answer: params[:answer4])
+            TicketResponse.create(ticket_id: @ticket.id, question_number: 5, answer: params[:answer5])
+            
+            redirect_to user_dashboard_url, notice: 'Ticket was successfully created.'
         else
           render :new
         end 

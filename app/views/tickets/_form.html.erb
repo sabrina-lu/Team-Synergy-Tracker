@@ -1,4 +1,4 @@
-<%= form_with(model: ticket, local: true) do |form| %>
+<%= form_with url: create_team_ticket_path(@team), method: :post do |form| %>
   <% if ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -23,8 +23,8 @@
     
     <div class="field">
       <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
-      <%= form.hidden_field :date, value: Time.now %>
-      <%= form.hidden_field :creator_id, value: current_user %>
+      <%= form.hidden_field :date, value: Date.today %>
+      <%= form.hidden_field :creator_id, value: current_user.id %>
     </div>
   </div>
 
