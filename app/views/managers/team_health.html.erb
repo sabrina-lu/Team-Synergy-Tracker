@@ -15,12 +15,30 @@
     
 </div>
 
-<br>
-
 <h2>Members</h2>
 <%= render template: 'teams/members' %>
 <br>
 <%= link_to 'Edit Team', edit_team_path(@team) %>
+
+<br><br>
+<h2>Team Health History</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Team Health</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @team_health_history.each do |history| %>
+      <tr>
+        <td><%= history[0]%></td>
+        <td><%= history[1]%>%</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br><br>
 <%= link_to 'Return to Dashboard', manager_dashboard_path %>
 

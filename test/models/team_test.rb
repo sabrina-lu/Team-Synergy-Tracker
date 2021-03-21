@@ -141,51 +141,115 @@ class TeamTest < ActiveSupport::TestCase
     #should get two weeks ago weekly feedack average  
     assert_equal '%.2f' % (60.00), @team_1.weekly_feedback_team_health(2, current_date)
   end
+  
+#   #get_total_team_health
+#   test "should return correct total team health for selected week" do
+#     setup_tickets
+#     current_date = Date.new(2021,3,20)
+#     s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: current_date)
+#     for i in 1..4 do
+#       Response.create(survey_id: s.id, question_number: i, answer: 5)
+#     end
+#     for i in 1..4 do
+#       TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
+#     end
+#     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 5)       
+#     for i in 1..4 do
+#       TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 1)
+#     end
+#     TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 5)     
     
-  test "should return correct total team health for selected week" do
+#     #should get the current week's total team health
+#     assert_equal '%.2f' % (90.00), @team_1.get_total_team_health(0, current_date)
+    
+#     two_weeks_ago = Date.new(2021,3,6)
+#     s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: two_weeks_ago)
+#     for i in 1..4 do
+#       Response.create(survey_id: s.id, question_number: i, answer: 2)
+#     end
+    
+#     #should get two week ago total team health if no tickets
+#     assert_equal '%.2f' % (40.00), @team_1.get_total_team_health(2, current_date)
+    
+#     @t_1 = Ticket.create(creator_id: @user_1.id, date:"4/03/2021", team_id: @team_1.id)
+#     for i in 1..4 do
+#       TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
+#     end
+#     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 8) 
+    
+#     #should get two weeks ago total team health
+#     assert_equal '%.2f' % (48.00), @team_1.get_total_team_health(2, current_date)
+    
+#     @t_1 = Ticket.create(creator_id: @user_1.id, date:"24/02/2021", team_id: @team_1.id)
+#     for i in 1..4 do
+#       TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
+#     end
+#     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 10)
+    
+#     #should get three week ago total team health if no survey responses
+#     assert_equal '%.2f' % (100.00), @team_1.get_total_team_health(3, current_date)
+#   end
+    
+  #get_health_history
+  test "should get correct team health history" do
     setup_tickets
     current_date = Date.new(2021,3,20)
+      
     s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: current_date)
     for i in 1..4 do
-      Response.create(survey_id: s.id, question_number: i, answer: 5)
-    end
+      Response.create(survey_id: s.id, question_number: i, answer: 4)
+    end      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_2.id, date: current_date)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
-    end
-    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 5)       
+      Response.create(survey_id: s.id, question_number: i, answer: 3)
+    end 
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 1)
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
     end
-    TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 5)     
-    
-    #should get the current week's total team health
-    assert_equal '%.2f' % (90.00), @team_1.get_total_team_health(0, current_date)
-    
-    two_weeks_ago = Date.new(2021,3,6)
-    s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: two_weeks_ago)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 9)    
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 10)
+      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: current_date-7)
     for i in 1..4 do
       Response.create(survey_id: s.id, question_number: i, answer: 2)
-    end
-    
-    #should get two week ago total team health if no tickets
-    assert_equal '%.2f' % (40.00), @team_1.get_total_team_health(2, current_date)
-    
-    @t_1 = Ticket.create(creator_id: @user_1.id, date:"4/03/2021", team_id: @team_1.id)
+    end      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_2.id, date: current_date-7)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
-    end
-    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 8) 
-    
-    #should get two weeks ago total team health
-    assert_equal '%.2f' % (48.00), @team_1.get_total_team_health(2, current_date)
-    
-    @t_1 = Ticket.create(creator_id: @user_1.id, date:"24/02/2021", team_id: @team_1.id)
+      Response.create(survey_id: s.id, question_number: i, answer: 3)
+    end      
+    t = Ticket.create(team_id: @team_1.id, date: current_date-8, creator_id: @user_1.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
     end
-    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 10)
+    TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 8)    
+    t = Ticket.create(team_id: @team_1.id, date: current_date-8, creator_id: @user_2.id)
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 6) 
+      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: current_date-2*7)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 1)
+    end      
+    s = Survey.create(team_id: @team_1.id, user_id: @user_2.id, date: current_date-2*7)
+    for i in 1..4 do
+      Response.create(survey_id: s.id, question_number: i, answer: 3)
+    end      
+    t = Ticket.create(team_id: @team_1.id, date: current_date-2*8, creator_id: @user_1.id)
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 5)    
+    t = Ticket.create(team_id: @team_1.id, date: current_date-2*8, creator_id: @user_2.id)
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+    end
+    TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 7) 
     
-    #should get three week ago total team health if no survey responses
-    assert_equal '%.2f' % (100.00), @team_1.get_total_team_health(3, current_date)
+    assert_equal [[3, '%.2f' % (75.00)], [2, '%.2f' % (54.00)], [1, '%.2f' % (44.00)]], @team_1.get_health_history(current_date)
   end
 end

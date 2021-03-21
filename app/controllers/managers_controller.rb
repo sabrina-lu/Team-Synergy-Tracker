@@ -35,11 +35,13 @@ class ManagersController < ApplicationController
     @team = Team.find(params[:id])
     if !current_user_is_on_team(@team)
         redirect_to manager_dashboard_path, notice: 'You do not have permission to view this team.'
+    else
+      @team_health = true
+      @team_users = @team.users
+      @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
+      @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
+      @health_value = @team_health_history[0][1]      
     end
-    @team_health = true
-    @team_users = @team.users
-    @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE)    
-    @health_value = @team.get_total_team_health(0, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /managers
