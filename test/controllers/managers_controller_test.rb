@@ -58,11 +58,11 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   
-  test "should redirect user to user ticket page when accessing manager ticket page" do
-    login_as_user
-    get manager_tickets_url
-    assert_redirected_to user_tickets_url
-  end
+#  test "should redirect user to user ticket page when accessing manager ticket page" do
+#    login_as_user
+#    get manager_tickets_url
+#    assert_redirected_to user_tickets_url
+#  end
     
   test "should log out manager" do
     login_as_manager
