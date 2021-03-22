@@ -54,14 +54,14 @@ class ManagersTest < ApplicationSystemTestCase
   end
 
     # can successfully view tickets
-#  test "can view team's tickets" do
-#    visit login_path
-#    fill_in "watiam", with: @manager.watiam
-#    fill_in "password", with: @manager.password
-#    click_on "Login"
-#    click_on "View All Tickets"
-#    assert_text "My Team's Tickets"
-#  end
+  test "can view team's tickets" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "View All Tickets"
+    assert_text "My Team's Tickets"
+  end
 
   test "manager dashboard can view weekly survey completion ratio" do 
     setup_tickets   
@@ -86,12 +86,12 @@ class ManagersTest < ApplicationSystemTestCase
   end
   
     # can successfully view ticket ratings
-#  test "can view team's ticket ratings" do
-#    visit login_path
-#    fill_in "watiam", with: @manager.watiam
-#    fill_in "password", with: @manager.password
-#    click_on "Login"
-#    click_on "View All Tickets"
-#    assert_text "Rating"
-#  end
+  test "can view team's ticket ratings" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "View All Tickets"
+    assert_text "Rating"
+  end
 end
