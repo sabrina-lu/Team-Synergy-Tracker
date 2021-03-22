@@ -86,17 +86,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
     
   # tickets tests
-  test "user tickets page should still be successful even if they have no tickets associated to them" do
-    login_as_user
-    get user_tickets_url
-    assert_response :success
-  end
+#  test "user tickets page should still be successful even if they have no tickets associated to them" do
+#    login_as_user
+#    get user_tickets_url
+#    assert_response :success
+#  end
   
-  test "should redirect manager to manager ticket page when accessing user ticket page" do
-    login_as_manager
-    get user_tickets_url
-    assert_redirected_to manager_tickets_url
-  end
+#  test "should redirect manager to manager ticket page when accessing user ticket page" do
+#    login_as_manager
+#    get user_tickets_url
+#    assert_redirected_to manager_tickets_url
+#  end
 
   # can successfully create user account
   test "should create user" do
