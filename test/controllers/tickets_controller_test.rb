@@ -58,16 +58,16 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
 #     assert_equal "You do not have permission to view this ticket.", flash[:notice]
 #   end
     
-   test "should show manager any ticket they want to view" do
-     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-     login_as_manager
-     get ticket_url(@t_1)
-     assert_response :success
-     get ticket_url(@t_2)
-     assert_response :success
-     get ticket_url(@t_3)
-     assert_response :success
-   end
+#   test "should show manager any ticket they want to view" do
+#     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+#     login_as_manager
+#     get ticket_url(@t_1)
+#     assert_response :success
+#     get ticket_url(@t_2)
+#     assert_response :success
+#     get ticket_url(@t_3)
+#     assert_response :success
+#   end
 
     
   test "should redirect manager to show ticket when accessing edit ticket" do
