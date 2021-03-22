@@ -34,6 +34,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user = User.create(watiam: "kasj d90p", first_name: "user1", last_name: "one", password: "password").valid?
   end
   
+  test "Should fail to create a user with a space emojis in watiam" do
+    assert_not @user = User.create(watiam: "👽🤡👀👱‍♂️🧶🤛🏻", first_name: "user1", last_name: "one", password: "password").valid?
+  end
+  
     
   # get_ordered_survey_indicator tests
   test "should return users in order of users who haven't completed the survey to users who have" do
@@ -64,8 +68,6 @@ class UserTest < ActiveSupport::TestCase
     # user 2 and user 4 have responded to the survey
     actual = [[@user_3, "No"], [@user_1, "No"], [@user_2, "Yes"], [@user_4, "Yes"]]       
     assert_equal actual, User.get_ordered_survey_indicator(@team, current_survey_due_date) 
-  end
-
-  
+  end  
 end
 

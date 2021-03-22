@@ -48,4 +48,8 @@ class ManagerTest < ActiveSupport::TestCase
   test "Should fail to create a manager with a blank last name" do
     assert_not @manager = Manager.create(watiam: "hmm1", first_name: "manager1", last_name: "", password: "password").valid?
   end
+  
+  test "Should fail to create a manager with a space emojis in watiam" do
+    assert_not @manager = Manager.create(watiam: "👽🤡👀👱‍♂️🧶🤛🏻", first_name: "manager1", last_name: "one", password: "password").valid?
+  end
 end
