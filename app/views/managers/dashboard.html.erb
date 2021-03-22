@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>My Teams</th>
+      <th>Weekly Health</th>
       <th>Weekly Survey Completion Ratio</th>
     </tr>
   </thead>
@@ -11,6 +12,7 @@
     <% @manager.teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, team_health_path(team) %>  </td>
+        <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
       </tr>
     <% end %>
