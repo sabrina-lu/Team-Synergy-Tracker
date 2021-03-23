@@ -18,13 +18,6 @@ class TicketsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
-  # GET /tickets/1/edit
-  def edit
-    if (!(current_user.id == @ticket.creator_id) || current_user_is_manager)
-      redirect_to @ticket, notice: "You do not have permission to edit this ticket."
-    end
-  end
-
   # POST /tickets
   def create
     @ticket = Ticket.new(date: params[:date])
@@ -49,27 +42,6 @@ class TicketsController < ApplicationController
         else
           render :new
         end 
-  end
-    
-  # PATCH/PUT /tickets/1
-  def update
-    if @ticket.update(ticket_params || params[:ticket][:users])
-        if @ticket.users != params[:ticket][:users]
-            @ticket.users.clear()
-            users = params[:ticket][:users]
-            if users
-              users.drop(1).each do |temp_user| 
-              @users = User.find(temp_user.to_i)
-              @ticket.users << @users
-            end
-            end
-            redirect_to @ticket, notice: 'Ticket was successfully updated.'
-        else
-            redirect_to @ticket, notice: 'Ticket was successfully updated.'
-        end 
-    else
-      render :edit
-    end
   end
     
   private
