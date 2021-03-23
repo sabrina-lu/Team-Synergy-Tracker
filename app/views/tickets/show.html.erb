@@ -8,7 +8,7 @@
 </p>
 
 <p>
-  <strong>Users:</strong>
+  <strong>Members:</strong>
     <% if @ticket.creator_id == current_user.id || current_user_is_manager%>
       <% @ticket.users.each do |user| %>
         <ul>
@@ -21,9 +21,17 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong>Date Created:</strong>
   <%= @ticket.date %>
 </p>
+
+
+<p>I've experienced <%= @responses_to_words[0] %> commmunication with this person</p>
+<p>I've experienced <%= @responses_to_words[1] %> behaviour with this person</p>
+<p>I've experienced <%= @responses_to_words[2] %> teamwork with this person</p>
+<p>I've experienced <%= @responses_to_words[3] %> availability with this person</p>
+
+<p>Overall rating: <%= @responses_to_words[4] %></p>
 
 <% if @ticket.creator_id == current_user.id && !current_user_is_manager %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |

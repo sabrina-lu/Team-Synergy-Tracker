@@ -4,6 +4,20 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   def show
     ticket = Ticket.find(params[:id])
+    responses = []
+    responses = TicketResponse.where(:ticket_id => ticket.id)
+    @responses_to_words = []
+    for i in 0..responses.length - 2 
+        if responses[i].answer == 1
+            @responses_to_words << "poor"
+        elsif responses[i].answer == 2
+            @responses_to_words << "typical"
+        elsif responses[i].answer == 3
+            @responses_to_words << "great"
+        end
+    end
+    @responses_to_words << responses.last.answer
+      
     if !current_user_is_manager
       user_is_involved = ticket.users.include? current_user
       if !(user_is_involved || ticket.creator_id == current_user.id)
