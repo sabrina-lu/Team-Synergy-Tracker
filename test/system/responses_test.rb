@@ -22,7 +22,10 @@ class ResponsesTest < ApplicationSystemTestCase
   test "creating a Response" do
     visit user_dashboard_url
     click_on "Incomplete"
-
+    select "2", :from => :answer1
+    select "2", :from => :answer2
+    select "3", :from => :answer3
+    select "4", :from => :answer4
     click_on "Save"
 
     assert_text "Successfully submitted weekly survey."
