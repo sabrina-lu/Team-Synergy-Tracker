@@ -1,19 +1,6 @@
 <h1><%=@team.name%> Health Metrics</h1>
 
-<br>
-
-<div class="health-metrics-container">
-    
-    <h1 class="emojis">&#128577;</h1> <!-- sad face -->
-    <div>   
-        <progress class="bar" value=<%= @health_value %> max="100"></progress>
-        <div>
-          <p class="value"><%= @health_value %>% </p>  
-        </div>
-    </div>
-    <h1 class="emojis">&#128522;</h1> <!-- happy face -->
-    
-</div>
+<%= render template: 'teams/health' %>
 
 <h2>Members</h2>
 <%= render template: 'teams/members' %>
