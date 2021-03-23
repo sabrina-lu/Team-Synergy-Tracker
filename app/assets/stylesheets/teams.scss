@@ -24,3 +24,29 @@ th, td {
     color: red;
 }
 
+.title {
+    margin: 40px 0px -10px 0px;
+}
+
+.health-metrics-container {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 40px 0px;
+}
+
+.emojis {
+    align-self: center;
+    font-size: 90px;
+}
+
+.bar {
+    margin: 10px 10px -15px 10px;
+    height: 100px;
+    width: 300px;
+}
+
+.value {
+    text-align: center;
+    margin: 0px;
+}
+
