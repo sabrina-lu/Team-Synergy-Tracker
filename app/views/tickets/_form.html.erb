@@ -31,19 +31,19 @@
 <!-- using https://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease -->
 <p>How well does this person communicate with the team through all mediums?</p>
 <div class="field">
-    <p>I've experienced <%= form.select :answer1, [["great", 1], ["poor", -1], ["typical", 0]] %> commmunication with this person</p>
+    <p>I've experienced <%= form.select :answer1, [["great", 3], ["typical", 2], ["poor", 1]] %> commmunication with this person</p>
 </div>
 <p>Consider the manner through which this person conducts themselves within the team.</p>
 <div class="field">
-    <p>I've experienced <%= form.select :answer2, [["great", 1], ["poor", -1], ["typical", 0]] %> behaviour with this person</p>
+    <p>I've experienced <%= form.select :answer2, [["great", 3], ["typical", 2], ["poor", 1]] %> behaviour with this person</p>
 </div>
 <p>Consider this person's ability to work with and contribute to the team</p>
 <div class="field">
-    <p>I've experienced <%= form.select :answer3, [["great", 1], ["poor", -1], ["typical", 0]] %> teamwork with this person</p>
+    <p>I've experienced <%= form.select :answer3, [["great", 3], ["typical", 2], ["poor", 1]] %> teamwork with this person</p>
 </div>
 <p>How accessible and open to communication is this person?</p>
 <div class="field">
-    <p>I've experienced <%= form.select :answer4, [["good", 1], ["poor", -1], ["typical", 0]] %> availability with this person</p>
+    <p>I've experienced <%= form.select :answer4, [["great", 3], ["typical", 2], ["poor", 2]] %> availability with this person</p>
 </div>
 <div class="field">
     <p>I would rate this team member a(n) <%= form.select :answer5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %> out of 10.</p>
