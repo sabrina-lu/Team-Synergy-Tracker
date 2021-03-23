@@ -107,4 +107,44 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Back"
   end
     
+  test "editing a team name" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    fill_in "Name", with: "Team 2" 
+    click_on "Update Team"
+    assert_text "Team was successfully updated."
+    assert_text "Team 2 Health Metrics"
+  end
+    
+  test "add member to team" do 
+    user2 = User.create(watiam: "bob123", first_name: "Bob", last_name: "Patter", password: "Password")
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    click_on "Add/Remove Members"
+    click_on "Add User"
+    assert_text "Successfully added Bob to Team 1"
+  end
+  
+  test "removing member from team" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    click_on "Add/Remove Members"
+    click_on "Remove User"
+    assert_text "Successfully removed Joe from Team 1"
+  end
 end

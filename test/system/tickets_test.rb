@@ -35,26 +35,19 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Welcome " + @user.first_name + "!"
   end
     
-# TODO: Fix this test
-#  test "creating a Ticket" do
-#    user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
-#    @team.users << user2
-#    visit login_path
-#    fill_in "watiam", with: @user.watiam
-#    fill_in "password", with: @user.password
-#    click_on "Login"
-#    visit new_team_ticket_url(@team)
-       
-#    select(user2, :from => "Users")
-#    fill_in :users, with: user2
-#    fill_in "answer1", with: 1
-#    fill_in "answer2", with: -1
-#    fill_in "answer3", with: 0
-#    fill_in "answer4", with: 1
-#    fill_in "answer5", with: 10
-#    click_on "Create Ticket"
 
-#    assert_text "Ticket was successfully created"
-#  end
+  test "creating a Ticket" do
+    user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
+    @team.users << user2
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit new_team_ticket_url(@team)
+    assert_text "New Ticket"
+    select "jellen: Joe Ellen", :from => :users
+    click_on "Save"
 
+    assert_text "Ticket was successfully created"
+  end
 end
