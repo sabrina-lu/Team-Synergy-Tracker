@@ -35,7 +35,7 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Welcome " + @user.first_name + "!"
   end
     
-
+# TODO: Fix this test
 #  test "creating a Ticket" do
 #    user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
 #    @team.users << user2
@@ -57,28 +57,4 @@ class TicketsTest < ApplicationSystemTestCase
 #    assert_text "Ticket was successfully created"
 #  end
 
-#  test "updating a Ticket" do
-#    visit tickets_url
-#    click_on "Edit", match: :first
-
-#    fill_in "Category", with: @ticket.category
-#    fill_in "Date", with: @ticket.date
-#    fill_in "Description", with: @ticket.description
-#    fill_in "Priority", with: @ticket.priority
-#    fill_in "Type", with: @ticket.type
-#    fill_in "User", with: @ticket.user_id
-#    click_on "Update Ticket"
-
-#    assert_text "Ticket was successfully updated"
-#    click_on "Back"
-#  end
-
-#  test "destroying a Ticket" do
-#    visit tickets_url
-#    page.accept_confirm do
-#      click_on "Destroy", match: :first
-#    end
-
-#    assert_text "Ticket was successfully destroyed"
-#  end
 end

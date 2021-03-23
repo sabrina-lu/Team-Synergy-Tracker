@@ -81,7 +81,7 @@ class ManagersController < ApplicationController
           end
         end
     else
-      redirect_to user_tickets_path 
+      redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end
   end
 
