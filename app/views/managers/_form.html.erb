@@ -18,9 +18,9 @@
   - Source (https://api.rubyonrails.org/v6.1.2/classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button) used for radio_button method explaination
 -->
 <%= form.label :flag do %>
-  <%= form.radio_button :flag, "User", {:checked=>true} %>
+  <%= form.radio_button :flag, "User" %>
   User
-  <%= form.radio_button :flag, "Manager" %>
+  <%= form.radio_button :flag, "Manager", {:checked=>true} %>
   Manager
 <% end %>
 
