@@ -4,7 +4,8 @@ body {
   margin: 33px; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
   font-size: 13px;
   line-height: 18px; }
 
@@ -34,7 +35,7 @@ div.actions {
   margin-bottom: 10px; }
 
 #notice {
-  color: green; }
+  color: #f56476ff; }
 
 .field_with_errors {
   padding: 2px;

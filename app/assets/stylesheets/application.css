@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree
  *= require_self
  */
 
@@ -18,4 +18,55 @@
     float: right;
     color: #2a3063;
     background-color: #abaec7;
+}
+
+.logo {
+    height: 80px;
+}
+
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;    
+    color: gray;
+    font-weight: 400;
+}
+
+.row-container {
+    display: flex;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-box {
+    margin: 5px 0px;
+}
+
+input[type=submit] {
+    margin: 10px 0px;
+    width: 100px;
+    padding: 10px;
+    background-color: #97aadfff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+
+input[type=text], input[type=password] {
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    width: 230px;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(175,175,175);
+    color: white;
 }
