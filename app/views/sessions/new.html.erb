@@ -1,14 +1,18 @@
-<h1>Login</h1>
 <%# Code copied and modified from Hartl's Ruby on Rails Tutorial. %>
 
 <%= form_with(url: login_path, local: true) do |f| %>
-    <%= f.label :watiam %>
-    <%= f.text_field :watiam %>
+<div class="login_container">
+    <div class="text-box">
+        <%= f.label :watiam %>
+        <%= f.text_field :watiam %>         
+    </div>
+    <div class="text-box">
+        <%= f.label :password %>
+        <%= f.password_field :password %>   
+    </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.submit "Login" %>
+    <%= f.submit "Login", class: "login_btn"%>
+</div>
   <% end %>
 
- <p><%= link_to "Create Account", signup_path %></p>
+ <p><%= link_to "Don't have an account? Sign up here!", signup_path %></p>

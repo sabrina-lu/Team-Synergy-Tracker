@@ -11,6 +11,8 @@
     </div>
   <% end %> 
 
+<div class="column-container">
+    
 <!-- 
   - Source (https://www.rubydoc.info/github/plataformatec/simple_form/SimpleForm/FormBuilder#collection_radio_buttons-instance_method) used for understanding the Options available
   - Source (https://api.rubyonrails.org/v6.1.2/classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button) used for radio_button method explaination
@@ -27,7 +29,7 @@
 -->
 
 <div class="field">
-    <%= form.label :watiam %>
+    <%= form.label :watiam, style: 'margin-top: 10px' %>
     <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]) %>
   </div>
 <div class="field">
@@ -50,6 +52,8 @@
   </div>
 
 <div class="actions">
-    <%= form.submit "Create Account" %>
+    <%= form.submit "Create Account", style: 'width: 180px' %>
   </div>
+
+</div>    
 <% end %>

@@ -6,13 +6,17 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
   </head>
 
   <body>
-  <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %>
+    <div class="header-container">       
+       <%= image_tag("logo.png", class: "logo") %>    
+       <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %> 
+    </div>
       
     <% flash.each do |key, value| %>
-        <%= content_tag :div, value, id: "#{key}" %>
+        <%= content_tag :div, value, id: "#{key}" %>    
     <% end %>  
       
     <%= yield %>

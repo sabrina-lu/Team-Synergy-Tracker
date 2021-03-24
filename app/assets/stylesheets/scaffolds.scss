@@ -4,7 +4,8 @@ body {
   margin: 33px; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
   font-size: 13px;
   line-height: 18px; }
 
@@ -34,19 +35,21 @@ div.actions {
   margin-bottom: 10px; }
 
 #notice {
-  color: green; }
+  color: #f56476ff; }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: #f56476ff;
+  color: white;
   display: table; }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid #f56476ff;
+  border-radius: 5px;
   padding: 7px 7px 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0; }
+  margin-bottom: 20px; }
 
 #error_explanation h2 {
   text-align: left;
@@ -54,12 +57,12 @@ div.actions {
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px -7px 0;
-  background-color: #c00;
+  background-color: #f56476ff;
   color: #fff; }
 
 #error_explanation ul li {
   font-size: 12px;
-  list-style: square; }
+  list-style: disc; }
 
 label {
   display: block; }

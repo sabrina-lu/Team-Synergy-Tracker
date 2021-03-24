@@ -17,7 +17,7 @@ class TicketResponsesTest < ApplicationSystemTestCase
     select "great", :from => :answer1
     select "poor", :from => :answer2
     select "typical", :from => :answer3
-    select "good", :from => :answer4
+    select "great", :from => :answer4
     select "9", :from => :answer5
     click_on "Save"
     assert_text "Ticket was successfully created"
