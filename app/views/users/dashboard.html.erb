@@ -21,7 +21,7 @@
                  <%= link_to "Incomplete", weekly_surveys_path(team) %>
             <% end %>
         </td>
-        <td><%= @teamHealth[team] %>%</td>
+        <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %>%</td>
         <td><%= link_to "Create Ticket", new_team_ticket_path(team.id) %></td>
       </tr>
     <% end %>
