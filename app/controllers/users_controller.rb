@@ -55,7 +55,8 @@ class UsersController < ApplicationController
           end
           @users = @team.users
           @manager = @team.managers.first  #for now only one manager per team
-          @health_value = 60 #TODO: Get current week's health
+          @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
+          @health_value = @team_health_history[0][1]  
       end
   end
     
