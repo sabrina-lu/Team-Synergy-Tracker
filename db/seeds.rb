@@ -254,11 +254,11 @@ ticket10.save
 #assign ticket responses
 t = [ticket1, ticket2, ticket3, ticket4, ticket5, ticket6, ticket7, ticket8, ticket9, ticket10]
 for i in 0..9 do
-  TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 3 + rand(3))
-  TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 4 + rand(2))
-  TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 3 + rand(3))
-  TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 2 + rand(4))
-  TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 6 + rand(5))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1 + rand(4))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 1 + rand(4))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 1 + rand(4))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 1 + rand(4))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 1 + rand(11))
 end
 
 O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
