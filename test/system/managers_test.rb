@@ -8,7 +8,7 @@ class ManagersTest < ApplicationSystemTestCase
   
   test "create manager account" do 
     visit login_path
-    click_on "Create Account"
+    click_on "Don't have an account? Sign up here!"
     choose(option: 'Manager')
     fill_in "user_watiam", with: "tom123"
     fill_in "user_first_name", with: "Tom"

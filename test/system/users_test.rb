@@ -8,7 +8,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test "create user account" do 
     visit login_path
-    click_on "Create Account"
+    click_on "Don't have an account? Sign up here!"
     fill_in "user_watiam", with: "bob123"
     fill_in "user_first_name", with: "Bob"
     fill_in "user_last_name", with: "Patter"
