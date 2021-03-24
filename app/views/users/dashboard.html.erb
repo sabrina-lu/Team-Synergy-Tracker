@@ -7,6 +7,7 @@
       <th>My Teams</th>
       <th>Weekly Survey</th>
       <th>Current Weekly Health</th>
+      <th>Ticket</th>
     </tr>
   </thead>
 
@@ -21,6 +22,7 @@
             <% end %>
         </td>
         <td><%= @teamHealth[team] %>%</td>
+        <td><%= link_to "Create Ticket", new_team_ticket_path(team.id) %></td>
       </tr>
     <% end %>
   </tbody>

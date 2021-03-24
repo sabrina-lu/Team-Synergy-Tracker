@@ -25,6 +25,15 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Create A Ticket"
   end
     
+  test "can access create ticket from user dashboard" do
+    visit login_path
+    fill_in "watiam", with: @user_1.watiam
+    fill_in "password", with: @user_1.password
+    click_on "Login"
+    click_on "Create Ticket"
+    assert_text "New Ticket"
+  end
+    
   test "can discard changes and return to dashboard without completing ticket" do
     visit login_path
     fill_in "watiam", with: @user_1.watiam
