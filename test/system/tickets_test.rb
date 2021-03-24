@@ -59,12 +59,12 @@ class TicketsTest < ApplicationSystemTestCase
 
   test "creating a Ticket" do
     user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
-    @team.users << user2
+    @team_1.users << user2
     visit login_path
-    fill_in "watiam", with: @user.watiam
-    fill_in "password", with: @user.password
+    fill_in "watiam", with: @user_1.watiam
+    fill_in "password", with: @user_1.password
     click_on "Login"
-    visit new_team_ticket_url(@team)
+    visit new_team_ticket_url(@team_1)
     assert_text "New Ticket"
     select "jellen: Joe Ellen", :from => :users
     click_on "Save"
