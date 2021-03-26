@@ -16,9 +16,8 @@
     <%= form.text_field :name %>
   </div>
 
-  <%= render :template => "teams/members", :locals => { :@users => team.users } %>
-
   <% if @edit %>
+      <%= render :template => "teams/members", :locals => { :@users => team.users } %>
       <%= link_to "Add/Remove Members", edit_members_path(@team) %>
   <% end %>
 
