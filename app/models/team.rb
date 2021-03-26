@@ -59,10 +59,9 @@ class Team < ApplicationRecord
         if count_total == 0
           return 0
         else
-          count_denominator = count_total*10
-          return '%.2f' % (((count_numerator.to_f/count_denominator.to_f)*100)+((count_communication.to_f/(count_total*3).to_f)*100)
-              + ((count_behaviour.to_f/(count_total*3).to_f)*100) + ((count_teamwork.to_f/(count_total*3).to_f)*100)
-              + ((count_availability.to_f/(count_total*3).to_f)*100)) # something is not right here lol
+          count_denominator = count_total*13
+          return '%.2f' % ((count_numerator.to_f + count_communication.to_f + count_behaviour.to_f
+              + count_teamwork.to_f + count_availability.to_f)/(count_denominator.to_f)*100)
         end
     end
     
