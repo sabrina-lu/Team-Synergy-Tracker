@@ -9,10 +9,14 @@ class SurveysTest < ApplicationSystemTestCase
     Survey.create(team_id: @team_no_access.id, user_id: @user.id, date: Date.new(2021,3,13))
   end
   
-  test "visiting /surveys should fail" do
-    assert_raises(ActionController::RoutingError) do
-      visit surveys_url
-    end
+  test "visiting /surveys should send user and manager to respective dashboard" do
+    login(@user)
+    visit surveys_url
+    has_current_path? user_dashboard_path
+    visit logout_path
+    login(@manager)
+    visit surveys_url
+    has_current_path? manager_dashboard_path
   end
       
   test "should be able to visit weekly survey page" do

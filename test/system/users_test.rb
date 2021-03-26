@@ -17,4 +17,14 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Create Account"
     assert_text "Account created and logged in."
   end
+    
+  test "no logout button on login page" do 
+    visit login_path
+    assert_no_text "Logout"
+  end
+    
+  test "no logout button on create account page" do 
+    visit signup_path
+    assert_no_text "Logout"
+  end 
 end

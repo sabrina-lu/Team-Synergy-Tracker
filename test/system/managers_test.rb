@@ -34,7 +34,7 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: "blah"
     fill_in "password", with: @manager.password
     click_on "Login"
-    assert_text "Cannot log you in. Invalid email or password."
+    assert_text "Cannot log you in. Invalid Watiam or Password."
   end
     
     # login with wrong watiam
@@ -43,7 +43,7 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: "blah"
     click_on "Login"
-    assert_text "Cannot log you in. Invalid email or password."
+    assert_text "Cannot log you in. Invalid Watiam or Password."
   end
     
     # cannot access a user's dashboard as a manager
