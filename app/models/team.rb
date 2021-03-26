@@ -37,12 +37,20 @@ class Team < ApplicationRecord
     end
     
     def weekly_feedback_team_health(week, current_weekly_survey_due_date)
+        count_communication = 0
+        count_behaviour = 0
+        count_teamwork = 0
+        count_availability = 0
         count_numerator = 0
         count_total = 0
         start_date = current_weekly_survey_due_date-week*7
         tickets = Ticket.where(:date => start_date-7...start_date, :team => id)
         tickets.each do |ticket|
             if ticket.ticket_responses.exists?
+              count_communication += ticket.ticket_responses.first.answer
+              count_behaviour += ticket.ticket_responses.second.answer
+              count_teamwork += ticket.ticket_responses.third.answer
+              count_availability += ticket.ticket_responses.fourth.answer
               count_numerator += ticket.ticket_responses.fifth.answer
               count_total += 1
             end
@@ -52,7 +60,9 @@ class Team < ApplicationRecord
           return 0
         else
           count_denominator = count_total*10
-          return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
+          return '%.2f' % (((count_numerator.to_f/count_denominator.to_f)*100)+((count_communication.to_f/(count_total*3).to_f)*100)
+              + ((count_behaviour.to_f/(count_total*3).to_f)*100) + ((count_teamwork.to_f/(count_total*3).to_f)*100)
+              + ((count_availability.to_f/(count_total*3).to_f)*100)) # something is not right here lol
         end
     end
     
