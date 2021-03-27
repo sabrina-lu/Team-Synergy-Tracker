@@ -119,6 +119,7 @@ class TeamTest < ActiveSupport::TestCase
     TicketResponse.create(ticket_id: @t_5.id, question_number: 5, answer: 9)       
       
     #should get the current week's weekly feedack average  
+      # need to update this to get the sum weekly feedback calculation
     assert_equal '%.2f' % (70.00), @team_1.weekly_feedback_team_health(0, current_date)
     assert_equal '%.2f' % (85.00), @team_2.weekly_feedback_team_health(0, current_date)
       
