@@ -56,6 +56,9 @@ class TicketsController < ApplicationController
         end
       else
           #ADD FLASH MESSAGE
+          flash.now[:alert] = "Must add user"
+#           render :new
+          redirect_to new_team_ticket_path(@ticket)
       end
   end
     
