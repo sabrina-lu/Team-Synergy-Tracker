@@ -82,7 +82,8 @@ class Team < ApplicationRecord
       total_weeks = Survey.where(team_id: id).select('distinct(date)').count
       @team_health_history = []
       for i in 0..total_weeks - 1 do 
-        @team_health_history << [total_weeks-i, self.get_total_team_health(i, current_weekly_survey_due_date)]
+        due_date = current_weekly_survey_due_date - 7*i
+        @team_health_history << ["#{due_date-7} - #{due_date-1}", self.get_total_team_health(i, current_weekly_survey_due_date)]
       end  
       return @team_health_history
     end

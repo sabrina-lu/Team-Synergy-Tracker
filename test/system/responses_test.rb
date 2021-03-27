@@ -11,12 +11,20 @@ class ResponsesTest < ApplicationSystemTestCase
     
   end
 
-  # Should not be accessable
-  # test modified from https://stackoverflow.com/a/4804354/12816127
-  test "visiting the index" do
-    assert_raises(ActionController::RoutingError) do
-      visit responses_url
-    end
+  test "visiting /responses should send user and manager to respective dashboard" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit responses_url
+    has_current_path? user_dashboard_path
+    visit logout_path
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit responses_url
+    has_current_path? manager_dashboard_path
   end
 
   test "creating a Response" do
@@ -29,17 +37,5 @@ class ResponsesTest < ApplicationSystemTestCase
     click_on "Save"
 
     assert_text "Successfully submitted weekly survey."
-  end
-
-  test "updating a Response" do
-    assert_raises(ActionController::RoutingError) do
-      visit responses_url
-    end
-  end
-
-  test "destroying a Response" do
-    assert_raises(ActionController::RoutingError) do
-      visit responses_url
-    end
   end
 end
