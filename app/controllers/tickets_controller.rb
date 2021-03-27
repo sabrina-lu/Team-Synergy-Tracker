@@ -55,25 +55,7 @@ class TicketsController < ApplicationController
           render :new
         end
       else
-#            render "devise/shared/error_messages" 
-          #ADD FLASH MESSAGE
-#           set_flash_message! :notice, :deactivation_notice
-#           flash.alert = "gadmna"
-#           new_ticket_path(@ticket)
-#           flash.now[:status_msg] = form_status_msg
-#           render :new
-#           redirect_to new_team_ticket_path(@ticket)
-#                     flash[:notice] = "Must add user"
-            redirect_to new_team_ticket_path(@ticket.id), notice: 'You Must Add a User to this Ticket'
-#           flash[:error_item] = ["Must add pre user",new_ticket_path(@ticket)]
-#             flash[:notice_item] = "Must add user"
-#           flash.notice = "motherflc"
-#           new_ticket_path(@ticket)
-#                     flash.notice = "motherflc"
-
-#                       flash[:notice_item] = "Must add user"
-# toastr.error('I do not think that word means what you think it means.', 'Inconceivable!')
-#           flash[:notice] = "Must add user"
+            redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
       end
   end
     
