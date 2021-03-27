@@ -42,26 +42,32 @@ class Team < ApplicationRecord
         count_teamwork = 0
         count_availability = 0
         count_numerator = 0
+        weekly_feedback = [count_communication, count_behaviour, count_teamwork, count_availability, count_numerator]
         count_total = 0
         start_date = current_weekly_survey_due_date-week*7
         tickets = Ticket.where(:date => start_date-7...start_date, :team => id)
         tickets.each do |ticket|
             if ticket.ticket_responses.exists?
-              count_communication += ticket.ticket_responses.first.answer
-              count_behaviour += ticket.ticket_responses.second.answer
-              count_teamwork += ticket.ticket_responses.third.answer
-              count_availability += ticket.ticket_responses.fourth.answer
-              count_numerator += ticket.ticket_responses.fifth.answer
+                # break up each ticket response
+              weekly_feedback[0] += ticket.ticket_responses.first.answer
+              weekly_feedback[1] += ticket.ticket_responses.second.answer
+              weekly_feedback[2] += ticket.ticket_responses.third.answer
+              weekly_feedback[3] += ticket.ticket_responses.fourth.answer
+              weekly_feedback[4] += ticket.ticket_responses.fifth.answer
               count_total += 1
             end
         end
-        
         if count_total == 0
           return 0
         else
-          count_denominator = count_total*13
-          return '%.2f' % ((count_numerator.to_f + count_communication.to_f + count_behaviour.to_f
-              + count_teamwork.to_f + count_availability.to_f)/(count_denominator.to_f)*100)
+          count_denominator = count_total*10
+          for i in 0..weekly_feedback.length-2
+              # calculate average in category responses and give weight of 10%
+              weekly_feedback[i] = (weekly_feedback[i].to_f/count_total*3)*0.1
+          end
+            # calculate average in rating responses and give weight of 60%
+            weekly_feedback[4] = (weekly_feedback[4].to_f/count_total*10)*0.6
+          return weekly_feedback
         end
     end
     
@@ -73,7 +79,11 @@ class Team < ApplicationRecord
         elsif (weekly_feedback_team_health == 0)
             return weekly_survey_team_health
         else 
-            return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(weekly_feedback_team_health.to_f))
+            sum_weekly_feedback = 0.00
+            for i in 0..weekly_feedback_team_health.length-1
+                sum_weekly_feedback += weekly_feedback_team_health[i]
+            end
+            return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(sum_weekly_feedback.to_f))
         end
     end
     
