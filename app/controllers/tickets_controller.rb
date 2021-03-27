@@ -30,21 +30,19 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     @team = Team.find(params[:id])
+    @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /tickets
   def create
     @ticket = Ticket.new(date: params[:date])
     @ticket.creator = User.find(params[:creator_id])
-    @ticket.team = Team.find_by(:id => params[:id]) #fix this
+    @ticket.team = Team.find_by(:id => params[:id]) 
+      if params[:users].present?
         if @ticket.save
-          users = params[:users]
-            if users
-              users.drop(1).each do |temp_user| 
-              @users = User.find(temp_user.to_i)
-              @ticket.users << @users
-            end
-          end
+            @users = User.find(params[:users])
+            @ticket.users << @users
+            
             # add responses to the ticket
             TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
             TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
@@ -55,7 +53,10 @@ class TicketsController < ApplicationController
             redirect_to user_dashboard_url, notice: 'Ticket was successfully created.'
         else
           render :new
-        end 
+        end
+      else
+          #ADD FLASH MESSAGE
+      end
   end
     
   private

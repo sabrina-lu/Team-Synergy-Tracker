@@ -6,6 +6,16 @@ class Team < ApplicationRecord
 
     validates :name, length: {in: 1..50}, presence: true, allow_blank: false
     
+    def get_users_with_tickets(current_user, current_weekly_survey_due_date)
+      users_with_tickets = []
+      user_tickets = tickets.where(creator_id: current_user.id, :date => current_weekly_survey_due_date-7...current_weekly_survey_due_date)
+      user_tickets.each do |ticket|
+        users_with_tickets << ticket.users.first
+      end
+      users_with_tickets << current_user
+      return users_with_tickets       
+    end
+    
     def get_survey_completion_ratio(current_weekly_survey_due_date)
        completed_surveys = 0
        users.each do |user|
