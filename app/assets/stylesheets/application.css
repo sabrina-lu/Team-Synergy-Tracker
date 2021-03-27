@@ -14,6 +14,21 @@
  *= require_self
  */
 
+a:link, a:visited {
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+a:hover, a:active {
+    background-color: white;
+    text-decoration: underline;
+    color: black;
+}
+
 .logout_button {
     float: right;
     color: #2a3063;
