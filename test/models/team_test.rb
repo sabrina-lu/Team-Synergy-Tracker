@@ -250,6 +250,6 @@ class TeamTest < ActiveSupport::TestCase
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 7) 
     
-    assert_equal [[3, '%.2f' % (75.00)], [2, '%.2f' % (54.00)], [1, '%.2f' % (44.00)]], @team_1.get_health_history(current_date)
+    assert_equal [["2021-03-13 - 2021-03-19", '%.2f' % (75.00)], ["2021-03-06 - 2021-03-12", '%.2f' % (54.00)], ["2021-02-27 - 2021-03-05", '%.2f' % (44.00)]], @team_1.get_health_history(current_date)
   end
 end
