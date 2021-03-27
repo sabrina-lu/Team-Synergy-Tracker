@@ -1,5 +1,25 @@
 <h1>Create Account</h1>
 
+
+<%= form_with url: create_team_ticket_path(@team), method: :post do |form| %>
+  <% if ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+        <% ticket.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p id="notice"><%= notice %></p>
+
 <%= render 'form', user: @user %>
+
+<% if flash[:notice] %>
+  <p class="alert"><%= flash[:notice] %></p>
+<% end %>
 
 <%= link_to 'Already have an account? Sign in here!', login_path %>

@@ -11,6 +11,12 @@
     </div>
   <% end %> 
 
+<% if flash[:notice] %>
+  <p class="alert"><%= flash[:notice] %></p>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
 <div class="column-container">
     
 <!-- 
