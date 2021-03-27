@@ -1,52 +1,21 @@
-Z = User.new(watiam: "a266gapha", first_name: "Alpha", last_name: "Hulk", password: "bard333$")
-A = User.new(watiam: "a266alpha", first_name: "Gamma", last_name: "Man", password: "Joy0#000")
-B = User.new(watiam: "a2beta234", first_name: "Beta", last_name: "America", password: "Toy2111")
-C = User.new(watiam: "btyui1823", first_name: "Epsilon", last_name: "Ragnarok", password: "Toy2111")
-D = User.new(watiam: "b1234h56j", first_name: "Gemma", last_name: "Hawkeye", password: "Kl33n3x")
-E = User.new(watiam: "gema3hh3n", first_name: "Lambda", last_name: "Boy", password: "Cushi$$on")
-F = User.new(watiam: "g67tGHEHA", first_name: "Equal", last_name: "Hulk", password: "Agenda")
-generic_user = User.new(watiam: "userwat123", first_name: "Awesome", last_name: "Student", password: "Password")
+Z = User.new(watiam: "student7", first_name: "Alpha", last_name: "Hulk", password: "password")
+A = User.new(watiam: "student1", first_name: "Gamma", last_name: "Man", password: "password")
+B = User.new(watiam: "student2", first_name: "Beta", last_name: "America", password: "password")
+C = User.new(watiam: "student3", first_name: "Epsilon", last_name: "Ragnarok", password: "password")
+D = User.new(watiam: "student4", first_name: "Gemma", last_name: "Hawkeye", password: "password")
+E = User.new(watiam: "student5", first_name: "Lambda", last_name: "Boy", password: "password")
+F = User.new(watiam: "student6", first_name: "Equal", last_name: "Hulk", password: "password")
+generic_user = User.new(watiam: "userwat123", first_name: "Awesome", last_name: "Student", password: "password")
 
-
-# Z = User.new(user_id: 20567890, watiam: "a266gapha", first_name: "Loki", last_name: "Hulk", password: "Bard")
-# Z.save
-# A = User.new(user_id: 20777777, watiam: "a266alpha", first_name: "I r o n", last_name: "M a n", password: "Bard")
-# A.save
-# B = User.new(user_id: 20766666, watiam: "a2beta234", first_name: "Capta1n", last_name: "Amer1ca", password: "T0oy")
-# B.save
-# C = User.new(user_id: 20755555, watiam: "btyui1823", first_name: "Thor A.", last_name: "J. Ragnarok", password: "Juice")
-# C.save
-# D = User.new(user_id: 20744444, watiam: "b1234h56j", first_name: "Loki", last_name: "Haw.keye", password: "Kl33n3x")
-# D.save
-# E = User.new(user_id: 20733333, watiam: "gema3hh3n", first_name: "Spi_der", last_name: "B_oy", password: "Cup")
-# E.save
-# F = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Nic.k", last_name: "Hulk", password: "Agenda")
-# F.save
-# Y = User.new(user_id: 20722222, watiam: "g67tGHEHA", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "Agenda")
-# Y.save
-
-
-
-G = Manager.new(watiam: "h13ghj567", first_name: "Do", last_name: "Panther", password: "P1ckle")
-H = Manager.new(watiam: "12er57yh", first_name: "Re", last_name: "Widow", password: "Smartie")
-I = Manager.new(watiam: "h8fgh5thy", first_name: "Mi", last_name: "Banner", password: "Chi34cken")
-J = Manager.new(watiam: "h82ghj6t5", first_name: "Fa", last_name: "AntMan", password: "R00ster")
-K = Manager.new(watiam: "h8ub34rfj", first_name: "So", last_name: "Fury", password: "3456yh")
-L = Manager.new(watiam: "h098vhj4t", first_name: "La", last_name: "Fury", password: "B3333an")
-M = Manager.new(watiam: "hoiugf865", first_name: "Doe", last_name: "Hulk", password: "P1zzaHut")
-N = Manager.new(watiam: "hRT456K7I", first_name: "Ti", last_name: "Peggy", password: "diSCO0")
-generic_manager = Manager.new(watiam: "managwat", first_name: "Awesome", last_name: "Manager", password: "Password")
-
-# G = Manager.new(watiam: "h13ghj567", first_name: "Black", last_name: "Panther", password: "P1ckle")
-# H = Manager.new(watiam: "h12er57yh", first_name: "Black", last_name: "Wi_dow", password: "Smartie")
-# I = Manager.new(watiam: "h8fgh5thy", first_name: "Bruc3", last_name: "Bann3r", password: "Chic34ken")
-# J = Manager.new(watiam: "h82ghj6t5", first_name: "Dr. Strange", last_name: "Ant. Man", password: "R00ster")
-# K = Manager.new(watiam: "h8ub34rfj", first_name: "Ni_ck", last_name: "Fur_y", password: "345juhyh")
-# L = Manager.new(watiam: "h098vhj4t", first_name: "Lo.ki", last_name: "Fur_y", password: "Abajuh3")
-# M = Manager.new(watiam: "hoiugf865", first_name: "L o k i", last_name: "Hu.lk", password: "P1111zza")
-# N = Manager.new(watiam: "hRT456K7I", first_name: "Black.", last_name: "P e g g y", password: "d1SCO000")
-# X = Manager.new(watiam: "hRT456K7I", first_name: "Jackkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", last_name: "Frosttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", password: "diSCO")
-# X.save
+G = Manager.new(watiam: "manager1", first_name: "Do", last_name: "Panther", password: "password")
+H = Manager.new(watiam: "manager2", first_name: "Re", last_name: "Widow", password: "password")
+I = Manager.new(watiam: "manager3", first_name: "Mi", last_name: "Banner", password: "password")
+J = Manager.new(watiam: "manager4", first_name: "Fa", last_name: "AntMan", password: "password")
+K = Manager.new(watiam: "manager5", first_name: "So", last_name: "Fury", password: "password")
+L = Manager.new(watiam: "manager6", first_name: "La", last_name: "Fury", password: "password")
+M = Manager.new(watiam: "manager7", first_name: "Doe", last_name: "Hulk", password: "password")
+N = Manager.new(watiam: "manager8", first_name: "Ti", last_name: "Peggy", password: "password")
+generic_manager = Manager.new(watiam: "managwat", first_name: "Awesome", last_name: "Manager", password: "password")
 
 t1 = Team.new(name: "Team 1")
 t2 = Team.new(name: "Team 2")
@@ -88,11 +57,6 @@ t11.users << [generic_user]
 t12.users << [generic_user]
 
 t13.users << [generic_user]
-
-#comment out team 2 for no members
-#person Z is not a part of any team
-# person Y's name is way too long
-
 
 G.teams << [t1, t2]
 
@@ -296,20 +260,25 @@ W.save
 #X.save
 ZA.save
 
-# For string responses:
-# O = Response.new(survey_id: 1, question_number: 1, response: "No")
-# O.save
-# P = Response.new(survey_id: 2, question_number: 2, response: "NO")
-# P.save
-# Q = Response.new(survey_id: 3, question_number: 3, response: "1")
-# Q.save
-# R = Response.new(survey_id: 4, question_number: 4, response: "Yes")
-# R.save
-# S = Response.new(survey_id: 5, question_number: 5, response: "YES")
-# S.save
-# T = Response.new(survey_id: 6, question_number: 6, response: "2")
-# T.save
-# U = Response.new(survey_id: 7, question_number: 7, response: "")
-# U.save
 
-
+# create surveys and tickets for last week, two weeks ago and three weeks ago
+users = [A,B,C,D,E,F,generic_user]
+for i in 0..users.length-1 do
+  users[i].teams.each do |team|
+    for j in 1..3 do
+      s = Survey.create(team_id: team.id, user_id: users[i].id, date: survey_due_date - 7*j)
+      for x in 1..4 do 
+        Response.create(survey_id: s.id, question_number: x, answer: rand(1..5))
+      end
+      team_users = team.users - [users[0]]
+      if (team_users != []) 
+        t = Ticket.create(team_id: team.id, creator_id: users[i].id, date: survey_due_date - 8*j)
+        t.users << team_users.sample
+        for y in 1..4 do 
+          TicketResponse.create(ticket_id: t.id, question_number: y, answer: rand(1..3))
+        end
+        TicketResponse.create(ticket_id: t.id, question_number: 5, answer: rand(1..10))
+      end
+    end
+  end
+end
