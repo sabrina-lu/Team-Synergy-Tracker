@@ -89,9 +89,6 @@ class Team < ApplicationRecord
       return @team_health_history
     end
     
-    # privately calculate the total feedback health
-    private
-    
     def sum_weekly_feedback_team_health(feedbacks)
         if feedbacks == []
             return 0
@@ -100,15 +97,15 @@ class Team < ApplicationRecord
             # exclude the total count and rating
             for i in 0..feedbacks.length-3
                 # calculate average in category responses and give weight of 10%
-                feedbacks[i] = (feedbacks[i].to_f/feedbacks[5].to_f*3)*0.1
+                feedbacks[i] = (feedbacks[i].to_f/(feedbacks[5].to_f*3))*0.1
             end
             # calculate average in rating responses and give weight of 60%
-            feedbacks[4] = (feedbacks[4].to_f/feedbacks[5].to_f*10)*0.6
+            feedbacks[4] = (feedbacks[4].to_f/(feedbacks[5].to_f*10)*0.6)
             sum_weekly_feedback = 0.00
-            for i in 0..feedbacks.length-1
+            for i in 0..feedbacks.length-2
                 sum_weekly_feedback += feedbacks[i]
             end
-            return sum_weekly_feedback
+            return '%.2f' % (sum_weekly_feedback*100.00)
         end
     end
 end

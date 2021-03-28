@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(date: params[:date])
     @ticket.creator = User.find(params[:creator_id])
-    @ticket.team = Team.find_by(:id => params[:id]) #fix this
+    @ticket.team = Team.find_by(:id => params[:id])
         if @ticket.save
           users = params[:users]
             if users
