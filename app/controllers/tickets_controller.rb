@@ -42,8 +42,7 @@ class TicketsController < ApplicationController
         @users = User.find(params[:users])
         @ticket.users << @users
       rescue
-#           redirect_to new_ticket_path(@ticket, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
-          redirect_to new_team_ticket_path(@ticket.team,ticket_params), notice: "You Must Add a User to this Ticket"
+          redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
       else
         if @ticket.save            
             # add responses to the ticket
