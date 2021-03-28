@@ -107,4 +107,13 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "View All Tickets"
     assert_text "Rating"
   end
+  
+  test "can view popup instructions" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
 end
