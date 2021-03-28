@@ -9,3 +9,18 @@ Test 2 (Manager can generate weekly surveys)
     1. sign in as a manager
     2. click on "generate next week's surveys" - should succesfully generate a survey for every one of manager's teams
     3. "generate next week's surveys" should be disabled until next week
+    
+add survey completion ratio #111
+    1. login as Doe Hulk (watiam: hoiugf865, password: P1zzaHut)
+    2. you should see 0/1 students have completed
+    3. login as Beta America (watiam: a2beta234, password: Toy2111)
+    4. click on the Incomplete survey beside Team 8 and submit a survey
+    5. login as Doe Hulk (watiam: hoiugf865, password: P1zzaHut)
+    6. you should see 1/1 students have completed
+    
+fixed user can submit multiple surveys bug #115
+    1. Login to any user
+    2. Click on a team with a completed survey
+    3. Then click on Weekly Surveys
+    4. Should be redirected to the user dashboard with an error message: "You have already submitted this week's survey."
+    

@@ -1,23 +1,65 @@
-Test 1 (List of teams manager created)
+Test (List of teams manager created)
     1. login as a manager
     2. should see a list of teams that the manager created
     3. team names should be clickable links that take user to team health page for that team
-
-Test 2 (weekly survey)
+    
+Test (weekly survey)
     1. login as a manager
     2. should see a list of questions that is in the weekly survey
     3. should see the weekly survey due date
     
-Test 3 (general navigation)
+Test (general navigation)
     1. login as a manager
     2. clicking on "New Team" should take user to team creation page
     3. clicking on "View All Tickets" should take user to a list of tickets for all the manager's teams
     4. clicking on "Logout" should log the user out
  
-Test 4 (UI)
+Test (UI)
     1. login as a manager
     2. top of page should display "Welcome [user's first name]!"
-
-Test 5 (Instructions)
-    1. login as a manager
-    2. Clicking on the the "Confused?🤔 Get information here!" link should create a popup with general help instructions
+ 
+Add team health % to manager dashboard #121
+    *Percentages display properly*
+        1. Login as a manager - Watiam: `h13ghj567`, Password: `P1ckle`
+        2. Verify that the Weekly Health percentages are displayed properly.
+        
+    *Weekly health values update properly in the dashboard*
+        1. Login as a manager - Watiam: `h13ghj567`, Password: `P1ckle`
+        2. Verify that the Weekly Health percentages are displayed properly.
+        3. Logout of the manager account
+        4. Login as a user - watiam: `a266alpha`, password: `Joy0#000`
+        5. Click on the "incomplete" link for Team 2
+        6. Complete the survey with as follows: 4, 3, 4, 3, 1
+        7. Click the "Save" button
+        8. Logout of the user account
+        9. Login as a manager - Watiam: `h13ghj567`, Password: `P1ckle`
+        10. Verify the Weekly Health for Team 2 was updated
+        
+Test: Fallback route #130
+    1. Login to any manager
+    2. type a bunch of random letters into the url
+    3. Ensure it takes you to the manager dashboard
+    
+change health history to show week interval #137
+    1. login to any manager 
+    2. click on a team to view health
+    3. make sure it shows the correct interval for team history 
+    
+add ticket and survey data for previous weeks #138
+    1. In the terminal run `rails db:reset`
+    2. login as a manager
+    3. click on a team, you should see four rows for the team health (the numbers will not be the same)
+    
+Add instructions to managers pages #142
+    **Testing dashboard popup instructions**
+        1. Login as a manager: WatIAm: `manager1`, Password: `password`
+        2. Click the "Confused?🤔 Get information here!" link
+        3. Verify that the popup appears on the following pages:
+                - Manager dashboard: /manager_dashboard#help
+                - Viewing tickets: /manager_tickets#help
+                - Team health dash: /team_health/1/metrics#help
+                - Edit team: /teams/1/edit#help
+                - Adding/removing new members: /teams/1/members#help
+                - Adding users to new team: /teams/15/members#help
+        4. Verify that the "close" button works 
+        

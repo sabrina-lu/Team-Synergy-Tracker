@@ -26,3 +26,96 @@ Test 4 (removing a user without response history)
     4. click on "add/remove members"
     2. click on "remove user" to remove any user
     3. should successfully remove user
+    
+add survey indicator for manager team health page #103
+    1. login as Re Widow (watiam: 12er57yh, password: Smartie)
+    2. click on Team 3 and you should see this
+    3. login as Beta America (watiam: a2beta234, password: Toy2111)
+    4. click on the Incomplete survey beside Team 3 and submit a survey
+    5. login as Re Widow (watiam: 12er57yh, password: Smartie)
+    6. click on Team 3 and you should see this (Beta America at the bottom of the list)
+    
+Fix Updating Team Without a Name Bug #107
+    For Managers:
+        1 - Log in to the app using credentials watiam: "h13ghj567" and password: "P1ckle"
+        2 - Select one of the teams listed under 'My Teams' (for example Team 1)
+        3 - Click the 'Edit Team' link at the bottom of the page 
+        4 - Delete the value entered for the Name (for example, delete 'Team 1' so that the name is blank)
+        5 - Click 'Update Team'
+        6 - Verify the page gives error
+        7 - Enter a value for Name now (for example 'Team Test')
+        8 - Click 'Update Team'
+        9 - Verify the team name has been updated correctly
+        10 - Click the 'Edit Team' link at the bottom of the page 
+        11 - Delete the value entered for the Name (for example, delete 'Team 1' so that the name is blank)
+        12 - Click 'Update Team'
+        13 - Click Add/Remove Users
+        14 - Verify the link redirects you to the editing members page and that the name of the team reverts to the original, non-empty name
+        15 - Click the 'Back' link at the bottom of the page
+        16 - Verify the name has been repopulated with the original name
+
+    For Users (after the manager test):
+        1 - Log in to the app using credentials watiam: "a266gapha" and password: "bard333$"
+        2 - Verify the team name has been updated to match the new Team name and is neither null nor the original team name (according to the example, ensure the team's name is Team Test and is not Team 1, blank, or anything else).
+        
+Fix Empty Name When Creating Team Bug #108
+    For Managers:
+        1 - Log in to the app using credentials watiam: "h13ghj567" and password: "P1ckle"
+        2 - Click the 'New Team' link at the bottom of the page and verify the page has Continue to Adding Members button 
+        3 - Click 'Continue to Adding Members' without adding a value to the Name
+        4 - Verify the page looks gives an error
+        5 - Enter a value for Name now (for example 'Team Test')
+        6 - Click 'Continue to Adding Members'
+        7 - Verify the team has been successfully created and the name has been added correctly
+        8 - Click the 'Back' link
+        9 - Verify the button says Update Team
+        10 - Delete the value entered for the Name (for example, delete 'Team Test' so that the name is blank)
+        11 - Click 'Update Team'
+        12 - Verify the page gives an error
+        13 - Enter a value for Name now (for example 'Team 1')
+        14 - Click 'Update Team'
+        15 - Verify the team has been successfully updated and the name has been updated correctly
+
+Fix Invalid Team Name Entry When Editing Bug #114
+    For Managers:
+      1 - Log in to the app using credentials watiam: "h13ghj567" and password: "P1ckle"
+      2 - Select one of the teams listed under 'My Teams' (for example Team 1)
+      3 - Click the 'Edit Team' link at the bottom of the page
+      4 - Delete the value entered for the Name (for example, delete 'Team 1' so that the name is blank)
+      5 - Click 'Update Team'
+      6 - Verify that you get a Name is too short, name cant be blank error and that at the top it says Editing Team Team 1
+      7 - Now enter a value for Name which exceeds 50 characters (for example 'tttttttttttttttttttttttttttttttttttttttttttttttttttt')
+      8 - Click 'Update Team'
+      9 - Verify you get a Name is too long error and that at the top it says Editing Team Team 1
+      10 - Now enter a value for Name which is 50 characters (for example 'ssssssssssssssssssssssssssssssssssssssssssssssssss')
+      11 - Click 'Update Team'
+      12 - Verify the team name has been updated 
+    For Users (after the manager test):
+      1 - Log in to the app using credentials watiam: "a266gapha" and password: "bard333$"
+      2 - Verify the team name has been updated to match the new Team name and is neither null nor the original team name (according to the example, ensure the team's name is ssssssssssssssssssssssssssssssssssssssssssssssssss and is not Team 1, blank, tttttttttttttttttttttttttttttttttttttttttttttttttttt, or anything else).
+
+add team health history #118
+    1. Log in as a manager
+    2. Team Health History table should be there
+    
+fix css continue to adding members button bug #133
+    1. login as any manager
+    2. navigate to new team page
+    3. make sure "continue to adding members" text is not cut off
+    
+fix create team table bug #134
+    1. login as any manager
+    2. navigate to new team page
+    3. Verify there is no table visible.
+    
+change edit team submit button text #139
+    1. Login as any manager
+    2. Click "edit team" for any team
+    3. Go to edit members
+    4. Ensure link to go back displays "Save & Go Back"
+    
+fix create team no members bug #143
+    1. login as any manager
+    2. create a team with no members
+    3. the team should be successfully created
+    
