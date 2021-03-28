@@ -110,7 +110,7 @@ input[type=submit]:hover {
     color: rgb(20, 20, 90);
     text-decoration: none;
     text-decoration: overline;
-    font-size: 20px;
+    font-size: 18px;
 }
 .user_team_links a:hover{
     background-color: rgb(175,175,175);
@@ -120,5 +120,5 @@ input[type=submit]:hover {
 .user_team_links {
     color: rgb(20, 20, 90);
     text-decoration: overline;
-    font-size: 20px;
+    font-size: 18px;
 }
