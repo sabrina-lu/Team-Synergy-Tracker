@@ -20,8 +20,4 @@ class TicketTest < ActiveSupport::TestCase
     @ticket.users << [@user_1]
     assert @ticket.users = [@user_1]
   end
-    
-  test "Should fail to create a ticket with no users" do
-    assert_not @ticket = Ticket.create(creator_id: @user_4.id, date: "12/02/2020", team_id: @team.id).valid?
-  end
 end

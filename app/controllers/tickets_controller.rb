@@ -39,12 +39,12 @@ class TicketsController < ApplicationController
         @ticket = Ticket.new(date: params[:date])
         @ticket.creator = User.find(params[:creator_id])
         @ticket.team = Team.find_by(:id => params[:id])
-        @users = User.find(params[:users])
-        @ticket.users << @users
-      rescue
+        if !params[:users]
           redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
-      else
-        if @ticket.save            
+        else
+          @users = User.find(params[:users])
+          @ticket.users << @users
+          if @ticket.save            
             # add responses to the ticket
             TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
             TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
@@ -55,6 +55,7 @@ class TicketsController < ApplicationController
             redirect_to user_dashboard_url, notice: 'Ticket was successfully created.'
         else
           render :new
+        end
         end
       end
   end
