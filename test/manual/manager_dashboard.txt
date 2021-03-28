@@ -17,4 +17,7 @@ Test 3 (general navigation)
 Test 4 (UI)
     1. login as a manager
     2. top of page should display "Welcome [user's first name]!"
-    
+
+Test 5 (Instructions)
+    1. login as a manager
+    2. Clicking on the the "Confused?🤔 Get information here!" link should create a popup with general help instructions

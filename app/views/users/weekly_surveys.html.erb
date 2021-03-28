@@ -20,3 +20,31 @@
 <div class="user_team_links">
 <%= link_to "Back to #{@team.name}", user_team_list_path(id: @team.id) %>
 </div>
+
+<br><br>
+<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+
+<div id="help" class="overlay">
+  <div class="popup">
+    <h3>Weekly Surveys:</h3>
+    <p style="margin-left:10px; margin-right:5%;">
+        Time to get in touch with your emotions and feelings about the week!
+        <br>
+        <br>
+        For each question, try to think about the ratings in the following context:
+        <br>
+    </p>
+    <p style="margin-left:30px">
+        1: 😭 - Absolutely terrible
+        <br>
+        2: 😟 - It could be better
+        <br>
+        3: 😐 - Meh, could be better could be worse.
+        <br>
+        4: 🙂 - Hey, this is pretty good
+        <br>
+        5: 🥳 - Loved it; 10/10 would do that again
+    </p>
+    <a href="#">close</a>
+  </div>
+</div>

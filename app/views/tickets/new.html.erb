@@ -1,11 +1,58 @@
 <h1>New Ticket</h1>
 
-<p>Please select a team member to continue</p>
 
 <%= render 'form', ticket: @ticket %>
 
 <div class="user_team_links">
 <%= link_to 'Go Back and Discard Changes', user_dashboard_path %>
+</div>
+
+<br><br>
+<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+
+<div id="help" class="overlay">
+  <div class="popup">
+    <h3>Tickets:</h3>
+    <p style="margin-left:10px; margin-right:5%;">
+        Tickets are where you can highlight any highlights or indifferences you have with teammates.
+        <br>
+        Every week you will only be able to submit one ticket per user, but you can also group users in a single ticket.
+    </p>
+    <h3>What if I only want to focus on a single trait or question?</h3>
+    <p style="margin-left:10px; margin-right:5%;">
+        No problem!😄 For every ticket you can select the "typical" option from the drop-down and this essentially is treated as neutral.
+        <br>
+        This allows you to focus solely on the topic or question you want to highlight. So have at it!
+    </p>
+    <h3>What does the overall rating mean?</h3>
+     <p style="margin-left:10px; margin-right:5%;">
+       Overall ratings are exactly what they sound like.
+       <br>
+       You can think of the ratings as follows:
+     </p>
+    <p style="margin-left:30px; margin-right:5%;">
+      10: Best teammate ever. I would literally want them to be a part of any team I'm on. Superstar!🤩🤩
+      <br>
+      9: Great teammate that is a valuable addition to the team.
+      <br>
+      8: Solid overall teammate. No complaints.
+      <br>
+      7: They are good. A few things they can improve on.
+      <br>
+      6: This teammate was okay. However, given the choice, I would prefer not to have them in my team in the future.
+      <br>
+      5: This teammate has done the bare minimum to contribute to the team. I would not like to be teammates with this member in the future. 😑
+      <br>
+      4: This teammate struggled to work as a team and had some issues regarding reliability as a teammate. I don't want to work with them in the future.
+      <br>
+      3: There are many issues with this teammate and I felt they were lacking in many aspects across the board.
+      <br>
+      2: This teammate had major glaring issues with their teamwork and contributions. Sometimes it felt like we didn't even have a teammate.
+      <br>
+      1: This teammates is the worst teammate I have ever had😡. I never want to work with them again.
+    </p>
+    <a href="#">close</a>
+  </div>
 </div>
 
 

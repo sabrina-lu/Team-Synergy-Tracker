@@ -12,7 +12,7 @@
     <% if @ticket.creator_id == current_user.id || current_user_is_manager%>
       <% @ticket.users.each do |user| %>
         <ul>
-          <li><%= "#{user.watiam}: #{user.first_name} #{user.last_name}" %></li>
+          <li><%= user.full_name_with_watiam %></li>
         </ul>
       <% end %>
     <% else %>

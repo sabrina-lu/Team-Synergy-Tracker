@@ -98,48 +98,49 @@ class TeamTest < ActiveSupport::TestCase
     setup_tickets
     current_date = Date.new(2021,3,20)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 8)       
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 6)     
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_3.id, question_number: 5, answer: 7)  
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_4.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_4.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_4.id, question_number: 5, answer: 10)  
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_5.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_5.id, question_number: i, answer: 3)
     end  
     TicketResponse.create(ticket_id: @t_5.id, question_number: 5, answer: 9)       
       
     #should get the current week's weekly feedack average  
-    assert_equal '%.2f' % (70.00), @team_1.weekly_feedback_team_health(0, current_date)
-    assert_equal '%.2f' % (85.00), @team_2.weekly_feedback_team_health(0, current_date)
+      # need to update this to get the sum weekly feedback calculation
+    assert_equal '%.2f' % (82.00), @team_1.sum_weekly_feedback_team_health(@team_1.weekly_feedback_team_health(0, current_date))
+    assert_equal '%.2f' % (91.00), @team_2.sum_weekly_feedback_team_health(@team_2.weekly_feedback_team_health(0, current_date))
       
     @t_1 = Ticket.create(creator_id: @user_1.id, date:"4/03/2021", team_id: @team_1.id)
     @t_2 = Ticket.create(creator_id: @user_1.id, date:"5/03/2021", team_id: @team_1.id)
     @t_3 = Ticket.create(creator_id: @user_1.id, date:"6/03/2021", team_id: @team_1.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 9)       
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 3)     
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_3.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_3.id, question_number: 5, answer: 7) 
       
     #should get two weeks ago weekly feedack average  
-    assert_equal '%.2f' % (60.00), @team_1.weekly_feedback_team_health(2, current_date)
+    assert_equal '%.2f' % (76.00), @team_1.sum_weekly_feedback_team_health(@team_1.weekly_feedback_team_health(2, current_date))
   end
   
   #get_total_team_health
@@ -160,7 +161,7 @@ class TeamTest < ActiveSupport::TestCase
     TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 5)     
     
     #should get the current week's total team health
-    assert_equal '%.2f' % (90.00), @team_1.get_total_team_health(0, current_date)
+    assert_equal '%.2f' % (88.67), @team_1.get_total_team_health(0, current_date)
     
     two_weeks_ago = Date.new(2021,3,6)
     s = Survey.create(team_id: @team_1.id, user_id: @user_1.id, date: two_weeks_ago)
@@ -178,16 +179,16 @@ class TeamTest < ActiveSupport::TestCase
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 8) 
     
     #should get two weeks ago total team health
-    assert_equal '%.2f' % (48.00), @team_1.get_total_team_health(2, current_date)
+    assert_equal '%.2f' % (44.27), @team_1.get_total_team_health(2, current_date)
     
     @t_1 = Ticket.create(creator_id: @user_1.id, date:"24/02/2021", team_id: @team_1.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 10)
     
     #should get three week ago total team health if no survey responses
-    assert_equal '%.2f' % (100.00), @team_1.get_total_team_health(3, current_date)
+    assert_equal '%.2f' % (100.0), @team_1.get_total_team_health(3, current_date)
   end
     
   #get_health_history
@@ -250,6 +251,6 @@ class TeamTest < ActiveSupport::TestCase
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 7) 
     
-    assert_equal [[3, '%.2f' % (75.00)], [2, '%.2f' % (54.00)], [1, '%.2f' % (44.00)]], @team_1.get_health_history(current_date)
+    assert_equal [["2021-03-13 - 2021-03-19", '%.2f' % (78.07)], ["2021-03-06 - 2021-03-12", '%.2f' % (59.07)], ["2021-02-27 - 2021-03-05", '%.2f' % (49.87)]], @team_1.get_health_history(current_date)
   end
 end

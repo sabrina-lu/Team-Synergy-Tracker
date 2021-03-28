@@ -27,4 +27,14 @@ class UsersTest < ApplicationSystemTestCase
     visit signup_path
     assert_no_text "Logout"
   end 
+  
+  test "dashboard instructions work" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit user_dashboard_path
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
 end

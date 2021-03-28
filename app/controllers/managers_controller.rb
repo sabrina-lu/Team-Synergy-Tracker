@@ -40,7 +40,9 @@ class ManagersController < ApplicationController
       @team_users = @team.users
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
-      @health_value = @team_health_history[0][1]      
+      if @team_health_history.present?
+        @health_value = @team_health_history[0][1]     
+      end
     end
   end
 
@@ -74,12 +76,7 @@ class ManagersController < ApplicationController
   def tickets
     @tickets = []
     if current_user_is_manager
-      teams = current_user.teams
-      teams.each do |team|
-          team.tickets.each do |ticket|
-            @tickets << ticket
-          end
-        end
+      @tickets = Ticket.where(team_id: current_user.teams).order("date DESC, team_id ASC")
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end

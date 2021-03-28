@@ -6,6 +6,16 @@ class Team < ApplicationRecord
 
     validates :name, length: {in: 1..50}, presence: true, allow_blank: false
     
+    def get_users_with_tickets(current_user, current_weekly_survey_due_date)
+      users_with_tickets = []
+      user_tickets = tickets.where(creator_id: current_user.id, :date => current_weekly_survey_due_date-7...current_weekly_survey_due_date)
+      user_tickets.each do |ticket|
+        users_with_tickets << ticket.users.first
+      end
+      users_with_tickets << current_user
+      return users_with_tickets       
+    end
+    
     def get_survey_completion_ratio(current_weekly_survey_due_date)
        completed_surveys = 0
        users.each do |user|
@@ -37,22 +47,32 @@ class Team < ApplicationRecord
     end
     
     def weekly_feedback_team_health(week, current_weekly_survey_due_date)
-        count_numerator = 0
+        count_communication = 0
+        count_behaviour = 0
+        count_teamwork = 0
+        count_availability = 0
+        count_rating = 0
+        weekly_feedback = [count_communication, count_behaviour, count_teamwork, count_availability, count_rating]
         count_total = 0
         start_date = current_weekly_survey_due_date-week*7
         tickets = Ticket.where(:date => start_date-7...start_date, :team => id)
         tickets.each do |ticket|
             if ticket.ticket_responses.exists?
-              count_numerator += ticket.ticket_responses.fifth.answer
+                # break up each ticket response
+              weekly_feedback[0] += ticket.ticket_responses.first.answer
+              weekly_feedback[1] += ticket.ticket_responses.second.answer
+              weekly_feedback[2] += ticket.ticket_responses.third.answer
+              weekly_feedback[3] += ticket.ticket_responses.fourth.answer
+              weekly_feedback[4] += ticket.ticket_responses.fifth.answer
               count_total += 1
             end
         end
-        
+        weekly_feedback << count_total
         if count_total == 0
-          return 0
+          return []
         else
-          count_denominator = count_total*10
-          return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
+            # raw sum of feedback data
+          return weekly_feedback
         end
     end
     
@@ -60,11 +80,12 @@ class Team < ApplicationRecord
         weekly_survey_team_health = self.weekly_survey_team_health(week, current_weekly_survey_due_date)
         weekly_feedback_team_health = self.weekly_feedback_team_health(week, current_weekly_survey_due_date)
         if (weekly_survey_team_health == 0) 
-            return weekly_feedback_team_health
-        elsif (weekly_feedback_team_health == 0)
+            return sum_weekly_feedback_team_health(weekly_feedback_team_health)
+        elsif (weekly_feedback_team_health == [])
             return weekly_survey_team_health
         else 
-            return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(weekly_feedback_team_health.to_f))
+            calculated_weekly_feedback_health = sum_weekly_feedback_team_health(weekly_feedback_team_health)
+            return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(calculated_weekly_feedback_health.to_f))
         end
     end
     
@@ -72,8 +93,29 @@ class Team < ApplicationRecord
       total_weeks = Survey.where(team_id: id).select('distinct(date)').count
       @team_health_history = []
       for i in 0..total_weeks - 1 do 
-        @team_health_history << [total_weeks-i, self.get_total_team_health(i, current_weekly_survey_due_date)]
+        due_date = current_weekly_survey_due_date - 7*i
+        @team_health_history << ["#{due_date-7} - #{due_date-1}", self.get_total_team_health(i, current_weekly_survey_due_date)]
       end  
       return @team_health_history
+    end
+    
+    def sum_weekly_feedback_team_health(feedbacks)
+        if feedbacks == []
+            return 0
+        else
+            sum_weekly_feedback = 0.00
+            # exclude the total count and rating
+            for i in 0..feedbacks.length-3
+                # calculate average in category responses and give weight of 10%
+                feedbacks[i] = (feedbacks[i].to_f/(feedbacks[5].to_f*3))*0.1
+            end
+            # calculate average in rating responses and give weight of 60%
+            feedbacks[4] = (feedbacks[4].to_f/(feedbacks[5].to_f*10)*0.6)
+            sum_weekly_feedback = 0.00
+            for i in 0..feedbacks.length-2
+                sum_weekly_feedback += feedbacks[i]
+            end
+            return '%.2f' % (sum_weekly_feedback*100.00)
+        end
     end
 end

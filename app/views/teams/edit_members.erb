@@ -2,4 +2,30 @@
 
 <%= render template: 'teams/members' %>
 
-<%= link_to 'Back', edit_team_path(@team) %>
+<%= link_to 'Save & Go Back', edit_team_path(@team) %>
+
+<br><br>
+<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+
+<div id="help" class="overlay">
+  <div class="popup">
+    <h3>Adding/Removing Team Members:</h3>
+    <p style="margin-left:10px; margin-right:5%;">
+      Wow, look at all those amazing people!!🤯
+      <br>
+      Time to embrace your love for the seven seas, because this pirate captain needs to update their crew!🏴‍☠️
+      <br><br>
+      It's easy, we will help you:
+    </p>
+    <p style="margin-left:30px; margin-right:5%;">
+      - Click on the "Add User" button next to each respective user to add them to this team or the "Remove User" button to remove them.
+      <br>
+      - When you are finished updating your team member list just click the "Save & Go Back" button and you are done!
+      <br><br>
+    </p>
+    <p style="margin-left:10px; margin-right:5%;">
+      Soon you will smell the salt in the air and and feel the wind on your sails, because this crew is now ready to board a ship ⛵ to better team health!
+    </p>
+    <a href="#">close</a>
+  </div>
+</div>
