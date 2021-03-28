@@ -4,5 +4,5 @@ class Ticket < ApplicationRecord
   has_many :ticket_responses
   belongs_to :creator, class_name: "User"
   belongs_to :team
-  validates :answer, presence: true, allow_blank: false
+  validates :users, presence: true, allow_blank: false
 end

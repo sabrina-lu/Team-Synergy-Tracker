@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(date: params[:date])
     @ticket.creator = User.find(params[:creator_id])
     @ticket.team = Team.find_by(:id => params[:id]) 
-      if params[:users].present?
+#       if params[:users].present?
         if @ticket.save
             @users = User.find(params[:users])
             @ticket.users << @users
@@ -54,10 +54,11 @@ class TicketsController < ApplicationController
         else
           render :new
         end
-      else
-#             redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
-#               redirect_to new_ticket_path(:answer1 => @ticket.answer1, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
-      end
+#       else
+#           flash[:error] = "god"
+# #             redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
+# #               redirect_to new_ticket_path(:answer1 => @ticket.answer1, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
+#       end
   end
     
   private
