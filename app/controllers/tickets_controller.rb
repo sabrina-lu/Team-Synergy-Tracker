@@ -30,21 +30,21 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     @team = Team.find(params[:id])
+    @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
   end
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(date: params[:date])
-    @ticket.creator = User.find(params[:creator_id])
-    @ticket.team = Team.find_by(:id => params[:id])
-        if @ticket.save
-          users = params[:users]
-            if users
-              users.drop(1).each do |temp_user| 
-              @users = User.find(temp_user.to_i)
-              @ticket.users << @users
-            end
-          end
+      begin
+        @ticket = Ticket.new(date: params[:date])
+        @ticket.creator = User.find(params[:creator_id])
+        @ticket.team = Team.find_by(:id => params[:id])
+        if !params[:users]
+          redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
+        else
+          @users = User.find(params[:users])
+          @ticket.users << @users
+          if @ticket.save            
             # add responses to the ticket
             TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
             TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
@@ -55,7 +55,9 @@ class TicketsController < ApplicationController
             redirect_to user_dashboard_url, notice: 'Ticket was successfully created.'
         else
           render :new
-        end 
+        end
+        end
+      end
   end
     
   private
@@ -66,6 +68,6 @@ class TicketsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
+      params.permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
     end
 end
