@@ -84,3 +84,41 @@ input[type=submit]:hover {
     background-color: rgb(175,175,175);
     color: white;
 }
+
+
+
+// Users CSS
+
+.users_table tr:nth-child(even){background-color: #f2f2f2;}
+
+.users_table tr:hover {background-color: rgb(216, 216, 216);}
+
+.users_table th {
+  background-color: #97aadfff;
+  color: rgb(20, 20, 90);
+}
+
+.users_table td:hover {
+    background-color: #97aadfff;
+    color: rgb(20, 20, 90);
+}
+.users_table a:hover {
+  background-color: #97aadfff;
+}
+
+.user_team_links a{
+    color: rgb(20, 20, 90);
+    text-decoration: none;
+    text-decoration: overline;
+    font-size: 18px;
+}
+.user_team_links a:hover{
+    background-color: rgb(175,175,175);
+    text-decoration: none;
+    text-decoration: overline;
+}
+.user_team_links {
+    color: rgb(20, 20, 90);
+    text-decoration: overline;
+    font-size: 18px;
+}

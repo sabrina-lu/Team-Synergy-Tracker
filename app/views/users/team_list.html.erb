@@ -5,14 +5,17 @@
 <h2>Members</h2>
 <%= render template: 'teams/members' %>
 
-<span>
-    <%= link_to 'Weekly Surveys', weekly_surveys_path %>
+<br><br>
+<div class="user_team_links">
+    <%= link_to 'Weekly Surveys', weekly_surveys_path %> |
     <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %>
-</span>
+    
+    <br>
+    <%= link_to 'Return to Dashboard', user_dashboard_path %>
+</div>
 <br><br>
-<%= link_to 'Return to Dashboard', user_dashboard_path %>
 
-<br><br>
+
 <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
 
 <div id="help" class="overlay">
