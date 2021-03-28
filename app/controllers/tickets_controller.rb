@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
   def show
     ticket = Ticket.find(params[:id])
     responses = []
-    responses = TicketResponse.where(:ticket_id => ticket.id)
+    responses = TicketResponse.where(:ticket_id => ticket.id).order(:question_number)
     @responses_to_words = []
     for i in 0..responses.length - 2 
         if responses[i].answer == 1
