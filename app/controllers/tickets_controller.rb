@@ -43,7 +43,7 @@ class TicketsController < ApplicationController
         @ticket.users << @users
       rescue
 #           redirect_to new_ticket_path(@ticket, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
-          redirect_to new_team_ticket_path(@ticket.team), notice: "You Must Add a User to this Ticket"
+          redirect_to new_team_ticket_path(@ticket.team,ticket_params), notice: "You Must Add a User to this Ticket"
       else
         if @ticket.save            
             # add responses to the ticket
@@ -68,6 +68,6 @@ class TicketsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.require(:ticket).permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
+      params.permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
     end
 end
