@@ -14,10 +14,6 @@ Test 2 (A user can discard changes and go back to dashboard)
     3. Click on Create A Ticket
     4. Click on Discard Changes and Go Back
     Result: Ticket should be discarded and user should be redirected to dashboard
-      
-remove generate weekly survey button #98
-    1. Fetch branch and make sure rails db:drop db:create db:migrate db:seed runs without error
-    2. Check tickets table with psql
     
 create ticket response table #100
     1. pull branch and run rails db:migrate:reset
@@ -26,10 +22,7 @@ create ticket response table #100
     4. run \d ticket_responses
     5. run select * from ticket_responses;, make sure there are 50 rows
     
-fix ticket view #104
-    1. Check the ticket view for manager and users and make sure there are no errors
-
-Manager all tickets #105
+Test: Manager can view all tickets #105
     1. Login as manager Do Panther (watiam: h13ghj567, password: P1ckle)
     2. Select "View All Tickets"
     3. Ensure that you can now see the Member Involved and the Rating that the sender gave the receiver
@@ -48,7 +41,7 @@ Ticket link cleanup #123
     4. Login as a manager
     5. Explore site and ensure no broken links surrounding tickets.
 
-Manager show ticket #125
+Manager show all tickets #125
     1. Login as a user (watiam: a266alpha, password: Joy0#000)
     2. Select "Team 1"
     3. Select "Create a Ticket"

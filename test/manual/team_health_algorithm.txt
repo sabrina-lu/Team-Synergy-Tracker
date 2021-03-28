@@ -15,7 +15,7 @@ Test 2 (UI)
     2. From manager dashboard, click on an existing team's name
     3. Should see a percentage bar going from a sad face to happy face
     
-Algorithm #116
+Surveys update Algorithm #116
     1. login as team 2 manager (watiam: "h13ghj567", password: "P1ckle")
     2. click "team 2" 
     3. login as team 2 user (watiam: "a266alpha", password: "Joy0#000")
@@ -25,7 +25,7 @@ Algorithm #116
     7. log back into team 2 manager (watiam: "h13ghj567", password: "P1ckle")
     8. Navigate to team 2 dashboard. Team health should be updated
     
-User health #129
+Tickets update team health #129
     Reset DB prior to testing
     1) Login to user `a266alpha` (password: `Joy0#000`)
     2) Ensure the team health shows for team 3
@@ -41,7 +41,7 @@ User health #129
     12) Click save
     13) Ensure Team 3 team health has changed on dashboard and in team 3 health view
     
-Update algo #141
+Tickets update user's view of team health #141
     1. Login as a manager (managwat, password)
     2. create a new team and add a user
     3. login as the user that was added to the new team

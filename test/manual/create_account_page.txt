@@ -36,6 +36,7 @@ Remove "user_id" from users table and update testing #102
         Click the "Create Account" link
         Verify "User/Manager id" input is not present
         Make a user account and verify that account creation is successful
+
 Add anti-emoji input validations #120
     **Test user input**
         1. Click the "Create Account" link

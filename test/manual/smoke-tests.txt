@@ -69,4 +69,3 @@ Test: Can logout as a user
 3. After logging in, select Log out in the top right corner
 Expected Result: successfully logs out
 
-

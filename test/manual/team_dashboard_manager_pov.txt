@@ -98,23 +98,23 @@ add team health history #118
     1. Log in as a manager
     2. Team Health History table should be there
     
-fix css button bug #133
+fix css continue to adding members button bug #133
     1. login as any manager
     2. navigate to new team page
     3. make sure "continue to adding members" text is not cut off
     
-fix create team bug #134
+fix create team table bug #134
     1. login as any manager
     2. navigate to new team page
     3. Verify there is no table visible.
     
-change submit button text #139
+change edit team submit button text #139
     1. Login as any manager
     2. Click "edit team" for any team
     3. Go to edit members
     4. Ensure link to go back displays "Save & Go Back"
     
-fix create team bug #143
+fix create team no members bug #143
     1. login as any manager
     2. create a team with no members
     3. the team should be successfully created
