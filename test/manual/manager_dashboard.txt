@@ -3,6 +3,11 @@ Test (List of teams manager created)
     2. should see a list of teams that the manager created
     3. team names should be clickable links that take user to team health page for that team
     
+Test (weekly survey)
+    1. login as a manager
+    2. should see a list of questions that is in the weekly survey
+    3. should see the weekly survey due date
+    
 Test (general navigation)
     1. login as a manager
     2. clicking on "New Team" should take user to team creation page
