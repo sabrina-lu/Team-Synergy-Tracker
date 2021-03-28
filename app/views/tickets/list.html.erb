@@ -2,9 +2,11 @@
   <thead>
     <tr>
       <th>Ticket ID</th>
+      <th>Team</th>
       <th>Created By</th>
       <th>Member Involved</th>
       <th>Rating</th>
+      <th>Date</th>
     </tr>
   </thead>
 
@@ -13,11 +15,13 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= link_to ticket.id, ticket %></td> 
+        <td><%= Team.find(ticket.team_id).name %></td>
         <td><%= User.find(ticket.creator_id).first_name %> </td>
         <td><% ticket.users.each do |user| %>
             <%= user.first_name  %>
             <% end %></td>
         <td><%= ticket.ticket_responses.fifth.answer %></td>
+        <td><%= ticket.date %></td>
 
       </tr>
     <% end %>

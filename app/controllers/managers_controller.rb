@@ -74,12 +74,7 @@ class ManagersController < ApplicationController
   def tickets
     @tickets = []
     if current_user_is_manager
-      teams = current_user.teams
-      teams.each do |team|
-          team.tickets.each do |ticket|
-            @tickets << ticket
-          end
-        end
+      @tickets = Ticket.where(team_id: current_user.teams).order("date DESC, team_id ASC")
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end
