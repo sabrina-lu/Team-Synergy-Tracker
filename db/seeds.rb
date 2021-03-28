@@ -138,147 +138,147 @@ t11.surveys << [s27]
 t12.surveys << [s28]
 t13.surveys << [s29]
 
-# ticket1 = Ticket.new(date: survey_due_date-1)
-# ticket2 = Ticket.new(date: survey_due_date-1)
-# ticket3 = Ticket.new(date: survey_due_date-1)
-# ticket4 = Ticket.new(date: survey_due_date-1)
-# ticket5 = Ticket.new(date: survey_due_date-1)
-# ticket6 = Ticket.new(date: survey_due_date-1)
-# ticket7 = Ticket.new(date: survey_due_date-1)
-# ticket8 = Ticket.new(date: survey_due_date-1)
-# ticket9 = Ticket.new(date: survey_due_date-1)
-# ticket10 = Ticket.new(date: survey_due_date-1)
+ticket1 = Ticket.new(date: survey_due_date-1)
+ticket2 = Ticket.new(date: survey_due_date-1)
+ticket3 = Ticket.new(date: survey_due_date-1)
+ticket4 = Ticket.new(date: survey_due_date-1)
+ticket5 = Ticket.new(date: survey_due_date-1)
+ticket6 = Ticket.new(date: survey_due_date-1)
+ticket7 = Ticket.new(date: survey_due_date-1)
+ticket8 = Ticket.new(date: survey_due_date-1)
+ticket9 = Ticket.new(date: survey_due_date-1)
+ticket10 = Ticket.new(date: survey_due_date-1)
 
-# #assign ticket to its creator
-# ticket1.creator = B
-# ticket2.creator = C
-# ticket3.creator = D
-# ticket4.creator = E
-# ticket5.creator = F
-# ticket6.creator = A
-# ticket7.creator = A
-# ticket8.creator = E
-# ticket9.creator = D
-# ticket10.creator = B
+#assign ticket to its creator
+ticket1.creator = B
+ticket2.creator = C
+ticket3.creator = D
+ticket4.creator = E
+ticket5.creator = F
+ticket6.creator = A
+ticket7.creator = A
+ticket8.creator = E
+ticket9.creator = D
+ticket10.creator = B
 
-# ticket1.team = t3
-# ticket2.team = t1
-# ticket3.team = t3
-# ticket4.team = t5
-# ticket5.team = t3
-# ticket6.team = t3
-# ticket7.team = t6
-# ticket8.team = t9
-# ticket9.team = t9
-# ticket10.team = t9
+ticket1.team = t3
+ticket2.team = t1
+ticket3.team = t3
+ticket4.team = t5
+ticket5.team = t3
+ticket6.team = t3
+ticket7.team = t6
+ticket8.team = t9
+ticket9.team = t9
+ticket10.team = t9
 
-# #assign tickets to receiving user
-# A.tickets << [ticket1, ticket5]
-# B.tickets << [ticket6]
-# C.tickets << [ticket4]
-# D.tickets << [ticket2]
-# E.tickets << [ticket7]
-# F.tickets << [ticket3]
-# generic_user.tickets << [ticket8, ticket9, ticket10]
+#assign tickets to receiving user
+A.tickets << [ticket1, ticket5]
+B.tickets << [ticket6]
+C.tickets << [ticket4]
+D.tickets << [ticket2]
+E.tickets << [ticket7]
+F.tickets << [ticket3]
+generic_user.tickets << [ticket8, ticket9, ticket10]
 
-# A.save
-# B.save
-# C.save
-# D.save
-# E.save
-# F.save
-# Z.save
-# generic_user.save
+A.save
+B.save
+C.save
+D.save
+E.save
+F.save
+Z.save
+generic_user.save
 
-# t1.save
-# t2.save
-# t3.save
-# t4.save
-# t5.save
-# t6.save
-# t7.save
-# t8.save
-# t9.save
-# t10.save
-# t11.save
-# t12.save
-# t13.save
+t1.save
+t2.save
+t3.save
+t4.save
+t5.save
+t6.save
+t7.save
+t8.save
+t9.save
+t10.save
+t11.save
+t12.save
+t13.save
 
-# ticket1.save
-# ticket2.save
-# ticket3.save
-# ticket4.save
-# ticket5.save
-# ticket6.save
-# ticket7.save
-# ticket8.save
-# ticket9.save
-# ticket10.save
+ticket1.save
+ticket2.save
+ticket3.save
+ticket4.save
+ticket5.save
+ticket6.save
+ticket7.save
+ticket8.save
+ticket9.save
+ticket10.save
 
-# #assign ticket responses
-# t = [ticket1, ticket2, ticket3, ticket4, ticket5, ticket6, ticket7, ticket8, ticket9, ticket10]
-# for i in 0..9 do
-#   TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: rand(1..3))
-#   TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: rand(1..3))
-#   TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: rand(1..3))
-#   TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: rand(1..3))
-#   TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: rand(1..10))
-# end
+#assign ticket responses
+t = [ticket1, ticket2, ticket3, ticket4, ticket5, ticket6, ticket7, ticket8, ticket9, ticket10]
+for i in 0..9 do
+  TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: rand(1..3))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: rand(1..3))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: rand(1..3))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: rand(1..3))
+  TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: rand(1..10))
+end
 
-# O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
-# P = Response.new(survey_id: 2, question_number: 2, answer: "4")
-# Q = Response.new(survey_id: 3, question_number: 3, answer: "1")
-# R = Response.new(survey_id: 4, question_number: 4, answer: "5")
-# S = Response.new(survey_id: 5, question_number: 5, answer: "3")
-# T = Response.new(survey_id: 6, question_number: 6, answer: "2")
-# U = Response.new(survey_id: 25, question_number: 1, answer: "2")
-# V = Response.new(survey_id: 26, question_number: 2, answer: "5")
-# W = Response.new(survey_id: 27, question_number: 3, answer: "3")
-# #X = Response.new(survey_id: 28, question_number: 4, answer: "5")
-# ZA = Response.new(survey_id: 25, question_number: 2, answer: "2")
+O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
+P = Response.new(survey_id: 2, question_number: 2, answer: "4")
+Q = Response.new(survey_id: 3, question_number: 3, answer: "1")
+R = Response.new(survey_id: 4, question_number: 4, answer: "5")
+S = Response.new(survey_id: 5, question_number: 5, answer: "3")
+T = Response.new(survey_id: 6, question_number: 6, answer: "2")
+U = Response.new(survey_id: 25, question_number: 1, answer: "2")
+V = Response.new(survey_id: 26, question_number: 2, answer: "5")
+W = Response.new(survey_id: 27, question_number: 3, answer: "3")
+#X = Response.new(survey_id: 28, question_number: 4, answer: "5")
+ZA = Response.new(survey_id: 25, question_number: 2, answer: "2")
 
-# # U = Response.new(question_number: 7, response: "")
-# # U.save
-
-# s1.responses << [O, P, Q, R, S, T] 
-# s1.save
-
-# s25.responses << [U, ZA]
-# s26.responses << [V]
-# s27.responses << [W]
-# #s28.responses << [X]
-
-# O.save
-# P.save
-# Q.save
-# R.save
-# S.save
-# T.save
+# U = Response.new(question_number: 7, response: "")
 # U.save
-# V.save
-# W.save
-# #X.save
-# ZA.save
+
+s1.responses << [O, P, Q, R, S, T] 
+s1.save
+
+s25.responses << [U, ZA]
+s26.responses << [V]
+s27.responses << [W]
+#s28.responses << [X]
+
+O.save
+P.save
+Q.save
+R.save
+S.save
+T.save
+U.save
+V.save
+W.save
+#X.save
+ZA.save
 
 
-# # create surveys and tickets for last week, two weeks ago and three weeks ago
-# users = [A,B,C,D,E,F,generic_user]
-# for i in 0..users.length-1 do
-#   users[i].teams.each do |team|
-#     for j in 1..3 do
-#       s = Survey.create(team_id: team.id, user_id: users[i].id, date: survey_due_date - 7*j)
-#       for x in 1..4 do 
-#         Response.create(survey_id: s.id, question_number: x, answer: rand(1..5))
-#       end
-#       team_users = team.users - [users[0]]
-#       if (team_users != []) 
-#         t = Ticket.create(team_id: team.id, creator_id: users[i].id, date: survey_due_date - 8*j)
-#         t.users << team_users.sample
-#         for y in 1..4 do 
-#           TicketResponse.create(ticket_id: t.id, question_number: y, answer: rand(1..3))
-#         end
-#         TicketResponse.create(ticket_id: t.id, question_number: 5, answer: rand(1..10))
-#       end
-#     end
-#   end
-# end
+# create surveys and tickets for last week, two weeks ago and three weeks ago
+users = [A,B,C,D,E,F,generic_user]
+for i in 0..users.length-1 do
+  users[i].teams.each do |team|
+    for j in 1..3 do
+      s = Survey.create(team_id: team.id, user_id: users[i].id, date: survey_due_date - 7*j)
+      for x in 1..4 do 
+        Response.create(survey_id: s.id, question_number: x, answer: rand(1..5))
+      end
+      team_users = team.users - [users[0]]
+      if (team_users != []) 
+        t = Ticket.create(team_id: team.id, creator_id: users[i].id, date: survey_due_date - 8*j)
+        t.users << team_users.sample
+        for y in 1..4 do 
+          TicketResponse.create(ticket_id: t.id, question_number: y, answer: rand(1..3))
+        end
+        TicketResponse.create(ticket_id: t.id, question_number: 5, answer: rand(1..10))
+      end
+    end
+  end
+end
