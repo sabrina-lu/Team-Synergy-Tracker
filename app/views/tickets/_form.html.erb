@@ -16,7 +16,7 @@
       <p>
         <nobr>
           Please Select the Member Who is Involved. <br/>
-          If they are not listed, then please make note of your concerns for next week's ticket session. <br/>
+          If they are not listed, then please make note of your concerns for next week's ticket session. You may only send a ticket to a team member once a week.<br/>
           <%= form.collection_select(:users, @team.users.where.not(id: @users_to_not_select), :id, :full_name_with_watiam, {:prompt => "Please Select All Members Involved", :selected => ticket.users.ids}, {:multiple => false, :size => 7}) %>
         </nobr>
       </p>
