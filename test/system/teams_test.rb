@@ -197,4 +197,15 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Confused?🤔 Get information here!"
     assert_text "close"
   end
+  
+  test "do popup instructions work on user team view" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit user_dashboard_path
+    click_on "Team 1"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
 end
