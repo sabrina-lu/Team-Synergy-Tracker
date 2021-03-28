@@ -103,6 +103,22 @@ input[type=submit]:hover {
     color: rgb(20, 20, 90);
 }
 .users_table a:hover {
-    
   background-color: #97aadfff;
+}
+
+.user_team_links a{
+    color: rgb(20, 20, 90);
+    text-decoration: none;
+    text-decoration: overline;
+    font-size: 20px;
+}
+.user_team_links a:hover{
+    background-color: rgb(175,175,175);
+    text-decoration: none;
+    text-decoration: overline;
+}
+.user_team_links {
+    color: rgb(20, 20, 90);
+    text-decoration: overline;
+    font-size: 20px;
 }
