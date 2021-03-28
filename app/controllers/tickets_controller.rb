@@ -35,14 +35,17 @@ class TicketsController < ApplicationController
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(date: params[:date])
-    @ticket.creator = User.find(params[:creator_id])
-    @ticket.team = Team.find_by(:id => params[:id]) 
-      if params[:users].present?
-        if @ticket.save
-            @users = User.find(params[:users])
-            @ticket.users << @users
-            
+      begin
+        @ticket = Ticket.new(date: params[:date])
+        @ticket.creator = User.find(params[:creator_id])
+        @ticket.team = Team.find_by(:id => params[:id])
+        @users = User.find(params[:users])
+        @ticket.users << @users
+      rescue
+#           redirect_to new_ticket_path(@ticket, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
+          redirect_to new_team_ticket_path(@ticket.team), notice: "You Must Add a User to this Ticket"
+      else
+        if @ticket.save            
             # add responses to the ticket
             TicketResponse.create(ticket_id: @ticket.id, question_number: 1, answer: params[:answer1])
             TicketResponse.create(ticket_id: @ticket.id, question_number: 2, answer: params[:answer2])
@@ -54,11 +57,6 @@ class TicketsController < ApplicationController
         else
           render :new
         end
-      else
-#           new_ticket_path(@ticket)
-#           flash[:error] = "god"
-# #             redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
-# #               redirect_to new_ticket_path(:answer1 => @ticket.answer1, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
       end
   end
     
