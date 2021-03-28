@@ -22,3 +22,12 @@ Test 4 (blank inputs)
 
 Test 2 (redirect to create account)
     1. clicking on "Create Account" should redirect user to the create account page
+
+Fixing Incorrect Login Notice Message #132
+    1. Click the Login button with incorrect watiam or password.
+    2. Verify the notice is 'Cannot log you in. Invalid Watiam or Password'
+   
+remove logout button from login page #135
+    1. make sure logout button is not on login page
+    2. make sure logout button is not on create account page
+    3. make sure logout button is still visible on every other page

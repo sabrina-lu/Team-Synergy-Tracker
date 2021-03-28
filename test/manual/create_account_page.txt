@@ -22,3 +22,42 @@ Test 4 (create duplicate manager account)
     3. click "create account"
     4. should display message "That WATIAM has an account associated with it already."
     
+Remove "user_id" from users table and update testing #102
+    Test: Verify student id is no longer present in the teams
+        Login to a manager account (USER: h13ghj567, PASSWORD: P1ckle)
+        Click the "Team 1" link
+        Verify that student id is not present in the generated table and that your output matches
+    Test: Student id is not present in team editing window
+        Login to a manager account (USER: h13ghj567, PASSWORD: P1ckle)
+        Click the "Team 1" link
+        Click the "Edit Team" link
+        Verify you are redirected to a matching page and student id column is not present
+    Test: Account creation
+        Click the "Create Account" link
+        Verify "User/Manager id" input is not present
+        Make a user account and verify that account creation is successful
+Add anti-emoji input validations #120
+    **Test user input**
+        1. Click the "Create Account" link
+        2. Complete the form with the following inputs:
+        Type: user
+        WatIAm: `🐋🐋🐋🐋🐋🐋`
+        First name: `emoji`
+        Last name: `user`
+        password: `password`
+        password confirmation: `password`
+        3. Click the "Create Account" button
+        4. Verify an Watiam is invalid error occurs 
+        
+    **Test Manager Input**
+        1. Click the "Create Account" link
+        2. Complete the form with the following inputs:
+        Type: Manager
+        WatIAm: `🐋🐋🐋🐋🐋🐋`
+        First name: `emoji`
+        Last name: `manager`
+        password: `password`
+        password confirmation: `password`
+        3. Click the "Create Account" button
+        4. Verify an Watiam is invalid error occurs 
+

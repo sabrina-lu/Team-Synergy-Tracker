@@ -20,3 +20,25 @@ Test 3 (general navigation)
 Test 4 (UI)
     1. login as a user
     1. Top of dashboard should display "Welcome [user's name]!"
+    
+Test: Fallback route #130
+    1. Login to any user
+    2. type a bunch of random letters into the url
+    3. Ensure it takes you to the user dashboard
+   
+add create ticket link to user dashboard #131
+    1. Login to a user (watiam: "a266alpha",  password: "Joy0#000")
+    2. Click on the create ticket links on dashboard and make sure it directs to the correct team
+    
+Add user instructions #145
+    **Dashboard instructions**
+        1. Login as a user- WatIAm: `student1`, Password: `password`
+        2. Click the "Confused?🤔 Get information here!" link
+        3. Verify that the popup appears on the following pages:
+                - Dashboard: /dashboard#help
+                - Team view: /dashboard/teams/1#help
+                - Weekly survey: /dashboard/teams/2/weekly_surveys#help
+                - Create ticket: /teams/2/tickets/new#help
+        4. Verify you can close with the "close" link
+        
+

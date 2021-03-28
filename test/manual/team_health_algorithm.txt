@@ -15,3 +15,36 @@ Test 2 (UI)
     2. From manager dashboard, click on an existing team's name
     3. Should see a percentage bar going from a sad face to happy face
     
+Algorithm #116
+    1. login as team 2 manager (watiam: "h13ghj567", password: "P1ckle")
+    2. click "team 2" 
+    3. login as team 2 user (watiam: "a266alpha", password: "Joy0#000")
+    4. click "incomplete" to complete survey for team 2
+    5. submit 5 for every response 
+    6. Current weekly health numbers should be updated 
+    7. log back into team 2 manager (watiam: "h13ghj567", password: "P1ckle")
+    8. Navigate to team 2 dashboard. Team health should be updated
+    
+User health #129
+    Reset DB prior to testing
+    1) Login to user `a266alpha` (password: `Joy0#000`)
+    2) Ensure the team health shows for team 3
+    3) Click on team 3
+    4) Ensure team health for current week is the same still
+    5) Click 'weekly surveys'
+    6) Put in options 4,3,4,3
+    7) Click Save
+    8) Ensure team health has changed for team 3
+    9) Click on team 3 again
+    10) Click 'Create a Ticket'
+    11) Choose user gema3hh3n and put in options as follows > Users: gema3hh3n: Lambda Boy, poor, poor, poor, poor, 1   
+    12) Click save
+    13) Ensure Team 3 team health has changed on dashboard and in team 3 health view
+    
+Update algo #141
+    1. Login as a manager (managwat, password)
+    2. create a new team and add a user
+    3. login as the user that was added to the new team
+    4. verify that the team health currently says 0%
+    5. create a new ticket with "poor" for all categories and "10" as an overall rating
+    6. ensure that the team health will now say 73.33%
