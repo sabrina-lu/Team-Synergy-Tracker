@@ -17,5 +17,6 @@
     
     <h5><%= form.submit %></h5>
 <% end %>
-
+<div class="user_team_links">
 <%= link_to "Back to #{@team.name}", user_team_list_path(id: @team.id) %>
+</div>

@@ -5,9 +5,13 @@
 <h2>Members</h2>
 <%= render template: 'teams/members' %>
 
-<span>
-    <%= link_to 'Weekly Surveys', weekly_surveys_path %>
-    <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %>
-</span>
 <br><br>
-<%= link_to 'Return to Dashboard', user_dashboard_path %>
+<br><br>
+<div class="user_team_links">
+    <%= link_to 'Weekly Surveys', weekly_surveys_path %> |
+    <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %>
+    
+    <br><br><br>
+    
+    <%= link_to 'Return to Dashboard', user_dashboard_path %>
+</div>
