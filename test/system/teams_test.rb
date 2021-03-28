@@ -147,4 +147,54 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Remove User"
     assert_text "Successfully removed Joe from Team 1"
   end
+  
+  test "does popup instructions work on team view" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
+  
+  test "does popup instructions work on edit team view" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
+  
+  test "does popup instructions work on adding new members view" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    click_on "Add/Remove Members"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
+  
+  test "do popup instructions work on adding members to a new team" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on 'New Team'
+    assert_text 'New Team'
+    fill_in "Name", with: @team.name
+    click_on "Continue to Adding Members"
+    click_on "Confused?🤔 Get information here!"
+    assert_text "close"
+  end
 end
