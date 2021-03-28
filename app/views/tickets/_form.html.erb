@@ -11,12 +11,6 @@
     </div>
   <% end %>
 
-flash.each do |message_type, message|
-  %div{class: "alert #{flash_class(message_type)}"}
-    = "message"
-    %a.close{"aria-label" => "close", "data-dismiss" => "alert", href: "#", title: "close"} ×
-= yield
-
   <div class="form-container">
     <div>
       <p>

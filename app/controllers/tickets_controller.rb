@@ -55,7 +55,8 @@ class TicketsController < ApplicationController
           render :new
         end
       else
-            redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
+#             redirect_to new_team_ticket_path, notice: 'You Must Add a User to this Ticket'
+#               redirect_to new_ticket_path(:answer1 => @ticket.answer1, :id => Team.find_by(:id =>params[:id]).id.to_i), notice: 'You Must Add a User to this Ticket'
       end
   end
     
