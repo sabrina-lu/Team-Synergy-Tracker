@@ -15,8 +15,7 @@ class ActiveSupport::TestCase
  
   def setup_users_manager_teams
     @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-    @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")     
-      
+    @user = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")       
     @team = Team.create(name: "Team 1")
     @team_no_access = Team.create(name: "Team 5")
       
