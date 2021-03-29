@@ -66,7 +66,8 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text @team.name + " Health Metrics"
   end
 
-    # can successfully view tickets
+    # can view all the tickets of all the students they manage in a nice list
+    # Story: Update manager's view of all tickets
   test "can view team's tickets" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -108,6 +109,8 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "Rating"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "can dashboard view popup instructions" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -117,6 +120,8 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "close"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "can view all tickets view popup instructions" do
     visit login_path
     fill_in "watiam", with: @manager.watiam

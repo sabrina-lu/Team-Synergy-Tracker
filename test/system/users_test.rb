@@ -28,6 +28,8 @@ class UsersTest < ApplicationSystemTestCase
     assert_no_text "Logout"
   end 
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "dashboard instructions work" do
     visit login_path
     fill_in "watiam", with: @user.watiam
