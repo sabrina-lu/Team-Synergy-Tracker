@@ -36,5 +36,21 @@ class UsersTest < ApplicationSystemTestCase
     visit user_dashboard_path
     click_on "Confused?🤔 Get information here!"
     assert_text "close"
+  end  
+    
+# story: Modify user dashboard to display team health
+# acceptance criteria:
+# 1. team health value is the current week team health
+# 2. user can view current team health value right away
+  test "user dashboard should display team health" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    assert_text "Current Weekly Health"
+    click_on "Incomplete"
+    click_on "Save"
+    assert_text "20.00%"
   end
+
 end
