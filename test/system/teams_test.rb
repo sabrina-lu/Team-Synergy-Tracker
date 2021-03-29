@@ -16,6 +16,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "Members"
   end
     
+    # Should see the current week's team health
+    # Story: Modify user team page to display team health
   test "should see team health when visiting user team list" do
     visit login_path
     fill_in "watiam", with: @user.watiam
@@ -44,6 +46,10 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "Team 1 Health Metrics"
   end
   
+    # Should show an indicator beside the team member list for each member
+    # Should show Yes in green for users who have completed the survey and No in red for users who have not
+    # Should show user who haven't completed the survey first
+    # Story: Manager can see which users did not complete weekly survey
   test "manager team list includes completed weekly survey indicator" do 
     setup_tickets   
     @m = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
@@ -69,6 +75,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "Yes", count: 1   
   end
 
+    # Team Health history should be in the team health page for managers only
+    # Story: Manager can see previous weeks team health on team dashboard, as well as this week
   test "manager team list includes team health history" do 
     setup_tickets   
     @m = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
@@ -148,6 +156,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "Successfully removed Joe from Team 1"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "does popup instructions work on team view" do 
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -159,6 +169,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "close"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "does popup instructions work on edit team view" do 
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -171,6 +183,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "close"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "does popup instructions work on adding new members view" do 
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -184,6 +198,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "close"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "do popup instructions work on adding members to a new team" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
@@ -198,6 +214,8 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "close"
   end
   
+    # can view instructions on how to use the app on every main page
+    # Story: Include instructions on both manager and user's dashboard
   test "do popup instructions work on user team view" do
     visit login_path
     fill_in "watiam", with: @user.watiam
