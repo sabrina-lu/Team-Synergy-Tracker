@@ -55,6 +55,8 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "My Team's Tickets"
   end
     
+    # can view the details of a ticket and the feedback that a student gave another student
+    # Story: Update manager's view of all tickets
   test "can successfully view ticket's details as a manager" do
     visit login_path
     fill_in "watiam", with: @manager_1.watiam
@@ -65,7 +67,8 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Date Created:"
   end
     
-
+# can successfully send a ticket to another student 
+# Story: Change ticket creation from textual feedback to peer rating
   test "creating a Ticket" do
     user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
     @team_1.users << user2

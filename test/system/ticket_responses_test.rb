@@ -9,6 +9,8 @@ class TicketResponsesTest < ApplicationSystemTestCase
     click_on "Login"
   end
     
+    # can select "poor", "typical", "great"
+    # Story: Change ticket creation from textual feedback to peer rating
   test "creating a ticket response" do 
     user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
     @team.users << user2
