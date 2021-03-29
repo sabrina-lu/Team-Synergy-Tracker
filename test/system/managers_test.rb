@@ -77,6 +77,8 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "My Team's Tickets"
   end
 
+    # On the manager dashboard there should be ratio of the students who completed weekly surveys for each team
+    # Story: Manager can see which users did not complete weekly survey
   test "manager dashboard can view weekly survey completion ratio" do 
     setup_tickets   
     @m = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
