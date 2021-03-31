@@ -19,10 +19,7 @@ class TicketsController < ApplicationController
     @responses_to_words << responses.last.answer
       
     if !current_user_is_manager
-      user_is_involved = ticket.users.include? current_user
-      if !(user_is_involved || ticket.creator_id == current_user.id)
-        redirect_to user_tickets_path, notice: "You do not have permission to view this ticket."
-      end
+        redirect_to user_dashboard_path, notice: "You do not have permission to view this ticket."
     end
   end
 
