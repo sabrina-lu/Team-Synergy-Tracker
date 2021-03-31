@@ -39,6 +39,20 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Confused?🤔 Get information here!"
     assert_text "close"
   end  
+    
+  test "user cannot view tickets" do 
+    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user_2
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    click_on "Create Ticket"
+    select "#{@user_2.full_name_with_watiam}"
+    click_on "Save"
+    visit ticket_path(Ticket.all.first)
+    assert_text "You do not have permission to view this ticket."    
+  end
 
 # Story: Team Health calculations will now include weekly surveys and ticket ratings
 # acceptance criteria:
