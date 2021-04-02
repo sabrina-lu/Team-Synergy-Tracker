@@ -15,14 +15,30 @@
   opacity: 0;
 }
 
+.popupDash {
+  margin: 75px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  width: 70vw;
+//   height: 80vh;
+  height: 80%;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  position: relative;
+  overflow-y: scroll;
+}
+
 .popup {
   margin: 75px auto;
   padding: 20px;
   background: #fff;
   border: 1px solid #666;
-  width: 1000px;
+  width: 70vw;
+//   height: 40vh;
+  height: auto;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
   position: relative;
+  overflow-y: scroll;
 }
 
 .overlay:target{
