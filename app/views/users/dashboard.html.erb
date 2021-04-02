@@ -1,6 +1,12 @@
 
 <h1>Welcome <%= @user.first_name.capitalize %>!</h1>
 
+<% if @teams.empty? %>
+
+<h2> You're not apart of a team yet! Let your instructor know to add you to a team. </h2>
+
+<% else %>
+
 <table class="users_table">
   <thead>
     <tr>
@@ -29,6 +35,8 @@
 </table>
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %> 12:00AM EST</h3>
+
+<% end %>
 
 <br><br>
 <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
