@@ -3,7 +3,11 @@
 <%= render template: 'teams/health' %>
 
 <h2>Members</h2>
-<%= render template: 'teams/members' %>
+<% if @team.users.length != 0 %>
+    <%= render template: 'teams/members' %>
+<% else %>
+    No members on this team
+<% end %>
 <br>
 <%= link_to 'Edit Team', edit_team_path(@team) %>
 
@@ -83,7 +87,7 @@
         <br>
         The most recent week's score will always be found right at the top of the history table. In turn, the oldest history record, will be found at the bottom of the table.
     </p>
-    <a href="#">close</a>
+    <a href="#">Close</a>
   </div>
 </div>
 

@@ -119,7 +119,7 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "password", with: @manager.password
     click_on "Login"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
   
     # can view instructions on how to use the app on every main page
@@ -131,6 +131,6 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "Login"
     click_on "View All Tickets"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
 end
