@@ -166,7 +166,7 @@ class TeamsTest < ApplicationSystemTestCase
     visit manager_dashboard_path
     click_on "Team 1"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
   
     # can view instructions on how to use the app on every main page
@@ -180,7 +180,7 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Team 1"
     click_on "Edit Team"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
   
     # can view instructions on how to use the app on every main page
@@ -195,7 +195,7 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Edit Team"
     click_on "Add/Remove Members"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
   
     # can view instructions on how to use the app on every main page
@@ -211,7 +211,7 @@ class TeamsTest < ApplicationSystemTestCase
     fill_in "Name", with: @team.name
     click_on "Continue to Adding Members"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
   
     # can view instructions on how to use the app on every main page
@@ -224,6 +224,6 @@ class TeamsTest < ApplicationSystemTestCase
     visit user_dashboard_path
     click_on "Team 1"
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end
 end

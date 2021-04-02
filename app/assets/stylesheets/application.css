@@ -87,38 +87,75 @@ input[type=submit]:hover {
 
 
 
-// Users CSS
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
 
-.users_table tr:nth-child(even){background-color: #f2f2f2;}
+tr:nth-child(even){background-color: #f2f2f2;}
 
-.users_table tr:hover {background-color: rgb(216, 216, 216);}
+tr:hover {background-color: rgb(216, 216, 216);}
 
-.users_table th {
+th {
   background-color: #97aadfff;
   color: rgb(20, 20, 90);
 }
 
-.users_table td:hover {
+td:hover {
     background-color: #97aadfff;
     color: rgb(20, 20, 90);
+    padding: 10px;
 }
-.users_table a:hover {
+
+a:hover {
   background-color: #97aadfff;
 }
 
-.user_team_links a{
+a{
     color: rgb(20, 20, 90);
-    text-decoration: none;
     text-decoration: overline;
     font-size: 18px;
 }
-.user_team_links a:hover{
+
+a:hover{
     background-color: rgb(175,175,175);
     text-decoration: none;
     text-decoration: overline;
 }
-.user_team_links {
-    color: rgb(20, 20, 90);
-    text-decoration: overline;
-    font-size: 18px;
+
+/* source: https://codepen.io/mlms13/pen/CGgLF */
+
+table tr th,
+table tr td {
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding: 10px;
+  text-align: center;
+}
+table tr th:first-child,
+table tr td:first-child {
+  border-left: 1px solid lightgrey;
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+table th {
+  color: white;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+/* bottom-left border-radius */
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
 }
