@@ -37,7 +37,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     visit user_dashboard_path
     click_on "Confused?🤔 Get information here!"
-    assert_text "close"
+    assert_text "Close"
   end  
     
   test "user cannot view tickets" do 
