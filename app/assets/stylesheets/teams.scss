@@ -31,10 +31,6 @@ table a{
     color: red;
 }
 
-.title {
-    align-self: center;
-}
-
 .health-metrics-container {
     display: flex;
     align-items: center;
@@ -42,7 +38,8 @@ table a{
 
 .emojis {
     align-self: center;
-    font-size: 90px;
+    width: 90px;
+    margin-top: 10px;
 }
 
 .bar {
@@ -50,11 +47,20 @@ table a{
     width: 300px;
 }
 
-.value {
+.title {
     text-align: center;
-    margin: 0px;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 10px 0px -15px 0px;
 }
 
+.value {
+    text-align: center;
+    color: #73956fff;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px;
+}
 
 .overlay {
   position: absolute;
