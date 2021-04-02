@@ -40,5 +40,8 @@ Add user instructions #145
                 - Weekly survey: /dashboard/teams/2/weekly_surveys#help
                 - Create ticket: /teams/2/tickets/new#help
         4. Verify you can close with the "close" link
-        
+
+Test 8: if a user does not have a team
+    1. login as a user without a team or create a new account
+    2. Top of dashboard should say "You're not apart of a team yet! Let your instructor know to add you to a team."
 
