@@ -18,6 +18,7 @@ th, td {
     border-left: 1px solid black;
     text-align: center;
 }
+
 table a{
     text-decoration: none;
 }
@@ -30,33 +31,36 @@ table a{
     color: red;
 }
 
-.title {
-    margin: 40px 0px -10px 0px;
-}
-
 .health-metrics-container {
     display: flex;
-    float: right;
     align-items: center;
-    margin: 0px 700px 40px 100px;
 }
 
 .emojis {
     align-self: center;
-    font-size: 90px;
+    width: 90px;
+    margin-top: 10px;
 }
 
 .bar {
-    margin: 10px 10px -15px 10px;
     height: 100px;
     width: 300px;
 }
 
-.value {
+.title {
     text-align: center;
-    margin: 0px;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 10px 0px -15px 0px;
 }
 
+.value {
+    text-align: center;
+    color: #73956fff;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px;
+}
 
 .overlay {
   position: absolute;
