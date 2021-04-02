@@ -13,22 +13,26 @@
 
 <br><br>
 <h2>Team Health History</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Week</th>
-      <th>Team Health</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @team_health_history.each do |history| %>
-      <tr>
-        <td><%= history[0]%></td>
-        <td><%= history[1]%>%</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @team_health_history.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Team Health</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team_health_history.each do |history| %>
+          <tr>
+            <td><%= history[0]%></td>
+            <td><%= history[1]%>%</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+    No historical data available.
+<% end %>
 
 <br><br>
 <%= link_to 'Return to Dashboard', manager_dashboard_path %>

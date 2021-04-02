@@ -65,6 +65,18 @@ class ManagersTest < ApplicationSystemTestCase
     click_on @team.name
     assert_text @team.name + " Health Metrics"
   end
+      
+    # If the team has no health history, a message should be displayed in place of the table
+  test "display message for no team health history" do
+    @team_no_members = Team.create(name: "Team No Members")
+    @team_no_members.managers << @manager
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team_no_members)
+    assert_text "No historical data available"
+  end
 
     # can view all the tickets of all the students they manage in a nice list
     # Story: Update manager's view of all tickets
