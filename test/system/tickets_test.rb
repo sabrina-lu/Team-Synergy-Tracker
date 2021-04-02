@@ -83,4 +83,16 @@ class TicketsTest < ApplicationSystemTestCase
 
     assert_text "Ticket was successfully created"
   end
+    
+# is redirected when trying to access a create ticket page for a team they are not on
+# Story: Bug Bash: Creating a Ticket if you're not on the team
+    test "redirect if not on team to create a ticket" do
+        user_5 = User.create(watiam: "u5", first_name: "user5", last_name: "five", password: "Password")
+        visit login_path
+        fill_in "watiam", with: user_5.watiam
+        fill_in "password", with: user_5.password
+        click_on "Login"
+        visit new_team_ticket_url(@team_1)
+        assert_text "You do not have permission to create this ticket"
+    end
 end

@@ -27,7 +27,11 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     @team = Team.find(params[:id])
-    @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
+      if !current_user.teams.include?(@team)
+          redirect_to user_dashboard_path, notice: "You do not have permission to create this ticket"
+      else
+          @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
+      end
   end
 
   # POST /tickets
