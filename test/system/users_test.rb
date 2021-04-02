@@ -89,5 +89,17 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Save"
     assert_text "20.00%"
   end
+    
+# Story: UI/UX Refresh
+# acceptance criteria:
+# 1. if a user is not on a team, then should display "You're not apart of a team yet! Let your instructor know to add you to a team." on dashboard
+    test "user dashboard should display a message if user is not on a team" do
+        user1 = User.create(watiam: "user1", first_name: "emma", last_name: "lin", password: "Password")
+        visit login_path
+        fill_in "watiam", with: user1.watiam
+        fill_in "password", with: user1.password
+        click_on "Login"
+        assert_text "You're not a part of a team yet! Let your instructor know to add you to a team."
+    end
 
 end
