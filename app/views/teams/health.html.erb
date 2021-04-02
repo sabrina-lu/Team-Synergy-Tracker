@@ -1,5 +1,5 @@
 <div class="health-metrics-container">
-    <h1 class="emojis">&#128577;</h1> <!-- sad face -->
+    <%= image_tag("sad.png", class: "emojis") %>  <!-- sad face -->
     <div>  
         <h3 class="title">Current Week's Team Health:</h3>
         <progress class="bar" value="<%= @health_value %>" max="100"></progress>
@@ -7,6 +7,6 @@
           <p class="<%= @health_value.to_f > 50? "value green" : "value red" %>"><%= @health_value %>% </p>  
         </div>
     </div>
-    <h1 class="emojis">&#128522;</h1> <!-- happy face -->
+    <%= image_tag("happy.png", class: "emojis") %>  <!-- happy face -->
    
 </div>
