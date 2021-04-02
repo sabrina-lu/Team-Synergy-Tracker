@@ -1,3 +1,9 @@
+<% if @users.empty? %>
+
+<h2>This team has no members. Let's start tracking this team's health by adding members. Edit Team below!</h2>
+
+<% else %>
+
 <table class="users_table">
   <thead>
     <tr>
@@ -50,3 +56,5 @@
     <% end %>
   </tbody>
 </table>
+
+<% end %>
