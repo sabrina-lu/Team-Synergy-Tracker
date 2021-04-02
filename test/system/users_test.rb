@@ -85,7 +85,7 @@ class UsersTest < ApplicationSystemTestCase
         fill_in "watiam", with: user1.watiam
         fill_in "password", with: user1.password
         click_on "Login"
-        assert_text "You're not apart of a team yet! Let your instructor know to add you to a team."
+        assert_text "You're not a part of a team yet! Let your instructor know to add you to a team."
     end
 
 end
