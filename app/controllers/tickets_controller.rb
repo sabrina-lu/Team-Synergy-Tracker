@@ -20,6 +20,8 @@ class TicketsController < ApplicationController
       
     if !current_user_is_manager
         redirect_to user_dashboard_path, notice: "You do not have permission to view this ticket."
+    elsif !current_user.teams.include?(ticket.team)
+        redirect_to manager_dashboard_path, notice: "You do not have permission to view this ticket."
     end
   end
 
