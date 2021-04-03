@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
   
   get 'manager_tickets', to: 'managers#tickets', as: 'manager_tickets'
+  get 'manager_surveys', to: 'managers#surveys', as: 'manager_surveys'
     
     # route to get the team associated with the ticket
   get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'
