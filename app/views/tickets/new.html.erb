@@ -1,5 +1,10 @@
 <h1>New Ticket</h1>
 
+<% if @users_not_to_select.length == @team.users.length-1%>
+
+<h2>Sorry! You have already submitted a ticket for every member on your team this week. Until next week...</h2>
+
+<% else %>
 
 <%= render 'form', ticket: @ticket %>
 
@@ -55,4 +60,4 @@
   </div>
 </div>
 
-
+<% end %>
