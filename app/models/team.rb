@@ -67,9 +67,16 @@ class Team < ApplicationRecord
               count_total += 1
             end
         end
-        weekly_feedback << count_total
+        for i in 0..weekly_feedback.length-1 do
+        total_points = 3
+        if i == 4
+          total_points = 10
+        end
+          weekly_feedback[i] = '%.2f' % ((weekly_feedback[i].to_f/(count_total*total_points))*100)
+        end
         if count_total == 0
-          return []
+          # added 0 so the table won't be empty, the negative one is to quickly verify that the array is empty
+          return [0, 0, 0, 0, 0, -1]
         else
             # raw sum of feedback data
           return weekly_feedback
@@ -80,9 +87,9 @@ class Team < ApplicationRecord
         weekly_survey_team_health = self.weekly_survey_team_health(week, current_weekly_survey_due_date)
         weekly_feedback_team_health = self.weekly_feedback_team_health(week, current_weekly_survey_due_date)
         if (weekly_survey_team_health == 0) 
-            return sum_weekly_feedback_team_health(weekly_feedback_team_health)
-        elsif (weekly_feedback_team_health == [])
-            return weekly_survey_team_health
+            return '%.2f' % (sum_weekly_feedback_team_health(weekly_feedback_team_health))
+        elsif (weekly_feedback_team_health[-1] == -1)
+            return '%.2f' % (weekly_survey_team_health)
         else 
             calculated_weekly_feedback_health = sum_weekly_feedback_team_health(weekly_feedback_team_health)
             return '%.2f' % (0.8*(weekly_survey_team_health.to_f) + 0.2*(calculated_weekly_feedback_health.to_f))
@@ -94,7 +101,11 @@ class Team < ApplicationRecord
       @team_health_history = []
       for i in 0..total_weeks - 1 do 
         due_date = current_weekly_survey_due_date - 7*i
-        @team_health_history << ["#{due_date-7} - #{due_date-1}", self.get_total_team_health(i, current_weekly_survey_due_date)]
+        interval = "#{due_date-7} - #{due_date-1}"
+        feedback_health = self.weekly_feedback_team_health(i, current_weekly_survey_due_date)
+        survey_health = self.weekly_survey_team_health(i, current_weekly_survey_due_date)
+        total_health = self.get_total_team_health(i, current_weekly_survey_due_date)
+        @team_health_history << [interval, feedback_health[0], feedback_health[1], feedback_health[2], feedback_health[3], survey_health, total_health]
       end  
       return @team_health_history
     end
@@ -105,17 +116,13 @@ class Team < ApplicationRecord
         else
             sum_weekly_feedback = 0.00
             # exclude the total count and rating
-            for i in 0..feedbacks.length-3
+            for i in 0..feedbacks.length-2
                 # calculate average in category responses and give weight of 10%
-                feedbacks[i] = (feedbacks[i].to_f/(feedbacks[5].to_f*3))*0.1
+                sum_weekly_feedback += (feedbacks[i].to_f)*0.1
             end
             # calculate average in rating responses and give weight of 60%
-            feedbacks[4] = (feedbacks[4].to_f/(feedbacks[5].to_f*10)*0.6)
-            sum_weekly_feedback = 0.00
-            for i in 0..feedbacks.length-2
-                sum_weekly_feedback += feedbacks[i]
-            end
-            return '%.2f' % (sum_weekly_feedback*100.00)
+            sum_weekly_feedback += (feedbacks[4].to_f)*0.6
+            return  '%.2f' % (sum_weekly_feedback)
         end
     end
 end
