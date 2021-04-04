@@ -41,7 +41,9 @@ class ManagersController < ApplicationController
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
       if @team_health_history.present?
-        @health_value = @team_health_history[0][1]     
+        @health_value = @team_health_history[0][6] 
+      else 
+        @health_value = 0
       end
     end
   end
