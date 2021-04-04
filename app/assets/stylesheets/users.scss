@@ -4,28 +4,15 @@
 
 // Source (https://eichefam.net/2011/12/21/popup-windows-without-javascript/) used CSS tutorial from here in order to successfully produce pop-ups without JS
 .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position:absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 200%;
   background: rgba(0,0,0,0.5);
   transition: opacity 200ms;
   visibility: hidden;
-  opacity: 0;
-}
-
-.popupDash {
-  margin: 75px auto;
-  padding: 20px;
-  background: #fff;
-  border: 1px solid #666;
-  width: 70vw;
-//   height: 80vh;
-  height: 80%;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
-  position: relative;
-  overflow-y: scroll;
+  opacity: 0;  
 }
 
 .popup {
@@ -33,11 +20,11 @@
   padding: 20px;
   background: #fff;
   border: 1px solid #666;
-  width: 70vw;
-  height: 40vh;
+  width: 60%;
+  height: auto;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .overlay:target{
