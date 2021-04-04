@@ -77,7 +77,31 @@ class ManagersTest < ApplicationSystemTestCase
     visit team_health_path(@team_no_members)
     assert_text "No historical data available"
   end
-
+    
+    # Story: Add team health breakdown
+  test "should show different categories for team health history" do
+    @team_no_members = Team.create(name: "Team No Members")
+    @team_no_members.managers << @manager
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    click_on "Incomplete"
+    click_on "Save"
+    visit logout_path
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team)
+    assert_text "Communication"
+    assert_text "Behaviour"
+    assert_text "Teamwork"
+    assert_text "Availability"
+    assert_text "Weekly Surveys"
+    assert_text "Team Health"
+  end
+    
     # can view all the tickets of all the students they manage in a nice list
     # Story: Update manager's view of all tickets
   test "can view team's tickets" do
