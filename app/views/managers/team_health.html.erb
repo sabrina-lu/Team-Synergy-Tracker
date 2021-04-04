@@ -6,7 +6,7 @@
 <% if @team.users.length != 0 %>
     <%= render template: 'teams/members' %>
 <% else %>
-    No members on this team
+    This team has no members. Let's start tracking this team's health by adding members. Edit Team below!
 <% end %>
 <br>
 <%= link_to 'Edit Team', edit_team_path(@team) %>
