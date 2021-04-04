@@ -205,11 +205,11 @@ class TeamTest < ActiveSupport::TestCase
       Response.create(survey_id: s.id, question_number: i, answer: 3)
     end 
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 1)
     end
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 9)    
     for i in 1..4 do
-      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: @t_2.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: @t_2.id, question_number: 5, answer: 10)
       
@@ -223,12 +223,12 @@ class TeamTest < ActiveSupport::TestCase
     end      
     t = Ticket.create(team_id: @team_1.id, date: current_date-8, creator_id: @user_1.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 2)
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 8)    
     t = Ticket.create(team_id: @team_1.id, date: current_date-8, creator_id: @user_2.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 6) 
       
@@ -242,15 +242,19 @@ class TeamTest < ActiveSupport::TestCase
     end      
     t = Ticket.create(team_id: @team_1.id, date: current_date-2*8, creator_id: @user_1.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 5)    
     t = Ticket.create(team_id: @team_1.id, date: current_date-2*8, creator_id: @user_2.id)
     for i in 1..4 do
-      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 4)
+      TicketResponse.create(ticket_id: t.id, question_number: i, answer: 3)
     end
     TicketResponse.create(ticket_id: t.id, question_number: 5, answer: 7) 
+      
+    current_week = ["2021-03-13 - 2021-03-19", '%.2f' % (66.67), '%.2f' % (66.67), '%.2f' % (66.67), '%.2f' % (66.67), '%.2f' % (70.00), '%.2f' % (78.07)]      
+    last_week = ["2021-03-06 - 2021-03-12", '%.2f' % (83.33), '%.2f' % (83.33), '%.2f' % (83.33), '%.2f' % (83.33), '%.2f' % (50.00), '%.2f' % (59.07)]          
+    two_weeks_ago = ["2021-02-27 - 2021-03-05", '%.2f' % (100.00), '%.2f' % (100.00), '%.2f' % (100.00), '%.2f' % (100.00), '%.2f' % (40.00), '%.2f' % (49.87)]
     
-    assert_equal [["2021-03-13 - 2021-03-19", '%.2f' % (78.07)], ["2021-03-06 - 2021-03-12", '%.2f' % (59.07)], ["2021-02-27 - 2021-03-05", '%.2f' % (49.87)]], @team_1.get_health_history(current_date)
+    assert_equal [current_week, last_week , two_weeks_ago ], @team_1.get_health_history(current_date)
   end
 end

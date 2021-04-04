@@ -29,14 +29,9 @@
       <tbody>
         <% @team_health_history.each do |history| %>
           <tr>
-            <td><%= history[0]%></td>
-            <td><%= history[1]%>%</td>
-            <td><%= history[2]%>%</td>
-            <td><%= history[3]%>%</td>
-            <td><%= history[4]%>%</td>
-            <td><%= history[5]%>%</td>
-            <td><%= history[6]%>%</td> 
-            <td><%= history[7]%>%</td> 
+            <% history.each do |stats| %>
+              <td><%= stats %>%</td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
