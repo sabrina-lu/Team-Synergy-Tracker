@@ -28,15 +28,15 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     
     test "should not show manager tickets that aren't for their team" do
       @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-      @manager2 = Manager.create(watiam: "jsmyth", first_name: "John", last_name: "Smith", password: "Password")
+      @manager2 = Manager.create(watiam: "jsmyth", first_name: "John", last_name: "Smyth", password: "Password")
       @team = Team.create(name: "test")
       @team.managers << @manager
         
       @t_1.team = @team  
       @t_2.team = @team
       @t_3.team = @team
-        
       t = [@t_1, @t_2, @t_3]
+        
       for i in 0..2 do
           TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
           TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
@@ -48,11 +48,11 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       post login_path, params: { watiam: @manager2.watiam, password: @manager2.password }  
       get ticket_url(@t_1)
 #       assert_redirected_to manager_dashboard_url
-      assert_response :success
+      assert_response :redirect
       get ticket_url(@t_2)
-      assert_response :success
+      assert_response :redirect
       get ticket_url(@t_3)
-      assert_response :success
+      assert_response :redirect
     end
     
     test "should show manager tickets that are for their team" do
@@ -63,7 +63,6 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       @t_1.team = @team  
       @t_2.team = @team
       @t_3.team = @team
-        
       t = [@t_1, @t_2, @t_3]
         
       for i in 0..2 do
