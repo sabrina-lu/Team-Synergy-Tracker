@@ -145,4 +145,17 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "Confused?🤔 Get information here!"
     assert_text "Close"
   end
+    
+    # if there are no members on a team, add a message to let the manager know to add them
+    # Story: UI/UX Refresh
+  test "display message for no team members on the team view" do
+      empty_team = Team.create(name: "Team No Members")
+      empty_team.managers << @manager
+      visit login_path
+      fill_in "watiam", with: @manager.watiam
+      fill_in "password", with: @manager.password
+      click_on "Login"
+      click_on "Team No Members"
+      assert_text "This team has no members. Let's start tracking this team's health by adding members. Edit Team below!"
+  end 
 end
