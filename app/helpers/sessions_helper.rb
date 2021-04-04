@@ -52,9 +52,6 @@ module SessionsHelper
     
   def current_user_is_on_team(team)
       if current_user
-          current_user.teams.each do |x|
-                puts x.name
-          end
           return current_user.teams.include?(team)
       end
       return false

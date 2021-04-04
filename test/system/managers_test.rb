@@ -182,4 +182,17 @@ class ManagersTest < ApplicationSystemTestCase
       click_on "Team No Members"
       assert_text "This team has no members. Let's start tracking this team's health by adding members. Edit Team below!"
   end 
+    
+# Story: UI/UX Refresh
+# acceptance criteria:
+# 1. logo redirects manager to manager dashboard when clicked
+  test "should redirect manager to manager dahsboard when clicking on logo" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "Team 1"
+    click_link "logo"
+    assert_text "Welcome #{@manager.first_name}"
+  end
 end

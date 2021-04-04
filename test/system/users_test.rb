@@ -101,5 +101,18 @@ class UsersTest < ApplicationSystemTestCase
         click_on "Login"
         assert_text "You're not a part of a team yet! Let your instructor know to add you to a team."
     end
+    
+# Story: UI/UX Refresh
+# acceptance criteria:
+# 1. logo redirects users to user dashboard when clicked
+  test "should redirect user to user dahsboard when clicking on logo" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    click_on "Create Ticket"
+    click_link "logo"
+    assert_text "Welcome #{@user.first_name}"
+  end
 
 end
