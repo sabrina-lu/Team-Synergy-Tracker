@@ -15,22 +15,22 @@
 
 <p>
   <strong>How do you feel about this week in comparison to last week?:</strong>
-  <%= @survey.responses.first.to_i %>
+  <%= @survey.responses.first.answer %>
 </p>
 
 <p>
   <strong>How did you feel about this week?:</strong>
-  <%= @survey.responses.second.to_i %>
+  <%= @survey.responses.second.answer %>
 </p>
 
 <p>
   <strong>How would you rate your communication with your team members this week?:</strong>
-  <%= @survey.responses.third.to_i %>
+  <%= @survey.responses.third.answer %>
 </p>
 
 <p>
   <strong>How do you feel about the workload you had this week?:</strong>
-  <%= @survey.responses.fourth.to_i %>
+  <%= @survey.responses.fourth.answer %>
 </p>
 
 <%= link_to 'Back', team_surveys_path(@survey.team) %>

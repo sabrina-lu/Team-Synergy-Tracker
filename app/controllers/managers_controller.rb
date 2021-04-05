@@ -86,9 +86,10 @@ class ManagersController < ApplicationController
   end
     
   def surveys
+    @team = Team.find(params[:id])
     @surveys = []
     if current_user_is_manager
-      @surveys = Survey.where(team_id: current_user.teams).order("date DESC, team_id ASC")
+      @surveys = Survey.where(team_id: params[:id]).order("date DESC")
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end

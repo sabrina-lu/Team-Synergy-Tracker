@@ -9,23 +9,25 @@
           <th>Question 3</th>
           <th>Question 4</th>
           <th>Average Score</th>
-            <th>Date</th>
+          <th>Date</th>
         </tr>
       </thead>
 
       <tbody>
     <% if @surveys %>
         <% @surveys.each do |survey| %>
-          <tr>
-            <td><%= link_to survey.id, survey %></td> 
-            <td><%= User.find(survey.user_id).first_name %> </td>
-            <td><%= survey.responses.first %></td>
-            <td><%= survey.responses.second %></td>
-            <td><%= survey.responses.third %></td>
-            <td><%= survey.responses.fourth %></td>
-            <td><%= survey.get_survey_rating(survey) %></td>
-            <td><%= survey.date %></td>
-          </tr>
+          <% if survey.responses.exists? %>
+              <tr>
+                <td><%= link_to survey.id, survey %></td> 
+                <td><%= User.find(survey.user_id).first_name %> </td>
+                <td><%= survey.responses.first.answer %></td>
+                <td><%= survey.responses.second.answer %></td>
+                <td><%= survey.responses.third.answer %></td>
+                <td><%= survey.responses.fourth.answer %></td>
+                <td><%= survey.get_survey_rating(survey) %></td>
+                <td><%= survey.date %></td>
+              </tr>
+          <% end %>
         <% end %>
     <% end %>
 
@@ -33,6 +35,6 @@
       </tbody>
     </table>
 <% else %>
-    Your team has not submitted any surveys this week! Please remind your team members to submit their surveys!
+    Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.
 <% end %>
 <br>
