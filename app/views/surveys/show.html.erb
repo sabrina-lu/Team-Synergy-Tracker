@@ -13,5 +13,25 @@
   <%= @survey.date %>
 </p>
 
+<p>
+  <strong>How do you feel about this week in comparison to last week?:</strong>
+  <%= @survey.response.first.to_i %>
+</p>
+
+<p>
+  <strong>How did you feel about this week?:</strong>
+  <%= @survey.response.second.to_i %>
+</p>
+
+<p>
+  <strong>How would you rate your communication with your team members this week?:</strong>
+  <%= @survey.response.third.to_i %>
+</p>
+
+<p>
+  <strong>How do you feel about the workload you had this week?:</strong>
+  <%= @survey.response.fourth.to_i %>
+</p>
+
 <%= link_to 'Back', manager_tickets_path %>
 
