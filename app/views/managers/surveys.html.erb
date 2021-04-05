@@ -5,9 +5,8 @@
       <th>Survey ID</th>
       <th>Team</th>
       <th>Answered By</th>
-<!--       <th>Member Involved</th>
-      <th>Rating</th>
-      <th>Date</th> -->
+      <th>Health</th>
+      <th>Date</th>
     </tr>
   </thead>
 
@@ -18,32 +17,13 @@
         <td><%= link_to survey.id, survey %></td> 
         <td><%= Team.find(survey.team_id).name %></td>
         <td><%= User.find(survey.creator_id).first_name %> </td>
-<!--         <td><% survey.users.each do |user| %>
-            <%= user.first_name  %>
-            <% end %></td>
-        <td><%= survey.ticket_responses.fifth.answer %></td>
-        <td><%= ticket.date %></td> -->
+        <td>temp</td>
+        <td><%= survey.date %></td>
 
       </tr>
     <% end %>
-    <% end %>
-<!--     <% if @sentTickets %>  
-    <% @sentTickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket %></td>
-        <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><%= ticket.date %></td>
-      </tr>
-    <% end %>
-    <% end %>
-    <% if @receivedTickets %>  
-    <% @receivedTickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket %></td> 
-        <td>Anonymous</td>
-        <td><%= ticket.date %></td>
-      </tr>
-    <% end %>
-    <% end %> -->
+<% end %>
+
+    
   </tbody>
 </table>
