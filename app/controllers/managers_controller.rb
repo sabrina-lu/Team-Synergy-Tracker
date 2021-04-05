@@ -83,6 +83,15 @@ class ManagersController < ApplicationController
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end
   end
+    
+  def surveys
+    @surveys = []
+    if current_user_is_manager
+      @surveys = Survey.where(team_id: current_user.teams).order("date DESC, team_id ASC")
+    else
+      redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -16,10 +16,9 @@
       <tr>
         <td><%= link_to survey.id, survey %></td> 
         <td><%= Team.find(survey.team_id).name %></td>
-        <td><%= User.find(survey.creator_id).first_name %> </td>
+        <td><%= User.find(survey.user_id).first_name %> </td>
         <td>temp</td>
         <td><%= survey.date %></td>
-
       </tr>
     <% end %>
 <% end %>
