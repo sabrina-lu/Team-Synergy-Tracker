@@ -20,11 +20,16 @@ a:link, a:visited {
     margin: 10px 0px;
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    color: rgb(20, 20, 90);
+    font-size: 18px;
 }
 
-a:hover, a:active {
-    background-color: white;
+table a:link {
+  font-size: 14px;
+}
+
+a:hover {
+    background-color: transparent;
     text-decoration: underline;
     color: black;
 }
@@ -36,9 +41,8 @@ a:hover, a:active {
 }
 
 .logo {
-    height: 80px;
+    height: 90px;
 }
-
 
 .column-container {
     display: flex;
@@ -85,8 +89,6 @@ input[type=submit]:hover {
     color: white;
 }
 
-
-
 table {
     border-collapse: separate;
     border-spacing: 0;
@@ -105,22 +107,6 @@ td:hover {
     background-color: #97aadfff;
     color: rgb(20, 20, 90);
     padding: 10px;
-}
-
-a:hover {
-  background-color: #97aadfff;
-}
-
-a{
-    color: rgb(20, 20, 90);
-    text-decoration: overline;
-    font-size: 18px;
-}
-
-a:hover{
-    background-color: rgb(175,175,175);
-    text-decoration: none;
-    text-decoration: overline;
 }
 
 /* source: https://codepen.io/mlms13/pen/CGgLF */

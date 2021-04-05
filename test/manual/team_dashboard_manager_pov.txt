@@ -119,3 +119,9 @@ fix create team no members bug #143
     2. create a team with no members
     3. the team should be successfully created
     
+Test 16: If there are no members on a team, a message prompts to add members
+    1. Login as a manager
+    2. create a team with no members
+    3. the team should create successfully
+    4. there should be a message that says "This team has no members. Let's start tracking this team's health by adding members. Edit Team below!"
+    
