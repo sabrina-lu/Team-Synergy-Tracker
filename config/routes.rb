@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   root 'static_pages#home'
-  resources :surveys, except: [:index, :show, :edit, :new]
+  resources :surveys, except: [:index, :edit, :new]
   resources :managers, except: [:index, :show, :edit]
   resources :teams, except: [:index, :show]
   resources :responses, except: [:index, :show, :edit, :new]
