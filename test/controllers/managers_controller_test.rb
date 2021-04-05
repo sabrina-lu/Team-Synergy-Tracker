@@ -52,6 +52,21 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
   end
 
   # tickets tests
+  test "should show manager team's ticket" do
+    @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user2
+    @t_1 = Ticket.create(creator_id: @user.id, date:"13/03/2021", team_id: @team.id)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 1, answer: 1)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 2, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 3, answer: 3)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 4, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 7)
+    @t_1.users << [@user2]
+    login_as_manager
+    get team_tickets_url (@team)
+    assert_response :success
+  end
+    
   test "manager tickets page should still be successful even if they have no tickets associated to them" do
     login_as_manager
     get team_tickets_url (@team)
