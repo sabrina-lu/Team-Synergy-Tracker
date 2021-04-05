@@ -62,10 +62,9 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
         
       @t_1.team = @team  
       @t_2.team = @team
-      @t_3.team = @team
-      t = [@t_1, @t_2, @t_3]
+      t = [@t_1, @t_2]
         
-      for i in 0..2 do
+      for i in 0..1 do
           TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
           TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
           TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 3)
@@ -74,12 +73,9 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       end 
        
       post login_path, params: { watiam: @manager.watiam, password: @manager.password }  
-#       login_as_manager
       get ticket_url(@t_1)
       assert_response :success
       get ticket_url(@t_2)
-      assert_response :success
-      get ticket_url(@t_3)
       assert_response :success
     end
     
