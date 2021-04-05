@@ -157,6 +157,15 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "Rating"
   end
   
+  test "ticket view when team has no tickets" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "View Tickets"
+    assert_text "This team did not create any tickets"
+  end
+  
     # can view instructions on how to use the app on every main page
     # Story: Include instructions on both manager and user's dashboard
   test "can dashboard view popup instructions" do
