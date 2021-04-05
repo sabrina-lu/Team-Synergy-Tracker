@@ -13,4 +13,10 @@ class Survey < ApplicationRecord
         return 6 > current_date.wday ? current_date + (6 - current_date.wday) : current_date.next_week.next_day(6)
     end
   end
+    
+#   def survey_rating
+#       rating = 100
+#       "#{rating}"
+# #       "#{rating}%"
+#   end
 end
