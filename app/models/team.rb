@@ -45,15 +45,6 @@ class Team < ApplicationRecord
         return '%.2f' % ((count_numerator.to_f/count_denominator.to_f)*100)
       end
     end
-        
-    def get_survey_rating(week, current_weekly_survey_due_date)
-      if @team_health_history.any?
-          weekly_survey_team_health = self.weekly_survey_team_health(week, current_weekly_survey_due_date)
-          return '%.2f' % (weekly_survey_team_health)
-      else
-          return 0
-      end
-    end 
     
     def weekly_feedback_team_health(week, current_weekly_survey_due_date)
         count_communication = 0
