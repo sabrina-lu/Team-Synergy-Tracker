@@ -1,0 +1,17 @@
+<p>
+  <strong>Answered By:</strong>
+    <%= User.find(@survey.user_id).full_name_with_watiam %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+    <%= Team.find(@survey.team_id).name %>
+</p>
+
+<p>
+  <strong>Date Created:</strong>
+  <%= @survey.date %>
+</p>
+
+<%= link_to 'Back', manager_tickets_path %>
+
