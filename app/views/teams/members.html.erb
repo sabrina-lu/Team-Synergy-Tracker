@@ -37,12 +37,12 @@
             <% if @team.users.include?user %>
                 <%= form_with url: confirm_remove_member_path do |form| %>
                 <%= form.hidden_field :user_id, :value => user.id %>
-                <td><%= form.submit "Remove User" %></td>
+                <td class="red"><%= form.submit "Remove User" %></td>
             <% end %>
             <% else %>
                 <%= form_with url: confirm_add_member_path do |form| %>
                     <%= form.hidden_field :user_id, :value => user.id %>
-                    <td><%= form.submit "Add User" %></td>
+                    <td class="green"><%= form.submit "Add User" %></td>
                 <% end %>
             <% end %>
         <% end %>

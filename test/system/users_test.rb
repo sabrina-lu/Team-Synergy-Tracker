@@ -105,7 +105,7 @@ class UsersTest < ApplicationSystemTestCase
 # Story: UI/UX Refresh
 # acceptance criteria:
 # 1. logo redirects users to user dashboard when clicked
-  test "should redirect user to user dahsboard when clicking on logo" do
+  test "should redirect user to user dashboard when clicking on logo" do
     visit login_path
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
