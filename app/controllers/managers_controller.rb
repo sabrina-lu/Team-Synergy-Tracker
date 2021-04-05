@@ -93,11 +93,6 @@ class ManagersController < ApplicationController
       redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end
   end
-  
-#   def survey_rating
-#      @survey_rating = []
-#      @survey_rating = 100
-#   end
 
   private
     # Use callbacks to share common setup or constraints between actions.

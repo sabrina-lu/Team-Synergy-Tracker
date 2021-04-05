@@ -1,28 +1,36 @@
-<table>
-  <thead>
-    <tr>
-      <th>Survey ID</th>
-      <th>Team</th>
-      <th>Answered By</th>
-      <th>Health</th>
-      <th>Date</th>
-    </tr>
-  </thead>
+<% if @surveys.length >0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Survey ID</th>
+          <th>Answered By</th>
+          <th>Question 1</th>
+          <th>Question 2</th>
+          <th>Question 3</th>
+          <th>Question 4</th>
+          <th>Average Scoe</th>
+        </tr>
+      </thead>
 
-  <tbody>
-<% if @surveys %>
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= link_to survey.id, survey %></td> 
-        <td><%= Team.find(survey.team_id).name %></td>
-        <td><%= User.find(survey.user_id).first_name %> </td>
-        <td><%= survey.get_survey_rating(survey) %></td>
-        <td><%= survey.date %></td>
-      </tr>
+      <tbody>
+    <% if @surveys %>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= link_to survey.id, survey %></td> 
+            <td><%= User.find(survey.user_id).first_name %> </td>
+            <td><%= survey.responses.first %></td>
+            <td><%= survey.responses.second %></td>
+            <td><%= survey.responses.third %></td>
+            <td><%= survey.responses.fourth %></td>
+            <td><%= survey.get_survey_rating(survey) %></td>
+          </tr>
+        <% end %>
     <% end %>
-<% end %>
 
-    
-  </tbody>
-</table>
+
+      </tbody>
+    </table>
+<% else %>
+    Your team has not submitted any surveys this week! Please remind your team members to submit their surveys!
+<% end %>
 <br>
