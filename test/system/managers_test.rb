@@ -102,15 +102,15 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "Team Health"
   end
     
-    # can view all the tickets of all the students they manage in a nice list
-    # Story: Update manager's view of all tickets
+    # can view the tickets of each team they manage in a nice list
+    # Story: Display view of all tickets in an organized way for manager
   test "can view team's tickets" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
-    assert_text "My Team's Tickets"
+    click_on "View Tickets"
+    assert_text "Team 1's Tickets"
   end
 
     # On the manager dashboard there should be ratio of the students who completed weekly surveys for each team
@@ -139,11 +139,21 @@ class ManagersTest < ApplicationSystemTestCase
   
     # can successfully view ticket ratings
   test "can view team's ticket ratings" do
+    @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user2
+    @t_1 = Ticket.create(creator_id: @user.id, date:"13/03/2021", team_id: @team.id)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 1, answer: 1)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 2, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 3, answer: 3)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 4, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 7)
+    @t_1.users << [@user2]
+    
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     assert_text "Rating"
   end
   
@@ -160,12 +170,12 @@ class ManagersTest < ApplicationSystemTestCase
   
     # can view instructions on how to use the app on every main page
     # Story: Include instructions on both manager and user's dashboard
-  test "can view all tickets view popup instructions" do
+  test "can view tickets view popup instructions" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     click_on "Confused?🤔 Get information here!"
     assert_text "Close"
   end
