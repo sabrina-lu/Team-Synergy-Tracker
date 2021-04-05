@@ -186,7 +186,7 @@ class ManagersTest < ApplicationSystemTestCase
 # Story: UI/UX Refresh
 # acceptance criteria:
 # 1. logo redirects manager to manager dashboard when clicked
-  test "should redirect manager to manager dahsboard when clicking on logo" do
+  test "should redirect manager to manager dashboard when clicking on logo" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
