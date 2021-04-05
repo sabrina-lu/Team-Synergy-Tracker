@@ -1,48 +1,51 @@
-<table>
-  <thead>
-    <tr>
-      <th>Ticket ID</th>
-      <th>Team</th>
-      <th>Created By</th>
-      <th>Member Involved</th>
-      <th>Rating</th>
-      <th>Date</th>
-    </tr>
-  </thead>
+<% if @tickets.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket ID</th>
+          <th>Created By</th>
+          <th>Member Involved</th>
+          <th>Rating</th>
+          <th>Date</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% if @tickets %>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket %></td> 
-        <td><%= Team.find(ticket.team_id).name %></td>
-        <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><% ticket.users.each do |user| %>
-            <%= user.first_name  %>
-            <% end %></td>
-        <td><%= ticket.ticket_responses.fifth.answer %></td>
-        <td><%= ticket.date %></td>
+      <tbody>
+        <% if @tickets %>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= link_to ticket.id, ticket %></td> 
+            <td><%= User.find(ticket.creator_id).first_name %> </td>
+            <td><% ticket.users.each do |user| %>
+                <%= user.first_name  %>
+                <% end %></td>
+            <td><%= ticket.ticket_responses.fifth.answer %></td>
+            <td><%= ticket.date %></td>
 
-      </tr>
-    <% end %>
-    <% end %>
-    <% if @sentTickets %>  
-    <% @sentTickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket %></td>
-        <td><%= User.find(ticket.creator_id).first_name %> </td>
-        <td><%= ticket.date %></td>
-      </tr>
-    <% end %>
-    <% end %>
-    <% if @receivedTickets %>  
-    <% @receivedTickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket %></td> 
-        <td>Anonymous</td>
-        <td><%= ticket.date %></td>
-      </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+          </tr>
+        <% end %>
+        <% end %>
+        <% if @sentTickets %>  
+        <% @sentTickets.each do |ticket| %>
+          <tr>
+            <td><%= link_to ticket.id, ticket %></td>
+            <td><%= User.find(ticket.creator_id).first_name %> </td>
+            <td><%= ticket.date %></td>
+          </tr>
+        <% end %>
+        <% end %>
+        <% if @receivedTickets %>  
+        <% @receivedTickets.each do |ticket| %>
+          <tr>
+            <td><%= link_to ticket.id, ticket %></td> 
+            <td>Anonymous</td>
+            <td><%= ticket.date %></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+    This team did not create any tickets
+<% end %>
+<br><br>

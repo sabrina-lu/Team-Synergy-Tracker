@@ -26,9 +26,17 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to user_dashboard_url
     end
     
-    test "should show manager any ticket they want to view" do
+    test "should not show manager tickets that aren't for their team" do
       @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+      @manager2 = Manager.create(watiam: "jsmyth", first_name: "John", last_name: "Smyth", password: "Password")
+      @team = Team.create(name: "test")
+      @team.managers << @manager
+        
+      @t_1.team = @team  
+      @t_2.team = @team
+      @t_3.team = @team
       t = [@t_1, @t_2, @t_3]
+        
       for i in 0..2 do
           TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
           TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
@@ -36,12 +44,38 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
           TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 2)
           TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 7)
       end      
-      login_as_manager
+        
+      post login_path, params: { watiam: @manager2.watiam, password: @manager2.password }  
+      get ticket_url(@t_1)
+#       assert_redirected_to manager_dashboard_url
+      assert_response :redirect
+      get ticket_url(@t_2)
+      assert_response :redirect
+      get ticket_url(@t_3)
+      assert_response :redirect
+    end
+    
+    test "should show manager tickets that are for their team" do
+      @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
+      @team = Team.create(name: "test")
+      @team.managers << @manager
+        
+      @t_1.team = @team  
+      @t_2.team = @team
+      t = [@t_1, @t_2]
+        
+      for i in 0..1 do
+          TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
+          TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
+          TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 3)
+          TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 2)
+          TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 7)
+      end 
+       
+      post login_path, params: { watiam: @manager.watiam, password: @manager.password }  
       get ticket_url(@t_1)
       assert_response :success
       get ticket_url(@t_2)
-      assert_response :success
-      get ticket_url(@t_3)
       assert_response :success
     end
     

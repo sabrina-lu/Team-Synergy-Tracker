@@ -3,12 +3,21 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .green {
-    color: green;
+    color: #73956fff;
+}
+
+.green input[type=submit] {
+    background-color: #73956fff
 }
 
 .red {
-    color: red;
+    color: #f56476ff;
 }
+
+.red input[type=submit] {
+    background-color: #f56476ff
+}
+
 
 .health-metrics-container {
     display: flex;
