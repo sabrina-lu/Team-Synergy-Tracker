@@ -54,13 +54,13 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
   # tickets tests
   test "manager tickets page should still be successful even if they have no tickets associated to them" do
     login_as_manager
-    get manager_tickets_url
+    get team_tickets_url (@team)
     assert_response :success
   end
   
   test "should redirect user to user dashboard page when accessing manager ticket page" do
     login_as_user
-    get manager_tickets_url
+    get team_tickets_url (@team)
     assert_redirected_to user_dashboard_url
     assert_equal "You do not have permission to view tickets.", flash[:notice]
   end

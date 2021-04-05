@@ -6,6 +6,7 @@
       <th>My Teams</th>
       <th>Current Weekly Health</th>
       <th>Weekly Survey Completion Ratio</th>
+      <th>Tickets</th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,7 @@
         <td><%= link_to team.name, team_health_path(team) %>  </td>
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
+        <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,16 +42,6 @@
 </table>
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
-
-<br><br>
-
-<div>
-    <span>
-        <a href=""><%= link_to 'View All Tickets', manager_tickets_path %></a>
-        <!-- TODO: uncomment this when it has been implemented
-            <a href="">Create A Ticket</a> -->
-    </span>
-</div>
 
 <br><br>
 <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
