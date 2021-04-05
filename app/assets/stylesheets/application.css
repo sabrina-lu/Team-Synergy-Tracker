@@ -65,6 +65,12 @@ a:hover {
     margin: 5px 0px;
 }
 
+/* CSS for dropdowns */
+select {
+    border-radius: 5px;
+    border-color: lightgray;
+}
+
 input[type=submit] {
     margin: 10px 0px;
     padding: 10px 20px 10px 20px;
