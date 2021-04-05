@@ -16,7 +16,7 @@
         <td><%= link_to survey.id, survey %></td> 
         <td><%= Team.find(survey.team_id).name %></td>
         <td><%= User.find(survey.user_id).first_name %> </td>
-        <td><%= @survey_rating %></td>
+        <td><%= survey.team.get_survey_rating(0, @CURRENT_SURVEY_DUE_DATE) %></td>
         <td><%= survey.date %></td>
       </tr>
     <% end %>

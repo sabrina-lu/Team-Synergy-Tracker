@@ -93,10 +93,10 @@ class ManagersController < ApplicationController
     end
   end
   
-  def survey_rating
-     @survey_rating = []
-     @survey_rating = 100
-  end
+#   def survey_rating
+#      @survey_rating = []
+#      @survey_rating = 100
+#   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
