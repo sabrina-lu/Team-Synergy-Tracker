@@ -6,9 +6,11 @@
 <%= form_with url: "/responses", method: :post do |form| %>
 
     <% for i in 0..@questions.length-1 %>
-        <div class="field">
-             <p><%= @questions[i] %></p>
-            <%= form.select :"answer#{i+1}", [1,2,3,4,5] %>
+        <div class="subtitle">
+            <nobr>
+             <%= @questions[i] %>
+             <%= form.select :"answer#{i+1}", [1,2,3,4,5] %>
+            </nobr>
         </div>    
     <% end %>
 

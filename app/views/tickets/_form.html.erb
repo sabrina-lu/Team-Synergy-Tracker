@@ -18,7 +18,8 @@
           <%= form.collection_select(:users, @team.users.where.not(id: @users_to_not_select), :id, :full_name_with_watiam, {:prompt => 'Please Select A Member'}, {required: true}) %>
         </nobr>
       </p>
-      <p>If they are not listed, then please make note of your concerns for next week's ticket session. You may only send a ticket to a team member once a week.</p>
+      
+      <p class="note">If they are not listed, then please make note of your concerns for next week's ticket session. You may only send a ticket to a team member once a week.</p>
     
     <div class="field">
       <!--  Source (https://www.rubyguides.com/2015/12/ruby-time/) Used for understanding how the Ruby time library works -->
