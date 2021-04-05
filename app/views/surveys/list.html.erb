@@ -8,7 +8,8 @@
           <th>Question 2</th>
           <th>Question 3</th>
           <th>Question 4</th>
-          <th>Average Scoe</th>
+          <th>Average Score</th>
+            <th>Date</th>
         </tr>
       </thead>
 
@@ -23,6 +24,7 @@
             <td><%= survey.responses.third %></td>
             <td><%= survey.responses.fourth %></td>
             <td><%= survey.get_survey_rating(survey) %></td>
+            <td><%= survey.date %></td>
           </tr>
         <% end %>
     <% end %>
