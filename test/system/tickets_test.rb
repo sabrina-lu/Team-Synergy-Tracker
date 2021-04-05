@@ -51,7 +51,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     assert_text "My Team's Tickets"
   end
     
@@ -62,7 +62,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     click_on @t_1.id
     assert_text "Date Created:"
   end
