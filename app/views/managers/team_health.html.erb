@@ -39,7 +39,13 @@
             <td><%= @team_health_history[i][3] %>%</td>
             <td><%= @team_health_history[i][4] %>%</td>
             <td><%= @team_health_history[i][5] %>%</td>
-            <td><b><%= @team_health_history[i][6] %>%</b></td>
+                <% if @team_health_history[i][6].to_i < 30 %>
+                    <td class="red"><b><%= @team_health_history[i][6] %>%</b></td>
+                <% elsif @team_health_history[i][6].to_i > 90 %>
+                    <td class="green"><b><%= @team_health_history[i][6] %>%</b></td>
+                <% else %>
+                    <td><b><%= @team_health_history[i][6] %>%</b></td>
+                <% end %>
           </tr>
         <% end %>
       </tbody>
