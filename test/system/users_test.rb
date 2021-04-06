@@ -71,6 +71,10 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Save"
     assert_text "46.00%"
     click_on "Incomplete"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"
     assert_text "25.20%"
   end     
@@ -86,6 +90,10 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     assert_text "Current Weekly Health"
     click_on "Incomplete"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"
     assert_text "20.00%"
   end

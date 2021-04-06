@@ -5,23 +5,14 @@
 input[type="radio"] {
     visibility:hidden;
 }
-label {
-    display: block;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: 10px 20px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-input[type="radio"]:hover + label{
+input[type="radio"]:hover + .label{
     background-color: lightgray;
 }
 
 
-input[type="radio"]:checked + label {
-    background-color: #97aadfff;
+input[type="radio"]:checked + .label {
+    background-color: #483d3fff;
     color: white;
 }
 

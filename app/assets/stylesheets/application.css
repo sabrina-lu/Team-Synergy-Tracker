@@ -54,6 +54,7 @@ a:hover {
 
 .row-container {
     display: flex;
+    justify-content: flex-start;
 }
 
 .header-container {
@@ -152,4 +153,16 @@ table tr:last-child td:first-child {
 /* bottom-right border-radius */
 table tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
+}
+
+/* radio button inputs */
+.label {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
 }
