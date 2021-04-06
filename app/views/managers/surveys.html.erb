@@ -15,9 +15,17 @@
       </tbody>
     </table>
     <br>
-
-    <%= render template: 'surveys/list' %>
-
+<br>
+    <% if params[:any_completed_surveys] %>
+        <%= render template: 'surveys/list' %>
+    <% else %>
+        <table>
+            <tr>
+              <th><strong>No one has submitted a survey this week. Please remind your team members to submit their surveys!</strong></th>
+            </tr>
+        </table>
+    <% end %>
+<br>
     <%= link_to 'Return to Dashboard', manager_dashboard_path %>
 <% else %>
     <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>

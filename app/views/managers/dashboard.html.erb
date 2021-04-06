@@ -17,7 +17,11 @@
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
         <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
-        <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, current_week: true) %></td>
+            <% if team.any_completed_surveys(@CURRENT_SURVEY_DUE_DATE) %>
+                <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, any_completed_surveys: true, current_week: true) %></td>
+            <% else %>
+                <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, current_week: true) %></td>
+            <% end %>
       </tr>
     <% end %>
   </tbody>
