@@ -87,6 +87,7 @@ class ManagersController < ApplicationController
     
   def surveys
     @team = Team.find(params[:id])
+#     @survey_history = @team.get_this_weeks_surveys(CURRENT_SURVEY_DUE_DATE)
     @surveys = []
     if current_user_is_manager
       @surveys = Survey.where(team_id: params[:id]).order("date DESC")

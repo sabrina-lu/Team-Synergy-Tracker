@@ -110,6 +110,17 @@ class Team < ApplicationRecord
       return @team_health_history
     end
     
+#     def get_survey_history(current_weekly_survey_due_date)
+#         total_weeks = Survey.where(team_id: id).select('distinct(date)').count
+#         @survey_history =[]
+#             for i in 0..total_weeks - 1 do 
+#             due_date = current_weekly_survey_due_date - 7*i
+#             interval = "#{due_date-7} - #{due_date-1}"
+#             @survey_history << [interval, feedback_health[0], feedback_health[1], feedback_health[2], feedback_health[3], survey_health, total_health]
+#         end  
+#         return @survey_history
+#     end
+    
     def sum_weekly_feedback_team_health(feedbacks)
         if feedbacks == []
             return 0
