@@ -29,7 +29,9 @@
       <tbody>
         <% for i in 0..@team_health_history.length - 1 do %>
           <tr>
-                <% if @team_health_history[i][5].to_i > 0 %>
+                <% if @team_health_history[i][5].to_i > 0 && i ==0 %>
+                    <td><%= link_to @team_health_history[i][0], team_surveys_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i, any_completed_surveys: true, current_week: true) %></td>
+                <% elsif @team_health_history[i][5].to_i > 0 && i>0 %>
                     <td><%= link_to @team_health_history[i][0], team_surveys_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i, any_completed_surveys: true) %></td>
                 <% else %>
                     <td><%= @team_health_history[i][0] %></td>

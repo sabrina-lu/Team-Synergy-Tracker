@@ -2,14 +2,12 @@
     <table>
       <thead>
         <tr>
-          <th>Survey ID</th>
           <th>Answered By</th>
           <th>Question 1</th>
           <th>Question 2</th>
           <th>Question 3</th>
           <th>Question 4</th>
           <th>Survey Health</th>
-          <th>Week</th>
         </tr>
       </thead>
 
@@ -18,8 +16,7 @@
             <% @surveys.each do |survey| %>
               <% if survey.responses.exists? %>
                   <tr>
-                    <td><%= link_to survey.id, survey %></td> 
-                    <td><%= User.find(survey.user_id).first_name %> </td>
+                    <td><%= User.find(survey.user_id).full_name_with_watiam %> </td>
                     <td><%= survey.responses.first.answer %>/5</td>
                     <td><%= survey.responses.second.answer %>/5</td>
                     <td><%= survey.responses.third.answer %>/5</td>
@@ -31,7 +28,6 @@
                     <% else %>
                         <td><%= survey.get_survey_rating(survey) %>%</td>
                     <% end %>
-                    <td><%= @interval %></td>
                   </tr>
               <% end %>
             <% end %>
