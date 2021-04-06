@@ -68,6 +68,10 @@ class SurveysTest < ApplicationSystemTestCase
   end
     
   test "can successfully view survey details as the manager of the team" do
+      Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+      Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+      Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+      Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
       visit login_path
       fill_in "watiam", with: @manager.watiam
       fill_in "password", with: @manager.password
