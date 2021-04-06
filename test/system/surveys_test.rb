@@ -48,6 +48,15 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Welcome #{@manager.first_name}"
     assert_text "You do not have permission to respond to surveys."
   end
+  
+  test "should redirect user back to dashboard without submitting the weekly survey" do
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    assert_text "Back to Dashboard"
+    click_on "Back to Dashboard"
+    assert_text "Welcome #{@user.first_name}"
+  end
     
   def login(user)
     visit login_path

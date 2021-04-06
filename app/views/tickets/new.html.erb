@@ -1,5 +1,6 @@
 <h1>New Ticket</h1>
 
+<% if @users_to_not_select == nil || @users_to_not_select.length != @team.users.length %>
 
 <%= render 'form', ticket: @ticket %>
 
@@ -55,4 +56,21 @@
   </div>
 </div>
 
+<% elsif @team.users.length == 1 %>
 
+<h2>Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!</h2>
+
+<div class="user_team_links">
+<%= link_to 'Go back to dashboard', user_dashboard_path %>
+</div>
+
+<% else %>
+
+<h2>Sorry! You have already submitted a ticket for every member on your team this week. You can submit a ticket next week.</h2>
+<h3>See you then!</h3>
+
+<div class="user_team_links">
+<%= link_to 'Go back to dashboard', user_dashboard_path %>
+</div>
+
+<% end %>
