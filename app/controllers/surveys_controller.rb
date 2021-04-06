@@ -24,9 +24,4 @@ class SurveysController < ApplicationController
     def set_survey
       @survey = Survey.find(params[:id])
     end
-
-#     # Only allow a trusted parameter "white list" through.
-#     def survey_params
-#       params.permit(:date, :user_id, :answer1, :answer2, :answer3, :answer4)
-#     end
 end

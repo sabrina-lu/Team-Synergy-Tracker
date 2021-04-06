@@ -34,7 +34,7 @@
 </p>
 
 
-<% if @current_week == true  %>
+<% if @current_week == params[:current_week]  %>
     <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date, current_week: true) %>
 <% else %>
     <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date) %>
