@@ -14,19 +14,14 @@ class Survey < ApplicationRecord
     end
   end
         
-  def get_survey_rating(survey)
-    if @team_health_history     
-        rating = 0
-        num_responses = 0
-        survey.responses.each do |response|
-            rating += response.answer
-            num_responses += 1
-        end
-        avg_rating = rating/num_responses
-        health = avg_rating/5
-        return '%.2f' % (health)
-    else
-        return 0 
-    end
+  def get_survey_rating(survey)    
+    rating = 0
+    num_responses = 0
+      survey.responses.each do |response|
+        rating += response.answer
+        num_responses += 1 
+      end
+    avg_rating = rating.to_f/num_responses
+    return '%.2f' % (avg_rating)
   end 
 end
