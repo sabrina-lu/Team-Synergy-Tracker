@@ -1,7 +1,7 @@
 class Response < ApplicationRecord
     belongs_to :survey
     
-    validates :answer, presence: true, inclusion: {in: 1..5}, allow_blank: false
+    validates :answer, presence: {strict: true}, inclusion: {in: 1..5, message: "%{value} is not a valid score"}, numericality: {only_integer: true}, format: {with: /\A\d{1}?\z/}, allow_nil: false, allow_blank: false
   
     def self.permission_to_response(response_id, current_user)
         survey_id = Response.find(response_id).survey_id
