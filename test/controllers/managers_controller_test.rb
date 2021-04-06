@@ -50,7 +50,7 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
       post managers_url, params: { manager: { flag: "Manager", watiam: "bpark", password: "Password", first_name: "Bob", last_name: "Park"} }
     end
   end
-
+    
   # tickets tests
   test "should show manager team's ticket" do
     @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
@@ -87,4 +87,31 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
     assert_equal "Please log in.", flash["notice"]
   end 
+  
+  # surveys tests
+  test "should show manager team's surveys" do
+    @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user2
+    @s_1 = Survey.create(user_id: @user.id, date:"13/03/2021", team_id: @team.id)
+    Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+    Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+    Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+    Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
+    login_as_manager
+    get team_surveys_url(id: @team.id, date: @s_1.date)
+    assert_response :success
+  end
+    
+  test "manager surveys page should still be successful even if no surveys have been completed" do
+    login_as_manager
+    get team_surveys_url(id: @team.id, date: "06/04/2021")
+    assert_response :success
+  end
+  
+  test "should redirect user to user dashboard page when accessing survey page" do
+    login_as_user
+    get team_surveys_url(id: @team.id, date: "06/04/2021")
+    assert_redirected_to user_dashboard_url
+    assert_equal "You do not have permission to view surveys.", flash[:notice]
+  end
 end
