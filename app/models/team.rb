@@ -29,7 +29,7 @@ class Team < ApplicationRecord
     
     def any_completed_surveys(current_weekly_survey_due_date)
         any_surveys = self.number_of_completed_surveys(current_weekly_survey_due_date)
-        if any_surveys = 0
+        if any_surveys == 0
             return false
         else
             return true
