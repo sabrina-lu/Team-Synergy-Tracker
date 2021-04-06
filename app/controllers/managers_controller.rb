@@ -88,8 +88,13 @@ class ManagersController < ApplicationController
     q4 = "How do you feel about the workload you had this week?"
     @questions = [q1,q2,q3,q4]
 #     //MAKE SURE OTHER MANAGERS CAN'T ACCESS
-    due_date = params[:date].to_i
+    due_date = Date.parse(params[:date])
     @interval = "#{due_date-7} - #{due_date-1}"
+    if due_date = @CURRENT_SURVEY_DUE_DATE
+        @current_week = true
+    else
+        @current_week = false
+    end
       
     @team = Team.find(params[:id])
     @surveys = []
