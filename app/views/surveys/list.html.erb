@@ -16,7 +16,6 @@
       <tbody>
         <% if @surveys %>
             <% @surveys.each do |survey| %>
-<!--           make this and everything before survey into this_weeks_surveys -->
               <% if survey.responses.exists? %>
                   <tr>
                     <td><%= link_to survey.id, survey %></td> 

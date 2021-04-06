@@ -1,8 +1,6 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
 
-#   show method
-    
   def show
     survey = Survey.find(params[:id])
     responses = []
@@ -20,7 +18,6 @@ class SurveysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])
     end
