@@ -17,7 +17,7 @@
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
         <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
-        <td><%= link_to 'View Surveys', team_surveys_path(team) %></td>
+        <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, current_week: true) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,22 +26,6 @@
 <%= link_to 'New Team', new_team_path %>
 
 <br><br>
-
-<h2><u>Weekly Survey Information</u></h2>
-<table>
-  <thead>
-    <tr>
-      <th>Questions Asked This Week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question %>  </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 

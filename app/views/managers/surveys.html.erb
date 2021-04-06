@@ -1,5 +1,27 @@
-<h1><%= @team.name %>'s Surveys</h1>
+<% if params[:current_week]%>
+    <h1><%= @team.name %>'s Current Week's Surveys</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
 
-<%= render template: 'surveys/list' %>
+    <%= render template: 'surveys/list' %>
 
-<%= link_to 'Return to Dashboard', manager_dashboard_path %>
+    <%= link_to 'Return to Dashboard', manager_dashboard_path %>
+<% else %>
+    <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
+
+    <%= render template: 'surveys/list' %>
+    <%= link_to "Back to #{@team.name}", team_health_path(@team) %>
+<% end %>

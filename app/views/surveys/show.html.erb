@@ -33,5 +33,10 @@
   <%= @survey.responses.fourth.answer %>
 </p>
 
-<%= link_to 'Back', team_surveys_path(@survey.team) %>
 
+<% if params[:current_week]%>
+dont forget this
+    <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date, current_week: true) %>
+<% else %>
+    <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date) %>
+<% end %>

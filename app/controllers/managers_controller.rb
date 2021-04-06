@@ -18,17 +18,13 @@ class ManagersController < ApplicationController
     if !@manager
         redirect_to_manager_login
     else
-      q1 = "How do you feel about this week in comparison to last week?"
-      q2 = "How did you feel about this week?"
-      q3 = "How would you rate your communication with your team members this week?"
-      q4 = "How do you feel about the workload you had this week?"
-      @questions = [q1,q2,q3,q4]
       @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
     end 
   end
   
   # GET /team_health/1/metrics
   def team_health
+    @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
     if !current_user_is_manager
       redirect_to_manager_login
     end
@@ -86,11 +82,19 @@ class ManagersController < ApplicationController
   end
     
   def surveys
+    q1 = "How do you feel about this week in comparison to last week?"
+    q2 = "How did you feel about this week?"
+    q3 = "How would you rate your communication with your team members this week?"
+    q4 = "How do you feel about the workload you had this week?"
+    @questions = [q1,q2,q3,q4]
+#     //MAKE SURE OTHER MANAGERS CAN'T ACCESS
+    due_date = params[:date].to_i
+    @interval = "#{due_date-7} - #{due_date-1}"
+      
     @team = Team.find(params[:id])
-#     @survey_history = @team.get_this_weeks_surveys(CURRENT_SURVEY_DUE_DATE)
     @surveys = []
     if current_user_is_manager
-      @surveys = Survey.where(team_id: params[:id]).order("date DESC")
+      @surveys = Survey.where(team_id: params[:id], date: params[:date])
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end

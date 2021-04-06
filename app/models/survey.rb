@@ -22,6 +22,7 @@ class Survey < ApplicationRecord
         num_responses += 1 
       end
     avg_rating = rating.to_f/num_responses
+    avg_rating = avg_rating/5 *100
     return '%.2f' % (avg_rating)
   end 
 end

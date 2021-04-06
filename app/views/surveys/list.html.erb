@@ -8,7 +8,7 @@
           <th>Question 2</th>
           <th>Question 3</th>
           <th>Question 4</th>
-          <th>Average Rating</th>
+          <th>Survey Health</th>
           <th>Date</th>
         </tr>
       </thead>
@@ -21,16 +21,16 @@
                   <tr>
                     <td><%= link_to survey.id, survey %></td> 
                     <td><%= User.find(survey.user_id).first_name %> </td>
-                    <td><%= survey.responses.first.answer %></td>
-                    <td><%= survey.responses.second.answer %></td>
-                    <td><%= survey.responses.third.answer %></td>
-                    <td><%= survey.responses.fourth.answer %></td>
-                    <% if survey.get_survey_rating(survey).to_i < 2 %>
-                        <td class="red"><%= survey.get_survey_rating(survey) %></td>
-                    <% elsif survey.get_survey_rating(survey).to_i > 5 %>
-                        <td class="green"><%= survey.get_survey_rating(survey) %></td>
+                    <td><%= survey.responses.first.answer %>/5</td>
+                    <td><%= survey.responses.second.answer %>/5</td>
+                    <td><%= survey.responses.third.answer %>/5</td>
+                    <td><%= survey.responses.fourth.answer %>/5</td>
+                    <% if survey.get_survey_rating(survey).to_i < 30 %>
+                        <td class="red"><%= survey.get_survey_rating(survey) %>%</td>
+                    <% elsif survey.get_survey_rating(survey).to_i > 90 %>
+                        <td class="green"><%= survey.get_survey_rating(survey) %>%</td>
                     <% else %>
-                        <td><%= survey.get_survey_rating(survey) %></td>
+                        <td><%= survey.get_survey_rating(survey) %>%</td>
                     <% end %>
                     <td><%= survey.date %></td>
                   </tr>

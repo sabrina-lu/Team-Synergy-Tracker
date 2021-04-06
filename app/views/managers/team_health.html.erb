@@ -27,15 +27,15 @@
         </tr>
       </thead>
       <tbody>
-        <% @team_health_history.each do |history| %>
+        <% for i in 0..@team_health_history.length - 1 do %>
           <tr>
-            <td><%= history[0] %></td>
-            <td><%= history[1] %>%</td>
-            <td><%= history[2] %>%</td>
-            <td><%= history[3] %>%</td>
-            <td><%= history[4] %>%</td>
-            <td><%= history[5] %>%</td>
-            <td><b><%= history[6] %>%</b></td>
+            <td><%= link_to @team_health_history[i][0], team_surveys_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i) %></td>
+            <td><%= @team_health_history[i][1] %>%</td>
+            <td><%= @team_health_history[i][2] %>%</td>
+            <td><%= @team_health_history[i][3] %>%</td>
+            <td><%= @team_health_history[i][4] %>%</td>
+            <td><%= @team_health_history[i][5] %>%</td>
+            <td><b><%= @team_health_history[i][6] %>%</b></td>
           </tr>
         <% end %>
       </tbody>
