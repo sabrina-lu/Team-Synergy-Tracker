@@ -119,7 +119,7 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View Surveys"
+    visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
     assert_text "Team 1's Current Week's Surveys"
   end
     

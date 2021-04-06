@@ -20,7 +20,7 @@
             <% if team.any_completed_surveys(@CURRENT_SURVEY_DUE_DATE) %>
                 <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, any_completed_surveys: true, current_week: true) %></td>
             <% else %>
-                <td><%= link_to "View Surveys", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, current_week: true) %></td>
+                <td>No Surveys Yet!</td>
             <% end %>
       </tr>
     <% end %>

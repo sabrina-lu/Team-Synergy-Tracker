@@ -35,7 +35,7 @@
 
 
 <% if @current_week == params[:current_week]  %>
-    <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date, current_week: true) %>
+    <%= link_to "Back", team_surveys_path(id: @survey.team, any_completed_surveys: true, date: @survey.date, current_week: true) %>
 <% else %>
-    <%= link_to "Back", team_surveys_path(id: @survey.team, date: @survey.date) %>
+    <%= link_to "Back", team_surveys_path(id: @survey.team, any_completed_surveys: true, date: @survey.date) %>
 <% end %>

@@ -36,7 +36,7 @@ class ManagersController < ApplicationController
       @team_users = @team.users
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
-      
+        
       if Response.where(survey_id: Survey.where(team_id: @team.id)).exists?
         @any_team_health_history = true
       else

@@ -29,7 +29,11 @@
       <tbody>
         <% for i in 0..@team_health_history.length - 1 do %>
           <tr>
-            <td><%= link_to @team_health_history[i][0], team_surveys_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i) %></td>
+                <% if @team_health_history[i][5].to_i > 0 %>
+                    <td><%= link_to @team_health_history[i][0], team_surveys_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i) %></td>
+                <% else %>
+                    <td><%= @team_health_history[i][0] %></td>
+                <% end %>
             <td><%= @team_health_history[i][1] %>%</td>
             <td><%= @team_health_history[i][2] %>%</td>
             <td><%= @team_health_history[i][3] %>%</td>
