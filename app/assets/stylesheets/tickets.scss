@@ -4,9 +4,8 @@
 // Source (https://www.w3schools.com/Css/css_positioning.asp) Used for learning how to position text and items in set locations in CSS
 
 .form-container {
-  display: flex;
-  align-items: start;
-  margin: 0px 0px 40px 0px;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .description-text-box{
@@ -26,3 +25,7 @@
     margin: 0px 20px;
 }
 
+p {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+}

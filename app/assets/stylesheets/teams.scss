@@ -22,12 +22,15 @@
 .health-metrics-container {
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 70px;
 }
 
 .emojis {
     align-self: center;
     width: 90px;
-    margin-top: 10px;
+    margin-top: 10px;  
 }
 
 .bar {
@@ -90,6 +93,7 @@
   text-decoration: none;
   color: #666;
 }
+
 
 
 

@@ -19,12 +19,17 @@ th, td {
 
 div.field,
 div.actions {
-  margin-bottom: 10px; }
+  margin: auto;
+  text-align: center;
+  margin-bottom: 30px;
+}
 
 #notice {
+  text-align: center;
   color: #f56476ff; }
 
 .field_with_errors {
+  margin: auto;
   padding: 2px 5px;
   border-radius: 5px;
   background-color: #f56476ff;
@@ -32,6 +37,7 @@ div.actions {
   display: table; }
 
 #error_explanation {
+  margin: auto;
   width: 450px;
   border: 2px solid #f56476ff;
   border-radius: 5px;
