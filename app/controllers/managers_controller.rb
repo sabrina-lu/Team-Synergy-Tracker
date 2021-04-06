@@ -97,7 +97,7 @@ class ManagersController < ApplicationController
 
     due_date = Date.parse(params[:date])
     @interval = "#{due_date-7} - #{due_date-1}"
-    if due_date = @CURRENT_SURVEY_DUE_DATE
+    if due_date == @CURRENT_SURVEY_DUE_DATE
         @current_week = true
     else
         @current_week = false
