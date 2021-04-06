@@ -1,29 +1,50 @@
-<p>
-  <strong>Creator:</strong>
-    <%= User.find(@ticket.creator_id).full_name_with_watiam %>
-</p>
+<table>
+    <thead>
+        <th colspan="2">Ticket <%= @ticket.id %> Details </th>
+    </thead>
+    <tbody>
+        <tr>
+          <td><b>Creator:</b></td>
+          <td><%= User.find(@ticket.creator_id).full_name_with_watiam %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Member Involved:</b></td>
+          <td><%= @ticket.users.first.full_name_with_watiam %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Date Created:</b></td>
+          <td><%= @ticket.date %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Communication:</b></td>
+          <td><%= @responses_to_words[0] %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Behaviour:</b></td>
+          <td><%= @responses_to_words[1] %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Teamwork:</b></td>
+          <td><%= @responses_to_words[2] %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Availability:</b></td>
+          <td><%= @responses_to_words[3] %></td>
+        </tr>
+        
+        <tr>
+          <td><b>Overall Rating:</b></td>
+          <td><%= @responses_to_words[4] %>/10</td>
+        </tr>
+    </tbody>
+</table>
 
-<p>
-  <strong>Members:</strong>
-    <%= @ticket.users.first.full_name_with_watiam %>
-</p>
-
-<p>
-  <strong>Date Created:</strong>
-  <%= @ticket.date %>
-</p>
-
-
-<p>I've experienced <%= @responses_to_words[0] %> commmunication with this person</p>
-<p>I've experienced <%= @responses_to_words[1] %> behaviour with this person</p>
-<p>I've experienced <%= @responses_to_words[2] %> teamwork with this person</p>
-<p>I've experienced <%= @responses_to_words[3] %> availability with this person</p>
-
-<p>Overall rating: <%= @responses_to_words[4] %></p>
-
-
-<% if @ticket.creator_id == current_user.id && !current_user_is_manager %>
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<% end %>
+<br>
 <%= link_to 'Back', team_tickets_path(@ticket.team) %>
 
