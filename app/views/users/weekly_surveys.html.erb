@@ -4,13 +4,12 @@
 <! -- also using https://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease -->
 
 <%= form_with url: "/responses", method: :post do |form| %>
+  
 
     <% for i in 0..@questions.length-1 %>
-        <div class="subtitle">
-            <nobr>
-             <%= @questions[i] %>
-             <%= form.select :"answer#{i+1}", [1,2,3,4,5] %>
-            </nobr>
+
+            <%= form.select :"answer#{i+1}", [1,2,3,4,5], :required => true, :pattern => '^[1-5]{1}?$' %>
+
         </div>    
     <% end %>
 
@@ -20,7 +19,7 @@
     <h5><%= form.submit %></h5>
 <% end %>
 <div class="user_team_links">
-<%= link_to "Back to #{@team.name}", user_team_list_path(id: @team.id) %>
+<%= link_to "Back to Dashboard", user_dashboard_path %>
 </div>
 
 <br><br>

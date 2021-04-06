@@ -70,4 +70,3 @@ Adding a User to a Ticket #144
     9. Select 'Create Ticket' for the same team you selected earlier
     10. Verify that the user you previously selected for the ticket is not a listed option. 
     
-    
