@@ -14,7 +14,7 @@
     <div>
       <p  class="subtitle">
         <nobr>
-          Please Select the Member Who is Involved:
+          1. Please Select the Member Who is Involved:
           <%= form.collection_select(:users, @team.users.where.not(id: @users_to_not_select), :id, :full_name_with_watiam, {:prompt => 'Please Select A Member'}, {required: true}) %>
         </nobr>
       </p>
@@ -29,28 +29,28 @@
   </div>
 
 <!-- using https://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease -->
-<p class="subtitle">How well does this person communicate with the team through all mediums?</p>
+<p class="subtitle">2. How well does this person communicate with the team through all mediums?</p>
 <div class="field">
     <p>I've experienced <%= form.select :answer1, [["great", 3], ["typical", 2], ["poor", 1]], selected: params[:answer1] %> commmunication with this person</p>
 </div>
 
-<p class="subtitle">Consider the manner through which this person conducts themselves within the team.</p>
+<p class="subtitle">3. Consider the manner through which this person conducts themselves within the team.</p>
 <div class="field">
     <p>I've experienced <%= form.select :answer2, [["great", 3], ["typical", 2], ["poor", 1]], selected: params[:answer2] %> behaviour with this person</p>
 </div>
 
-<p class="subtitle">Consider this person's ability to work with and contribute to the team</p>
+<p class="subtitle">4. Consider this person's ability to work with and contribute to the team</p>
 <div class="field">
     <p>I've experienced <%= form.select :answer3, [["great", 3], ["typical", 2], ["poor", 1]], selected: params[:answer3] %> teamwork with this person</p>
 </div>
 
-<p class="subtitle">How accessible and open to communication is this person?</p>
+<p class="subtitle">5. How accessible and open to communication is this person?</p>
 <div class="field">
     <p>I've experienced <%= form.select :answer4, [["great", 3], ["typical", 2], ["poor", 1]], selected: params[:answer4] %> availability with this person</p>
 </div>
 
 <div class="field">
-    <p class="subtitle">I would rate this team member a(n) <%= form.select :answer5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: params[:answer5] %> out of 10.</p>
+    <p class="subtitle">6. I would rate this team member a(n) <%= form.select :answer5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], selected: params[:answer5] %> out of 10.</p>
 </div> 
 
 <h5><%= form.submit %></h5>

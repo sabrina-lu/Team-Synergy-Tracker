@@ -1,3 +1,30 @@
 // Place all the styles related to the Surveys controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+input[type="radio"] {
+    visibility:hidden;
+}
+label {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="radio"]:hover + label{
+    background-color: lightgray;
+}
+
+
+input[type="radio"]:checked + label {
+    background-color: #97aadfff;
+    color: white;
+}
+
+.option-container {
+    display: flex;
+}
