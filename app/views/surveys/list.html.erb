@@ -9,7 +9,7 @@
           <th>Question 3</th>
           <th>Question 4</th>
           <th>Survey Health</th>
-          <th>Date</th>
+          <th>Week</th>
         </tr>
       </thead>
 
@@ -32,7 +32,7 @@
                     <% else %>
                         <td><%= survey.get_survey_rating(survey) %>%</td>
                     <% end %>
-                    <td><%= survey.date %></td>
+                    <td><%= @interval %></td>
                   </tr>
               <% end %>
             <% end %>
