@@ -20,10 +20,10 @@
       <% if @team.users.length != 0 %>
           <%= render :template => "teams/members", :locals => { :@users => team.users } %>
       <% else %>
-          No members on this team
+          <div class="link-container">No members on this team</div>
           <br>
       <% end %>
-      <%= link_to "Add/Remove Members", edit_members_path(@team) %>
+      <div class="link-container"><%= link_to "Add/Remove Members", edit_members_path(@team) %></div>
   <% end %>
 
   <br>

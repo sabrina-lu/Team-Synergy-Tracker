@@ -5,11 +5,13 @@
 <%= render 'form', ticket: @ticket %>
 
 <div class="user_team_links">
-<%= link_to 'Go Back and Discard Changes', user_dashboard_path %>
+<div class="link-container">
+    <%= link_to 'Go Back and Discard Changes', user_dashboard_path %>
+</div>
 </div>
 
 <br><br>
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+<div class="link-container"><a href="#help"><h2>Confused?🤔 Get information here!</h2></a></div>
 
 <div id="help" class="overlay">
   <div class="popup">
@@ -61,7 +63,7 @@
 <h2>Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!</h2>
 
 <div class="user_team_links">
-<%= link_to 'Go back to dashboard', user_dashboard_path %>
+    <div class="link-container"><%= link_to 'Go back to dashboard', user_dashboard_path %></div>
 </div>
 
 <% else %>
@@ -70,7 +72,9 @@
 <h3>See you then!</h3>
 
 <div class="user_team_links">
-<%= link_to 'Go back to dashboard', user_dashboard_path %>
+<div class="link-container">    
+   <%= link_to 'Go back to dashboard', user_dashboard_path %>
+</div>
 </div>
 
 <% end %>

@@ -6,10 +6,13 @@
 <% if @team.users.length != 0 %>
     <%= render template: 'teams/members' %>
 <% else %>
-    This team has no members. Let's start tracking this team's health by adding members. Edit Team below!
+    <div class="link-container">This team has no members. Let's start tracking this team's health by adding members. Edit Team below!</div>
 <% end %>
 <br>
-<%= link_to 'Edit Team', edit_team_path(@team) %>
+
+<div class="link-container">
+   <%= link_to 'Edit Team', edit_team_path(@team) %> 
+</div>
 
 <br><br>
 <h2>Team Health History</h2>
@@ -41,14 +44,18 @@
       </tbody>
     </table>
 <% else %>
-    No historical data available.
+    <div class="link-container">No historical data available.</div>
 <% end %>
 
 <br><br>
-<%= link_to 'Return to Dashboard', manager_dashboard_path %>
+<div class="link-container">
+    <%= link_to 'Return to Dashboard', manager_dashboard_path %>
+</div>
 
 <br><br>
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+<div class="link-container">
+    <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+</div>
 
 <div id="help" class="overlay">
   <div class="popup">
