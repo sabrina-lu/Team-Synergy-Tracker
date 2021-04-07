@@ -86,7 +86,11 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
     click_on "Login"
-    click_on "Incomplete"
+    click_on "Incomplete"    
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"
     visit logout_path
     visit login_path
@@ -102,15 +106,70 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "Team Health"
   end
     
-    # can view all the tickets of all the students they manage in a nice list
-    # Story: Update manager's view of all tickets
+    # can view the tickets of each team they manage in a nice list
+    # Story: Display view of all tickets in an organized way for manager
   test "can view team's tickets" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
-    assert_text "My Team's Tickets"
+    click_on "View Tickets"
+    assert_text "Team 1's Tickets"
+  end
+    
+  # Manager sees the current week's surveys for each team they manage
+  test "can view team's current week surveys" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
+    assert_text "Team 1's Current Week's Surveys"
+  end
+    
+    # Manager sees the surveys history for each team they manage
+  test "can view team's surveys for past weeks" do
+    @team_with_history = Team.create(name: "Team With History")
+    @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
+    Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+    Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+    Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+    Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team_with_history)
+    visit team_surveys_path(id: @team_with_history, date: @s_1.date)
+    assert_text "Team With History's Surveys for Week 2021-02-22 - 2021-02-28"
+  end
+    
+      # Manager gets message for each team they manage if it has no surveys history
+  test "manager gets message if no team's surveys for past weeks" do
+    @team_with_no_history = Team.create(name: "Team With History")
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team_with_no_history)
+    visit team_surveys_path(id: @team_with_no_history.id, date: "09/03/2021", current_week: true)
+    assert_text "Your team has not submitted any surveys this week! Please remind your team members to submit their surveys."
+  end
+    
+  # can successfully view survey health
+  test "can view team's survey health" do
+    @team_with_history = Team.create(name: "Team With History")
+    @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
+    Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+    Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+    Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+    Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_surveys_path(id: @team_with_history.id, date: @s_1.date,  any_completed_surveys: true, current_week: true)
+    assert_text "Survey Health"
   end
 
     # On the manager dashboard there should be ratio of the students who completed weekly surveys for each team
@@ -128,6 +187,10 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "Login"
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save" 
     visit logout_path
     visit login_path
@@ -139,12 +202,31 @@ class ManagersTest < ApplicationSystemTestCase
   
     # can successfully view ticket ratings
   test "can view team's ticket ratings" do
+    @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user2
+    @t_1 = Ticket.create(creator_id: @user.id, date:"13/03/2021", team_id: @team.id)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 1, answer: 1)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 2, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 3, answer: 3)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 4, answer: 2)
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 7)
+    @t_1.users << [@user2]
+    
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     assert_text "Rating"
+  end
+  
+  test "ticket view when team has no tickets" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    click_on "View Tickets"
+    assert_text "This team did not create any tickets"
   end
   
     # can view instructions on how to use the app on every main page
@@ -160,12 +242,12 @@ class ManagersTest < ApplicationSystemTestCase
   
     # can view instructions on how to use the app on every main page
     # Story: Include instructions on both manager and user's dashboard
-  test "can view all tickets view popup instructions" do
+  test "can view tickets view popup instructions" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     click_on "Confused?🤔 Get information here!"
     assert_text "Close"
   end
@@ -186,7 +268,7 @@ class ManagersTest < ApplicationSystemTestCase
 # Story: UI/UX Refresh
 # acceptance criteria:
 # 1. logo redirects manager to manager dashboard when clicked
-  test "should redirect manager to manager dahsboard when clicking on logo" do
+  test "should redirect manager to manager dashboard when clicking on logo" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password

@@ -11,49 +11,35 @@
     </div>
   <% end %> 
 
-<div class="column-container">
-    
-<!-- 
-  - Source (https://www.rubydoc.info/github/plataformatec/simple_form/SimpleForm/FormBuilder#collection_radio_buttons-instance_method) used for understanding the Options available
-  - Source (https://api.rubyonrails.org/v6.1.2/classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button) used for radio_button method explaination
--->
-<%= form.label :flag do %>
-  <%= form.radio_button :flag, "User", {:checked=>true} %>
-  User
+<div class="row-container">   
+  <%= form.radio_button :flag, "User", :checked => true, :style => "display: none;" %>
+  <%= form.label :flag_user, "User", :class => 'label' %> 
   <%= form.radio_button :flag, "Manager" %>
-  Manager
-<% end %>
-
+  <%= form.label :flag_manager, "Manager", :class => 'label' %>     
+</div> 
 <!-- 
   - Source (https://stackoverflow.com/questions/50453091/override-a-default-value-in-a-rails-form) used for understanding how to set input values if default values not provided
 -->
 
 <div class="field">
-    <%= form.label :watiam, style: 'margin-top: 10px' %>
-    <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]) %>
+    <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]), placeholder: "Watiam" %>
   </div>
 <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, value: (form.object.first_name || params[:first_name]) %>
+    <%= form.text_field :first_name, value: (form.object.first_name || params[:first_name]), placeholder: "First Name" %>
   </div>
 <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, value: (form.object.last_name || params[:last_name]) %>
+    <%= form.text_field :last_name, value: (form.object.last_name || params[:last_name]), placeholder: "Last Name" %>
   </div>
 
  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, value: (form.object.password || params[:password]) %>
+    <%= form.password_field :password, value: (form.object.password || params[:password]), placeholder: "Password" %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, value: (form.object.password_confirmation || params[:password_confirmation]) %>
+    <%= form.password_field :password_confirmation, value: (form.object.password_confirmation || params[:password_confirmation]), placeholder: "Password Confirmation" %>
   </div>
 
 <div class="actions">
     <%= form.submit "Create Account", style: 'width: 180px' %>
   </div>
-
-</div>    
 <% end %>

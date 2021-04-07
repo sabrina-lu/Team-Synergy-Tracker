@@ -6,6 +6,7 @@
       <th>My Teams</th>
       <th>Current Weekly Health</th>
       <th>Weekly Survey Completion Ratio</th>
+      <th>Tickets</th>
     </tr>
   </thead>
   <tbody>
@@ -13,46 +14,29 @@
       <tr>
         <td><%= link_to team.name, team_health_path(team) %>  </td>
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
-        <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
+            <% if team.any_completed_surveys(@CURRENT_SURVEY_DUE_DATE) %>
+                <td><%= link_to "#{team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE)} students have completed", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, any_completed_surveys: true, current_week: true) %></td>
+            <% else %>
+                <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
+            <% end %>
+        <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Team', new_team_path %>
+<div class="link-container">
+    <%= link_to 'New Team', new_team_path %>
+</div>
 
 <br><br>
-
-<h2><u>Weekly Survey Information</u></h2>
-<table>
-  <thead>
-    <tr>
-      <th>Questions Asked This Week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question %>  </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 
 <br><br>
-
-<div>
-    <span>
-        <a href=""><%= link_to 'View All Tickets', manager_tickets_path %></a>
-        <!-- TODO: uncomment this when it has been implemented
-            <a href="">Create A Ticket</a> -->
-    </span>
+<div class="link-container"> 
+    <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
 </div>
-
-<br><br>
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
 
 <div id="help" class="overlay">
   <div class="popup">

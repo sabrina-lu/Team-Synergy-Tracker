@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   root 'static_pages#home'
-  resources :surveys, except: [:index, :show, :edit, :new]
+  resources :surveys, except: [:index, :edit, :new]
   resources :managers, except: [:index, :show, :edit]
   resources :teams, except: [:index, :show]
   resources :responses, except: [:index, :show, :edit, :new]
@@ -20,12 +20,13 @@ Rails.application.routes.draw do
     
   get 'manager_dashboard', to: 'managers#dashboard', as: 'manager_dashboard'
   get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'
-
+    
   get 'teams/:id/members', to: 'teams#edit_members', as: 'edit_members'
   post 'teams/:id/members/add', to: 'teams#add_member', as: 'confirm_add_member'
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
   
-  get 'manager_tickets', to: 'managers#tickets', as: 'manager_tickets'
+  get 'teams/:id/tickets', to: 'managers#tickets', as: 'team_tickets'
+  get 'team_health/:id/metrics/:date/surveys', to: 'managers#surveys', as: 'team_surveys'
     
     # route to get the team associated with the ticket
   get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'

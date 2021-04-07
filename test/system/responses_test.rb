@@ -30,12 +30,21 @@ class ResponsesTest < ApplicationSystemTestCase
   test "creating a Response" do
     visit user_dashboard_url
     click_on "Incomplete"
-    select "2", :from => :answer1
-    select "2", :from => :answer2
-    select "3", :from => :answer3
-    select "4", :from => :answer4
+    choose "2", :id => :answer1_2
+    choose "2", :id => :answer2_2
+    choose "3", :id => :answer3_3
+    choose "4", :id => :answer4_4
     click_on "Save"
 
     assert_text "Successfully submitted weekly survey."
+  end
+    
+  test "creating an invalid Response" do
+    visit user_dashboard_url
+    click_on "Incomplete"
+    choose "4", :id => :answer4_4
+    click_on "Save"
+
+    assert_text "Invalid survey response score. Please fix and re-submit."
   end
 end

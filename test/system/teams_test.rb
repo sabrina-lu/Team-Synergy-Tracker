@@ -63,7 +63,11 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Login"
     click_on "Team 1"
     click_on "Weekly Surveys"
-    click_on "Save" 
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1  
+    click_on "Save"     
     visit logout_path
     visit login_path
     fill_in "watiam", with: @m.watiam

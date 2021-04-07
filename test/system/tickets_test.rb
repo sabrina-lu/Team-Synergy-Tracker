@@ -51,7 +51,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     assert_text "My Team's Tickets"
   end
     
@@ -62,7 +62,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
-    click_on "View All Tickets"
+    click_on "View Tickets"
     click_on @t_1.id
     assert_text "Date Created:"
   end
@@ -78,7 +78,7 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "Login"
     visit new_team_ticket_url(@team_1)
     assert_text "New Ticket"
-    select "jellen: Joe Ellen", :from => :users
+    select "#{user2.full_name_with_watiam}", :from => :users
     click_on "Save"
 
     assert_text "Ticket was successfully created"
@@ -94,5 +94,39 @@ class TicketsTest < ApplicationSystemTestCase
         click_on "Login"
         visit new_team_ticket_url(@team_1)
         assert_text "You do not have permission to create this ticket"
+    end
+    
+# do not allow users to access ticket form when they submitted a ticket to every member on the team for that week
+# Story: UI/UX Refresh
+    test "cannot access ticket form if user submitted a ticket to every member that week" do
+        visit login_path
+        fill_in "watiam", with: @user_1.watiam
+        fill_in "password", with: @user_1.password
+        click_on "Login"
+        click_on "Create Ticket"
+        select "u2", from: "users"
+        click_on "Save"
+        click_on "Create Ticket"
+        select "u3", from: "users"
+        click_on "Save"
+        click_on "Create Ticket"
+        assert_text "Sorry! You have already submitted a ticket for every member on your team this week. You can submit a ticket next week."
+    end
+    
+# do not allow users to access ticket form if they are the only person on the team
+# Story: UI/UX Refresh
+    test "cannot access ticket form if user is the only person on the team" do
+        # setting up data
+        team_with_one_user = Team.create(name: "test")
+        user = User.create(watiam: "emlin", first_name: "emma", last_name: "lin", password: "Password")
+        team_with_one_user.users << [user]
+        team_with_one_user.managers << [@manager_1]
+        
+        visit login_path
+        fill_in "watiam", with: user.watiam
+        fill_in "password", with: user.password
+        click_on "Login"
+        click_on "Create Ticket"
+        assert_text "Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!"
     end
 end

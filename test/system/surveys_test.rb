@@ -5,7 +5,7 @@ class SurveysTest < ApplicationSystemTestCase
     setup_users_manager_teams
     @team_no_access.users << @user
     @team_no_access.managers << @manager
-    Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
+    @s_1 = Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
     Survey.create(team_id: @team_no_access.id, user_id: @user.id, date: Date.new(2021,3,13))
   end
   
@@ -30,6 +30,10 @@ class SurveysTest < ApplicationSystemTestCase
     login(@user)
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"   
     assert_text "Successfully submitted weekly survey."
   end
@@ -38,6 +42,10 @@ class SurveysTest < ApplicationSystemTestCase
     login(@user)
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"   
     assert_text "Welcome #{@user.first_name}"
   end
@@ -48,6 +56,24 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Welcome #{@manager.first_name}"
     assert_text "You do not have permission to respond to surveys."
   end
+  
+  test "should redirect user back to dashboard without submitting the weekly survey" do
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    assert_text "Back to Dashboard"
+    click_on "Back to Dashboard"
+    assert_text "Welcome #{@user.first_name}"
+  end
+    
+  test "can successfully view survey list as a manager" do
+    visit login_path
+      fill_in "watiam", with: @manager.watiam
+      fill_in "password", with: @manager.password
+      click_on "Login"
+      visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
+    assert_text "Team 1's Current Week's Surveys" 
+  end
     
   def login(user)
     visit login_path
@@ -55,5 +81,4 @@ class SurveysTest < ApplicationSystemTestCase
     fill_in "password", with: user.password
     click_on "Login"  
   end
-
 end

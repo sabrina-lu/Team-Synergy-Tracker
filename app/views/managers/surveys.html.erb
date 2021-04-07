@@ -1,0 +1,59 @@
+<% if params[:current_week]%>
+    <h1><%= @team.name %>'s Current Week's Surveys</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <% if params[:any_completed_surveys] %>
+        <%= render template: 'surveys/list' %>
+    <% else %>
+        <br>
+        <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong> 
+        <br>
+    <% end %>
+    <br>
+    <div class="link-container">
+        <%= link_to "Return to Dasboard", manager_dashboard_path %> 
+    </div>
+<% else %>
+    <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <% if params[:any_completed_surveys] %>
+        <%= render template: 'surveys/list' %>
+    <% else %>
+        <br>
+        <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong> 
+        <br>
+    <% end %>    
+    <div class="link-container">
+        <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
+    </div>
+    
+<% end %>
