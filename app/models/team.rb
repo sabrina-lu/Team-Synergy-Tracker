@@ -27,6 +27,26 @@ class Team < ApplicationRecord
        return "#{completed_surveys}/#{users.count}"
     end
     
+    def any_completed_surveys(current_weekly_survey_due_date)
+        any_surveys = self.number_of_completed_surveys(current_weekly_survey_due_date)
+        if any_surveys == 0
+            return false
+        else
+            return true
+        end
+    end
+    
+    def number_of_completed_surveys(current_weekly_survey_due_date)
+       completed_surveys = 0
+       users.each do |user|
+         survey = Survey.find_by(user_id: user.id, team_id: id, date: current_weekly_survey_due_date)
+         if survey && survey.responses.exists?
+           completed_surveys += 1
+         end
+       end
+        return completed_surveys
+    end
+    
     def weekly_survey_team_health(week, current_weekly_survey_due_date)
       count_numerator = 0
       count_total = 0

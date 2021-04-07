@@ -225,41 +225,11 @@ for i in 0..9 do
   TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: rand(1..10))
 end
 
-O = Response.new(survey_id: 1, question_number: 1, answer: "2") #need foreign key that references survey_id
-P = Response.new(survey_id: 2, question_number: 2, answer: "4")
-Q = Response.new(survey_id: 3, question_number: 3, answer: "1")
-R = Response.new(survey_id: 4, question_number: 4, answer: "5")
-S = Response.new(survey_id: 5, question_number: 5, answer: "3")
-T = Response.new(survey_id: 6, question_number: 6, answer: "2")
-U = Response.new(survey_id: 25, question_number: 1, answer: "2")
-V = Response.new(survey_id: 26, question_number: 2, answer: "5")
-W = Response.new(survey_id: 27, question_number: 3, answer: "3")
-#X = Response.new(survey_id: 28, question_number: 4, answer: "5")
-ZA = Response.new(survey_id: 25, question_number: 2, answer: "2")
-
-# U = Response.new(question_number: 7, response: "")
-# U.save
-
-s1.responses << [O, P, Q, R, S, T] 
-s1.save
-
-s25.responses << [U, ZA]
-s26.responses << [V]
-s27.responses << [W]
-#s28.responses << [X]
-
-O.save
-P.save
-Q.save
-R.save
-S.save
-T.save
-U.save
-V.save
-W.save
-#X.save
-ZA.save
-
+Survey.all.each do |survey|
+    for x in 1..4 do 
+        Response.create(survey_id: survey.id, question_number: x, answer: rand(1..5))
+    end
+end 
 
 # create surveys and tickets for last week, two weeks ago and three weeks ago
 users = [A,B,C,D,E,F,generic_user]

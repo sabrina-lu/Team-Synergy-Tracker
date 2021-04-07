@@ -5,7 +5,7 @@ class SurveysTest < ApplicationSystemTestCase
     setup_users_manager_teams
     @team_no_access.users << @user
     @team_no_access.managers << @manager
-    Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
+    @s_1 = Survey.create(team_id: @team.id, user_id: @user.id, date: Date.new(2021,3,13))
     Survey.create(team_id: @team_no_access.id, user_id: @user.id, date: Date.new(2021,3,13))
   end
   
@@ -66,11 +66,19 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Welcome #{@user.first_name}"
   end
     
+  test "can successfully view survey list as a manager" do
+    visit login_path
+      fill_in "watiam", with: @manager.watiam
+      fill_in "password", with: @manager.password
+      click_on "Login"
+      visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
+    assert_text "Team 1's Current Week's Surveys" 
+  end
+    
   def login(user)
     visit login_path
     fill_in "watiam", with: user.watiam
     fill_in "password", with: user.password
     click_on "Login"  
   end
-
 end
