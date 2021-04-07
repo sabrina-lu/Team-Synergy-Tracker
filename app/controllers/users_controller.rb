@@ -20,20 +20,23 @@ class UsersController < ApplicationController
          @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
          @user = current_user #get logged in user from session
          @teams = @user.teams
-         @completed = {}
+         @survey_completed = {}
+         @ticket_completed = {}
          @teams.each do |team| #for each team user is on, check if user completed the survey for that team    
              @survey = Survey.find_by(user_id: current_user.id, team_id: team.id, date: CURRENT_SURVEY_DUE_DATE)
              if !@survey
                @survey = Survey.create(user_id: current_user.id, team_id: team.id, date: CURRENT_SURVEY_DUE_DATE)
-               @completed[team] = false
+               @survey_completed[team] = false
              else
-               if @survey and @survey.responses.exists?
-                 @completed[team] = true
+               if @survey and @survey.responses.exists? 
+                 @survey_completed[team] = true
                else 
-                 @completed[team] = false
+                 @survey_completed[team] = false
                end
              end
-             
+             @users_completed_ticket = team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
+             @total_users_on_team = team.users.length
+             @users_completed_ticket.length == @total_users_on_team ? @ticket_completed[team] = true : @ticket_completed[team] = false             
          end
          
          @teamHealth = {}

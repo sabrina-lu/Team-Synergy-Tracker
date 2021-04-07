@@ -21,14 +21,19 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, user_team_list_path(id: team.id) %></td>
-        <td><% if @completed[team] %>
+        <td><% if @survey_completed[team] %>
                  Complete
             <% else %>
                  <%= link_to "Incomplete", weekly_surveys_path(team) %>
             <% end %>
         </td>
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %>%</td>
-        <td><%= link_to "Create Ticket", new_team_ticket_path(team.id) %></td>
+        <td><% if @ticket_completed[team] %>
+              Complete
+            <% else %>
+              <%= link_to "Create Ticket", new_team_ticket_path(team.id) %>
+            <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>

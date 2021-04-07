@@ -114,6 +114,8 @@ class UsersTest < ApplicationSystemTestCase
 # acceptance criteria:
 # 1. logo redirects users to user dashboard when clicked
   test "should redirect user to user dashboard when clicking on logo" do
+    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user_2
     visit login_path
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
@@ -123,4 +125,18 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Welcome #{@user.first_name}"
   end
 
+# Story: Polish Existing Features
+  test "user should see complete on the user dashboard if they have sent a ticket to all their teammates" do 
+    @user_2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user_2
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    click_on "Create Ticket"
+    select "#{@user_2.full_name_with_watiam}"
+    click_on "Save"    
+    assert_text "Complete" 
+  end
+    
 end
