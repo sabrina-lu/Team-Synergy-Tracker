@@ -12,11 +12,11 @@
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Return To Dashboard', manager_dashboard_path %> |
-<%= link_to "Back to #{team_name}", team_health_path(@team) %>
+<div class="link-container"><%= link_to 'Return To Dashboard', manager_dashboard_path %> |
+    <%= link_to "Back to #{team_name}", team_health_path(@team) %></div>
 
 <br><br>
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+<div class="link-container"><a href="#help"><h2>Confused?🤔 Get information here!</h2></a></div>
 
 <div id="help" class="overlay">
   <div class="popup">

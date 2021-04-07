@@ -7,16 +7,16 @@
 
 <br><br>
 <div class="user_team_links">
-    <%= link_to 'Weekly Surveys', weekly_surveys_path %> |
-    <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %>
+    <div class="link-container"><%= link_to 'Weekly Surveys', weekly_surveys_path %> |
+        <%= link_to 'Create A Ticket', new_team_ticket_path(@team.id) %></div>
     
     <br>
-    <%= link_to 'Return to Dashboard', user_dashboard_path %>
+    <div class="link-container"><%= link_to 'Return to Dashboard', user_dashboard_path %></div>
 </div>
 <br><br>
 
 
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+<div class="link-container"><a href="#help"><h2>Confused?🤔 Get information here!</h2></a></div>
 
 <div id="help" class="overlay">
   <div class="popup">
