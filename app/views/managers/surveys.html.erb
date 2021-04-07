@@ -24,7 +24,7 @@
         <br>
     <% end %>
     <br>
-    <%= link_to 'Return to Dashboard', manager_dashboard_path %>
+    <%= link_to "Back to #{@team.name}", team_health_path(@team) %>
 <% else %>
     <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
 
