@@ -109,7 +109,9 @@ class TicketsTest < ApplicationSystemTestCase
         click_on "Create Ticket"
         select "u3", from: "users"
         click_on "Save"
-        click_on "Create Ticket"
+        assert_text "Complete"
+        click_on "one"
+        click_on "Create A Ticket"
         assert_text "Sorry! You have already submitted a ticket for every member on your team this week. You can submit a ticket next week."
     end
     
@@ -126,7 +128,9 @@ class TicketsTest < ApplicationSystemTestCase
         fill_in "watiam", with: user.watiam
         fill_in "password", with: user.password
         click_on "Login"
-        click_on "Create Ticket"
+        assert_text "Complete"
+        click_on "test"
+        click_on "Create A Ticket"
         assert_text "Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!"
     end
 end
