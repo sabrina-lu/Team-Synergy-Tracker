@@ -12,6 +12,7 @@ class ResponsesTest < ApplicationSystemTestCase
   end
 
   test "visiting /responses should send user and manager to respective dashboard" do
+    visit logout_path
     visit login_path
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
