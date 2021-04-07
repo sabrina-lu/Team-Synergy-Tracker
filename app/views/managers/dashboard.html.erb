@@ -21,7 +21,9 @@
   </tbody>
 </table>
 
-<%= link_to 'New Team', new_team_path %>
+<div class="link-container">
+    <%= link_to 'New Team', new_team_path %>
+</div>
 
 <br><br>
 
@@ -44,7 +46,9 @@
 <h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 
 <br><br>
-<a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+<div class="link-container"> 
+    <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+</div>
 
 <div id="help" class="overlay">
   <div class="popup">

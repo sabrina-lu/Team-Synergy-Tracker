@@ -11,8 +11,6 @@
     </div>
   <% end %> 
 
-<div class="column-container">
-
 <div class="row-container">   
   <%= form.radio_button :flag, "User", :checked => true, :style => "display: none;" %>
   <%= form.label :flag_user, "User", :class => 'label' %> 
@@ -24,31 +22,24 @@
 -->
 
 <div class="field">
-    <%= form.label :watiam, style: 'margin-top: 10px' %>
-    <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]) %>
+    <%= form.text_field :watiam, value: (form.object.watiam || params[:watiam]), placeholder: "Watiam" %>
   </div>
 <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, value: (form.object.first_name || params[:first_name]) %>
+    <%= form.text_field :first_name, value: (form.object.first_name || params[:first_name]), placeholder: "First Name" %>
   </div>
 <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, value: (form.object.last_name || params[:last_name]) %>
+    <%= form.text_field :last_name, value: (form.object.last_name || params[:last_name]), placeholder: "Last Name" %>
   </div>
 
  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, value: (form.object.password || params[:password]) %>
+    <%= form.password_field :password, value: (form.object.password || params[:password]), placeholder: "Password" %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, value: (form.object.password_confirmation || params[:password_confirmation]) %>
+    <%= form.password_field :password_confirmation, value: (form.object.password_confirmation || params[:password_confirmation]), placeholder: "Password Confirmation" %>
   </div>
 
 <div class="actions">
     <%= form.submit "Create Account", style: 'width: 180px' %>
   </div>
-
-</div>    
 <% end %>
