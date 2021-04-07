@@ -112,6 +112,61 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "View Tickets"
     assert_text "Team 1's Tickets"
   end
+    
+  # Manager sees the current week's surveys for each team they manage
+  test "can view team's current week surveys" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
+    assert_text "Team 1's Current Week's Surveys"
+  end
+    
+    # Manager sees the surveys history for each team they manage
+  test "can view team's surveys for past weeks" do
+    @team_with_history = Team.create(name: "Team With History")
+    @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
+    Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+    Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+    Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+    Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team_with_history)
+    visit team_surveys_path(id: @team_with_history, date: @s_1.date)
+    assert_text "Team With History's Surveys for Week 2021-02-22 - 2021-02-28"
+  end
+    
+      # Manager gets message for each team they manage if it has no surveys history
+  test "manager gets message if no team's surveys for past weeks" do
+    @team_with_no_history = Team.create(name: "Team With History")
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_path(@team_with_no_history)
+    visit team_surveys_path(id: @team_with_no_history.id, date: "09/03/2021", current_week: true)
+    assert_text "Your team has not submitted any surveys this week! Please remind your team members to submit their surveys."
+  end
+    
+  # can successfully view survey health
+  test "can view team's survey health" do
+    @team_with_history = Team.create(name: "Team With History")
+    @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
+    Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
+    Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
+    Response.create(survey_id: @s_1.id, question_number: 3, answer: 3)
+    Response.create(survey_id: @s_1.id, question_number: 4, answer: 2)
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_surveys_path(id: @team_with_history.id, date: @s_1.date,  any_completed_surveys: true, current_week: true)
+    assert_text "Survey Health"
+  end
 
     # On the manager dashboard there should be ratio of the students who completed weekly surveys for each team
     # Story: Manager can see which users did not complete weekly survey

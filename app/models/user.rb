@@ -12,8 +12,8 @@ class User < ApplicationRecord
     validates :password, length: {in: 6..25}, on: :create, format: {without: /\s/}, allow_blank: false, presence: true
 
     def full_name_with_watiam
-        "#{watiam}: #{first_name} #{last_name}"
-    end
+        "#{first_name} #{last_name} (Watiam: #{watiam} )"
+    end 
     
     def self.get_ordered_survey_indicator(team, current_weekly_survey_due_date)
       ordered_users = []

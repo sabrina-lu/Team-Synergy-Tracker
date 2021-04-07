@@ -18,17 +18,13 @@ class ManagersController < ApplicationController
     if !@manager
         redirect_to_manager_login
     else
-      q1 = "How do you feel about this week in comparison to last week?"
-      q2 = "How did you feel about this week?"
-      q3 = "How would you rate your communication with your team members this week?"
-      q4 = "How do you feel about the workload you had this week?"
-      @questions = [q1,q2,q3,q4]
       @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
     end 
   end
   
   # GET /team_health/1/metrics
   def team_health
+    @CURRENT_SURVEY_DUE_DATE = CURRENT_SURVEY_DUE_DATE
     if !current_user_is_manager
       redirect_to_manager_login
     end
@@ -40,6 +36,13 @@ class ManagersController < ApplicationController
       @team_users = @team.users
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
+        
+      if Response.where(survey_id: Survey.where(team_id: @team.id)).exists?
+        @any_team_health_history = true
+      else
+        @any_team_health_history = false
+      end
+        
       if @team_health_history.present?
         @health_value = @team_health_history[0][6] 
       else 
@@ -82,6 +85,30 @@ class ManagersController < ApplicationController
       @tickets = Ticket.where(team_id: params[:id]).order("date DESC")
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
+    end
+  end
+    
+  def surveys
+    q1 = "How do you feel about this week in comparison to last week?"
+    q2 = "How did you feel about this week?"
+    q3 = "How would you rate your communication with your team members this week?"
+    q4 = "How do you feel about the workload you had this week?"
+    @questions = [q1,q2,q3,q4]
+
+    due_date = Date.parse(params[:date])
+    @interval = "#{due_date-7} - #{due_date-1}"
+    if due_date == @CURRENT_SURVEY_DUE_DATE
+        @current_week = true
+    else
+        @current_week = false
+    end
+      
+    @team = Team.find(params[:id])
+    @surveys = []
+    if current_user_is_manager
+      @surveys = Survey.where(team_id: params[:id], date: params[:date])
+    else
+      redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end
   end
 

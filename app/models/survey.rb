@@ -12,5 +12,17 @@ class Survey < ApplicationRecord
     else
         return 6 > current_date.wday ? current_date + (6 - current_date.wday) : current_date.next_week.next_day(6)
     end
-  end
+  end    
+  
+  def get_survey_rating(survey)    
+    rating = 0
+    num_responses = 0
+      survey.responses.each do |response|
+        rating += response.answer
+        num_responses += 1 
+      end
+    avg_rating = rating.to_f/num_responses
+    avg_rating = avg_rating/5 *100
+    return '%.2f' % (avg_rating)
+  end 
 end

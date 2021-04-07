@@ -78,7 +78,7 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "Login"
     visit new_team_ticket_url(@team_1)
     assert_text "New Ticket"
-    select "jellen: Joe Ellen", :from => :users
+    select "#{user2.full_name_with_watiam}", :from => :users
     click_on "Save"
 
     assert_text "Ticket was successfully created"

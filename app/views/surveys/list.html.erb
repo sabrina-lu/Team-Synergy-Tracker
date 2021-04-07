@@ -1,0 +1,42 @@
+<% if @surveys.length >0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Answered By</th>
+          <th>Question 1</th>
+          <th>Question 2</th>
+          <th>Question 3</th>
+          <th>Question 4</th>
+          <th>Survey Health</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @surveys %>
+            <% @surveys.each do |survey| %>
+              <% if survey.responses.exists? %>
+                  <tr>
+                    <td><%= User.find(survey.user_id).full_name_with_watiam %> </td>
+                    <td><%= survey.responses.first.answer %>/5</td>
+                    <td><%= survey.responses.second.answer %>/5</td>
+                    <td><%= survey.responses.third.answer %>/5</td>
+                    <td><%= survey.responses.fourth.answer %>/5</td>
+                    <% if survey.get_survey_rating(survey).to_i < 30 %>
+                        <td class="red"><%= survey.get_survey_rating(survey) %>%</td>
+                    <% elsif survey.get_survey_rating(survey).to_i > 90 %>
+                        <td class="green"><%= survey.get_survey_rating(survey) %>%</td>
+                    <% else %>
+                        <td><%= survey.get_survey_rating(survey) %>%</td>
+                    <% end %>
+                  </tr>
+              <% end %>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <br>
+    <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong>
+    <br>
+<% end %>
+<br>
