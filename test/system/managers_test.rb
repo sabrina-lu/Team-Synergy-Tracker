@@ -86,7 +86,11 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user.watiam
     fill_in "password", with: @user.password
     click_on "Login"
-    click_on "Incomplete"
+    click_on "Incomplete"    
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"
     visit logout_path
     visit login_path
@@ -183,6 +187,10 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "Login"
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save" 
     visit logout_path
     visit login_path

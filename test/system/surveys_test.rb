@@ -30,6 +30,10 @@ class SurveysTest < ApplicationSystemTestCase
     login(@user)
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"   
     assert_text "Successfully submitted weekly survey."
   end
@@ -38,6 +42,10 @@ class SurveysTest < ApplicationSystemTestCase
     login(@user)
     click_on "Team 1"
     click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
     click_on "Save"   
     assert_text "Welcome #{@user.first_name}"
   end

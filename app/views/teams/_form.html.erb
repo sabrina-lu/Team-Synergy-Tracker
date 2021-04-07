@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <b><%= form.label :name %></b>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: "Name" %>
   </div>
 
   <% if @edit %>
@@ -25,9 +24,6 @@
       <% end %>
       <div class="link-container"><%= link_to "Add/Remove Members", edit_members_path(@team) %></div>
   <% end %>
-
-  <br>
-  <br>
 
   <div class="actions">
     <% if @new || team.id.nil? %>

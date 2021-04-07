@@ -24,7 +24,9 @@
         <br>
     <% end %>
     <br>
-    <%= link_to "Return to Dasboard", manager_dashboard_path %>
+    <div class="link-container">
+        <%= link_to "Return to Dasboard", manager_dashboard_path %> 
+    </div>
 <% else %>
     <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
     <table>
@@ -50,5 +52,8 @@
         <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong> 
         <br>
     <% end %>    
-    <%= link_to "Back to #{@team.name}", team_health_path(@team) %>
+    <div class="link-container">
+        <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
+    </div>
+    
 <% end %>
