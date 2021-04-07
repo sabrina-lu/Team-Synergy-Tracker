@@ -10,14 +10,18 @@
   </head>
 
   <body>
-    <div class="header-container">        
-        <a id="logo" href="<%= current_user_is_manager ? "/managers_dashboard" : "/dashboard" %>"> <%= image_tag("logo.png", class: "logo") %> </a>
-       <!-- source: https://stackoverflow.com/questions/1203892/how-can-i-find-out-the-current-route-in-rails -->
-       <% @current_route = request.env['PATH_INFO'] %>
-       <% if @current_route != "/login" && @current_route != "/signup" && @current_route != "/users" && @current_route != "/managers" %>
-         <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %> 
-       <% end %>
-    </div>
+    <!-- source: https://stackoverflow.com/questions/1203892/how-can-i-find-out-the-current-route-in-rails -->
+    <% @current_route = request.env['PATH_INFO'] %>
+    <% if @current_route != "/login" && @current_route != "/signup" && @current_route != "/users" && @current_route != "/managers" %>
+        <div class="header-container">        
+            <a id="logo" href="<%= current_user_is_manager ? "/managers_dashboard" : "/dashboard" %>"> <%= image_tag("logo.png", class: "logo") %> </a>
+            <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %> 
+        </div>
+     <% else %>
+         <div class="row-container">        
+            <a id="logo" href="<%= current_user_is_manager ? "/managers_dashboard" : "/dashboard" %>"> <%= image_tag("logo.png", class: "logo", style: "align-self: center;") %> </a>
+        </div>
+     <% end %>
       
     <% flash.each do |key, value| %>
         <%= content_tag :div, value, id: "#{key}" %>    
