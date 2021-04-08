@@ -1,12 +1,12 @@
 <h1>WEEKLY SURVEYS</h1>
-
+<div class = "due-date">
+    <h3>Weekly Survey Due Date: <%= @survey.date %> 11:59PM UTC</h3>
+</div>
 <! -- Using code from my (emma) spellmanager assignment -->
 <! -- also using https://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease -->
 
 <%= form_with url: "/responses", method: :post do |form| %>
-  
-
-    <% for i in 0..@questions.length-1 %>   
+    <% for i in 0..@questions.length-1 %> 
         <div class="subtitle"> <%= "#{i+1}. #{@questions[i]}" %> </div>
         <div class="option-container">
             <%= form.radio_button :"answer#{i+1}", 1, :pattern => '^[1-5]{1}?$'%>
@@ -24,7 +24,6 @@
 
     <%= form.hidden_field :survey_id, value: @survey.id %>
     <%= form.hidden_field :num_of_questions, value: @questions.count %>
-    
     <h5><%= form.submit %></h5>
 <% end %>
 <div class="user_team_links">
