@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   root 'static_pages#home'
-  resources :surveys, except: [:index, :edit, :new]
-  resources :managers, except: [:index, :show, :edit]
+  resources :surveys, except: [:index, :show, :edit, :new, :update, :destroy]
+  resources :managers, except: [:index, :show, :edit, :update, :destroy]
   resources :teams, except: [:index, :show]
-  resources :responses, except: [:index, :show, :edit, :new]
-  resources :ticket_responses, except: [:index, :show, :edit, :new]
-  resources :users, except: [:new, :index, :show, :edit]  
-  resources :tickets, except: [:index, :edit]
+  resources :responses, except: [:index, :show, :edit, :new, :update, :destroy]
+  resources :ticket_responses, except: [:index, :show, :edit, :new, :update, :destroy]
+  resources :users, except: [:new, :index, :show, :edit, :update, :destroy]  
+  resources :tickets, except: [:new, :index, :edit, :update, :destroy]
     
   get '/signup', to: 'users#new'
   get '/login',  to: 'sessions#new'    

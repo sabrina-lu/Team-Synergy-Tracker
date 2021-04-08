@@ -5,6 +5,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     setup_users_manager_teams
   end
 
+  test "should get new" do
+    get signup_url
+    assert_response :success
+  end
+    
   # dashboard tests
   test "should redirect user to user dashboard" do
     login_as_user
@@ -160,12 +165,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_dashboard_url
     assert_redirected_to login_url
     assert_equal "Please log in.", flash["notice"]
-  end
-    
-  def get_tickets_for_user(user)
-    tickets = Ticket.where(creator_id: user.id)
-    tickets = tickets + User.find(user.id).tickets
-    return tickets
   end
   
 end
