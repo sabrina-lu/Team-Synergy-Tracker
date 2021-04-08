@@ -4,7 +4,7 @@
       <th>WatIAm</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <% if @all_users %>
+      <% if @all_users || @edit %>
         <th colspan="1"></th>
       <% elsif @team_health %>
         <th>Completed Weekly Survey</th>
@@ -33,14 +33,16 @@
             <td><%= user.first_name %> </td>
             <td><%= user.last_name %></td>
         <% end %>        
-        <% if @all_users %>
+        <% if @all_users || @edit %>
             <% if @team.users.include?user %>
                 <%= form_with url: confirm_remove_member_path do |form| %>
+                <%= form.hidden_field :edit, :value => @edit ? true : false %>
                 <%= form.hidden_field :user_id, :value => user.id %>
                 <td class="red"><%= form.submit "Remove User" %></td>
             <% end %>
             <% else %>
                 <%= form_with url: confirm_add_member_path do |form| %>
+                    <%= form.hidden_field :edit, :value => @edit ? true : false %>
                     <%= form.hidden_field :user_id, :value => user.id %>
                     <td class="green"><%= form.submit "Add User" %></td>
                 <% end %>

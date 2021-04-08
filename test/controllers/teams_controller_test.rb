@@ -31,18 +31,26 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
       post confirm_add_member_url (@team), params:{ user_id: @user.id, id: @team.id}
       assert_redirected_to edit_members_url(@team)
   end
-    
-    # don't need to test get index
-#  test "should get index" do
-#    get teams_url
-#    assert_response :success
-#  end
 
   test "should get new" do
     login_as_manager
     assert(get new_team_url)
   end
-
+    
+  test "should redirect user to user dashboard when trying to edit members on a team" do
+    login_as_user
+    get edit_members_url(@team)
+    assert_redirected_to user_dashboard_path
+    assert_equal "Please login as a manager to view this page.", flash[:notice] 
+  end
+    
+  test "should redirect user to user dashboard when trying to create a new team" do
+    login_as_user
+    get new_team_url
+    assert_redirected_to user_dashboard_path
+    assert_equal "Please login as a manager to view this page.", flash[:notice] 
+  end  
+    
   test "should create team" do
     login_as_manager
     assert_difference('Team.count', 1) do

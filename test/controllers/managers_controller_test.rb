@@ -15,16 +15,16 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
   test "should redirect user to login page when trying to access the manager dashboard" do
     login_as_user
     get manager_dashboard_url
-    assert_redirected_to login_url
-    assert_equal "Please login as a manager to view this site.", flash[:notice] 
+    assert_redirected_to user_dashboard_url
+    assert_equal "Please login as a manager to view this page.", flash[:notice] 
   end
   
   # team_health tests
   test "should redirect user to login page when trying to access team health" do
     login_as_user
     get team_health_url (@team)
-    assert_redirected_to login_url
-    assert_equal "Please login as a manager to view this site.", flash[:notice] 
+    assert_redirected_to user_dashboard_url
+    assert_equal "Please login as a manager to view this page.", flash[:notice] 
   end
   
   test "should redirect manager to team health page when they are on the team" do
