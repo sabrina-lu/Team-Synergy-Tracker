@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
+    
   # GET /teams/new
   def new
     @new = true
@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
         flash[:notice] = "Successfully added #{@user.first_name} to #{team.name}"
         s = Survey.create(user: @user, team: team, date: CURRENT_SURVEY_DUE_DATE)  # creating a new survey when a member is added to a team
         s.save
-        params[:edit] == true ? path = edit_team_url(team) :  path = edit_members_url(team)
+        params[:edit] == "true" ? path = edit_team_url(team) :  path = edit_members_url(team)
         redirect_to path
     end
   end
@@ -54,7 +54,7 @@ class TeamsController < ApplicationController
         s = Survey.find_by(user: @user, team: team) # deleting a survey when a member is deleted from a team
         #s.responses.destroy
         s.destroy
-        params[:edit] == true ? path = edit_team_url(team) :  path = edit_members_url(team)
+        params[:edit] == "true" ? path = edit_team_url(team) :  path = edit_members_url(team)
         redirect_to path
     end
   end
