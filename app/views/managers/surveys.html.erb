@@ -1,6 +1,6 @@
 <% if params[:current_week]%>
     <h1><%= @team.name %>'s Current Week's Surveys</h1>
-<h3>Weekly Survey Due Date: <%= params[:date] %> 11:59PM UTC</h3>
+<h3>Weekly Survey Due Date: <%= Date.parse(params[:date])-1 %> 11:59PM UTC</h3>
     <br>
     <table>
       <thead>
@@ -27,7 +27,7 @@
     <% end %>
     <br>
     <div class="link-container">
-        <%= link_to "Return to Dasboard", manager_dashboard_path %> 
+        <%= link_to "Return to Dashboard", manager_dashboard_path %> 
     </div>
 <% else %>
     <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
