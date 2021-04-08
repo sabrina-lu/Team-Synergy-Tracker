@@ -1,6 +1,6 @@
-
 <h1>Welcome <%= @user.first_name.capitalize %>!</h1>
-
+<h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %> 11:59PM UTC</h3>
+<br>
 <% if @teams.empty? %>
 
 <h2> You're not a part of a team yet! Let your instructor know to add you to a team. </h2>
@@ -38,9 +38,6 @@
     <% end %>
   </tbody>
 </table>
-
-<h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %> 12:00AM EST</h3>
-
 <% end %>
 
 <br><br>

@@ -1,5 +1,7 @@
 <% if params[:current_week]%>
     <h1><%= @team.name %>'s Current Week's Surveys</h1>
+<h3>Weekly Survey Due Date: <%= params[:date] %> 11:59PM UTC</h3>
+    <br>
     <table>
       <thead>
         <tr>
@@ -29,6 +31,7 @@
     </div>
 <% else %>
     <h1><%= @team.name %>'s Surveys for Week <%= @interval %> </h1>
+    <br>
     <table>
       <thead>
         <tr>
@@ -52,6 +55,7 @@
         <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong> 
         <br>
     <% end %>    
+    <br>
     <div class="link-container">
         <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
     </div>

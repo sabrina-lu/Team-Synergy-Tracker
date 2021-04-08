@@ -1,5 +1,6 @@
 <h1>Welcome <%= @manager.first_name.capitalize %>!</h1>
-
+<h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %> 11:59PM UTC</h3>
+<br>
 <table>
   <thead>
     <tr>
@@ -24,14 +25,12 @@
     <% end %>
   </tbody>
 </table>
-
+<br>
 <div class="link-container">
     <%= link_to 'New Team', new_team_path %>
 </div>
 
 <br><br>
-
-<h3>Weekly Survey Due Date: <%= @CURRENT_SURVEY_DUE_DATE %></h3>
 
 <br><br>
 <div class="link-container"> 
