@@ -1,8 +1,8 @@
-<h1>Edit Members in Team <%= @team.name %></h1>
+<h1>Edit Members in <%= @team.name %></h1>
 
 <%= render template: 'teams/members' %>
 
-<div class="link-container"><%= link_to 'Save & Go Back', edit_team_path(@team) %></div>
+<div class="link-container"><%= link_to 'Save and View Team', team_health_url(@team) %></div>
 
 <br><br>
 <div class="link-container"><a href="#help"><h2>Confused?🤔 Get information here!</h2></a></div>

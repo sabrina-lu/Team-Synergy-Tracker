@@ -1,37 +1,34 @@
 <%= form_with(model: team, local: true) do |form| %>
-  <% if team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-        <% team.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.text_field :name, placeholder: "Name" %>
-  </div>
-
-  <% if @edit %>
-      <% if @team.users.length != 0 %>
-          <%= render :template => "teams/members", :locals => { :@users => team.users } %>
-      <% else %>
-          <div class="link-container">No members on this team</div>
-          <br>
-      <% end %>
-      <div class="link-container"><%= link_to "Add/Remove Members", edit_members_path(@team) %></div>
-  <% end %>
-
-  <div class="actions">
-    <% if @new || team.id.nil? %>
-        <%= form.submit("Continue to Adding Members")%>
-    <% else %>
-        <%= form.submit("Update Team")%>
+    <% if team.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+            <ul>
+                <% team.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
-  </div>
+
+    <% if @new || team.id.nil? %>
+        <div class="field">
+            <%= form.text_field :name, placeholder: "Name" %>
+        </div>
+
+        <div class="actions">
+            <%= form.submit("Continue to Adding Members")%>
+        </div>
+
+    <% else %>
+        <div class="field">
+            <nobr>
+                <%= form.text_field :name, placeholder: "Name" %>
+                <%= form.submit("Update Team Name")%>
+            </nobr>
+        </div>
+    <% end %>
 <% end %>
 
-
+<% if !@new && !team.id.nil? %>
+    <%= render :template => "teams/members", :locals => {:@users => User.all, :@edit => true}%>
+<% end %>

@@ -139,4 +139,34 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Complete" 
   end
     
+  test "user should be redirected to user dashboard when trying to create a new team" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit new_team_path
+    assert_text "Welcome #{@user.first_name}"
+    assert_text "Please login as a manager to view this page."  
+  end
+    
+  test "user should be redirected to user dashboard when trying to edit an existing team" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit edit_team_path(@team)
+    assert_text "Welcome #{@user.first_name}"
+    assert_text "Please login as a manager to view this page."  
+  end
+ 
+  test "user should be redirected to user dashboard when trying to edit members from a team" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit edit_members_path(@team)
+    assert_text "Welcome #{@user.first_name}"
+    assert_text "Please login as a manager to view this page."  
+  end    
+    
 end
