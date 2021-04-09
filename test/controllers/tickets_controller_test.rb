@@ -22,7 +22,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     test "user should not be able to create a ticket if they are not on that team" do
         user_5 = User.create(watiam: "u5", first_name: "user5", last_name: "five", password: "Password")
         post login_path, params: { watiam: user_5.watiam, password: user_5.password }
-        get new_team_ticket_url(@team_1)
+        get new_team_ticket_url(@team_1, "dashboard")
         assert_redirected_to user_dashboard_url
     end
     
@@ -47,7 +47,6 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
         
       post login_path, params: { watiam: @manager2.watiam, password: @manager2.password }  
       get ticket_url(@t_1)
-#       assert_redirected_to manager_dashboard_url
       assert_response :redirect
       get ticket_url(@t_2)
       assert_response :redirect
@@ -77,6 +76,26 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       get ticket_url(@t_2)
       assert_response :success
+    end
+    
+    test 'should redirect user to user dashboard when trying to view a ticket' do
+      for i in 1..5 do
+          TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: i)
+      end        
+      login_as_user(@user_1)
+      get ticket_url(@t_1)
+      assert_redirected_to user_dashboard_url
+      assert_equal "You do not have permission to view this ticket.", flash[:notice]
+    end
+    
+    test 'should inform user that a user must be added when submitting a ticket with no user selected' do      
+      login_as_user(@user_1)
+      assert_difference('Ticket.count', 0) do
+        assert_difference('TicketResponse.count', 0) do
+           post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}  
+        end
+      end
+      assert_equal "You Must Add a User to this Ticket", flash[:notice]
     end
     
 end

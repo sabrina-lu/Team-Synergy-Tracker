@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
+    @from = params[:from]
     @ticket = Ticket.new
     @team = Team.find(params[:id])
       if !current_user.teams.include?(@team)
@@ -19,7 +20,7 @@ class TicketsController < ApplicationController
         @ticket.creator = User.find(params[:creator_id])
         @ticket.team = Team.find_by(:id => params[:id])
         if !params[:users]
-          redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
+          redirect_to create_team_ticket_url(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
         else
           @users = User.find(params[:users])
           @ticket.users << @users
@@ -47,6 +48,6 @@ class TicketsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_params
-      params.permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5)
+      params.permit(:date, :creator_id, :answer1, :answer2, :answer3, :answer4, :answer5, :from)
     end
 end

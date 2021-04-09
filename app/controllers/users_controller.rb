@@ -65,6 +65,7 @@ class UsersController < ApplicationController
     
   # GET /weekly_surveys/teams/1
   def weekly_surveys
+    @from = params[:from]
     @team = Team.find(params[:id])
     if current_user_is_manager
          redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'
@@ -80,16 +81,6 @@ class UsersController < ApplicationController
     q3 = "How would you rate your communication with your team members this week?"
     q4 = "How do you feel about the workload you had this week?"
     @questions = [q1,q2,q3,q4]
-  end
-    
-  # GET /my_tickets
-  def tickets
-    if !current_user_is_manager
-      @sentTickets = Ticket.where(creator_id: current_user.id)  #get tickets user created
-      @receivedTickets = User.find(current_user.id).tickets  #get tickets about user
-    else
-      redirect_to manager_tickets_path
-    end
   end
   
   # POST /users
@@ -128,11 +119,5 @@ class UsersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:name, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)
-    end
-    
-   def authorized_to_modify_and_destroy
-     if current_user != @user
-      redirect_to users_url, notice: "You can only edit or delete your own account."
-   end
-  end   
+    end 
 end

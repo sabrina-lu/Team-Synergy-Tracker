@@ -5,6 +5,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     setup_users_manager_teams
   end
 
+  test "should get new" do
+    get signup_url
+    assert_response :success
+  end
+    
   # dashboard tests
   test "should redirect user to user dashboard" do
     login_as_user
@@ -41,7 +46,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # weekly_surveys
   test "should redirect manager to manager dashboard when accessing weekly surveys" do
     login_as_manager
-    get weekly_surveys_url(@team)
+    get weekly_surveys_url(@team, "dashboard")
     assert_redirected_to manager_dashboard_url
     assert_equal "You do not have permission to respond to surveys." , flash[:notice] 
   end
@@ -51,14 +56,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @team_1 = Team.create(name: "Team 1")
     add_member_to_team_and_survey(@team_1, @user_1.id)
     login_as_user(@user_1)
-    get weekly_surveys_url(@team_1)
+    get weekly_surveys_url(@team_1, "dashboard")
     assert_response :success
   end
     
   test "should redirect user to user dashboard when accessing weekly survey if they are not on the team" do
     setup_surveys_responses
     login_as_user(@user)
-    get weekly_surveys_url(@team_no_access)
+    get weekly_surveys_url(@team_no_access, "dashboard")
     assert_redirected_to user_dashboard_url
     assert_equal "You do not have permission to respond to another team\'s survey.", flash["notice"]
   end 
@@ -66,7 +71,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should redirect user to user dashboard when accessing weekly survey that user has already completed" do
     setup_surveys_responses
     login_as_user(@user)
-    get weekly_surveys_url(@team)
+    get weekly_surveys_url(@team, "dashboard")
     assert_redirected_to user_dashboard_url
     assert_equal "You have already submitted this week's survey.", flash["notice"]
   end 
@@ -160,12 +165,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_dashboard_url
     assert_redirected_to login_url
     assert_equal "Please log in.", flash["notice"]
-  end
-    
-  def get_tickets_for_user(user)
-    tickets = Ticket.where(creator_id: user.id)
-    tickets = tickets + User.find(user.id).tickets
-    return tickets
   end
   
 end

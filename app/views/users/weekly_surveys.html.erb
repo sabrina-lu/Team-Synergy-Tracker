@@ -27,7 +27,11 @@
     <h5><%= form.submit %></h5>
 <% end %>
 <div class="user_team_links">
-    <div class="link-container"><%= link_to "Back to Dashboard", user_dashboard_path %></div>
+    <% if @from == "dashboard" %>
+        <div class="link-container"><%= link_to "Back to Dashboard", user_dashboard_path %></div>
+    <% elsif @from == "team" %>
+        <div class="link-container"><%= link_to "Back to #{@team.name}", user_team_list_path(@team.id) %></div> 
+    <% end %>
 </div>
 
 <br><br>
