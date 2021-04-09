@@ -95,7 +95,6 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Ticket was successfully created"
   end
     
-  # create test for:cannot create a ticket without adding a member
     
 # is redirected when trying to access a create ticket page for a team they are not on
 # Story: Bug Bash: Creating a Ticket if you're not on the team
