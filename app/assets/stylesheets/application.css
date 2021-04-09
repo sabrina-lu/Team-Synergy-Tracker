@@ -71,6 +71,7 @@ a:hover {
     justify-content: space-between;
 }
 
+
 .text-box {
     margin: 5px 0px;
 }
@@ -177,8 +178,3 @@ table tr:last-child td:last-child {
     cursor: pointer;
 }
 
-.about_button {
-    float: right;
-    position: relative;
-    left: 37vw;
-}
