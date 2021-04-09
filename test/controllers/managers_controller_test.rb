@@ -16,7 +16,7 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     login_as_user
     get manager_dashboard_url
     assert_redirected_to user_dashboard_url
-    assert_equal "Please login as a manager to view this page.", flash[:alert] 
+    assert_equal "Please log in as a manager to view this page.", flash[:notice] 
   end
   
   # team_health tests
@@ -24,7 +24,7 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     login_as_user
     get team_health_url (@team)
     assert_redirected_to user_dashboard_url
-    assert_equal "Please login as a manager to view this page.", flash[:alert] 
+    assert_equal "Please log in as a manager to view this page.", flash[:notice] 
   end
   
   test "should redirect manager to team health page when they are on the team" do
@@ -128,7 +128,7 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     login_as_user
     get team_health_details_url(id: @team.id, date: "06/04/2021")
     assert_redirected_to user_dashboard_url
-    assert_equal "Please login as a manager to view this page.", flash[:alert]
+    assert_equal "Please log in as a manager to view this page.", flash[:notice]
   end
  
   test "should redirect manager to manager dashboard page when accessing another team's health details page" do

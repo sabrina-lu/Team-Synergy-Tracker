@@ -41,14 +41,14 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     login_as_user
     get edit_members_url(@team)
     assert_redirected_to user_dashboard_path
-    assert_equal "Please login as a manager to view this page.", flash[:alert] 
+    assert_equal "Please log in as a manager to view this page.", flash[:notice] 
   end
     
   test "should redirect user to user dashboard when trying to create a new team" do
     login_as_user
     get new_team_url
     assert_redirected_to user_dashboard_path
-    assert_equal "Please login as a manager to view this page.", flash[:alert] 
+    assert_equal "Please log in as a manager to view this page.", flash[:notice] 
   end  
     
   test "should create team" do

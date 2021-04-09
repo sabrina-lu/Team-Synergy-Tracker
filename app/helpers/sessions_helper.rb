@@ -46,7 +46,7 @@ module SessionsHelper
   end
     
   def redirect_to_manager_login
-      flash[:alert] = "Please login as a manager to view this page."
+      flash[:notice] = "Please log in as a manager to view this page."
       redirect_to user_dashboard_path
   end
     
