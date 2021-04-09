@@ -24,7 +24,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     
   test "should not log user in if password is invalid" do
     post login_url, params: { watiam: "#{@user.watiam}", password: "Psdddd" }
-      assert_equal 'Cannot log you in. Invalid Watiam or Password.', flash.now[:notice]
+      assert_equal 'Cannot log you in. Invalid Watiam or Password.', flash.now[:alert]
   end    
 
 end

@@ -146,7 +146,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     visit new_team_path
     assert_text "Welcome #{@user.first_name}"
-    assert_text "Please login as a manager to view this page."  
+    assert_text "Please log in as a manager to view this page."  
   end
     
   test "user should be redirected to user dashboard when trying to edit an existing team" do
@@ -156,7 +156,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     visit edit_team_path(@team)
     assert_text "Welcome #{@user.first_name}"
-    assert_text "Please login as a manager to view this page."  
+    assert_text "Please log in as a manager to view this page."  
   end
  
   test "user should be redirected to user dashboard when trying to edit members from a team" do
@@ -166,7 +166,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     visit edit_members_path(@team)
     assert_text "Welcome #{@user.first_name}"
-    assert_text "Please login as a manager to view this page."  
+    assert_text "Please log in as a manager to view this page."  
   end    
     
 end

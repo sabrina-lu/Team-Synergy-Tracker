@@ -7,9 +7,9 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
     @team = Team.find(params[:id])
       if current_user_is_manager 
-          redirect_to manager_dashboard_path, notice: "You do not have permission to create tickets."
+          redirect_to manager_dashboard_path, alert: "You do not have permission to create tickets."
       elsif !current_user.teams.include?(@team)
-          redirect_to user_dashboard_path, notice: "You do not have permission to create this ticket."
+          redirect_to user_dashboard_path, alert: "You do not have permission to create this ticket."
       else
           @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
       end
@@ -22,12 +22,12 @@ class TicketsController < ApplicationController
         @ticket.creator = User.find(params[:creator_id])
         @ticket.team = Team.find_by(:id => params[:id])
         if !params[:users]
-          redirect_to new_team_ticket_url(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket."
+          redirect_to new_team_ticket_url(@ticket.team, ticket_params), alert: "You Must Add a User to this Ticket."
         else
           @users = User.find(params[:users])
           @ticket.users << @users
           if ticket_not_valid(params[:answer1], params[:answer2], params[:answer3], params[:answer4]) || rating_not_valid(params[:answer5])
-            redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "Invalid response scores. Please fix and resubmit"
+            redirect_to new_team_ticket_path(@ticket.team, ticket_params), alert: "Invalid response scores. Please fix and resubmit"
           else
             if @ticket.save            
               # add responses to the ticket

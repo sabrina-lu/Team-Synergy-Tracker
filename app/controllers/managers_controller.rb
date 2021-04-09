@@ -30,7 +30,7 @@ class ManagersController < ApplicationController
     end
     @team = Team.find(params[:id])
     if !current_user_is_on_team(@team)
-        redirect_to manager_dashboard_path, notice: 'You do not have permission to view this team.'
+        redirect_to manager_dashboard_path, alert: 'You do not have permission to view this team.'
     else
       @team_health = true
       @team_users = @team.users
@@ -67,7 +67,7 @@ class ManagersController < ApplicationController
           render :new
         end
     else
-        flash[:alert] = "That WATIAM has an account associated with it already"
+        flash[:alert] = "That WATIAM has an account associated with it already."
         render :new
     end
   end
@@ -78,10 +78,10 @@ class ManagersController < ApplicationController
       if current_user.teams.include?(@team)
         @tickets = @team.get_tickets(CURRENT_SURVEY_DUE_DATE)
       else 
-        redirect_to manager_dashboard_path, notice: "You do not have permission to view these tickets." 
+        redirect_to manager_dashboard_path, alert: "You do not have permission to view these tickets." 
       end
     else
-      redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
+      redirect_to user_dashboard_path, alert: "You do not have permission to view tickets." 
     end
   end
     
@@ -107,7 +107,7 @@ class ManagersController < ApplicationController
           @surveys = Survey.where(team_id: @team.id, date: params[:date])       
           @tickets = @team.get_tickets(due_date)
       else
-        redirect_to manager_dashboard_path, notice: "You do not have permission to view this team's health."
+        redirect_to manager_dashboard_path, alert: "You do not have permission to view this team's health."
       end
     else
       redirect_to_manager_login

@@ -30,7 +30,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
       login_as_manager(@manager_1)
       get new_team_ticket_url(@team_1)
       assert_redirected_to manager_dashboard_url
-      assert_equal "You do not have permission to create tickets.", flash[:notice]
+      assert_equal "You do not have permission to create tickets.", flash[:alert]
     end
     
     test "should let user create a ticket" do
@@ -46,7 +46,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
            post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}  
         end
       end
-      assert_equal "You Must Add a User to this Ticket.", flash[:notice]
+      assert_equal "You Must Add a User to this Ticket.", flash[:alert]
     end
     
 end

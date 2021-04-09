@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
   def create
     if answer_not_valid(response_params[:answer1], response_params[:answer2], response_params[:answer3], response_params[:answer4])
       @team = Team.find(Survey.find(response_params[:survey_id]).team_id)
-      redirect_to weekly_surveys_path(@team, "dashboard"), notice: 'Invalid survey response score. Please fix and re-submit.'
+      redirect_to weekly_surveys_path(@team, "dashboard"), alert: 'Invalid survey response score. Please fix and re-submit.'
     else
       for i in 1..response_params[:num_of_questions].to_i
         @response = Response.new(survey_id: response_params[:survey_id], question_number: i, answer: response_params[:"answer#{i}"])

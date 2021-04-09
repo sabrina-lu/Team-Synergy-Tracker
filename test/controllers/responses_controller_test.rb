@@ -23,7 +23,7 @@ class ResponsesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Response.count', 0) do
       post responses_url, params: { survey_id: survey.id, num_of_questions: "5", answer1: "-40", answer2: "4", answer3: "4", answer4: "4" }
     end
-    assert_equal 'Invalid survey response score. Please fix and re-submit.', flash[:notice]      
+    assert_equal 'Invalid survey response score. Please fix and re-submit.', flash[:alert]      
   end
 
 end
