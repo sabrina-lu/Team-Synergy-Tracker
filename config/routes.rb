@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :responses, except: [:index, :show, :edit, :new, :update, :destroy]
   resources :ticket_responses, except: [:index, :show, :edit, :new, :update, :destroy]
   resources :users, except: [:new, :index, :show, :edit, :update, :destroy]  
-  resources :tickets, except: [:new, :index, :edit, :update, :destroy]
+  resources :tickets, except: [:new, :show, :index, :edit, :update, :destroy]
     
   get '/signup', to: 'users#new'
   get '/login',  to: 'sessions#new'    
