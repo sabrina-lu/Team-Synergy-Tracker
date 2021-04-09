@@ -199,7 +199,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "password", with: @user.password
     click_on "Login"
     visit manager_dashboard_path
-    assert_text "Please login as a manager to view this page."
+    assert_text "Please log in as a manager to view this page."
   end 
     
   test "user should be redirected to login when trying to access manager team health metrics" do
@@ -208,7 +208,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "password", with: @user.password
     click_on "Login"
     visit team_health_path(@team)
-    assert_text "Please login as a manager to view this page."
+    assert_text "Please log in as a manager to view this page."
   end 
     
   test "user should be redirected to user dashboard when trying to access tickets" do

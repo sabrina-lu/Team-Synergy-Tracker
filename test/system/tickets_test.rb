@@ -74,8 +74,8 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
-    visit ticket_path(@t_5)
-    assert_text "You do not have permission to view this ticket."
+    visit team_tickets_path(@team_2)
+    assert_text "You do not have permission to view these tickets."
   end
     
 # can successfully send a ticket to another student 
