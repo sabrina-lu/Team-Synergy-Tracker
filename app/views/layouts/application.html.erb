@@ -15,6 +15,7 @@
     <% if @current_route != "/login" && @current_route != "/signup" && @current_route != "/users" && @current_route != "/managers" %>
         <div class="header-container">        
             <a id="logo" href="<%= current_user_is_manager ? "/managers_dashboard" : "/dashboard" %>"> <%= image_tag("logo.png", class: "logo") %> </a>
+            <%= button_to 'About', about_path, :method =>"get", :class => "about_button" %> 
             <%= button_to 'Logout', logout_path, :method =>"get", :class => "logout_button" %> 
         </div>
      <% else %>

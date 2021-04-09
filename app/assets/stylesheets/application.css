@@ -176,3 +176,9 @@ table tr:last-child td:last-child {
     text-align: center;
     cursor: pointer;
 }
+
+.about_button {
+    float: right;
+    position: relative;
+    left: 37vw;
+}
