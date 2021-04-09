@@ -14,7 +14,7 @@ class TicketResponsesTest < ApplicationSystemTestCase
   test "creating a ticket response" do 
     user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
     @team.users << user2
-    visit new_team_ticket_url(@team)
+    visit new_team_ticket_url(@team, "dashboard")
     select "#{user2.full_name_with_watiam}", :from => :users
     select "great", :from => :answer1
     select "poor", :from => :answer2

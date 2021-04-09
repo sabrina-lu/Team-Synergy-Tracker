@@ -52,18 +52,18 @@ class SurveysTest < ApplicationSystemTestCase
 
   test "should redirect manager to manager dashboard when trying to visit weekly survey" do
     login(@manager)
-    visit weekly_surveys_path(@team)
+    visit weekly_surveys_path(@team, "dashboard")
     assert_text "Welcome #{@manager.first_name}"
     assert_text "You do not have permission to respond to surveys."
   end
   
-  test "should redirect user back to dashboard without submitting the weekly survey" do
+  test "should redirect user back to team dashboard without submitting the weekly survey" do
     login(@user)
     click_on "Team 1"
     click_on "Weekly Surveys"
-    assert_text "Back to Dashboard"
-    click_on "Back to Dashboard"
-    assert_text "Welcome #{@user.first_name}"
+    assert_text "Back to Team 1"
+    click_on "Back to Team 1"
+    assert_text "Team 1 Details"
   end
     
   test "can successfully view survey list as a manager" do

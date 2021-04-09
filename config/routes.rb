@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     
   get 'dashboard', to: 'users#dashboard', as: 'user_dashboard'
   get 'dashboard/teams/:id', to: 'users#team_list', as: 'user_team_list'    
-  get 'dashboard/teams/:id/weekly_surveys', to: 'users#weekly_surveys', as: 'weekly_surveys'
+  get 'dashboard/teams/:id/weekly_surveys/:from', to: 'users#weekly_surveys', as: 'weekly_surveys'
     
   get 'manager_dashboard', to: 'managers#dashboard', as: 'manager_dashboard'
   get 'team_health/:id/metrics', to: 'managers#team_health', as: 'team_health'
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'team_health/:id/metrics/:date/surveys', to: 'managers#surveys', as: 'team_surveys'
     
     # route to get the team associated with the ticket
-  get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'
+  get 'teams/:id/tickets/new/:from', to: 'tickets#new', as: 'new_team_ticket'
   post 'teams/:id/tickets', to: 'tickets#create', as: 'create_team_ticket'
     
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

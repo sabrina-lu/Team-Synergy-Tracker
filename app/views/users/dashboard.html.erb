@@ -24,14 +24,14 @@
         <td><% if @survey_completed[team] %>
                  Complete
             <% else %>
-                 <%= link_to "Incomplete", weekly_surveys_path(team) %>
+                 <%= link_to "Incomplete", weekly_surveys_path(id: team.id, from: "dashboard") %>
             <% end %>
         </td>
         <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %>%</td>
         <td><% if @ticket_completed[team] %>
               Complete
             <% else %>
-              <%= link_to "Create Ticket", new_team_ticket_path(team.id) %>
+              <%= link_to "Create Ticket", new_team_ticket_path(id: team.id, from: "dashboard") %>
             <% end %>
           </td>
       </tr>
