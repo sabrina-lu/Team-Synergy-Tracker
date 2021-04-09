@@ -16,7 +16,7 @@
 
 <br><br>
 <h2>Team Health History</h2>
-<% if @any_team_health_history %>
+<% if @team_health_history.length > 0 %>
     <table>
       <thead>
         <tr>
@@ -32,7 +32,7 @@
       <tbody>
         <% for i in 0..@team_health_history.length - 1 do %>
           <tr>
-            <td><%= link_to @team_health_history[i][0], team_health_details_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i, any_completed_surveys: true) %></td>
+            <td><%= link_to @team_health_history[i][0], team_health_details_path(id: @team.id, date: @CURRENT_SURVEY_DUE_DATE - 7*i) %></td>
             <td><%= @team_health_history[i][1] %>%</td>
             <td><%= @team_health_history[i][2] %>%</td>
             <td><%= @team_health_history[i][3] %>%</td>

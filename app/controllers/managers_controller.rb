@@ -37,12 +37,6 @@ class ManagersController < ApplicationController
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
         
-      if Response.where(survey_id: Survey.where(team_id: @team.id)).exists?
-        @any_team_health_history = true
-      else
-        @any_team_health_history = false
-      end
-        
       if @team_health_history.present?
         @health_value = @team_health_history[0][6] 
       else 
@@ -80,9 +74,8 @@ class ManagersController < ApplicationController
     
   def tickets
     @team = Team.find(params[:id])
-    @tickets = []
     if current_user_is_manager
-      @tickets = Ticket.where(team_id: params[:id]).order("date DESC")
+      @tickets = @team.get_tickets(CURRENT_SURVEY_DUE_DATE)
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end
@@ -97,7 +90,7 @@ class ManagersController < ApplicationController
 
     due_date = Date.parse(params[:date])
     @interval = "#{due_date-7} - #{due_date-1}"
-    if due_date == @CURRENT_SURVEY_DUE_DATE
+    if due_date == CURRENT_SURVEY_DUE_DATE
         @current_week = true
     else
         @current_week = false
@@ -107,7 +100,7 @@ class ManagersController < ApplicationController
     @surveys = []
     if current_user_is_manager
       @surveys = Survey.where(team_id: @team.id, date: params[:date])       
-      @team_tickets = @team.get_tickets(due_date)      
+      @tickets = @team.get_tickets(due_date)      
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end
