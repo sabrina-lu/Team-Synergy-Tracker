@@ -14,13 +14,17 @@
     <% @manager.teams.each do |team| %>
       <tr>
         <td><%= link_to team.name, team_health_path(team) %>  </td>
-        <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
+        <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %>%</td>
             <% if team.any_completed_surveys(@CURRENT_SURVEY_DUE_DATE) %>
-                <td><%= link_to "#{team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE)} students have completed", team_surveys_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, any_completed_surveys: true, current_week: true) %></td>
+                <td><%= link_to "#{team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE)} students have completed", team_health_details_path(id: team.id, date: @CURRENT_SURVEY_DUE_DATE, current_week: true) %></td>
             <% else %>
                 <td><%= team.get_survey_completion_ratio(@CURRENT_SURVEY_DUE_DATE) %> students have completed</td>
             <% end %>
-        <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
+        <% if Ticket.where(team_id: team.id, date: @CURRENT_SURVEY_DUE_DATE-7...@CURRENT_SURVEY_DUE_DATE).length > 0 %> 
+          <td><%= link_to 'View Tickets', team_tickets_path(team) %></td>
+            <% else %>
+          <td>No Tickets Yet</td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

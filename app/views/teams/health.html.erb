@@ -4,7 +4,13 @@
         <h3 class="title">Current Week's Team Health:</h3>
         <progress class="bar" value="<%= @health_value %>" max="100"></progress>
         <div>
-          <p class="<%= @health_value.to_f > 50? "value green" : "value red" %>"><%= @health_value %>% </p>  
+          <% if @health_value.to_f < 30 %>
+            <p class="value red"><%= @health_value %>%</p>
+          <% elsif @health_value.to_f > 90 %>
+            <p class="value green"><%= @health_value %>%</p>
+          <% else %>
+            <p class="value"><%= @health_value %>%</p>
+          <% end %>         
         </div>
     </div>
     <%= image_tag("happy.png", class: "emojis") %>  <!-- happy face -->

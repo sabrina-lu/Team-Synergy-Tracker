@@ -1,51 +1,31 @@
-<% if @tickets.length > 0 %>
-    <table>
-      <thead>
+<table>
+    <thead>
+      <tr>
+        <th>Created By</th>
+        <th>Member Involved</th>
+        <th>Communication</th>
+        <th>Behaviour</th>
+        <th>Teamwork</th>
+        <th>Availability</th>
+        <th>Rating</th> 
+        <th>Ticket Health</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tickets.each do |ticket| %>
         <tr>
-          <th>Ticket ID</th>
-          <th>Created By</th>
-          <th>Member Involved</th>
-          <th>Rating</th>
-          <th>Date</th>
+          <% for i in 0..ticket.length-2 %>
+            <td><%= ticket[i] %></td>
+          <% end %>
+          <% if ticket[-1].to_f < 30 %>
+            <td class="red"><b><%= ticket[-1].to_f %>%</b></td>
+          <% elsif ticket[-1].to_f > 90 %>
+            <td class="green"><b><%= ticket[-1].to_f %>%</b></td>
+          <% else %>
+            <td><b><%= ticket[-1].to_f %>%</b></td>
+          <% end %>
         </tr>
-      </thead>
-
-      <tbody>
-        <% if @tickets %>
-        <% @tickets.each do |ticket| %>
-          <tr>
-            <td><%= link_to ticket.id, ticket %></td> 
-            <td><%= User.find(ticket.creator_id).first_name %> </td>
-            <td><% ticket.users.each do |user| %>
-                <%= user.first_name  %>
-                <% end %></td>
-            <td><%= ticket.ticket_responses.fifth.answer %></td>
-            <td><%= ticket.date %></td>
-
-          </tr>
-        <% end %>
-        <% end %>
-        <% if @sentTickets %>  
-        <% @sentTickets.each do |ticket| %>
-          <tr>
-            <td><%= link_to ticket.id, ticket %></td>
-            <td><%= User.find(ticket.creator_id).first_name %> </td>
-            <td><%= ticket.date %></td>
-          </tr>
-        <% end %>
-        <% end %>
-        <% if @receivedTickets %>  
-        <% @receivedTickets.each do |ticket| %>
-          <tr>
-            <td><%= link_to ticket.id, ticket %></td> 
-            <td>Anonymous</td>
-            <td><%= ticket.date %></td>
-          </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
-<% else %>
-    <div class="link-container">This team did not create any tickets.</div>
-<% end %>
-<br><br>
+      <% end %>
+    </tbody>
+    </table>    
+<br>

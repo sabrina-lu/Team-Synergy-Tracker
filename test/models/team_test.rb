@@ -257,4 +257,25 @@ class TeamTest < ActiveSupport::TestCase
     
     assert_equal [current_week, last_week , two_weeks_ago ], @team_1.get_health_history(current_date)
   end
+    
+  #get_tickets tests
+  test "should return empty array if there are no tickets" do
+    setup_users_manager_teams
+    assert_equal [], @team.get_tickets(Date.new(2021,3,10))
+  end
+    
+  test "should return an array of tickets in correct format" do
+    setup_users_manager_teams
+    @user2 = User.create(watiam: "user2", first_name: "Joe", last_name: "Ellen", password: "Password")  
+    @team.users << @user2
+    @t_1 = Ticket.create(creator_id: @user.id, date: Date.new(2021,3,10), team_id: @team.id)
+    @t_1.users << @user2
+    for i in 1..4 do
+      TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: 3)
+    end
+    TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 5)  
+      
+    assert_equal [[@user.full_name_with_watiam, @user2.full_name_with_watiam, "great", "great", "great", "great", "5/10", "70.00" ]], @team.get_tickets(Date.new(2021,3,13))
+  end
+
 end
