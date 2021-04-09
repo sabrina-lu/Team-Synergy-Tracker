@@ -145,4 +145,27 @@ class Team < ApplicationRecord
             return  '%.2f' % (sum_weekly_feedback)
         end
     end
+    
+    def get_tickets(current_weekly_survey_due_date)
+      tickets = Ticket.where(team_id: id, date: current_weekly_survey_due_date-7...current_weekly_survey_due_date)
+      r = {1 => "poor", 2 => "typical", 3 => "great"}
+      team_tickets = []
+      for i in 0..tickets.length-1 do 
+          temp = []
+          temp.push(User.find(tickets[i].creator_id).full_name_with_watiam)
+          temp.push(tickets[i].users.first.full_name_with_watiam)
+          health = 0
+          for j in 1..4 do
+            response = tickets[i].ticket_responses.find_by(question_number: j).answer
+            health += 0.1*response.to_f/3
+            temp.push(r[response])
+          end
+          rating = tickets[i].ticket_responses.find_by(question_number: 5).answer
+          health += 0.6*rating.to_f/10
+          temp.push("#{rating}/10")
+          temp.push("#{'%.2f' % (health.to_f*100)}")
+          team_tickets << temp
+      end
+        return team_tickets
+    end
 end

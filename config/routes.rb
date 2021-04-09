@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :responses, except: [:index, :show, :edit, :new, :update, :destroy]
   resources :ticket_responses, except: [:index, :show, :edit, :new, :update, :destroy]
   resources :users, except: [:new, :index, :show, :edit, :update, :destroy]  
-  resources :tickets, except: [:new, :index, :edit, :update, :destroy]
+  resources :tickets, except: [:new, :show, :index, :edit, :update, :destroy]
     
   get '/signup', to: 'users#new'
   get '/login',  to: 'sessions#new'    
@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   post 'teams/:id/members/remove', to: 'teams#remove_member', as: 'confirm_remove_member'
   
   get 'teams/:id/tickets', to: 'managers#tickets', as: 'team_tickets'
-  get 'team_health/:id/metrics/:date/surveys', to: 'managers#surveys', as: 'team_surveys'
+  get 'team_health/:id/metrics/:date/details', to: 'managers#health_details', as: 'team_health_details'
     
     # route to get the team associated with the ticket
-  get 'teams/:id/tickets/new/:from', to: 'tickets#new', as: 'new_team_ticket'
+  get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'
   post 'teams/:id/tickets', to: 'tickets#create', as: 'create_team_ticket'
     
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

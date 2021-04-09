@@ -54,7 +54,7 @@ class UsersController < ApplicationController
          redirect_to team_health_path(@team)
      else
           if !current_user_is_on_team(@team)
-              redirect_to user_dashboard_path, notice: 'You do not have permission to view this team.'
+              redirect_to user_dashboard_path, alert: 'You do not have permission to view this team.'
           else
               @health_value = @team.get_total_team_health(0, CURRENT_SURVEY_DUE_DATE) 
           end
@@ -68,9 +68,9 @@ class UsersController < ApplicationController
     @from = params[:from]
     @team = Team.find(params[:id])
     if current_user_is_manager
-         redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'
+         redirect_to manager_dashboard_path, alert: 'You do not have permission to respond to surveys.'
     elsif !current_user_is_on_team(@team)
-         redirect_to user_dashboard_path, notice: 'You do not have permission to respond to another team\'s survey.'
+         redirect_to user_dashboard_path, alert: 'You do not have permission to respond to another team\'s survey.'
     end
     @survey = Survey.find_by(user: current_user.id, team: @team.id, date: CURRENT_SURVEY_DUE_DATE)
     if @survey && @survey.responses.exists?
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
           render :new
         end
     else
-        flash[:alert] = "That WATIAM has an account associated with it already"
+        flash[:alert] = "That WATIAM has an account associated with it already."
         render :new
     end
   end

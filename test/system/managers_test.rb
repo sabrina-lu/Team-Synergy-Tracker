@@ -5,23 +5,42 @@ class ManagersTest < ApplicationSystemTestCase
   setup do
     setup_users_manager_teams
   end
-  
-    # from users url
+
   test "create manager account" do 
     visit login_path
     click_on "Don't have an account? Sign up here!"
     choose(option: 'Manager')
     fill_in "user_watiam", with: "tom123"
-    fill_in "user_first_name", with: "Tom"
-    fill_in "user_last_name", with: "Tim"
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
+    click_on "Create Account"
+    click_on "Create Account"
+    choose(option: 'Manager')
+    fill_in "manager_watiam", with: "tom123"
+    fill_in "manager_first_name", with: "Tom"
+    fill_in "manager_last_name", with: "Tim"
+    fill_in "manager_password", with: "password"
+    fill_in "manager_password_confirmation", with: "password"
     click_on "Create Account"
     assert_text "Account created and logged in."
   end
-    
- #TODO: fail to create a manager account test
-    
+
+  test "create manager account with same watiam as another student" do 
+    visit login_path
+    click_on "Don't have an account? Sign up here!"
+    choose(option: 'Manager')
+    fill_in "user_watiam", with: "tom123"
+    click_on "Create Account"
+    click_on "Create Account"
+    choose(option: 'Manager')
+    fill_in "manager_watiam", with: "jellen"
+    fill_in "manager_first_name", with: "Tom"
+    fill_in "manager_last_name", with: "Tim"
+    fill_in "manager_password", with: "password"
+    fill_in "manager_password_confirmation", with: "password"
+    click_on "Create Account"
+    assert_text "That WATIAM has an account associated with it already"
+  end
+
+
     # can successfully login
   test "login to dashboard" do
     visit login_path
@@ -118,12 +137,15 @@ class ManagersTest < ApplicationSystemTestCase
     # can view the tickets of each team they manage in a nice list
     # Story: Display view of all tickets in an organized way for manager
   test "can view team's tickets" do
+    @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
+    @team.users << @user2
+    create_ticket(@user, @team, @user2)
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
     click_on "View Tickets"
-    assert_text "Team 1's Tickets"
+    assert_text "Team 1 Tickets for Current Week"
   end
     
   # Manager sees the current week's surveys for each team they manage
@@ -132,13 +154,14 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    visit team_surveys_path(id: @team.id, date: Date.new(2021,3,13), any_completed_surveys: true, current_week: true)
-    assert_text "Team 1's Current Week's Surveys"
+    visit team_health_details_path(id: @team.id, date: Date.new(2021,3,13), current_week: true)
+    assert_text "Team 1 Surveys for Current Week"
   end
     
     # Manager sees the surveys history for each team they manage
   test "can view team's surveys for past weeks" do
     @team_with_history = Team.create(name: "Team With History")
+    @team_with_history.managers << @manager
     @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
     Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
     Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
@@ -149,25 +172,37 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "password", with: @manager.password
     click_on "Login"
     visit team_health_path(@team_with_history)
-    visit team_surveys_path(id: @team_with_history, date: @s_1.date)
-    assert_text "Team With History's Surveys for Week 2021-02-22 - 2021-02-28"
+    visit team_health_details_path(id: @team_with_history, date: @s_1.date)
+    assert_text "Team With History Health Details for Week 2021-02-22 - 2021-02-28"
+  end
+  
+  # Manager cannot see the current week's surveys for teams they don't manage
+  test "cannot view other team's current week surveys" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit team_health_details_path(id: @team_no_access.id, date: Date.new(2021,3,13), current_week: true)    
+    assert_text "You do not have permission to view this team's health."
   end
     
       # Manager gets message for each team they manage if it has no surveys history
   test "manager gets message if no team's surveys for past weeks" do
     @team_with_no_history = Team.create(name: "Team With History")
+    @team_with_no_history.managers << @manager
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
     visit team_health_path(@team_with_no_history)
-    visit team_surveys_path(id: @team_with_no_history.id, date: "09/03/2021", current_week: true)
-    assert_text "Your team has not submitted any surveys this week! Please remind your team members to submit their surveys."
+    visit team_health_details_path(id: @team_with_no_history.id, date: "09/03/2021", current_week: true)
+    assert_text "Your team did not submit any surveys this week! Please remind your team members to submit their surveys."
   end
     
   # can successfully view survey health
   test "can view team's survey health" do
     @team_with_history = Team.create(name: "Team With History")
+    @team_with_history.managers << @manager
     @s_1 = Survey.create(user_id: @user.id, date:"01/03/2021", team_id: @team_with_history.id)
     Response.create(survey_id: @s_1.id, question_number: 1, answer: 1)
     Response.create(survey_id: @s_1.id, question_number: 2, answer: 2)
@@ -177,7 +212,7 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    visit team_surveys_path(id: @team_with_history.id, date: @s_1.date,  any_completed_surveys: true, current_week: true)
+    visit team_health_details_path(id: @team_with_history.id, date: @s_1.date, current_week: true)
     assert_text "Survey Health"
   end
 
@@ -220,7 +255,7 @@ class ManagersTest < ApplicationSystemTestCase
     TicketResponse.create(ticket_id: @t_1.id, question_number: 4, answer: 2)
     TicketResponse.create(ticket_id: @t_1.id, question_number: 5, answer: 7)
     @t_1.users << [@user2]
-    
+    create_ticket(@user, @team, @user2)
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
@@ -228,14 +263,22 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "View Tickets"
     assert_text "Rating"
   end
-  
-  test "ticket view when team has no tickets" do
+    
+  test "manager can not view tickets other team's tickets" do
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"
-    click_on "View Tickets"
-    assert_text "This team did not create any tickets"
+    visit team_tickets_url(@team_no_access)
+    assert_text "You do not have permission to view these tickets."
+  end
+  
+  test "manager dashboard should show message when team has no tickets" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    assert_text "No Tickets Yet"
   end
   
     # can view instructions on how to use the app on every main page
@@ -253,6 +296,9 @@ class ManagersTest < ApplicationSystemTestCase
     # Story: Include instructions on both manager and user's dashboard
   test "can view tickets view popup instructions" do
     visit login_path
+    @user2 = User.create(watiam: "tt", first_name: "t", last_name: "t", password: "Password")
+    @user2.teams << @team
+    create_ticket(@user, @team, @user2)
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
     click_on "Login"

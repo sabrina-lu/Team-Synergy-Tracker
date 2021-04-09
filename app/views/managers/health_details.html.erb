@@ -1,0 +1,57 @@
+<% if params[:current_week]%>
+    <h1><%= @team.name %> Surveys for Current Week</h1>
+    <h3>Weekly Survey Due Date: <%= Date.parse(params[:date])-1 %> 11:59PM UTC</h3>
+    <br>
+<% else %>
+    <h1><%= @team.name %> Health Details for Week <%= @interval %> </h1>
+    <% if @current_week %>
+        <h3>Weekly Survey Due Date: <%= Date.parse(params[:date])-1 %> 11:59PM UTC</h3>
+    <% end %>
+    <br>
+    <h2>Survey Details</h2>
+<% end %>
+<% if @surveys.first && @surveys.first.responses.exists? %> 
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+        <%= render template: 'surveys/list' %>
+<% else %>
+    <br>
+    <div class="link-container"><strong>Your team did not submit any surveys this week! Please remind your team members to submit their surveys.</strong> </div>
+    <br>
+<% end %>
+<br>
+
+<% if params[:current_week]%>
+    <div class="link-container">
+        <%= link_to "Return to Dashboard", manager_dashboard_path %> 
+    </div>
+<% else %>
+   <br>
+
+    <h2>Ticket Details</h2>
+        <% if @tickets.length > 0 %>
+          <%= render template: 'tickets/list' %>
+        <% else %>
+            <br>
+            <div class="link-container"><strong>Your team did not submit any tickets this week.</strong></div>
+            <br>
+        <% end %>  
+    <br>
+    <div class="link-container">
+        <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
+    </div>  
+<% end %>

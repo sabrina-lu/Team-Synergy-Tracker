@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       log_in user
       get_dashboard
     else
-      flash.now[:notice] = 'Cannot log you in. Invalid Watiam or Password.'
+      flash.now[:alert] = 'Cannot log you in. Invalid Watiam or Password.'
       render 'new'
     end
   end

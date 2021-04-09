@@ -2,23 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.green {
-    color: #73956fff;
-}
-
-.green input[type=submit] {
-    background-color: #73956fff
-}
-
-.red {
-    color: #f56476ff;
-}
-
-.red input[type=submit] {
-    background-color: #f56476ff
-}
-
-
 .health-metrics-container {
     display: flex;
     align-items: center;
@@ -47,10 +30,26 @@
 
 .value {
     text-align: center;
-    color: #73956fff;
+    color: black;
     font-weight: 700;
     font-size: 20px;
     margin: 0px;
+}
+
+.green {
+    color: #73956fff;
+}
+
+.green input[type=submit] {
+    background-color: #73956fff
+}
+
+.red {
+    color: #f56476ff;
+}
+
+.red input[type=submit] {
+    background-color: #f56476ff
 }
 
 .overlay {

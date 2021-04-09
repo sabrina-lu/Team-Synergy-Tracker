@@ -12,7 +12,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user_1.watiam
     fill_in "password", with: @user_1.password
     click_on "Login"
-    visit new_team_ticket_url(@team_1, "dashboard")
+    visit new_team_ticket_url(@team_1)
     assert_text "New Ticket"
   end
     
@@ -47,6 +47,7 @@ class TicketsTest < ApplicationSystemTestCase
     
     # from managers POV
   test "can successfully view ticket list as a manager" do
+    create_ticket(@user_1, @team_1, @user_2)
     visit login_path
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
@@ -58,13 +59,13 @@ class TicketsTest < ApplicationSystemTestCase
     # can view the details of a ticket and the feedback that a student gave another student
     # Story: Update manager's view of all tickets
   test "can successfully view ticket's details as a manager" do
+    create_ticket(@user_1, @team_1, @user_2)
     visit login_path
     fill_in "watiam", with: @manager_1.watiam
     fill_in "password", with: @manager_1.password
     click_on "Login"
     click_on "View Tickets"
-    click_on @t_1.id
-    assert_text "Date Created:"
+    assert_text "Tickets for Current Week"
   end
     
   # unable to view tickets for another team as a manager
@@ -86,7 +87,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user_1.watiam
     fill_in "password", with: @user_1.password
     click_on "Login"
-    visit new_team_ticket_url(@team_1, "dashboard")
+    visit new_team_ticket_url(@team_1)
     assert_text "New Ticket"
     select "#{user2.full_name_with_watiam}", :from => :users
     click_on "Save"
@@ -104,7 +105,7 @@ class TicketsTest < ApplicationSystemTestCase
         fill_in "watiam", with: user_5.watiam
         fill_in "password", with: user_5.password
         click_on "Login"
-        visit new_team_ticket_url(@team_1, "dashboard")
+        visit new_team_ticket_url(@team_1)
         assert_text "You do not have permission to create this ticket"
     end
     
@@ -140,7 +141,7 @@ class TicketsTest < ApplicationSystemTestCase
         fill_in "watiam", with: user.watiam
         fill_in "password", with: user.password
         click_on "Login"
-        assert_text "Complete"
+        assert_text ""
         click_on "test"
         click_on "Create A Ticket"
         assert_text "Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!"

@@ -1,7 +1,11 @@
-<h1><%= @team.name %>'s Tickets</h1>
+<h1><%= @team.name %> Tickets for Current Week</h1>
 
+<% if @tickets.length > 0 %>
 <%= render template: 'tickets/list' %>
-
+<% else %>
+<div class="link-container"><strong>Your team did not submit any tickets this week.</strong></div>
+<% end %>
+<br>
 <div class="link-container"><%= link_to 'Return to Dashboard', manager_dashboard_path %></div>
 
 <br><br>

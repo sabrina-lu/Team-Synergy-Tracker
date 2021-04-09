@@ -22,11 +22,11 @@
                     <td><%= survey.responses.third.answer %>/5</td>
                     <td><%= survey.responses.fourth.answer %>/5</td>
                     <% if survey.get_survey_rating(survey).to_i < 30 %>
-                        <td class="red"><%= survey.get_survey_rating(survey) %>%</td>
+                      <td class="red"><b><%= survey.get_survey_rating(survey) %>%</b></td>
                     <% elsif survey.get_survey_rating(survey).to_i > 90 %>
-                        <td class="green"><%= survey.get_survey_rating(survey) %>%</td>
+                      <td class="green"><b><%= survey.get_survey_rating(survey) %>%</b></td>
                     <% else %>
-                        <td><%= survey.get_survey_rating(survey) %>%</td>
+                      <td><b><%= survey.get_survey_rating(survey) %>%</b></td>
                     <% end %>
                   </tr>
               <% end %>

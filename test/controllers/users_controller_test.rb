@@ -34,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as_user
     get user_team_list_url(@team_no_access)
     assert_redirected_to user_dashboard_url
-    assert_equal "You do not have permission to view this team." , flash[:notice] 
+    assert_equal "You do not have permission to view this team." , flash[:alert] 
   end
     
   test "should redirect manager to manager team health page when accessing user team list page" do
@@ -48,7 +48,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as_manager
     get weekly_surveys_url(@team, "dashboard")
     assert_redirected_to manager_dashboard_url
-    assert_equal "You do not have permission to respond to surveys." , flash[:notice] 
+    assert_equal "You do not have permission to respond to surveys." , flash[:alert] 
   end
   
   test "should redirect user to weekly survey page if they are on the team" do 
@@ -65,7 +65,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as_user(@user)
     get weekly_surveys_url(@team_no_access, "dashboard")
     assert_redirected_to user_dashboard_url
-    assert_equal "You do not have permission to respond to another team\'s survey.", flash["notice"]
+    assert_equal "You do not have permission to respond to another team\'s survey.", flash["alert"]
   end 
     
   test "should redirect user to user dashboard when accessing weekly survey that user has already completed" do
@@ -112,7 +112,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('User.count', 0) do
       post users_url, params: { user: {flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
-    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+    assert_equal "That WATIAM has an account associated with it already.", flash[:alert]
   end
     
   test "should not create manager if an existing user has the same watiam" do
@@ -120,7 +120,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Manager.count', 0) do
       post users_url, params: { user: {flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
-    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+    assert_equal "That WATIAM has an account associated with it already.", flash[:alert]
   end
     
   test "should not create user if an existing user has the same watiam" do
@@ -128,7 +128,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('User.count', 0) do
       post users_url, params: { user: {flag: "User", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
-    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+    assert_equal "That WATIAM has an account associated with it already.", flash[:alert]
   end
     
   test "should not create manager if an existing manager has the same watiam" do
@@ -136,7 +136,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Manager.count', 0) do
       post users_url, params: { user: {flag: "Manager", watiam: "test", password: "Password", first_name: "Emma", last_name: "Lin", password_confirmation: "Password"  } }
     end
-    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+    assert_equal "That WATIAM has an account associated with it already.", flash[:alert]
   end 
     
   test "should not create user or manager if password is blank" do

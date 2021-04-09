@@ -30,18 +30,12 @@ class ManagersController < ApplicationController
     end
     @team = Team.find(params[:id])
     if !current_user_is_on_team(@team)
-        redirect_to manager_dashboard_path, notice: 'You do not have permission to view this team.'
+        redirect_to manager_dashboard_path, alert: 'You do not have permission to view this team.'
     else
       @team_health = true
       @team_users = @team.users
       @users = User.get_ordered_survey_indicator(@team, CURRENT_SURVEY_DUE_DATE) 
       @team_health_history = @team.get_health_history(CURRENT_SURVEY_DUE_DATE) 
-        
-      if Response.where(survey_id: Survey.where(team_id: @team.id)).exists?
-        @any_team_health_history = true
-      else
-        @any_team_health_history = false
-      end
         
       if @team_health_history.present?
         @health_value = @team_health_history[0][6] 
@@ -73,22 +67,25 @@ class ManagersController < ApplicationController
           render :new
         end
     else
-        flash[:alert] = "That WATIAM has an account associated with it already"
+        flash[:alert] = "That WATIAM has an account associated with it already."
         render :new
     end
   end
     
   def tickets
     @team = Team.find(params[:id])
-    @tickets = []
     if current_user_is_manager
-      @tickets = Ticket.where(team_id: params[:id]).order("date DESC")
+      if current_user.teams.include?(@team)
+        @tickets = @team.get_tickets(CURRENT_SURVEY_DUE_DATE)
+      else 
+        redirect_to manager_dashboard_path, alert: "You do not have permission to view these tickets." 
+      end
     else
-      redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
+      redirect_to user_dashboard_path, alert: "You do not have permission to view tickets." 
     end
   end
     
-  def surveys
+  def health_details
     q1 = "How do you feel about this week in comparison to last week?"
     q2 = "How did you feel about this week?"
     q3 = "How would you rate your communication with your team members this week?"
@@ -97,18 +94,23 @@ class ManagersController < ApplicationController
 
     due_date = Date.parse(params[:date])
     @interval = "#{due_date-7} - #{due_date-1}"
-    if due_date == @CURRENT_SURVEY_DUE_DATE
+    if due_date == CURRENT_SURVEY_DUE_DATE
         @current_week = true
     else
         @current_week = false
     end
-      
+
     @team = Team.find(params[:id])
     @surveys = []
     if current_user_is_manager
-      @surveys = Survey.where(team_id: params[:id], date: params[:date])
+      if current_user.teams.include?(@team)
+          @surveys = Survey.where(team_id: @team.id, date: params[:date])       
+          @tickets = @team.get_tickets(due_date)
+      else
+        redirect_to manager_dashboard_path, alert: "You do not have permission to view this team's health."
+      end
     else
-      redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
+      redirect_to_manager_login
     end
   end
 

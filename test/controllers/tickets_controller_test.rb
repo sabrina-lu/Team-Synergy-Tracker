@@ -9,13 +9,13 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
    test "Should successfully create a ticket" do 
      assert_difference('Ticket.count', 1) do
        assert_difference('TicketResponse.count', 5) do
-           post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}  
+           post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 3, answer5: 5}  
        end
      end
    end
     
   test "Should successfully redirect user to their dashboard after ticket creation" do
-    post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}
+    post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 3, answer5: 5}
     assert_redirected_to user_dashboard_url
   end
     
@@ -26,66 +26,17 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to user_dashboard_url
     end
     
-    test "should not show manager tickets that aren't for their team" do
-      @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-      @manager2 = Manager.create(watiam: "jsmyth", first_name: "John", last_name: "Smyth", password: "Password")
-      @team = Team.create(name: "test")
-      @team.managers << @manager
-        
-      @t_1.team = @team  
-      @t_2.team = @team
-      @t_3.team = @team
-      t = [@t_1, @t_2, @t_3]
-        
-      for i in 0..2 do
-          TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 3)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 2)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 7)
-      end      
-        
-      post login_path, params: { watiam: @manager2.watiam, password: @manager2.password }  
-      get ticket_url(@t_1)
-      assert_response :redirect
-      get ticket_url(@t_2)
-      assert_response :redirect
-      get ticket_url(@t_3)
-      assert_response :redirect
+    test "should not let manager create a ticket" do
+      login_as_manager(@manager_1)
+      get new_team_ticket_url(@team_1)
+      assert_redirected_to manager_dashboard_url
+      assert_equal "You do not have permission to create tickets.", flash[:alert]
     end
     
-    test "should show manager tickets that are for their team" do
-      @manager = Manager.create(watiam: "jsmith", first_name: "John", last_name: "Smith", password: "Password")
-      @team = Team.create(name: "test")
-      @team.managers << @manager
-        
-      @t_1.team = @team  
-      @t_2.team = @team
-      t = [@t_1, @t_2]
-        
-      for i in 0..1 do
-          TicketResponse.create(ticket_id: t[i].id, question_number: 1, answer: 1)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 2, answer: 2)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 3, answer: 3)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 4, answer: 2)
-          TicketResponse.create(ticket_id: t[i].id, question_number: 5, answer: 7)
-      end 
-       
-      post login_path, params: { watiam: @manager.watiam, password: @manager.password }  
-      get ticket_url(@t_1)
-      assert_response :success
-      get ticket_url(@t_2)
-      assert_response :success
-    end
-    
-    test 'should redirect user to user dashboard when trying to view a ticket' do
-      for i in 1..5 do
-          TicketResponse.create(ticket_id: @t_1.id, question_number: i, answer: i)
-      end        
+    test "should let user create a ticket" do
       login_as_user(@user_1)
-      get ticket_url(@t_1)
-      assert_redirected_to user_dashboard_url
-      assert_equal "You do not have permission to view this ticket.", flash[:notice]
+      get new_team_ticket_url(@team_1)
+      assert_response :success
     end
     
     test 'should inform user that a user must be added when submitting a ticket with no user selected' do      
@@ -95,7 +46,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
            post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}  
         end
       end
-      assert_equal "You Must Add a User to this Ticket", flash[:notice]
+      assert_equal "You Must Add a User to this Ticket.", flash[:alert]
     end
     
 end
