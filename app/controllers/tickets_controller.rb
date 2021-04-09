@@ -44,7 +44,7 @@ class TicketsController < ApplicationController
         @ticket.creator = User.find(params[:creator_id])
         @ticket.team = Team.find_by(:id => params[:id])
         if !params[:users]
-          redirect_to new_team_ticket_path(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
+          redirect_to create_team_ticket_url(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
         else
           @users = User.find(params[:users])
           @ticket.users << @users

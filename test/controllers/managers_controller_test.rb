@@ -51,6 +51,14 @@ class ManagersControllerTest < ActionDispatch::IntegrationTest
     end
   end
     
+  test "should not create a manager with an existing watiam" do
+    post managers_url, params: { manager: { flag: "Manager", watiam: "bpark", password: "Password", first_name: "Bob", last_name: "Park"} }
+    assert_difference('Manager.count', 0) do
+      post managers_url, params: { manager: { flag: "Manager", watiam: "bpark", password: "Password", first_name: "Ben", last_name: "Park"} }
+    end
+    assert_equal "That WATIAM has an account associated with it already", flash[:alert]
+  end
+    
   # tickets tests
   test "should show manager team's ticket" do
     @user2 = User.create(watiam: "u2", first_name: "user2", last_name: "two", password: "Password")
