@@ -9,13 +9,13 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
    test "Should successfully create a ticket" do 
      assert_difference('Ticket.count', 1) do
        assert_difference('TicketResponse.count', 5) do
-           post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}  
+           post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 3, answer5: 5}  
        end
      end
    end
     
   test "Should successfully redirect user to their dashboard after ticket creation" do
-    post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 4, answer5: 5}
+    post create_team_ticket_url(@team_1), params: {creator_id: @user_4.id, date: @t_4.date, users: [@user_1.id], answer1: 1, answer2: 2, answer3: 3, answer4: 3, answer5: 5}
     assert_redirected_to user_dashboard_url
   end
     
