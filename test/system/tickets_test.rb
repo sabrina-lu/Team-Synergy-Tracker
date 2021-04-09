@@ -129,7 +129,7 @@ class TicketsTest < ApplicationSystemTestCase
         fill_in "watiam", with: user.watiam
         fill_in "password", with: user.password
         click_on "Login"
-        assert_text "Complete"
+        assert_text ""
         click_on "test"
         click_on "Create A Ticket"
         assert_text "Sorry! You are the only person on your team. Your manager needs to add more team members before you can send them a ticket!"
