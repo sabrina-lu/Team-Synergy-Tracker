@@ -68,6 +68,16 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Tickets for Current Week"
   end
     
+  # unable to view tickets for another team as a manager
+  test "unable view ticket's details as a manager of another team" do
+    visit login_path
+    fill_in "watiam", with: @manager_1.watiam
+    fill_in "password", with: @manager_1.password
+    click_on "Login"
+    visit team_tickets_path(@team_2)
+    assert_text "You do not have permission to view these tickets."
+  end
+    
 # can successfully send a ticket to another student 
 # Story: Change ticket creation from textual feedback to peer rating
   test "creating a Ticket" do
@@ -84,6 +94,7 @@ class TicketsTest < ApplicationSystemTestCase
 
     assert_text "Ticket was successfully created"
   end
+    
     
 # is redirected when trying to access a create ticket page for a team they are not on
 # Story: Bug Bash: Creating a Ticket if you're not on the team

@@ -5,7 +5,7 @@ class ManagersTest < ApplicationSystemTestCase
   setup do
     setup_users_manager_teams
   end
-    
+
   test "create manager account" do 
     visit login_path
     click_on "Don't have an account? Sign up here!"
@@ -22,7 +22,7 @@ class ManagersTest < ApplicationSystemTestCase
     click_on "Create Account"
     assert_text "Account created and logged in."
   end
-    
+
   test "create manager account with same watiam as another student" do 
     visit login_path
     click_on "Don't have an account? Sign up here!"
@@ -40,6 +40,7 @@ class ManagersTest < ApplicationSystemTestCase
     assert_text "That WATIAM has an account associated with it already"
   end
 
+
     # can successfully login
   test "login to dashboard" do
     visit login_path
@@ -47,6 +48,12 @@ class ManagersTest < ApplicationSystemTestCase
     fill_in "password", with: @manager.password
     click_on "Login"
     assert_text "Welcome " + @manager.first_name.capitalize + "!"
+  end
+    
+    # redirected if not a manager
+  test "redirects to login if a student is accessing manager dashboard" do
+      visit manager_dashboard_path
+      assert_text "Please log in."
   end
 
     # login with wrong watiam
