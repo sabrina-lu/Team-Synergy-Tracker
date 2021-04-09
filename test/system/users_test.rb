@@ -18,6 +18,19 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Account created and logged in."
   end
     
+  test "unable to create user account with same watiam" do 
+    visit login_path
+    click_on "Don't have an account? Sign up here!"
+    fill_in "user_watiam", with: "jellen"
+    fill_in "user_first_name", with: "Bob"
+    fill_in "user_last_name", with: "Patter"
+    fill_in "user_password", with: "himynameisbob"
+    fill_in "user_password_confirmation", with: "himynameisbob"
+    click_on "Create Account"
+    assert_text "That WATIAM has an account associated with it already"
+  end
+    
+    
   test "no logout button on login page" do 
     visit login_path
     assert_no_text "Logout"
@@ -168,5 +181,32 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Welcome #{@user.first_name}"
     assert_text "Please login as a manager to view this page."  
   end    
+    
+  test "user should be redirected to login when trying to access manager dashboard" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit manager_dashboard_path
+    assert_text "Please login as a manager to view this page."
+  end 
+    
+  test "user should be redirected to login when trying to access manager team health metrics" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit team_health_path(@team)
+    assert_text "Please login as a manager to view this page."
+  end 
+    
+  test "user should be redirected to user dashboard when trying to access tickets" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit team_tickets_path(@team)
+    assert_text "You do not have permission to view tickets."
+  end 
     
 end

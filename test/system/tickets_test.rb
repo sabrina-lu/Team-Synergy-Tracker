@@ -67,6 +67,16 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Date Created:"
   end
     
+  # unable to view tickets for another team as a manager
+  test "unable view ticket's details as a manager of another team" do
+    visit login_path
+    fill_in "watiam", with: @manager_1.watiam
+    fill_in "password", with: @manager_1.password
+    click_on "Login"
+    visit ticket_path(@t_5)
+    assert_text "You do not have permission to view this ticket."
+  end
+    
 # can successfully send a ticket to another student 
 # Story: Change ticket creation from textual feedback to peer rating
   test "creating a Ticket" do
@@ -82,6 +92,21 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "Save"
 
     assert_text "Ticket was successfully created"
+  end
+    
+  # cannot create a ticket without adding a member
+  test "unable to create a ticket without selecting a user" do
+    user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
+    @team_1.users << user2
+    visit login_path
+    fill_in "watiam", with: @user_1.watiam
+    fill_in "password", with: @user_1.password
+    click_on "Login"
+    visit new_team_ticket_url(@team_1, "dashboard")
+    assert_text "New Ticket"
+    click_on "Save"
+
+    assert_text "You Must Add a User to this Ticket"
   end
     
 # is redirected when trying to access a create ticket page for a team they are not on

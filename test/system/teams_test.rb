@@ -119,7 +119,21 @@ class TeamsTest < ApplicationSystemTestCase
     assert_text "Health Metrics"
   end
     
-  test "editing a team name" do 
+  # unable to create a team without a name
+  test "unable to create a team without a name" do
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on 'New Team'
+    assert_text 'New Team'
+    click_on "Continue to Adding Members"
+    assert_text "Name can't be blank"
+    assert_text "Name is too short (minimum is 1 character)"
+  end
+    
+  test "editing a team name with valid submission" do 
     visit login_path
     fill_in "watiam", with: @manager.watiam
     fill_in "password", with: @manager.password
@@ -131,6 +145,21 @@ class TeamsTest < ApplicationSystemTestCase
     click_on "Update Team Name"
     assert_text "Team name was successfully updated."
     assert_text "Editing Team 2"
+  end
+    
+    # unable to update with empty team name
+  test "editing a team name with no submission" do 
+    visit login_path
+    fill_in "watiam", with: @manager.watiam
+    fill_in "password", with: @manager.password
+    click_on "Login"
+    visit manager_dashboard_path
+    click_on "Team 1"
+    click_on "Edit Team"
+    fill_in "Name", with: "" 
+    click_on "Update Team Name"
+    assert_text "Name is too short (minimum is 1 character)"
+    assert_text "Name can't be blank"
   end
     
   test "add member to team" do 
