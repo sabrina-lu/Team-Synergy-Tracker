@@ -30,6 +30,17 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "That WATIAM has an account associated with it already"
   end
     
+  test "unable to create user account when missing a required field" do 
+    visit login_path
+    click_on "Don't have an account? Sign up here!"
+    fill_in "user_watiam", with: "bob123"
+    fill_in "user_last_name", with: "Patter"
+    fill_in "user_password", with: "himynameisbob"
+    fill_in "user_password_confirmation", with: "himynameisbob"
+    click_on "Create Account"
+    assert_text "First name can't be blank"
+  end
+    
     
   test "no logout button on login page" do 
     visit login_path
@@ -207,6 +218,15 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Login"
     visit team_tickets_path(@team)
     assert_text "You do not have permission to view tickets."
+  end 
+    
+  test "user should be redirected to user dashboard when trying to access a team they are not on" do
+    visit login_path
+    fill_in "watiam", with: @user.watiam
+    fill_in "password", with: @user.password
+    click_on "Login"
+    visit user_team_list_path(@team_no_access)
+    assert_text "You do not have permission to view this team."
   end 
     
 end

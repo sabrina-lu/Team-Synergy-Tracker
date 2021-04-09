@@ -94,20 +94,7 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text "Ticket was successfully created"
   end
     
-  # cannot create a ticket without adding a member
-  test "unable to create a ticket without selecting a user" do
-    user2 = User.create(watiam: "jellen", first_name: "Joe", last_name: "Ellen", password: "Password")
-    @team_1.users << user2
-    visit login_path
-    fill_in "watiam", with: @user_1.watiam
-    fill_in "password", with: @user_1.password
-    click_on "Login"
-    visit new_team_ticket_url(@team_1, "dashboard")
-    assert_text "New Ticket"
-    click_on "Save"
-
-    assert_text "You Must Add a User to this Ticket"
-  end
+  # create test for:cannot create a ticket without adding a member
     
 # is redirected when trying to access a create ticket page for a team they are not on
 # Story: Bug Bash: Creating a Ticket if you're not on the team

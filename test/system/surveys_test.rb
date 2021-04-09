@@ -56,6 +56,27 @@ class SurveysTest < ApplicationSystemTestCase
     assert_text "Welcome #{@manager.first_name}"
     assert_text "You do not have permission to respond to surveys."
   end
+   
+  test "should redirect user to user dashboard when trying to visit another team's weekly survey" do
+    team_without_user = Team.create(name: "Team Test")
+    login(@user)
+    visit weekly_surveys_path(team_without_user, "dashboard")
+    assert_text "You do not have permission to respond to another team's survey."
+  end
+    
+  test "should redirect user to user dashboard when trying to submit another survey for the week" do
+    login(@user)
+    click_on "Team 1"
+    click_on "Weekly Surveys"
+    choose "1", :id => :answer1_1
+    choose "1", :id => :answer2_1
+    choose "1", :id => :answer3_1
+    choose "1", :id => :answer4_1
+    click_on "Save"   
+    assert_text "Successfully submitted weekly survey."
+    visit weekly_surveys_path(@team, "dashboard")
+    assert_text "You have already submitted this week's survey."
+  end
   
   test "should redirect user back to team dashboard without submitting the weekly survey" do
     login(@user)
