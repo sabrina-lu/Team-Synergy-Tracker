@@ -1,0 +1,102 @@
+<% if @current_week%>
+    <h1><%= @team.name %>'s Current Week's Surveys</h1>
+<h3>Weekly Survey Due Date: <%= Date.parse(params[:date])-1 %> 11:59PM UTC</h3>
+    <br>
+<% if @surveys.length > 0 %>   
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+        <%= render template: 'surveys/list' %>
+    <% else %>
+        <br>
+        <strong>Your team has not submitted any surveys this week! Please remind your team members to submit their surveys.</strong> 
+        <br>
+    <% end %>
+    <br>
+    <div class="link-container">
+        <%= link_to "Return to Dashboard", manager_dashboard_path %> 
+    </div>
+<% else %>
+    <h1><%= @team.name %> Health Details for Week <%= @interval %> </h1>
+    <br>
+    <h2>Survey Details</h2>
+<% if @surveys.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Questions Asked This Week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0..@questions.length - 1 do  %>
+          <tr>
+            <td><%=i+1%> . <%= @questions[i]  %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+        <%= render template: 'surveys/list' %>
+    <% else %>
+        <br>
+        <strong>Your team did not submit any surveys this week! Please remind your team members to submit their surveys.</strong> 
+        <br>
+    <% end %>  
+    <br>
+    <h2>Ticket Details</h2>
+      <% if @team_tickets.length > 0 %>
+      <table>
+        <thead>
+          <tr>
+            <th>Created By</th>
+            <th>Member Involved</th>
+            <th>Communication</th>
+            <th>Behaviour</th>
+            <th>Teamwork</th>
+            <th>Availability</th>
+            <th>Rating</th> 
+            <th>Ticket Health</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @team_tickets.each do |ticket| %>
+            <tr>
+              <% for i in 0..ticket.length-2 %>
+                <td><%= ticket[i] %></td>
+              <% end %>
+              <% if ticket[-1].to_f < 30 %>
+                <td class="red"><b><%= ticket[-1].to_f %>%</b></td>
+              <% elsif ticket[-1].to_f > 90 %>
+                <td class="green"><b><%= ticket[-1].to_f %>%</b></td>
+              <% else %>
+                <td><b><%= ticket[-1].to_f %>%</b></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>    
+    <% else %>
+        <br>
+        <div class="link-container"><strong>Your team did not submit any tickets this week.</strong></div>
+        <br>
+    <% end %>  
+    <br>
+    <div class="link-container">
+        <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
+    </div>
+    
+<% end %>

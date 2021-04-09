@@ -88,7 +88,7 @@ class ManagersController < ApplicationController
     end
   end
     
-  def surveys
+  def health_details
     q1 = "How do you feel about this week in comparison to last week?"
     q2 = "How did you feel about this week?"
     q3 = "How would you rate your communication with your team members this week?"
@@ -102,11 +102,12 @@ class ManagersController < ApplicationController
     else
         @current_week = false
     end
-      
+
     @team = Team.find(params[:id])
     @surveys = []
     if current_user_is_manager
-      @surveys = Survey.where(team_id: params[:id], date: params[:date])
+      @surveys = Survey.where(team_id: @team.id, date: params[:date])       
+      @team_tickets = @team.get_tickets(due_date)      
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
     end
