@@ -6,7 +6,11 @@
 
 <div class="user_team_links">
 <div class="link-container">
-    <%= link_to 'Go Back and Discard Changes', user_dashboard_path %>
+    <% if @from == "dashboard" %>
+        <%= link_to 'Go Back and Discard Changes', user_dashboard_path %>
+    <% elsif @from == "team" %>
+        <%= link_to 'Go Back and Discard Changes', user_team_list_path(@team.id) %>
+    <% end %>
 </div>
 </div>
 

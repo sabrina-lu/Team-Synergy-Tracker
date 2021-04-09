@@ -65,6 +65,7 @@ class UsersController < ApplicationController
     
   # GET /weekly_surveys/teams/1
   def weekly_surveys
+    @from = params[:from]
     @team = Team.find(params[:id])
     if current_user_is_manager
          redirect_to manager_dashboard_path, notice: 'You do not have permission to respond to surveys.'

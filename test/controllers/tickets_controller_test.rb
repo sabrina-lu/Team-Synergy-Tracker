@@ -22,7 +22,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     test "user should not be able to create a ticket if they are not on that team" do
         user_5 = User.create(watiam: "u5", first_name: "user5", last_name: "five", password: "Password")
         post login_path, params: { watiam: user_5.watiam, password: user_5.password }
-        get new_team_ticket_url(@team_1)
+        get new_team_ticket_url(@team_1, "dashboard")
         assert_redirected_to user_dashboard_url
     end
     
