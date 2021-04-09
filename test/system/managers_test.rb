@@ -5,18 +5,39 @@ class ManagersTest < ApplicationSystemTestCase
   setup do
     setup_users_manager_teams
   end
-  
+    
   test "create manager account" do 
     visit login_path
     click_on "Don't have an account? Sign up here!"
     choose(option: 'Manager')
     fill_in "user_watiam", with: "tom123"
-    fill_in "user_first_name", with: "Tom"
-    fill_in "user_last_name", with: "Tim"
-    fill_in "user_password", with: "password"
-    fill_in "user_password_confirmation", with: "password"
+    click_on "Create Account"
+    click_on "Create Account"
+    choose(option: 'Manager')
+    fill_in "manager_watiam", with: "tom123"
+    fill_in "manager_first_name", with: "Tom"
+    fill_in "manager_last_name", with: "Tim"
+    fill_in "manager_password", with: "password"
+    fill_in "manager_password_confirmation", with: "password"
     click_on "Create Account"
     assert_text "Account created and logged in."
+  end
+    
+  test "create manager account with same watiam as another student" do 
+    visit login_path
+    click_on "Don't have an account? Sign up here!"
+    choose(option: 'Manager')
+    fill_in "user_watiam", with: "tom123"
+    click_on "Create Account"
+    click_on "Create Account"
+    choose(option: 'Manager')
+    fill_in "manager_watiam", with: "jellen"
+    fill_in "manager_first_name", with: "Tom"
+    fill_in "manager_last_name", with: "Tim"
+    fill_in "manager_password", with: "password"
+    fill_in "manager_password_confirmation", with: "password"
+    click_on "Create Account"
+    assert_text "That WATIAM has an account associated with it already"
   end
 
     # can successfully login
