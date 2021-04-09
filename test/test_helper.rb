@@ -139,4 +139,15 @@ class ActiveSupport::TestCase
     post confirm_add_member_path(team), params: { user_id: user_id }
   end
     
+  def create_ticket(user, team, user2)
+    visit login_path
+    fill_in "watiam", with: user.watiam
+    fill_in "password", with: user.password
+    click_on "Login"
+    visit new_team_ticket_url(team)
+    select "#{user2.full_name_with_watiam}", :from => :users
+    click_on "Save"
+    visit logout_path
+  end
+    
 end

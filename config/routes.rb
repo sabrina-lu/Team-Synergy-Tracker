@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'team_health/:id/metrics/:date/details', to: 'managers#health_details', as: 'team_health_details'
     
     # route to get the team associated with the ticket
-  get 'teams/:id/tickets/new/:from', to: 'tickets#new', as: 'new_team_ticket'
+  get 'teams/:id/tickets/new', to: 'tickets#new', as: 'new_team_ticket'
   post 'teams/:id/tickets', to: 'tickets#create', as: 'create_team_ticket'
     
   #For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -50,8 +50,8 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Create Ticket"
     select "#{@user_2.full_name_with_watiam}"
     click_on "Save"
-    visit ticket_path(Ticket.all.first)
-    assert_text "You do not have permission to view this ticket."    
+    visit team_tickets_path(Team.all.first)
+    assert_text "You do not have permission to view tickets."    
   end
 
 # Story: Team Health calculations will now include weekly surveys and ticket ratings

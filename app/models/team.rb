@@ -155,12 +155,12 @@ class Team < ApplicationRecord
           temp.push(User.find(tickets[i].creator_id).full_name_with_watiam)
           temp.push(tickets[i].users.first.full_name_with_watiam)
           health = 0
-          for j in 4.downto(1) do
-            response = tickets[i].ticket_responses[j].answer
+          for j in 1..4 do
+            response = tickets[i].ticket_responses.find_by(question_number: j).answer
             health += 0.1*response.to_f/3
             temp.push(r[response])
           end
-          rating = tickets[i].ticket_responses[0].answer
+          rating = tickets[i].ticket_responses.find_by(question_number: 5).answer
           health += 0.6*rating.to_f/10
           temp.push("#{rating}/10")
           temp.push("#{'%.2f' % (health.to_f*100)}")

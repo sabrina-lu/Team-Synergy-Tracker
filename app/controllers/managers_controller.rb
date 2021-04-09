@@ -75,7 +75,11 @@ class ManagersController < ApplicationController
   def tickets
     @team = Team.find(params[:id])
     if current_user_is_manager
-      @tickets = @team.get_tickets(CURRENT_SURVEY_DUE_DATE)
+      if current_user.teams.include?(@team)
+        @tickets = @team.get_tickets(CURRENT_SURVEY_DUE_DATE)
+      else 
+        redirect_to manager_dashboard_path, notice: "You do not have permission to view these tickets." 
+      end
     else
       redirect_to user_dashboard_path, notice: "You do not have permission to view tickets." 
     end
@@ -99,10 +103,14 @@ class ManagersController < ApplicationController
     @team = Team.find(params[:id])
     @surveys = []
     if current_user_is_manager
-      @surveys = Survey.where(team_id: @team.id, date: params[:date])       
-      @tickets = @team.get_tickets(due_date)      
+      if current_user.teams.include?(@team)
+          @surveys = Survey.where(team_id: @team.id, date: params[:date])       
+          @tickets = @team.get_tickets(due_date)
+      else
+        redirect_to manager_dashboard_path, notice: "You do not have permission to view this team's health."
+      end
     else
-      redirect_to user_dashboard_path, notice: "You do not have permission to view surveys." 
+      redirect_to_manager_login
     end
   end
 

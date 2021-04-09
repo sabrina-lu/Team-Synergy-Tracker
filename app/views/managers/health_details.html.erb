@@ -10,7 +10,7 @@
     <br>
     <h2>Survey Details</h2>
 <% end %>
-<% if @surveys.first.responses.exists? %> 
+<% if @surveys.first && @surveys.first.responses.exists? %> 
     <table>
       <thead>
         <tr>

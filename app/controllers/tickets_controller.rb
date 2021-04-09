@@ -6,8 +6,10 @@ class TicketsController < ApplicationController
     @from = params[:from]
     @ticket = Ticket.new
     @team = Team.find(params[:id])
-      if !current_user.teams.include?(@team)
-          redirect_to user_dashboard_path, notice: "You do not have permission to create this ticket"
+      if current_user_is_manager 
+          redirect_to manager_dashboard_path, notice: "You do not have permission to create tickets."
+      elsif !current_user.teams.include?(@team)
+          redirect_to user_dashboard_path, notice: "You do not have permission to create this ticket."
       else
           @users_to_not_select = @team.get_users_with_tickets(current_user, CURRENT_SURVEY_DUE_DATE)
       end
@@ -20,7 +22,7 @@ class TicketsController < ApplicationController
         @ticket.creator = User.find(params[:creator_id])
         @ticket.team = Team.find_by(:id => params[:id])
         if !params[:users]
-          redirect_to create_team_ticket_url(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket"
+          redirect_to new_team_ticket_url(@ticket.team, ticket_params), notice: "You Must Add a User to this Ticket."
         else
           @users = User.find(params[:users])
           @ticket.users << @users
