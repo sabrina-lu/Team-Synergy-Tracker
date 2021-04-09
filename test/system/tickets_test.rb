@@ -12,7 +12,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user_1.watiam
     fill_in "password", with: @user_1.password
     click_on "Login"
-    visit new_team_ticket_url(@team_1)
+    visit new_team_ticket_url(@team_1, "dashboard")
     assert_text "New Ticket"
   end
     
@@ -42,7 +42,7 @@ class TicketsTest < ApplicationSystemTestCase
     click_on "one"
     click_on "Create A Ticket"
     click_on "Go Back and Discard Changes"
-    assert_text "Welcome " + @user_1.first_name.capitalize + "!"
+    assert_text "one Details"
   end
     
     # from managers POV
@@ -76,7 +76,7 @@ class TicketsTest < ApplicationSystemTestCase
     fill_in "watiam", with: @user_1.watiam
     fill_in "password", with: @user_1.password
     click_on "Login"
-    visit new_team_ticket_url(@team_1)
+    visit new_team_ticket_url(@team_1, "dashboard")
     assert_text "New Ticket"
     select "#{user2.full_name_with_watiam}", :from => :users
     click_on "Save"
@@ -92,7 +92,7 @@ class TicketsTest < ApplicationSystemTestCase
         fill_in "watiam", with: user_5.watiam
         fill_in "password", with: user_5.password
         click_on "Login"
-        visit new_team_ticket_url(@team_1)
+        visit new_team_ticket_url(@team_1, "dashboard")
         assert_text "You do not have permission to create this ticket"
     end
     
