@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
-
+  before_action :check_path, except: [:new, :create]
+    
   # GET /users/new
   def new
     user_params = params
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
       @user = User.create
     end
   end
-
+    
   # GET /dashboard
   def dashboard
      if current_user_is_manager
@@ -90,6 +91,7 @@ class UsersController < ApplicationController
     else
       @user = Manager.new(user_params)
     end
+      
     @userCannotBeCreated = false
     @watiamList = User.select("watiam") + Manager.select("watiam")
     @watiamList.each do |x|
@@ -115,7 +117,14 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+    
+    def check_path
+        current_path = request.env['PATH_INFO']
+        if current_path == "/users" || current_path == "/managers"
+            redirect_to user_dashboard_path
+        end
+    end
+    
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:name, :flag, :watiam, :password, :first_name, :last_name, :password_confirmation)

@@ -52,6 +52,7 @@ class ManagersController < ApplicationController
     else
       @manager = User.new(manager_params) 
     end
+      
     @userCannotBeCreated = false
     @watiamList = User.select("watiam") + Manager.select("watiam")
     @watiamList.each do |x|
