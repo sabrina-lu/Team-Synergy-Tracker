@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorized_to_modify_and_destroy, only: [:edit, :update, :destroy]
-  before_action :check_path
+  before_action :check_path, except [:new, :create]
     
   # GET /users/new
   def new
