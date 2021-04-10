@@ -16,6 +16,8 @@
         <td><%= link_to team.name, team_health_path(team) %>  </td>
         <% if team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE).to_i <30 %>
             <td class = "red_notice"><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
+        <% elsif team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE).to_i >90 %>
+            <td class = "green_notice"><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <% else %>
             <td><%= team.get_total_team_health(0, @CURRENT_SURVEY_DUE_DATE) %> %</td>
         <% end %>
