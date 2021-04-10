@@ -19,8 +19,9 @@
         </div>
      <% else %>
          <div class="row-container">        
-            <a id="logo" href="<%= current_user_is_manager ? "/managers_dashboard" : "/dashboard" %>"> <%= image_tag("logo.png", class: "logo", style: "align-self: center;") %> </a>
+            <%= image_tag("logo.png", class: "logo", style: "align-self: center;") %>
         </div>
+        <br>
      <% end %>
       
     <% flash.each do |key, value| %>

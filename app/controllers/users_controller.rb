@@ -90,6 +90,11 @@ class UsersController < ApplicationController
     else
       @user = Manager.new(user_params)
     end
+      
+    if current_user
+        redirect_to root_path
+    end
+      
     @userCannotBeCreated = false
     @watiamList = User.select("watiam") + Manager.select("watiam")
     @watiamList.each do |x|
