@@ -240,7 +240,7 @@ for i in 0..users.length-1 do
       for x in 1..4 do 
         Response.create(survey_id: s.id, question_number: x, answer: rand(1..5))
       end
-      team_users = team.users - [users[0]]
+      team_users = team.users - [users[i]]
       if (team_users != []) 
         t = Ticket.create(team_id: team.id, creator_id: users[i].id, date: survey_due_date - 8*j)
         t.users << team_users.sample
