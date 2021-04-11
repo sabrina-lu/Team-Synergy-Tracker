@@ -53,5 +53,28 @@
     <br>
     <div class="link-container">
         <%= link_to "Back to #{@team.name}", team_health_path(@team)%>    
-    </div>  
+    </div>
 <% end %>
+
+<br><br>
+<div class="link-container">
+    <a href="#help"><h2>Confused?🤔 Get information here!</h2></a>
+</div>
+
+<div id="help" class="overlay">
+  <div class="popup">
+    <h3 style="text-align:left">Team surveys:</h3>
+    <p style="margin-left:10px; margin-right:5%;">
+        This is where you can find out more information about each week's survey!
+        <br>
+        <br>
+        For each week you will be able to see all the questions that were asked in the survey.
+        <br>
+        Below that there is a table with each member and their respective ratings for each question during that week and their individual survey health.
+        <br><br>
+        <b>What about tickets?</b>
+        <br>
+        If any of your team members completed any tickets during the respective week, the ticket will also be displayed with all of their scores!
+    </p>
+    <a href="#">Close</a>
+  </div>
